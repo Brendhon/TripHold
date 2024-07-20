@@ -1,4 +1,7 @@
 {
+  "author": {
+    "name": "Brendhon Moreira"
+  },
   "name": "trip-hold",
   "version": "0.1.0",
   "private": true,
