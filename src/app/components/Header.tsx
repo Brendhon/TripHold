@@ -15,7 +15,7 @@ interface Props {
  */
 export function Header(props?: Props) {
   return (
-    <header className="flex justify-between items-center">
+    <header className="flex justify-between items-center mb-8">
       <div>
         <Image src="/Logo.png" alt="Logo" width={280} height={60} />
         {
