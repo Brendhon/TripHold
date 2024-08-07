@@ -1,33 +1,35 @@
 "use client";
 
+import { Button, UserImage } from "@app/components";
 import { Session } from "next-auth";
-import { getSession, signOut } from "next-auth/react"
-import { redirect } from "next/navigation"
-import { useEffect, useState } from "react";
+import { getSession, SessionProvider, signOut } from "next-auth/react"
+import { useRouter } from "next/navigation";
+import { useEffect, useState,   } from "react";
 
 export default function Home() {
-  const [user, setUser] = useState<Session>();
+  // Session data
+  const [session, setSession] = useState<Session>();
 
+  // Router
+  const router = useRouter();
+
+  // Get session on load or redirect to login - Run once
   useEffect(() => {
-    // Fetch data
     getSession()
-      .then(session => {
-        // Set user 
-        if (session) setUser(session);
-        else return redirect("/");
-      })
-  }, []); // Run once
+    .then(session => {
+      session ? setSession(session) : router.push("/login");
+    });
+  }, []);
 
-
-  // Render
+  // Render home page
   return (
-    <main>
+    <SessionProvider session={session}>
       <h1>Welcome</h1>
-      <span>Olá, {user?.user?.name}</span>
-      <span>Email: {user?.user?.email}</span>
-      <span>Image: {user?.user?.image}</span>
+      <span>Olá, {session?.user?.name}</span>
+      <span>Email: {session?.user?.email}</span>
 
-      <button onClick={() => signOut({ callbackUrl: "/" })}>Logout</button>
-    </main>
+      <UserImage />
+      <Button label="Logout" action={() => signOut({ callbackUrl: "/" })} type="submit" />
+    </SessionProvider>
   )
 }

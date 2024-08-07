@@ -11,7 +11,7 @@ interface Props {
 /**
  * Login button - Google
  */
-export default function GoogleBtn(props?: Props) {
+export function GoogleBtn(props?: Props) {
   return (
     <button
       className="flex items-center gap-4 px-8 py-2 bg-grey-thin rounded-md"

@@ -25,6 +25,7 @@ const config: Config = {
         "bold": "#060f18ed"
       },
       purple: {
+        "light": "#D7BDE2",
         "semi-bold": "#8E44AD",
         "bold": "#5800AF"
       },
