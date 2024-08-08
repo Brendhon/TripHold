@@ -4,6 +4,7 @@ import { SOCIAL_MEDIAS } from "@utils/Common";
 import { useTranslations } from "next-intl";
 import { FaLinkedin } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa6";
+import { NextUIProvider } from "@nextui-org/react";
 
 /**
  * Structure
@@ -17,7 +18,7 @@ export function Structure({ children }: React.PropsWithChildren<{}>) {
   const t = useTranslations('Footer');
 
   return (
-    <div className="p-7 pb-10 h-screen relative">
+    <NextUIProvider className="p-7 pb-10 h-screen relative">
       {children}
 
       <footer className="absolute bottom-0 right-0 flex justify-between items-center w-screen px-7 py-4">
@@ -29,6 +30,6 @@ export function Structure({ children }: React.PropsWithChildren<{}>) {
         </div>
       </footer>
 
-    </div>
+    </NextUIProvider>
   )
 }

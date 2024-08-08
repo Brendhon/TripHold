@@ -1,9 +1,8 @@
 "use client";
 
-import { BiSolidRightArrow } from "react-icons/bi";
-
 import Image from 'next/image';
-import { UserImage } from './UserImage';
+import { BiSolidRightArrow } from "react-icons/bi";
+import { ProfileDropdown } from "./ProfileDropdown";
 
 interface Props {
   hideProfile?: boolean;
@@ -17,7 +16,8 @@ export function Header(props?: Props) {
   return (
     <header className="flex justify-between items-center mb-8">
       <div>
-        <Image src="/Logo.png" alt="Logo" width={280} height={60} />
+        <Image src="/Logo.png" alt="Logo" priority width={280} height={60} style={{ width: "280px", height: "60px" }}
+        />
         {
           props?.countryFlag &&
           <div>
@@ -27,7 +27,7 @@ export function Header(props?: Props) {
         }
       </div>
 
-      {!props?.hideProfile ? <UserImage /> : <div />}
+      {!props?.hideProfile ? <ProfileDropdown /> : <div />}
     </header>
   )
 }

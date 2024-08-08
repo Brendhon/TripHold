@@ -18,6 +18,8 @@ As seguintes tecnologias foram utilizadas na construção do projeto:
 - **[React Icons](https://react-icons.github.io/react-icons/)**
 - **[Tailwind CSS](https://tailwindcss.com/)**
 - **[Firestore](https://firebase.google.com/docs/firestore)**
+- **[NextAuth](https://next-auth.js.org/)**
+- **[NextUI](https://nextui.org/)**
 
 > Veja o arquivo  **[package.json](https://github.com/Brendhon/TripHold/blob/main/package.json)**
 
