@@ -36,7 +36,7 @@ Antes de começar, você vai precisar ter instalado em sua máquina as seguintes
 Clone o repositório do projeto
 
 ```bash
-git clone https://github.com/Brendhon/PalApi.git
+git clone https://github.com/Brendhon/TripHold
 ```
 
 Instale as dependências
