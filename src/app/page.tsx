@@ -1,4 +1,4 @@
-import { DEFAULT_LOCALE } from "@utils/Common";
+import { DEFAULT_LOCALE } from "@utils/common";
 import { redirect } from "next/navigation";
 
 export default async function RootPage() {

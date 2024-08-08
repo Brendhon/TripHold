@@ -1,6 +1,6 @@
 "use client";
 
-import { BUTTON_COLORS } from "@utils/Common";
+import { BUTTON_COLORS } from "@utils/common";
 
 interface Props {
   label?: string;

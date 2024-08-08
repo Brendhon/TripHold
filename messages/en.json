@@ -1,5 +1,14 @@
 {
   "Footer": {
     "text": "All Rights Reserved"
+  },
+  "ProfileDropdown": {
+    "profile": "Profile",
+    "language": "Language",
+    "portuguese": "Portuguese",
+    "english": "English",
+    "spanish": "Spanish",
+    "settings": "Settings",
+    "logout": "Logout"
   }
 }

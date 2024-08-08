@@ -1,6 +1,6 @@
 import {notFound} from 'next/navigation';
 import {getRequestConfig} from 'next-intl/server';
-import { LOCALES } from '@utils/Common';
+import { LOCALES } from '@utils/common';
  
 // Can be imported from a shared config
 const locales = LOCALES;

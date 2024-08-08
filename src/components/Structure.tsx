@@ -1,6 +1,6 @@
 "use client";
 
-import { SOCIAL_MEDIAS } from "@utils/Common";
+import { SOCIAL_MEDIAS } from "@utils/common";
 import { useTranslations } from "next-intl";
 import { FaLinkedin } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa6";

@@ -9,14 +9,16 @@ import {
   DropdownItem,
   Avatar
 } from "@nextui-org/react";
-import { getAvatarFromSession } from '@utils/Common';
+import { getAvatarFromSession } from '@utils/common';
+import { useTranslations } from 'next-intl';
 
 
 export function ProfileDropdown() {
   const { data } = useSession();
+  const t = useTranslations('ProfileDropdown');
 
   return (
-    <Dropdown placement="bottom-end" radius="sm" aria-label='Profile Dropdown' backdrop='opaque' className='bg-blue-regular'>
+    <Dropdown placement="bottom-end" radius="sm" aria-label='Profile Dropdown' backdrop='opaque'>
 
       <DropdownTrigger aria-label='Profile Dropdown'>
         <Avatar
@@ -32,7 +34,7 @@ export function ProfileDropdown() {
         <DropdownSection aria-label="Profile">
           <DropdownItem key="profile" textValue="profile" isReadOnly className="h-24 gap-2"
           >
-            <div className="flex flex-col justify-center items-center text-center h-24 gap-2">
+            <div className="flex flex-col justify-center items-center text-center h-24 gap-2 cursor-default">
               <Avatar
                 size='lg'
                 src={getAvatarFromSession()}
@@ -43,12 +45,32 @@ export function ProfileDropdown() {
         </DropdownSection>
 
         <DropdownSection aria-label="Settings" showDivider>
-          <DropdownItem key="configurations" textValue="settings" color='primary'>Configurations</DropdownItem>
+
+          <DropdownItem
+            isReadOnly
+            key="theme"
+            className="cursor-default"
+            endContent={
+              <select
+                className="z-10 outline-none w-24 py-0.5 rounded-md text-tiny group-data-[hover=true]:border-default-500 border-grey-light dark:border-grey-light bg-blue-light text-grey-thin cursor-pointer"
+                id="theme"
+                name="theme"
+              >
+                <option>{t('portuguese')}</option>
+                <option>{t('english')}</option>
+                <option>{t('spanish')}</option>
+              </select>
+            }
+          >
+            {t('language')}
+          </DropdownItem>
+
+          <DropdownItem key="configurations" textValue="settings" color='primary'>{t('settings')}</DropdownItem>
         </DropdownSection>
 
         <DropdownSection aria-label="Preferences">
           <DropdownItem textValue='logout' onClick={() => signOut({ callbackUrl: "/" })} key="logout" color="warning">
-            Log Out
+            {t('logout')}
           </DropdownItem>
         </DropdownSection>
 

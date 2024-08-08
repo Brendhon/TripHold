@@ -1,6 +1,6 @@
 "use client";
 
-import { getAvatarFromSession } from '@utils/Common';
+import { getAvatarFromSession } from '@utils/common';
 import Image from 'next/image';
 
 interface Props {

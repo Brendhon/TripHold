@@ -1,4 +1,4 @@
-import { DEFAULT_LOCALE, LOCALES } from '@utils/Common';
+import { DEFAULT_LOCALE, LOCALES } from '@utils/common';
 import { withAuth } from 'next-auth/middleware';
 import createMiddleware from 'next-intl/middleware';
 import { NextRequest } from 'next/server';
