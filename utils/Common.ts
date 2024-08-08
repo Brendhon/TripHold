@@ -3,6 +3,10 @@ export const SOCIAL_MEDIAS = {
   linkedin: "https://www.linkedin.com/in/brendhon-moreira/"
 }
 
+export const DEFAULT_LOCALE = "pt";
+
+export const LOCALES = ["pt", "en"];
+
 export const BUTTON_COLORS = {
   "decline": {
     "bg": "bg-red-regular",

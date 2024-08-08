@@ -1,6 +1,6 @@
 "use client";
 
-import { GoogleBtn, Header, Structure } from "@app/components";
+import { GoogleBtn, Header, Structure } from "components";
 
 export default function Login() {
   // Render

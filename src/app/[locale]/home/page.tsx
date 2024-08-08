@@ -4,7 +4,7 @@ import {
   AuthProvider,
   Button,
   Header,
-} from "@app/components";
+} from "components";
 import { signOut } from "next-auth/react"
 
 export default function Home() {

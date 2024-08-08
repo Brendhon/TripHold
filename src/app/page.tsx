@@ -1,12 +1,6 @@
-import { getServerSession } from "next-auth";
+import { DEFAULT_LOCALE } from "@utils/Common";
 import { redirect } from "next/navigation";
 
-export default async function App() {
-  // Get session
-  const session = await getServerSession();
-
-  // Redirect to login if no session
-  return session
-    ? redirect("/home")
-    : redirect("/login");
+export default async function RootPage() {
+  redirect(`/${DEFAULT_LOCALE}`);
 }
