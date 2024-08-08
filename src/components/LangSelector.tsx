@@ -19,7 +19,7 @@ export function LangSelector() {
 
   // Handle language change
   const handleLangChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const path = `/${e.target.value}/${window.location.pathname.split('/')[2]}`;
+    const path = `/${e.target.value}${window.location.pathname.split(`/${locate}`)[1]}`;
     startTransition(() => router.replace(path));
   }
 
