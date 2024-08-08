@@ -11,10 +11,13 @@ import {
 } from "@nextui-org/react";
 import { getAvatarFromSession } from '@utils/common';
 import { useTranslations } from 'next-intl';
-
+import { LangSelector } from './LangSelector';
 
 export function ProfileDropdown() {
+  // Get session data
   const { data } = useSession();
+
+  // Get translations
   const t = useTranslations('ProfileDropdown');
 
   return (
@@ -50,17 +53,7 @@ export function ProfileDropdown() {
             isReadOnly
             key="theme"
             className="cursor-default"
-            endContent={
-              <select
-                className="z-10 outline-none w-24 py-0.5 rounded-md text-tiny group-data-[hover=true]:border-default-500 border-grey-light dark:border-grey-light bg-blue-light text-grey-thin cursor-pointer"
-                id="theme"
-                name="theme"
-              >
-                <option>{t('portuguese')}</option>
-                <option>{t('english')}</option>
-                <option>{t('spanish')}</option>
-              </select>
-            }
+            endContent={<LangSelector />}
           >
             {t('language')}
           </DropdownItem>
