@@ -50,24 +50,40 @@ npm install
 
 ### 🎲 Configurando o ambiente
 
-Para rodar localmente, crie um arquivo (.env) na raiz do projeto e coloque nele as informações de acesso (username, password e name) no formato demostrado abaixo: 
+Para rodar localmente, crie um arquivo (.env) na raiz do projeto e coloque nele as informações de acesso no formato demostrado abaixo: 
+
 ```
 NEXTAUTH_URL=http://localhost:3000
 NEXTAUTH_SECRET={SECRET}
-
-GOOGLE_CLIENT_ID={CLIENT_ID}
-GOOGLE_CLIENT_SECRET={CLIENT_SECRET}
 ```
 
-Para as variáveis GOOGLE_CLIENT_ID e GOOGLE_CLIENT_SECRET, você deve criar um projeto no [Google Cloud Platform](https://console.cloud.google.com/) e habilitar a API de autenticação do Google.
-
-Já para a variável NEXTAUTH_SECRET, você pode gerar uma chave secreta utilizando o comando abaixo:
+Para a variável NEXTAUTH_SECRET, você pode gerar uma chave secreta utilizando o comando abaixo:
 
 ```bash
 openssl rand -base64 32
 ```
 
 Caso tenha alguma dúvida, você pode acessar a documentação do [NextAuth.js](https://next-auth.js.org/getting-started/introduction) para mais informações.
+
+É necessário criar um projeto no [Firebase](https://firebase.google.com/) e habilitar o Firestore, Storage, Authentication e Hosting. Após isso, adicione as variáveis de ambiente no arquivo .env na raiz do projeto: 
+
+```
+NEXT_PUBLIC_FIREBASE_API_KEY={API_KEY}
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN={AUTH_DOMAIN}
+NEXT_PUBLIC_FIREBASE_PROJECT_ID={PROJECT_ID}
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET={STORAGE_BUCKET}
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID={MESSAGING_SENDER_ID}
+NEXT_PUBLIC_FIREBASE_APP_ID={APP_ID}
+```
+
+Para utilizar o login com o Google, você deve habilitar o provedor de login com o Google no Firebase e adicionar as variáveis de ambiente no arquivo .env na raiz do projeto:
+
+``` 
+GOOGLE_CLIENT_ID={CLIENT_ID}
+GOOGLE_CLIENT_SECRET={CLIENT_SECRET}
+```
+
+Como esse projeto foi construído utilizando o Next.js, é necessário atualizar o redirect_uri no arquivo de configuração do Google OAuth 2.0 para http://localhost:3000/api/auth/callback/google.
 
 ---
 
