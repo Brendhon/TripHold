@@ -39,6 +39,7 @@ const handler = NextAuth({
           name: user.name!,
           email: user.email!,
           image: user.image!,
+          profile: token.profile,
           provider: 'google',
         });
       }
