@@ -1,7 +1,7 @@
 "use client";
 
 import { Session } from "next-auth";
-import { getSession, SessionProvider, signOut } from "next-auth/react"
+import { getSession, SessionProvider } from "next-auth/react"
 import { useRouter } from "next/navigation";
 import { useEffect, useState, } from "react";
 import { Structure } from "./Structure";
@@ -23,7 +23,7 @@ export function AuthProvider({ children }: React.PropsWithChildren<{}>) {
       .then(session => {
         session ? setSession(session) : router.push("/login");
       });
-  }, []);
+  }, [router]);
 
   return (
     session &&

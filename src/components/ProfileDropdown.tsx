@@ -28,7 +28,7 @@ export function ProfileDropdown() {
           size='lg'
           as="button"
           className="transition-transform border-purple-semi-bold border-2"
-          src={getAvatarFromSession()}
+          src={getAvatarFromSession(data)}
         />
       </DropdownTrigger>
 
@@ -40,7 +40,7 @@ export function ProfileDropdown() {
             <div className="flex flex-col justify-center items-center text-center h-24 gap-2 cursor-default">
               <Avatar
                 size='lg'
-                src={getAvatarFromSession()}
+                src={getAvatarFromSession(data)}
               />
               <p className="font-semibold text-lg">{data?.user?.name}</p>
             </div>

@@ -1,4 +1,4 @@
-import { useSession } from "next-auth/react";
+import { Session } from "next-auth";
 
 export const SOCIAL_MEDIAS = {
   github: "https://github.com/Brendhon",
@@ -26,20 +26,14 @@ export const BUTTON_COLORS = {
 
 /**
  * Get avatar from session
- * @param {string} src - Image source
+ * @param {string} session - Image source
  * @returns Image source
  */
-export const getAvatarFromSession = (src?: string) => {
-  // If src is defined, return it
-  if (src) return src;
-
-  // Session data
-  const { data } = useSession();
-
+export const getAvatarFromSession = (session?: Session | null) => {
   switch (true) {
     // Get image from session
-    case !!data?.user?.image:
-      return data.user.image;
+    case !!session?.user?.image:
+      return session.user.image;
 
     // Default image
     default:
