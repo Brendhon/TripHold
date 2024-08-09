@@ -65,7 +65,7 @@ openssl rand -base64 32
 
 Caso tenha alguma dúvida, você pode acessar a documentação do [NextAuth.js](https://next-auth.js.org/getting-started/introduction) para mais informações.
 
-É necessário criar um projeto no [Firebase](https://firebase.google.com/) e habilitar o Firestore, Storage, Authentication e Hosting. Após isso, adicione as variáveis de ambiente no arquivo .env na raiz do projeto: 
+É necessário criar um projeto no [Firebase](https://firebase.google.com/) e habilitar o Firestore, Storage, Authentication. Após isso, adicione as variáveis de ambiente no arquivo .env na raiz do projeto: 
 
 ```
 NEXT_PUBLIC_FIREBASE_API_KEY={API_KEY}
@@ -83,7 +83,9 @@ GOOGLE_CLIENT_ID={CLIENT_ID}
 GOOGLE_CLIENT_SECRET={CLIENT_SECRET}
 ```
 
-Como esse projeto foi construído utilizando o Next.js, é necessário atualizar o redirect_uri no arquivo de configuração do Google OAuth 2.0 para http://localhost:3000/api/auth/callback/google.
+Como esse projeto foi construído utilizando o Next.js, é necessário atualizar o redirect_uri no arquivo de configuração do Google OAuth 2.0 para http://localhost:3000/api/auth/callback/google. Para isso, acesse o [Google Cloud Console](https://console.cloud.google.com/), vá em APIs & Services > Credenciais > OAuth 2.0 Client IDs > Selecione o Client ID > Atualize o campo "URIs de redirecionamento autorizados". 
+
+Além disso, o deploy do projeto foi feito utilizando o [Vercel](https://vercel.com/), então é necessário criar um projeto no Vercel e adicionar as variáveis de ambiente no projeto.
 
 ---
 
