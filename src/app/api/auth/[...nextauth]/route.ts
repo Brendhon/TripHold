@@ -1,3 +1,5 @@
+import { User } from "@app/models";
+import { createUser } from "lib/firebase/firestore/users";
 import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google";
 
@@ -12,12 +14,12 @@ const handler = NextAuth({
         params: {
           scope: "openid profile email https://www.googleapis.com/auth/user.addresses.read"
         }
-      }
+      },
     })
     // ...add more providers here
   ],
   callbacks: {
-    async jwt({ token, account, profile }) {
+    async jwt({ token, account, profile, user }) {
       if (account?.provider === "google") {
         token.accessToken = account.access_token;
         token.idToken = account.id_token;
@@ -31,6 +33,14 @@ const handler = NextAuth({
             addresses: profile.addresses // Add address if available
           };
         }
+
+        // Create a new user in the database if it doesn't exist
+        await createUser({
+          name: user.name!,
+          email: user.email!,
+          image: user.image!,
+          provider: 'google',
+        });
       }
       return token;
     },
