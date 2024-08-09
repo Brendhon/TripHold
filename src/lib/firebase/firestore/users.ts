@@ -15,10 +15,13 @@ export const createUser = async (user: User) => {
     // Get user document
     const userDoc = doc(db, path);
 
+    // Get user data
+    const fd = await getDoc(userDoc);
+
     // Create user document
     await setDoc(userDoc, {
       ...user,
-      createdAt: Timestamp.now(),
+      createdAt: fd.exists() ? fd.data()?.createdAt : Timestamp.now(),
       updatedAt: Timestamp.now(),
     }, { merge: true }); // Merge data if document exists or create a new document
   } catch (error) {

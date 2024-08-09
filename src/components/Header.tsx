@@ -16,7 +16,7 @@ export function Header(props?: Props) {
   return (
     <header className="flex justify-between items-center mb-8">
       <div>
-        <Image src="/Logo.png" alt="Logo" priority width={280} height={60} style={{ width: "280px", height: "60px" }}
+        <Image src="/logo.svg" alt="Logo" priority width="0" height="0" style={{ width: "auto", height: "50px" }}
         />
         {
           props?.countryFlag &&
