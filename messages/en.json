@@ -10,5 +10,29 @@
     "spanish": "Spanish",
     "settings": "Settings",
     "logout": "Logout"
+  },
+  "Placeholder": {
+    "search": "Search...",
+    "email": "Type your e-mail",
+    "password": "Type your password",
+    "name": "Type your name"
+  },
+  "LoginAndRegister": {
+    "login": "Login",
+    "signUp": "Sign Up",
+    "register": "Register",
+    "forgotPassword": "Forgot password?",
+    "dontHaveAccount": "Don't have an account?",
+    "alreadyHaveAccount": "Already have an account?"
+  },
+  "Button": {
+    "send": "Send",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "back": "Back",
+    "confirm": "Confirm"
   }
 }

@@ -4,3 +4,6 @@ export * from './Header';
 export * from './Structure';
 export * from './ProfileDropdown';
 export * from './Footer';
+export * from './CustomInput';
+export * from './LoginForm';
+export * from './RegisterForm';

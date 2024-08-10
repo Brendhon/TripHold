@@ -10,5 +10,29 @@
     "spanish": "Espanhol",
     "settings": "Configurações",
     "logout": "Sair"
+  },
+  "Placeholder": {
+    "search": "Pesquisar...",
+    "email": "Digite seu e-mail",
+    "password": "Digite sua senha",
+    "name": "Digite seu nome"
+  },
+  "LoginAndRegister": {
+    "login": "Entrar",
+    "signUp": "Cadastrar",
+    "register": "Registrar",
+    "forgotPassword": "Esqueceu a senha?",
+    "dontHaveAccount": "Não tem uma conta?",
+    "alreadyHaveAccount": "Já tem uma conta?"
+  },
+  "Button": {
+    "send": "Enviar",
+    "cancel": "Cancelar",
+    "save": "Salvar",
+    "delete": "Excluir",
+    "edit": "Editar",
+    "create": "Criar",
+    "back": "Voltar",
+    "confirm": "Confirmar"
   }
 }
