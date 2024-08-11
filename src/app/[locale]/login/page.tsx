@@ -5,10 +5,10 @@ import { Tabs, Tab, Card, CardBody, Divider } from "@nextui-org/react";
 import { LoginForm, GoogleBtn, Header, Structure, RegisterForm, } from "components";
 import { useTranslations } from "next-intl";
 
-
 type TabsOptions = 'login' | 'sign-up';
 
 export default function Login() {
+  // Tabs
   const [selected, setSelected] = useState<TabsOptions>("login");
 
   // Translations
@@ -19,46 +19,44 @@ export default function Login() {
 
   // Render
   return (
-    <Structure>
+    <Structure
+      headerProps={{ hideProfile: true }}
+      mainProps={{ className: "md:flex md:flex md:justify-center md:items-center" }}>
+      <Card className="gap-4">
+        <CardBody className="overflow-hidden">
+          <Tabs
+            fullWidth
+            size="lg"
+            variant="light"
+            color="default"
+            aria-label="Tabs form"
+            selectedKey={selected}
+            onSelectionChange={(key: Key) => setSelected(key as TabsOptions)}
+          >
+            <Tab key="login" title={tPage('login')} className="p-4">
 
-      <Header hideProfile />
+              <LoginForm action={() => setSelected("sign-up")} />
 
-      <main className="flex items-center justify-center h-auto">
-        <Card className="min-w-96 gap-4">
-          <CardBody className="overflow-hidden">
-            <Tabs
-              fullWidth
-              size="md"
-              variant="underlined"
-              aria-label="Tabs form"
-              selectedKey={selected}
-              onSelectionChange={(key: Key) => setSelected(key as TabsOptions)}
-            >
-              <Tab key="login" title={tPage('login')} className="p-4 text-medium">
+              <Divider className="my-4" />
 
-                <LoginForm action={() => setSelected("sign-up")} />
+              <GSignIn />
 
-                <Divider className="my-4" />
+            </Tab>
 
-                <GSignIn />
+            <Tab key="sign-up" title={tPage('signUp')} className="p-4">
 
-              </Tab>
+              <GSignIn />
 
-              <Tab key="sign-up" title={tPage('signUp')} className="p-4 text-medium">
+              <Divider className="my-4" />
 
-                <GSignIn />
+              <RegisterForm action={() => setSelected("login")} />
 
-                <Divider className="my-4" />
+            </Tab>
 
-                <RegisterForm action={() => setSelected("login")} />
+          </Tabs>
+        </CardBody>
+      </Card>
 
-              </Tab>
-
-            </Tabs>
-          </CardBody>
-        </Card>
-      </main>
-      
     </Structure>
   )
 }

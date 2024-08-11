@@ -1,17 +1,13 @@
 "use client";
 
+import { GoogleBtnProps } from '@app/models';
 import { signIn } from 'next-auth/react';
 import Image from 'next/image';
-
-interface Props {
-  content?: string;
-  action?: () => void;
-}
 
 /**
  * Login button - Google
  */
-export function GoogleBtn(props?: Props) {
+export function GoogleBtn(props?: GoogleBtnProps) {
   return (
     <button
       className="flex items-center gap-2 px-6 py-2 bg-grey-thin rounded-md"

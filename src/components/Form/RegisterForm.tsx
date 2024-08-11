@@ -7,16 +7,13 @@ import { FiGlobe, FiHome } from "react-icons/fi";
 import { MdAddLocation, MdEmail, MdLock, MdLooksOne, MdPerson } from "react-icons/md";
 import { CInput } from "./CInput";
 import { CSelect } from "./CSelect";
+import { RegisterFormProps } from "@app/models";
 ;
-
-interface Props {
-  action: () => void;
-}
 
 /**
  * Register Form
  */
-export function RegisterForm(props: Props) {
+export function RegisterForm(props: RegisterFormProps) {
 
   // Handle sign up
   const handleSignUp = () => {
@@ -44,7 +41,7 @@ export function RegisterForm(props: Props) {
   ]
 
   return (
-    <form className="flex flex-col gap-4 pt-3">
+    <form className={`flex flex-col gap-2 pt-3 md:gap-4 sm:min-w-0 md:min-w-[50%] lg:min-w-[700px] ${props.className}`} >
 
       <div className="form-row">
         <CInput placeholder="name" type="text" startContent={<MdPerson />} />
@@ -62,7 +59,7 @@ export function RegisterForm(props: Props) {
       </div>
 
       <Tooltip content={tPage('address.whyInfo')} placement="right-end">
-        <span className="text-sm text-grey-extra-light flex items-center gap-1 w-fit">
+        <span className="text-sm text-grey-extra-light flex items-center gap-1 w-fit pt-2">
           {tPage('address.why')}
           <FaRegQuestionCircle className="text-green-regular cursor-text" />
         </span>
@@ -83,19 +80,19 @@ export function RegisterForm(props: Props) {
         <CInput placeholder="complement" type="text" startContent={<MdAddLocation />} />
       </div>
 
-      <p className="text-center text-small">
+      <p className="text-center text-small pt-2">
         {tPage('alreadyHaveAccount')}{" "}
         <Link className="cursor-pointer" size="sm" onPress={() => props.action()}>
           {tPage('login')}
         </Link>
       </p>
 
-      <div className="form-row justify-center">
+      <div className="form-row justify-center pt-2">
         <Button onClick={handleSignUp} color="primary" type="button">
           {tButton('confirm')}
         </Button>
       </div>
 
-    </form>
+    </ form>
   )
 }

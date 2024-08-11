@@ -16,11 +16,11 @@ export function Footer() {
   const t = useTranslations('Footer');
 
   return (
-    <footer className="absolute bottom-0 right-0 flex justify-between items-center w-screen px-7 py-4">
-      <span className="text-grey-extra-light text-sm">© 2024 Brendhon Moreira | {t('text')} </span>
+    <footer className="flex justify-between items-center w-full py-4">
+      <span className="text-grey-extra-light text-xs">© 2024 Brendhon Moreira | {t('text')} </span>
 
       <div className="flex gap-4 ">
-        <FaLinkedin className="text-grey-extra-light cursor-pointer " onClick={() => openLink("linkedin")} />
+        <FaLinkedin className="text-grey-extra-light cursor-pointer" onClick={() => openLink("linkedin")} />
         <FaGithub className="text-grey-extra-light cursor-pointer" onClick={() => openLink("github")} />
       </div>
     </footer>

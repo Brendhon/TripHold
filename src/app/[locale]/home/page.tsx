@@ -1,12 +1,12 @@
 "use client";
 
-import { AuthProvider, Header } from "components";
+import { AuthProvider } from "components";
 
 export default function Home() {
   // Render home page
   return (
     <AuthProvider>
-      <Header />
+      <div>Olá</div>
     </AuthProvider>
   )
 }

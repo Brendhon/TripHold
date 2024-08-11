@@ -1,17 +1,13 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { SelectProps, Select, SelectItem } from "@nextui-org/react";
-
-interface Props extends Partial<SelectProps> {
-  placeholder: string;
-  options?: { value: any, label: string }[];
-}
+import { Select, SelectItem } from "@nextui-org/react";
+import { CSelectProps } from "@app/models";
 
 /**
  * Custom Input
  */
-export function CSelect(props: Props) {
+export function CSelect(props: CSelectProps) {
   // Translations
   const t = useTranslations('Placeholder');
 

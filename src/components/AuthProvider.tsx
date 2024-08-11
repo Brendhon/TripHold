@@ -3,14 +3,14 @@
 import { Session } from "next-auth";
 import { getSession, SessionProvider } from "next-auth/react"
 import { useRouter } from "next/navigation";
-import { useEffect, useState, } from "react";
+import { PropsWithChildren, useEffect, useState, } from "react";
 import { Structure } from "./Structure";
 
 /**
  * Auth Provider 
- * @param {React.PropsWithChildren<{}>} props - Props
+ * @param {PropsWithChildren<any>} props - Props
  */
-export function AuthProvider({ children }: React.PropsWithChildren<{}>) {
+export function AuthProvider({ children }: PropsWithChildren<any>) {
   // Session data
   const [session, setSession] = useState<Session>();
 

@@ -27,7 +27,7 @@
     "neighborhood": "Digite seu bairro",
     "address": "Digite seu endereço",
     "number": "Digite o número",
-    "complement": "Digite o complemento"
+    "complement": "Digite o complemento (opcional)"
   },
   "LoginAndRegister": {
     "login": "Entrar",

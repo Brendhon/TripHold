@@ -27,7 +27,7 @@
     "neighborhood": "Type your neighborhood",
     "address": "Type your address",
     "number": "Type the number",
-    "complement": "Type the complement"
+    "complement": "Type the complement (optional)"
   },
   "LoginAndRegister": {
     "login": "Login",
@@ -36,7 +36,10 @@
     "forgotPassword": "Forgot password?",
     "dontHaveAccount": "Don't have an account?",
     "alreadyHaveAccount": "Already have an account?",
-    "whyWeNeedTheAddress": "Why we need the address"
+    "address": {
+      "why": "Why do we need the address",
+      "whyInfo": "The address will be used as the starting point for your trips."
+    }
   },
   "Button": {
     "send": "Send",

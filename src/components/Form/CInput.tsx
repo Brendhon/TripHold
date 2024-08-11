@@ -1,23 +1,16 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Input, InputProps } from "@nextui-org/react";
+import { Input } from "@nextui-org/react";
 import { MdRemoveRedEye } from "react-icons/md";
 import { useState, } from "react";
 import { IoMdEyeOff } from "react-icons/io";
-
-type Type = 'text' | 'search' | 'url' | 'tel' | 'email' | 'password' | 'number';
-
-interface Props extends Partial<InputProps> {
-  type: Type;
-  placeholder: string;
-  options?: { value: any, label: string }[];
-}
+import { CInputProps } from "@app/models";
 
 /**
  * Custom Input
  */
-export function CInput(props: Props) {
+export function CInput(props: CInputProps) {
   // State to view password
   const [viewPassword, setViewPassword] = useState(false);
 

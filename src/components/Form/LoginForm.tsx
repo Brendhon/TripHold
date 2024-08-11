@@ -4,15 +4,12 @@ import { useTranslations } from "next-intl";
 import { Button, Link } from "@nextui-org/react";
 import { MdEmail, MdLock } from "react-icons/md";;
 import { CInput } from "./CInput";
-
-interface Props {
-  action: () => void;
-}
+import { LoginFormProps } from "@app/models";
 
 /**
  * Custom Input
  */
-export function LoginForm(props: Props) {
+export function LoginForm(props: LoginFormProps) {
 
   // Handle login
   const handleLogin = () => {
@@ -20,11 +17,11 @@ export function LoginForm(props: Props) {
   }
 
   // Translations
-  const tPage = useTranslations("LoginAndRegister");
+  const tPage = useTranslations("LoginAndRegister"); 
   const tButton = useTranslations("Button");
 
   return (
-    <form className="flex flex-col gap-4 pt-3">
+    <form className={`flex flex-col gap-4 pt-3 sm:min-w-96 ${props.className}`} >
 
       <CInput placeholder="email" type="email" startContent={<MdEmail />} />
       <CInput placeholder="password" type="password" startContent={<MdLock />} />
