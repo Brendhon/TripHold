@@ -12,3 +12,9 @@ body {
     text-wrap: balance;
   }
 }
+
+@layer components {
+  .form-row {
+    @apply flex gap-2;
+  }
+}

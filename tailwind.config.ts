@@ -106,11 +106,11 @@ const config: Config = {
             },
             warning: {
               DEFAULT: "#D35400",
-              foreground: "#000000",
+              foreground: "#E5E8E8",
             },
             success: {
               DEFAULT: "#4A6E59",
-              foreground: "#000000",
+              foreground: "#E5E8E8",
             },
             default: {
               100: "#566573",
@@ -121,11 +121,14 @@ const config: Config = {
               600: "#F8F9FA",
               700: "#FFFFFF",
               DEFAULT: "#566573",
-              foreground: "#000000",
+              foreground: "#E5E8E8",
             },
             focus: {
               DEFAULT: "#8E44AD",
-            }
+            },
+            foreground: {
+              500: "#AAB7B8",
+            },
           },
         },
       },

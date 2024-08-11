@@ -15,7 +15,10 @@
     "search": "Pesquisar...",
     "email": "Digite seu e-mail",
     "password": "Digite sua senha",
-    "name": "Digite seu nome"
+    "name": "Digite seu nome",
+    "confirmPassword": "Confirme sua senha",
+    "countrySelect": "Selecione um país",
+    "zipCode": "Digite seu CEP"
   },
   "LoginAndRegister": {
     "login": "Entrar",

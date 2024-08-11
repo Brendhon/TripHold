@@ -15,7 +15,10 @@
     "search": "Search...",
     "email": "Type your e-mail",
     "password": "Type your password",
-    "name": "Type your name"
+    "name": "Type your name",
+    "confirmPassword": "Confirm your password",
+    "countrySelect": "Select a country",
+    "zipCode": "Type your ZIP code"
   },
   "LoginAndRegister": {
     "login": "Login",
