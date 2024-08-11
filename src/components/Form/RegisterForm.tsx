@@ -1,14 +1,13 @@
 "use client";
 
-import { Button, Link, Tooltip } from "@nextui-org/react";
+import { RegisterFormProps } from "@app/models";
+import { Button, Checkbox, Link, Tooltip } from "@nextui-org/react";
 import { useTranslations } from "next-intl";
 import { FaCity, FaEnvelopeOpenText, FaMap, FaMapMarkerAlt, FaRegQuestionCircle } from "react-icons/fa";
 import { FiGlobe, FiHome } from "react-icons/fi";
 import { MdAddLocation, MdEmail, MdLock, MdLooksOne, MdPerson } from "react-icons/md";
 import { CInput } from "./CInput";
 import { CSelect } from "./CSelect";
-import { RegisterFormProps } from "@app/models";
-;
 
 /**
  * Register Form
@@ -16,9 +15,7 @@ import { RegisterFormProps } from "@app/models";
 export function RegisterForm(props: RegisterFormProps) {
 
   // Handle sign up
-  const handleSignUp = () => {
-    console.log("Sign up");
-  }
+  const handleSignUp = () => console.log("Sign up");
 
   // Translations
   const tPage = useTranslations("LoginAndRegister");
@@ -55,7 +52,7 @@ export function RegisterForm(props: RegisterFormProps) {
 
       <div className="form-row">
         <CSelect placeholder="countrySelect" options={countries} startContent={<FiGlobe />} />
-        <CInput placeholder="zipCode" type="number" startContent={<FaEnvelopeOpenText />} />
+        <CInput className="small-field" placeholder="zipCode" type="number" startContent={<FaEnvelopeOpenText />} />
       </div>
 
       <Tooltip content={tPage('address.whyInfo')} placement="right-end">
@@ -66,19 +63,26 @@ export function RegisterForm(props: RegisterFormProps) {
       </Tooltip>
 
       <div className="form-row">
-        <CSelect placeholder="stateSelect" options={states} startContent={<FaMap />} />
+        <CSelect className="small-field" placeholder="stateSelect" options={states} startContent={<FaMap />} />
         <CInput placeholder="city" type="text" startContent={<FaCity />} />
       </div>
 
       <div className="form-row">
         <CInput placeholder="neighborhood" type="text" startContent={<FaMapMarkerAlt />} />
-        <CInput placeholder="address" type="text" startContent={<FiHome />} />
+        <CInput placeholder="street" type="text" startContent={<FiHome />} />
       </div>
 
       <div className="form-row">
-        <CInput placeholder="number" type="number" startContent={<MdLooksOne />} />
+        <CInput className="small-field" placeholder="number" type="number" startContent={<MdLooksOne />} />
         <CInput placeholder="complement" type="text" startContent={<MdAddLocation />} />
       </div>
+
+      <Checkbox size="sm" color="primary">
+        {tPage('terms.accept')}{" "}
+        <Link isExternal className="cursor-pointer" size="sm" href="https://nextui.org/docs/components/link">
+          {tPage('terms.terms')}
+        </Link>
+      </Checkbox>
 
       <p className="text-center text-small pt-2">
         {tPage('alreadyHaveAccount')}{" "}
@@ -89,7 +93,7 @@ export function RegisterForm(props: RegisterFormProps) {
 
       <div className="form-row justify-center pt-2">
         <Button onClick={handleSignUp} color="primary" type="button">
-          {tButton('confirm')}
+          {tButton('signUp')}
         </Button>
       </div>
 

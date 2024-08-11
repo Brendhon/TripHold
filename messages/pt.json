@@ -26,6 +26,7 @@
     "city": "Digite sua cidade",
     "neighborhood": "Digite seu bairro",
     "address": "Digite seu endereço",
+    "street": "Digite sua rua",
     "number": "Digite o número",
     "complement": "Digite o complemento (opcional)"
   },
@@ -39,6 +40,12 @@
     "address": {
       "why": "Por que precisamos do endereço",
       "whyInfo": "O endereço será utilizado como ponto de origem de suas viagens."
+    },
+    "terms": {
+      "accept": "Ao clicar em Cadastrar, você concorda com nossos",
+      "terms": "Termos de Serviço",
+      "and": "e",
+      "privacyPolicy": "Política de Privacidade"
     }
   },
   "Button": {
@@ -49,6 +56,9 @@
     "edit": "Editar",
     "create": "Criar",
     "back": "Voltar",
-    "confirm": "Confirmar"
+    "confirm": "Confirmar",
+    "register": "Registrar",
+    "login": "Entrar",
+    "signUp": "Cadastrar"
   }
 }

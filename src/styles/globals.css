@@ -11,10 +11,12 @@ body {
   .text-balance {
     text-wrap: balance;
   }
-}
 
-@layer components {
+  .small-field {
+    @apply md:w-[300px];
+  }
+
   .form-row {
-    @apply  flex flex-col gap-2 md:flex-row md:gap-2;
+    @apply flex flex-col gap-2 md:flex-row md:gap-4;
   }
 }

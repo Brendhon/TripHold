@@ -12,12 +12,10 @@ import { LoginFormProps } from "@app/models";
 export function LoginForm(props: LoginFormProps) {
 
   // Handle login
-  const handleLogin = () => {
-    console.log("Login");
-  }
+  const handleLogin = () => console.log("Login");
 
   // Translations
-  const tPage = useTranslations("LoginAndRegister"); 
+  const tPage = useTranslations("LoginAndRegister");
   const tButton = useTranslations("Button");
 
   return (
@@ -39,7 +37,7 @@ export function LoginForm(props: LoginFormProps) {
 
       <div className="flex gap-2 justify-center">
         <Button onClick={handleLogin} color="primary" type="button">
-          {tButton('confirm')}
+          {tButton('login')}
         </Button>
       </div>
 

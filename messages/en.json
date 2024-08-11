@@ -26,6 +26,7 @@
     "city": "Type your city",
     "neighborhood": "Type your neighborhood",
     "address": "Type your address",
+    "street": "Type your street",
     "number": "Type the number",
     "complement": "Type the complement (optional)"
   },
@@ -39,6 +40,12 @@
     "address": {
       "why": "Why do we need the address",
       "whyInfo": "The address will be used as the starting point for your trips."
+    },
+    "terms": {
+      "accept": "By clicking Register, you agree to our",
+      "terms": "Terms of Service",
+      "and": "and",
+      "privacyPolicy": "Privacy Policy"
     }
   },
   "Button": {
@@ -49,6 +56,8 @@
     "edit": "Edit",
     "create": "Create",
     "back": "Back",
-    "confirm": "Confirm"
+    "confirm": "Confirm",
+    "register": "Register",
+    "login": "Login"
   }
 }
