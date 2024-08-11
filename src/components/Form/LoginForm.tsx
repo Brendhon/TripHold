@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 import { Button, Link } from "@nextui-org/react";
 import { MdEmail, MdLock } from "react-icons/md";;
-import { CustomInput } from "./CustomInput";
+import { CInput } from "./CInput";
 
 interface Props {
   action: () => void;
@@ -26,8 +26,8 @@ export function LoginForm(props: Props) {
   return (
     <form className="flex flex-col gap-4 pt-3">
 
-      <CustomInput placeholder="email" type="email" startContent={<MdEmail />} />
-      <CustomInput placeholder="password" type="password" startContent={<MdLock />} />
+      <CInput placeholder="email" type="email" startContent={<MdEmail />} />
+      <CInput placeholder="password" type="password" startContent={<MdLock />} />
 
       <Link className="cursor-pointer text-center justify-end" size="sm">
         {tPage('forgotPassword')}

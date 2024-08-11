@@ -15,10 +15,19 @@
     "search": "Pesquisar...",
     "email": "Digite seu e-mail",
     "password": "Digite sua senha",
+    "newPassword": "Digite sua nova senha",
+    "confirmNewPassword": "Confirme sua nova senha",
     "name": "Digite seu nome",
     "confirmPassword": "Confirme sua senha",
     "countrySelect": "Selecione um país",
-    "zipCode": "Digite seu CEP"
+    "zipCode": "Digite seu CEP",
+    "state": "Digite seu estado",
+    "stateSelect": "Selecione um estado",
+    "city": "Digite sua cidade",
+    "neighborhood": "Digite seu bairro",
+    "address": "Digite seu endereço",
+    "number": "Digite o número",
+    "complement": "Digite o complemento"
   },
   "LoginAndRegister": {
     "login": "Entrar",
@@ -26,7 +35,11 @@
     "register": "Registrar",
     "forgotPassword": "Esqueceu a senha?",
     "dontHaveAccount": "Não tem uma conta?",
-    "alreadyHaveAccount": "Já tem uma conta?"
+    "alreadyHaveAccount": "Já tem uma conta?",
+    "address": {
+      "why": "Por que precisamos do endereço",
+      "whyInfo": "O endereço será utilizado como ponto de origem de suas viagens."
+    }
   },
   "Button": {
     "send": "Enviar",
