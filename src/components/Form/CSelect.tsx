@@ -1,8 +1,8 @@
 "use client";
 
-import { useTranslations } from "next-intl";
-import { Select, SelectItem } from "@nextui-org/react";
 import { CSelectProps } from "@app/models";
+import { Select, SelectItem } from "@nextui-org/react";
+import { useTranslations } from "next-intl";
 
 /**
  * Custom Input
@@ -10,6 +10,10 @@ import { CSelectProps } from "@app/models";
 export function CSelect(props: CSelectProps) {
   // Translations
   const t = useTranslations('Placeholder');
+
+  const onchange = (e: any) => {
+    console.log(e);
+  }
 
   return (
     <Select
@@ -21,8 +25,8 @@ export function CSelect(props: CSelectProps) {
       placeholder={t(props?.placeholder)}
       startContent={props?.startContent}
     >
-      {props!.options!.map((option, index) => (
-        <SelectItem key={index} value={option.value}>{option.label}</SelectItem>
+      {props!.options!.map((option) => (
+        <SelectItem key={option.value}>{option.label}</SelectItem>
       ))}
     </Select>
   )

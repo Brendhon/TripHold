@@ -3,19 +3,53 @@
 import { RegisterFormProps } from "@app/models";
 import { Button, Checkbox, Link, Tooltip } from "@nextui-org/react";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
 import { FaCity, FaEnvelopeOpenText, FaMap, FaMapMarkerAlt, FaRegQuestionCircle } from "react-icons/fa";
 import { FiGlobe, FiHome } from "react-icons/fi";
 import { MdAddLocation, MdEmail, MdLock, MdLooksOne, MdPerson } from "react-icons/md";
 import { CInput } from "./CInput";
 import { CSelect } from "./CSelect";
 
+interface Form {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  country: string;
+  zipCode: string;
+  state: string;
+  city: string;
+  neighborhood: string;
+  street: string;
+  number: number;
+  complement: string;
+}
+
 /**
  * Register Form
  */
 export function RegisterForm(props: RegisterFormProps) {
+  // Form 
+  const [form, setForm] = useState<Form>({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    country: "",
+    zipCode: "",
+    state: "",
+    city: "",
+    neighborhood: "",
+    street: "",
+    number: 0,
+    complement: "",
+  });
 
   // Handle sign up
-  const handleSignUp = () => console.log("Sign up");
+  const handleSignUp = () => console.log(form);
+
+  // Handle input
+  const handleInput = (e: any) => setForm((prevState) => ({ ...prevState, [e.target.name]: e.target.value }));
 
   // Translations
   const tPage = useTranslations("LoginAndRegister");
@@ -37,22 +71,29 @@ export function RegisterForm(props: RegisterFormProps) {
     { value: 'il', label: 'Illinois' },
   ]
 
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    console.log(form);
+  }
+
   return (
-    <form className={`flex flex-col gap-2 pt-3 md:gap-4 sm:min-w-0 md:min-w-[50%] lg:min-w-[700px] ${props.className}`} >
+    <form
+      onSubmit={handleSubmit}
+      className={`flex flex-col gap-2 pt-3 md:gap-4 sm:min-w-0 md:min-w-[50%] lg:min-w-[700px] ${props.className}`} >
 
       <div className="form-row">
-        <CInput placeholder="name" type="text" startContent={<MdPerson />} />
-        <CInput placeholder="email" type="email" startContent={<MdEmail />} />
+        <CInput onChange={handleInput} placeholder="name" type="text" name="name" startContent={<MdPerson />} />
+        <CInput onChange={handleInput} placeholder="email" type="email" name="email" startContent={<MdEmail />} />
       </div>
 
       <div className="form-row">
-        <CInput placeholder="newPassword" type="password" startContent={<MdLock />} />
-        <CInput placeholder="confirmNewPassword" type="password" startContent={<MdLock />} />
+        <CInput onChange={handleInput} placeholder="newPassword" type="password" startContent={<MdLock />} name="password" />
+        <CInput onChange={handleInput} placeholder="confirmNewPassword" type="password" startContent={<MdLock />} name="confirmPassword" />
       </div>
 
       <div className="form-row">
-        <CSelect placeholder="countrySelect" options={countries} startContent={<FiGlobe />} />
-        <CInput className="small-field" placeholder="zipCode" type="number" startContent={<FaEnvelopeOpenText />} />
+        <CSelect onChange={handleInput} placeholder="countrySelect" options={countries} startContent={<FiGlobe />} name="country" />
+        <CInput onChange={handleInput} className="small-field" placeholder="zipCode" type="text" startContent={<FaEnvelopeOpenText />} name="zipCode" />
       </div>
 
       <Tooltip content={tPage('address.whyInfo')} placement="right-end">
@@ -63,18 +104,18 @@ export function RegisterForm(props: RegisterFormProps) {
       </Tooltip>
 
       <div className="form-row">
-        <CSelect className="small-field" placeholder="stateSelect" options={states} startContent={<FaMap />} />
-        <CInput placeholder="city" type="text" startContent={<FaCity />} />
+        <CSelect onChange={handleInput} className="small-field" placeholder="stateSelect" options={states} startContent={<FaMap />} name="state" />
+        <CInput onChange={handleInput} placeholder="city" type="text" startContent={<FaCity />} name="city" />
       </div>
 
       <div className="form-row">
-        <CInput placeholder="neighborhood" type="text" startContent={<FaMapMarkerAlt />} />
-        <CInput placeholder="street" type="text" startContent={<FiHome />} />
+        <CInput onChange={handleInput} placeholder="neighborhood" type="text" startContent={<FaMapMarkerAlt />} name="neighborhood" />
+        <CInput onChange={handleInput} placeholder="street" type="text" startContent={<FiHome />} name="street" />
       </div>
 
       <div className="form-row">
-        <CInput className="small-field" placeholder="number" type="number" startContent={<MdLooksOne />} />
-        <CInput placeholder="complement" type="text" startContent={<MdAddLocation />} />
+        <CInput onChange={handleInput} className="small-field" placeholder="number" type="number" startContent={<MdLooksOne />} name="number" />
+        <CInput onChange={handleInput} placeholder="complement" type="text" startContent={<MdAddLocation />} name="complement" />
       </div>
 
       <Checkbox size="sm" color="primary">
@@ -92,9 +133,7 @@ export function RegisterForm(props: RegisterFormProps) {
       </p>
 
       <div className="form-row justify-center pt-2">
-        <Button onClick={handleSignUp} color="primary" type="button">
-          {tButton('signUp')}
-        </Button>
+        <Button color="primary" type="submit"> {tButton('signUp')} </Button>
       </div>
 
     </ form>

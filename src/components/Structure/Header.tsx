@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { BiSolidRightArrow } from "react-icons/bi";
-import { ProfileDropdown } from "./ProfileDropdown";
+import { ProfileDropdown } from "../ProfileDropdown";
 import { HeaderProps } from '@app/models';
 
 /**
