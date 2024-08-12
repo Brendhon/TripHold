@@ -60,5 +60,14 @@
     "register": "Registrar",
     "login": "Entrar",
     "signUp": "Cadastrar"
+  },
+  "Error": {
+    "invalidField": "Campo inválido",
+    "password": {
+      "required": "Senha é obrigatória",
+      "minLength": "Senha deve ter no mínimo 6 caracteres",
+      "maxLength": "Senha deve ter no máximo 20 caracteres",
+      "notMatch": "Senhas não conferem"
+    }
   }
 }

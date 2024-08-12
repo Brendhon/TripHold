@@ -1,10 +1,12 @@
+export * from './Form/CForm';
 export * from './Form/CInput';
 export * from './Form/CSelect';
 export * from './Form/LoginForm';
 export * from './Form/RegisterForm';
 export * from './GoogleBtn';
 export * from './ProfileDropdown';
-export * from './Structure/AuthProvider';
+export * from './Structure/AuthStructure';
 export * from './Structure/Footer';
 export * from './Structure/Header';
 export * from './Structure/Structure';
+

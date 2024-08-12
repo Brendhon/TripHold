@@ -1,12 +1,12 @@
 "use client";
 
-import { AuthProvider } from "components";
+import { AuthStructure } from "components";
 
 export default function Home() {
   // Render home page
   return (
-    <AuthProvider>
+    <AuthStructure>
       <div>Olá</div>
-    </AuthProvider>
+    </AuthStructure>
   )
 }

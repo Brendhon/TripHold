@@ -9,6 +9,7 @@ import { FiGlobe, FiHome } from "react-icons/fi";
 import { MdAddLocation, MdEmail, MdLock, MdLooksOne, MdPerson } from "react-icons/md";
 import { CInput } from "./CInput";
 import { CSelect } from "./CSelect";
+import { CForm } from "./CForm";
 
 interface Form {
   name: string;
@@ -29,21 +30,8 @@ interface Form {
  * Register Form
  */
 export function RegisterForm(props: RegisterFormProps) {
-  // Form 
-  const [form, setForm] = useState<Form>({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    country: "",
-    zipCode: "",
-    state: "",
-    city: "",
-    neighborhood: "",
-    street: "",
-    number: 0,
-    complement: "",
-  });
+  // Init form state
+  const [form, setForm] = useState<Partial<Form>>({});
 
   // Handle sign up
   const handleSignUp = () => console.log(form);
@@ -71,29 +59,61 @@ export function RegisterForm(props: RegisterFormProps) {
     { value: 'il', label: 'Illinois' },
   ]
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    console.log(form);
-  }
-
   return (
-    <form
-      onSubmit={handleSubmit}
-      className={`flex flex-col gap-2 pt-3 md:gap-4 sm:min-w-0 md:min-w-[50%] lg:min-w-[700px] ${props.className}`} >
+    <CForm submit={handleSignUp} submittext="signUp"
+      className={`flex flex-col gap-2 pt-3 sm:min-w-0 md:min-w-[50%] lg:min-w-[700px] ${props.className}`} >
 
       <div className="form-row">
-        <CInput onChange={handleInput} placeholder="name" type="text" name="name" startContent={<MdPerson />} />
-        <CInput onChange={handleInput} placeholder="email" type="email" name="email" startContent={<MdEmail />} />
+        <CInput
+          isRequired
+          onChange={handleInput}
+          placeholder="name"
+          type="text"
+          name="name"
+          startContent={<MdPerson />} />
+        <CInput
+          isRequired
+          onChange={handleInput}
+          placeholder="email"
+          type="email" name="email"
+          startContent={<MdEmail />}
+        />
       </div>
 
       <div className="form-row">
-        <CInput onChange={handleInput} placeholder="newPassword" type="password" startContent={<MdLock />} name="password" />
-        <CInput onChange={handleInput} placeholder="confirmNewPassword" type="password" startContent={<MdLock />} name="confirmPassword" />
+        <CInput
+          isRequired
+          onChange={handleInput}
+          placeholder="newPassword"
+          type="password"
+          startContent={<MdLock />}
+          name="password" />
+        <CInput
+          isRequired
+          // Must be equal to password field
+          isInvalid={form.password != form.confirmPassword}
+          errorMessage="password.notMatch"
+          onChange={handleInput}
+          placeholder="confirmNewPassword"
+          type="password"
+          startContent={<MdLock />}
+          name="confirmPassword" />
       </div>
 
       <div className="form-row">
-        <CSelect onChange={handleInput} placeholder="countrySelect" options={countries} startContent={<FiGlobe />} name="country" />
-        <CInput onChange={handleInput} className="small-field" placeholder="zipCode" type="text" startContent={<FaEnvelopeOpenText />} name="zipCode" />
+        <CSelect
+          onChange={handleInput}
+          placeholder="countrySelect"
+          options={countries}
+          startContent={<FiGlobe />}
+          name="country" />
+        <CInput
+          onChange={handleInput}
+          className="small-field"
+          placeholder="zipCode"
+          type="text"
+          startContent={<FaEnvelopeOpenText />}
+          name="zipCode" />
       </div>
 
       <Tooltip content={tPage('address.whyInfo')} placement="right-end">
@@ -104,18 +124,49 @@ export function RegisterForm(props: RegisterFormProps) {
       </Tooltip>
 
       <div className="form-row">
-        <CSelect onChange={handleInput} className="small-field" placeholder="stateSelect" options={states} startContent={<FaMap />} name="state" />
-        <CInput onChange={handleInput} placeholder="city" type="text" startContent={<FaCity />} name="city" />
+        <CSelect
+          onChange={handleInput}
+          className="small-field"
+          placeholder="stateSelect"
+          options={states}
+          startContent={<FaMap />}
+          name="state" />
+        <CInput
+          onChange={handleInput}
+          placeholder="city"
+          type="text"
+          startContent={<FaCity />}
+          name="city" />
       </div>
 
       <div className="form-row">
-        <CInput onChange={handleInput} placeholder="neighborhood" type="text" startContent={<FaMapMarkerAlt />} name="neighborhood" />
-        <CInput onChange={handleInput} placeholder="street" type="text" startContent={<FiHome />} name="street" />
+        <CInput
+          onChange={handleInput}
+          placeholder="neighborhood"
+          type="text" startContent={<FaMapMarkerAlt />}
+          name="neighborhood" />
+        <CInput
+          onChange={handleInput}
+          placeholder="street"
+          type="text"
+          startContent={<FiHome />}
+          name="street" />
       </div>
 
       <div className="form-row">
-        <CInput onChange={handleInput} className="small-field" placeholder="number" type="number" startContent={<MdLooksOne />} name="number" />
-        <CInput onChange={handleInput} placeholder="complement" type="text" startContent={<MdAddLocation />} name="complement" />
+        <CInput
+          onChange={handleInput}
+          className="small-field"
+          placeholder="number"
+          type="number"
+          startContent={<MdLooksOne />}
+          name="number" />
+        <CInput
+          onChange={handleInput}
+          placeholder="complement"
+          type="text"
+          startContent={<MdAddLocation />}
+          name="complement" />
       </div>
 
       <Checkbox size="sm" color="primary">
@@ -132,10 +183,6 @@ export function RegisterForm(props: RegisterFormProps) {
         </Link>
       </p>
 
-      <div className="form-row justify-center pt-2">
-        <Button color="primary" type="submit"> {tButton('signUp')} </Button>
-      </div>
-
-    </ form>
+    </ CForm>
   )
 }

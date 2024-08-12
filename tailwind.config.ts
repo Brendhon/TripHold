@@ -108,6 +108,10 @@ const config: Config = {
               DEFAULT: "#D35400",
               foreground: "#E5E8E8",
             },
+            danger: {
+              DEFAULT: "#D35400",
+              foreground: "#E5E8E8",
+            },
             success: {
               DEFAULT: "#4A6E59",
               foreground: "#E5E8E8",

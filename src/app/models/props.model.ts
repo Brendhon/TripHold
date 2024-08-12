@@ -38,3 +38,16 @@ export interface CInputProps extends Partial<InputProps> {
   placeholder: string;
   options?: { value: any, label: string }[];
 }
+
+export interface FormProps extends HTMLProps<HTMLFormElement> {
+  // Children
+  children: ReactNode;
+
+  // Submit function
+  submit: () => void;
+  submittext: string;
+
+  // Cancel function
+  cancel?: () => void;
+  canceltext?: string;
+}

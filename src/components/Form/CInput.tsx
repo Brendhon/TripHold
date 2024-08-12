@@ -17,6 +17,9 @@ export function CInput(props: CInputProps) {
   // Translations
   const t = useTranslations('Placeholder');
 
+  // Error translations
+  const tError = useTranslations('Error');
+
   return (
     <Input
       {...props}
@@ -27,6 +30,7 @@ export function CInput(props: CInputProps) {
       aria-label={t(props?.placeholder)}
       placeholder={t(props?.placeholder)}
       startContent={props?.startContent}
+      errorMessage={tError(props?.errorMessage || 'invalidField')}
       endContent={
         props?.type == 'password' ?
           viewPassword

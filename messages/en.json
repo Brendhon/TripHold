@@ -59,5 +59,14 @@
     "confirm": "Confirm",
     "register": "Register",
     "login": "Login"
+  },
+  "Error": {
+    "invalidField": "Invalid field",
+    "password": {
+      "required": "Password is required",
+      "minLength": "Password must have at least 6 characters",
+      "maxLength": "Password must have at most 20 characters",
+      "notMatch": "Passwords do not match"
+    }
   }
 }

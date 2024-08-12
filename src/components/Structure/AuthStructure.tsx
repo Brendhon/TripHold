@@ -10,7 +10,7 @@ import { Structure } from "./Structure";
  * Auth Provider 
  * @param {PropsWithChildren<any>} props - Props
  */
-export function AuthProvider({ children }: PropsWithChildren<any>) {
+export function AuthStructure({ children }: PropsWithChildren<any>) {
   // Session data
   const [session, setSession] = useState<Session>();
 

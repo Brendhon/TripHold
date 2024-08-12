@@ -11,14 +11,9 @@ export function CSelect(props: CSelectProps) {
   // Translations
   const t = useTranslations('Placeholder');
 
-  const onchange = (e: any) => {
-    console.log(e);
-  }
-
   return (
     <Select
       {...props}
-      isRequired
       variant="faded"
       color="default"
       aria-label={t(props?.placeholder)}

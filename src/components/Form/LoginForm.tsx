@@ -19,7 +19,7 @@ export function LoginForm(props: LoginFormProps) {
   const tButton = useTranslations("Button");
 
   return (
-    <form className={`flex flex-col gap-4 pt-3 sm:min-w-96 ${props.className}`} >
+    <form className={`flex flex-col gap-2 pt-3 sm:min-w-96 ${props.className}`} >
 
       <CInput placeholder="email" type="email" startContent={<MdEmail />} />
       <CInput placeholder="password" type="password" startContent={<MdLock />} />
