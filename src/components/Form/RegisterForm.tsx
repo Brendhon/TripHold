@@ -12,7 +12,7 @@ import { CForm } from "./CForm";
 import { CInput } from "./CInput";
 import { CSelect } from "./CSelect";
 
-interface Form {
+type Form = {
   name: string;
   email: string;
   password: string;
@@ -37,12 +37,6 @@ export function RegisterForm(props: RegisterFormProps) {
 
   // Init form state
   const [form, setForm] = useState<Partial<Form>>({});
-
-  // Handle input
-  const handleInput = (e: any) => setForm((prevState) => ({
-    ...prevState,
-    [e.target.name]: !!e.target.value ? e.target.value : e.target.checked
-  }));
 
   // Handle sign up
   const handleSignUp = () => console.log(form);
@@ -77,6 +71,7 @@ export function RegisterForm(props: RegisterFormProps) {
   return (
     <CForm
       form={form}
+      setForm={setForm}
       validations={validations}
       submit={{ action: handleSignUp, text: 'signUp' }}
       className={`flex flex-col gap-2 pt-3 sm:min-w-0 md:min-w-[50%] lg:min-w-[700px] ${props.className}`} >
@@ -87,13 +82,11 @@ export function RegisterForm(props: RegisterFormProps) {
           name="name"
           type="text"
           placeholder="name"
-          onChange={handleInput}
           startContent={<MdPerson />} />
         <CInput
           name="email"
           type="email"
           placeholder="email"
-          onChange={handleInput}
           isInvalid={testRegex(emailRegex, form.email!)}
           errorMessage="email.pattern"
           startContent={<MdEmail />}
@@ -105,7 +98,6 @@ export function RegisterForm(props: RegisterFormProps) {
           name="password"
           type="password"
           placeholder="newPassword"
-          onChange={handleInput}
           isInvalid={testRegex(passwordRegex, form.password!)}
           errorMessage="password.pattern"
           startContent={<MdLock />} />
@@ -113,7 +105,6 @@ export function RegisterForm(props: RegisterFormProps) {
           name="confirmPassword"
           type="password"
           placeholder="confirmNewPassword"
-          onChange={handleInput}
           isInvalid={form.password != form.confirmPassword}
           errorMessage="password.notMatch"
           startContent={<MdLock />} />
@@ -124,14 +115,12 @@ export function RegisterForm(props: RegisterFormProps) {
           name="country"
           placeholder="countrySelect"
           options={countries}
-          onChange={handleInput}
           startContent={<FiGlobe />} />
         <CInput
           name="zipCode"
           type="text"
           placeholder="zipCode"
           className="small-field"
-          onChange={handleInput}
           startContent={<FaEnvelopeOpenText />}
         />
       </div>
@@ -149,13 +138,11 @@ export function RegisterForm(props: RegisterFormProps) {
           placeholder="stateSelect"
           className="small-field"
           options={states}
-          onChange={handleInput}
           startContent={<FaMap />} />
         <CInput
           name="city"
           type="text"
           placeholder="city"
-          onChange={handleInput}
           startContent={<FaCity />} />
       </div>
 
@@ -164,13 +151,11 @@ export function RegisterForm(props: RegisterFormProps) {
           name="neighborhood"
           type="text"
           placeholder="neighborhood"
-          onChange={handleInput}
           startContent={<FaMapMarkerAlt />} />
         <CInput
           name="street"
           placeholder="street"
           type="text"
-          onChange={handleInput}
           startContent={<FiHome />} />
       </div>
 
@@ -180,17 +165,15 @@ export function RegisterForm(props: RegisterFormProps) {
           type="number"
           placeholder="number"
           className="small-field"
-          onChange={handleInput}
           startContent={<MdLooksOne />} />
         <CInput
           name="complement"
           type="text"
           placeholder="complement"
-          onChange={handleInput}
           startContent={<MdAddLocation />} />
       </div>
 
-      <Checkbox size="sm" color="primary" name="terms" onChange={handleInput}>
+      <Checkbox size="sm" color="primary" name="terms" >
         {tPage('terms.accept')}{" "}
         <Link isExternal className="cursor-pointer" size="sm" href="https://nextui.org/docs/components/link">
           {tPage('terms.terms')}

@@ -42,10 +42,11 @@ export interface CInputProps extends Partial<InputProps> {
 
 export interface FormProps extends HTMLProps<HTMLFormElement> {
   form: any; // Form data
-  validations: FormValidation[];
+  setForm: any; // Set form data
+  validations: FormValidation[]; // Form validations
 
   // Children
-  children: ReactNode;
+  children: any;
 
   // Submit function
   submit: {
