@@ -23,7 +23,6 @@ export function CInput(props: CInputProps) {
   return (
     <Input
       {...props}
-      isRequired
       variant="faded"
       color="default"
       classNames={{ input: ["placeholder:text-grey-light"] }}

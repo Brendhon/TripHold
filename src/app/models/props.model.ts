@@ -1,5 +1,6 @@
 import { InputProps, SelectProps } from "@nextui-org/react";
 import { ReactNode, HTMLProps } from "react";
+import { FormValidation } from "./form.model";
 
 export interface HeaderProps {
   hideProfile?: boolean;
@@ -40,14 +41,21 @@ export interface CInputProps extends Partial<InputProps> {
 }
 
 export interface FormProps extends HTMLProps<HTMLFormElement> {
+  form: any; // Form data
+  validations: FormValidation[];
+
   // Children
   children: ReactNode;
 
   // Submit function
-  submit: () => void;
-  submittext: string;
+  submit: {
+    action: () => void;
+    text: string;
+  };
 
   // Cancel function
-  cancel?: () => void;
-  canceltext?: string;
+  cancel?: {
+    action: () => void;
+    text: string;
+  };
 }

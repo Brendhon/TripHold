@@ -63,11 +63,30 @@
   },
   "Error": {
     "invalidField": "Campo inválido",
+    "required": "Campo obrigatório",
+    "name": {
+      "required": "Nome é obrigatório",
+      "invalid": "Nome inválido"
+    },
     "password": {
       "required": "Senha é obrigatória",
-      "minLength": "Senha deve ter no mínimo 6 caracteres",
-      "maxLength": "Senha deve ter no máximo 20 caracteres",
+      "notMatch": "Senhas não conferem",
+      "pattern": "Senha deve ter no mínimo 6 caracteres"
+    },
+    "confirmPassword": {
+      "required": "Confirmação de senha é obrigatória",
       "notMatch": "Senhas não conferem"
+    },
+    "email": {
+      "required": "E-mail é obrigatório",
+      "pattern": "E-mail inválido"
+    },
+    "zipCode": {
+      "required": "CEP é obrigatório",
+      "pattern": "CEP inválido"
+    },
+    "country": {
+      "required": "País é obrigatório"
     }
   }
 }

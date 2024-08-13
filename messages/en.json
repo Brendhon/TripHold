@@ -62,11 +62,30 @@
   },
   "Error": {
     "invalidField": "Invalid field",
+    "required": "Required field",
+    "name": {
+      "required": "Name is required",
+      "invalid": "Invalid name"
+    },
     "password": {
       "required": "Password is required",
-      "minLength": "Password must have at least 6 characters",
-      "maxLength": "Password must have at most 20 characters",
+      "notMatch": "Passwords do not match",
+      "minLength": "Password must have at least 6 characters"
+    },    
+    "confirmPassword": {
+      "required": "Password confirmation is required",
       "notMatch": "Passwords do not match"
+    },
+    "email": {
+      "required": "E-mail is required",
+      "invalid": "Invalid e-mail"
+    },
+    "zipCode": {
+      "required": "ZIP code is required",
+      "invalid": "Invalid ZIP code"
+    },
+    "country": {
+      "required": "Country is required"
     }
   }
 }

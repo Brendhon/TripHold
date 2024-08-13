@@ -1,15 +1,16 @@
 "use client";
 
-import { RegisterFormProps } from "@app/models";
-import { Button, Checkbox, Link, Tooltip } from "@nextui-org/react";
+import { FormValidation, RegisterFormProps } from "@app/models";
+import { Checkbox, Link, Tooltip } from "@nextui-org/react";
+import { emailRegex, passwordRegex, testRegex } from "@utils/regex";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { FaCity, FaEnvelopeOpenText, FaMap, FaMapMarkerAlt, FaRegQuestionCircle } from "react-icons/fa";
 import { FiGlobe, FiHome } from "react-icons/fi";
 import { MdAddLocation, MdEmail, MdLock, MdLooksOne, MdPerson } from "react-icons/md";
+import { CForm } from "./CForm";
 import { CInput } from "./CInput";
 import { CSelect } from "./CSelect";
-import { CForm } from "./CForm";
 
 interface Form {
   name: string;
@@ -30,19 +31,29 @@ interface Form {
  * Register Form
  */
 export function RegisterForm(props: RegisterFormProps) {
+  // Translations
+  const tPage = useTranslations("LoginAndRegister");
+
   // Init form state
   const [form, setForm] = useState<Partial<Form>>({});
-
-  // Handle sign up
-  const handleSignUp = () => console.log(form);
 
   // Handle input
   const handleInput = (e: any) => setForm((prevState) => ({ ...prevState, [e.target.name]: e.target.value }));
 
-  // Translations
-  const tPage = useTranslations("LoginAndRegister");
-  const tButton = useTranslations("Button");
+  // Handle sign up
+  const handleSignUp = () => console.log(form);
 
+  // User fields
+  const UserValidationsFields: FormValidation[] = [
+    { key: 'name', required: true },
+    { key: 'email', required: true, pattern: emailRegex },
+    { key: 'password', required: true, pattern: passwordRegex },
+    { key: 'confirmPassword', required: true, equal: 'password' },
+    { key: 'country', required: true },
+    { key: 'zipCode', required: true }
+  ]
+
+  // Mock data
   const countries = [
     { value: 'us', label: 'United States' },
     { value: 'es', label: 'Spain' },
@@ -50,7 +61,6 @@ export function RegisterForm(props: RegisterFormProps) {
     { value: 'it', label: 'Italy' },
     { value: 'de', label: 'Germany' },
   ]
-
   const states = [
     { value: 'ny', label: 'New York' },
     { value: 'ca', label: 'California' },
@@ -60,60 +70,65 @@ export function RegisterForm(props: RegisterFormProps) {
   ]
 
   return (
-    <CForm submit={handleSignUp} submittext="signUp"
+    <CForm
+      form={form}
+      validations={UserValidationsFields}
+      submit={{ action: handleSignUp, text: 'signUp' }}
       className={`flex flex-col gap-2 pt-3 sm:min-w-0 md:min-w-[50%] lg:min-w-[700px] ${props.className}`} >
 
       <div className="form-row">
         <CInput
-          isRequired
-          onChange={handleInput}
-          placeholder="name"
-          type="text"
+          autoFocus
           name="name"
+          type="text"
+          placeholder="name"
+          onChange={handleInput}
           startContent={<MdPerson />} />
         <CInput
-          isRequired
-          onChange={handleInput}
+          name="email"
+          type="email"
           placeholder="email"
-          type="email" name="email"
+          onChange={handleInput}
+          isInvalid={testRegex(emailRegex, form.email!)}
+          errorMessage="email.pattern"
           startContent={<MdEmail />}
         />
       </div>
 
       <div className="form-row">
         <CInput
-          isRequired
-          onChange={handleInput}
-          placeholder="newPassword"
+          name="password"
           type="password"
-          startContent={<MdLock />}
-          name="password" />
+          placeholder="newPassword"
+          onChange={handleInput}
+          isInvalid={testRegex(passwordRegex, form.password!)}
+          errorMessage="password.pattern"
+          startContent={<MdLock />} />
         <CInput
-          isRequired
-          // Must be equal to password field
+          name="confirmPassword"
+          type="password"
+          placeholder="confirmNewPassword"
+          onChange={handleInput}
           isInvalid={form.password != form.confirmPassword}
           errorMessage="password.notMatch"
-          onChange={handleInput}
-          placeholder="confirmNewPassword"
-          type="password"
-          startContent={<MdLock />}
-          name="confirmPassword" />
+          startContent={<MdLock />} />
       </div>
 
       <div className="form-row">
         <CSelect
-          onChange={handleInput}
+          name="country"
           placeholder="countrySelect"
           options={countries}
-          startContent={<FiGlobe />}
-          name="country" />
-        <CInput
           onChange={handleInput}
-          className="small-field"
-          placeholder="zipCode"
+          startContent={<FiGlobe />} />
+        <CInput
+          name="zipCode"
           type="text"
+          placeholder="zipCode"
+          className="small-field"
+          onChange={handleInput}
           startContent={<FaEnvelopeOpenText />}
-          name="zipCode" />
+        />
       </div>
 
       <Tooltip content={tPage('address.whyInfo')} placement="right-end">
@@ -125,48 +140,49 @@ export function RegisterForm(props: RegisterFormProps) {
 
       <div className="form-row">
         <CSelect
-          onChange={handleInput}
-          className="small-field"
+          name="state"
           placeholder="stateSelect"
+          className="small-field"
           options={states}
-          startContent={<FaMap />}
-          name="state" />
-        <CInput
           onChange={handleInput}
-          placeholder="city"
+          startContent={<FaMap />} />
+        <CInput
+          name="city"
           type="text"
-          startContent={<FaCity />}
-          name="city" />
+          placeholder="city"
+          onChange={handleInput}
+          startContent={<FaCity />} />
       </div>
 
       <div className="form-row">
         <CInput
-          onChange={handleInput}
+          name="neighborhood"
+          type="text"
           placeholder="neighborhood"
-          type="text" startContent={<FaMapMarkerAlt />}
-          name="neighborhood" />
-        <CInput
           onChange={handleInput}
+          startContent={<FaMapMarkerAlt />} />
+        <CInput
+          name="street"
           placeholder="street"
           type="text"
-          startContent={<FiHome />}
-          name="street" />
+          onChange={handleInput}
+          startContent={<FiHome />} />
       </div>
 
       <div className="form-row">
         <CInput
-          onChange={handleInput}
-          className="small-field"
-          placeholder="number"
+          name="number"
           type="number"
-          startContent={<MdLooksOne />}
-          name="number" />
-        <CInput
+          placeholder="number"
+          className="small-field"
           onChange={handleInput}
-          placeholder="complement"
+          startContent={<MdLooksOne />} />
+        <CInput
+          name="complement"
           type="text"
-          startContent={<MdAddLocation />}
-          name="complement" />
+          placeholder="complement"
+          onChange={handleInput}
+          startContent={<MdAddLocation />} />
       </div>
 
       <Checkbox size="sm" color="primary">
