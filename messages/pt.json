@@ -46,7 +46,9 @@
       "terms": "Termos de Serviço",
       "and": "e",
       "privacyPolicy": "Política de Privacidade"
-    }
+    },
+    "signUpSuccess": "Cadastro realizado com sucesso",
+    "signUpError": "Erro ao realizar cadastro"
   },
   "Button": {
     "send": "Enviar",

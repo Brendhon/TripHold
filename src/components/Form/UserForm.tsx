@@ -11,6 +11,7 @@ import { MdAddLocation, MdEmail, MdLock, MdLooksOne, MdPerson } from "react-icon
 import { CForm } from "./CForm";
 import { CInput } from "./CInput";
 import { CSelect } from "./CSelect";
+import toast from "react-hot-toast";
 
 /**
  * User Form
@@ -34,7 +35,10 @@ export function UserForm(props: RegisterFormProps) {
   ]);
 
   // Handle sign up
-  const handleSignUp = () => console.log(form);
+  const handleSignUp = () => {
+    console.log(form);
+    toast.success(tPage('signUpSuccess'));
+  }
 
   // Mock data
   const countries = [

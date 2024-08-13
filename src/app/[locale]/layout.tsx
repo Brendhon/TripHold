@@ -23,11 +23,11 @@ export default async function LocaleLayout({
               duration: 5000,
               error: {
                 style: { background: '#D35400', color: '#fff' },
-                iconTheme: { primary: '#fff', secondary: '#ff4d4f' }
+                iconTheme: { primary: '#fff', secondary: '#D35400' }
               },
               success: {
-                style: { background: '#52c41a', color: '#fff' },
-                iconTheme: { primary: '#fff', secondary: '#52c41a' }
+                style: { background: '#4A6E59', color: '#fff' },
+                iconTheme: { primary: '#fff', secondary: '#4A6E59' }
               }
             }} />
           {children}

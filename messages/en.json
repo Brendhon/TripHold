@@ -46,7 +46,9 @@
       "terms": "Terms of Service",
       "and": "and",
       "privacyPolicy": "Privacy Policy"
-    }
+    },
+    "signUpSuccess": "Registration successfully completed",
+    "signUpError": "Error registering"
   },
   "Button": {
     "send": "Send",
