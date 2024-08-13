@@ -11,7 +11,7 @@ export async function GET(req: NextRequest) {
     const state = searchParams.get('state');
 
     // If country or state is not provided, return an error
-    if (!country) return NextResponse.error()
+    if (!country) throw { status: 400, message: 'Country is required' };
 
     // Fetch data from the DocumenterCountryAPI
     const resp = await fetch(getDocumenterCitiesAPIPath(state), {
@@ -28,8 +28,8 @@ export async function GET(req: NextRequest) {
 
     // Return data from the DocumenterCountryAPI
     return NextResponse.json({ country, state, cities });
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error getting data from DocumenterCitiesAPI: ", error);
-    return NextResponse.error();
+    return new NextResponse(JSON.stringify(error), { status: error?.status ?? 500 });
   }
 }

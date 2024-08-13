@@ -36,6 +36,6 @@ export async function GET() {
     return NextResponse.json(countries);
   } catch (error) {
     console.error("Error getting data from DocumenterCountryAPI: ", error);
-    return NextResponse.error();
+    return new NextResponse(JSON.stringify(error), { status: 500 });
   }
 }
