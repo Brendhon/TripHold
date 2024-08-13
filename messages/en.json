@@ -86,6 +86,9 @@
     },
     "country": {
       "required": "Country is required"
+    },
+    "terms": {
+      "required": "You must accept the terms"
     }
   }
 }

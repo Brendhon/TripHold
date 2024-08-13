@@ -87,6 +87,9 @@
     },
     "country": {
       "required": "País é obrigatório"
+    },
+    "terms": {
+      "required": "Você deve aceitar os Termos de Serviço"
     }
   }
 }

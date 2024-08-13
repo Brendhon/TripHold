@@ -25,6 +25,7 @@ interface Form {
   street: string;
   number: number;
   complement: string;
+  terms: boolean;
 }
 
 /**
@@ -38,19 +39,23 @@ export function RegisterForm(props: RegisterFormProps) {
   const [form, setForm] = useState<Partial<Form>>({});
 
   // Handle input
-  const handleInput = (e: any) => setForm((prevState) => ({ ...prevState, [e.target.name]: e.target.value }));
+  const handleInput = (e: any) => setForm((prevState) => ({
+    ...prevState,
+    [e.target.name]: !!e.target.value ? e.target.value : e.target.checked
+  }));
 
   // Handle sign up
   const handleSignUp = () => console.log(form);
 
   // User fields
-  const UserValidationsFields: FormValidation[] = [
+  const validations: FormValidation[] = [
     { key: 'name', required: true },
     { key: 'email', required: true, pattern: emailRegex },
     { key: 'password', required: true, pattern: passwordRegex },
     { key: 'confirmPassword', required: true, equal: 'password' },
     { key: 'country', required: true },
-    { key: 'zipCode', required: true }
+    { key: 'zipCode', required: true },
+    { key: 'terms', required: true },
   ]
 
   // Mock data
@@ -72,7 +77,7 @@ export function RegisterForm(props: RegisterFormProps) {
   return (
     <CForm
       form={form}
-      validations={UserValidationsFields}
+      validations={validations}
       submit={{ action: handleSignUp, text: 'signUp' }}
       className={`flex flex-col gap-2 pt-3 sm:min-w-0 md:min-w-[50%] lg:min-w-[700px] ${props.className}`} >
 
@@ -185,7 +190,7 @@ export function RegisterForm(props: RegisterFormProps) {
           startContent={<MdAddLocation />} />
       </div>
 
-      <Checkbox size="sm" color="primary">
+      <Checkbox size="sm" color="primary" name="terms" onChange={handleInput}>
         {tPage('terms.accept')}{" "}
         <Link isExternal className="cursor-pointer" size="sm" href="https://nextui.org/docs/components/link">
           {tPage('terms.terms')}
