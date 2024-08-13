@@ -50,10 +50,9 @@ export const isFormValid = <T>(fields: FormValidation<T>[], form: any): { isVali
 /**
  * Create form validator
  * @param {FormValidation[]} fields 
- * @returns {FormValidation[]} Fields
+ * @returns {{validations: FormValidation[]}} - Form validations
  */
-export const createValidator = <T>(fields: FormValidation<keyof T>[]): FormValidation<keyof T>[] => fields;
-
+export const createValidator = <T>(fields: FormValidation<keyof T>[]): { validations: FormValidation<keyof T>[] } => ({ validations: fields });
 
 /**
  * Create useState to form

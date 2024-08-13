@@ -22,11 +22,8 @@ export function UserForm(props: RegisterFormProps) {
   // Init form state
   const { form, setForm } = useForm<UserFormModel>();
 
-  // Handle sign up
-  const handleSignUp = () => console.log(form);
-
   // User fields validations
-  const validations = createValidator<UserFormModel>([
+  const { validations } = createValidator<UserFormModel>([
     { key: 'name', required: true },
     { key: 'email', required: true, pattern: emailRegex },
     { key: 'password', required: true, pattern: passwordRegex },
@@ -35,6 +32,9 @@ export function UserForm(props: RegisterFormProps) {
     { key: 'zipCode', required: true },
     { key: 'terms', required: true },
   ]);
+
+  // Handle sign up
+  const handleSignUp = () => console.log(form);
 
   // Mock data
   const countries = [
@@ -52,6 +52,7 @@ export function UserForm(props: RegisterFormProps) {
     { value: 'il', label: 'Illinois' },
   ]
 
+  // Render form
   return (
     <CForm
       formdata={{ form, setForm, validations }}
