@@ -2,7 +2,7 @@ export * from './Form/CForm';
 export * from './Form/CInput';
 export * from './Form/CSelect';
 export * from './Form/LoginForm';
-export * from './Form/RegisterForm';
+export * from './Form/UserForm';
 export * from './GoogleBtn';
 export * from './ProfileDropdown';
 export * from './Structure/AuthStructure';

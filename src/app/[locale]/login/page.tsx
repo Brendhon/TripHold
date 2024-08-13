@@ -2,7 +2,7 @@
 
 import { Key, useState } from "react";
 import { Tabs, Tab, Card, CardBody, Divider } from "@nextui-org/react";
-import { LoginForm, GoogleBtn, Header, Structure, RegisterForm, } from "components";
+import { LoginForm, GoogleBtn, Header, Structure, UserForm, } from "components";
 import { useTranslations } from "next-intl";
 
 type TabsOptions = 'login' | 'sign-up';
@@ -49,7 +49,7 @@ export default function Login() {
 
               <Divider className="my-4" />
 
-              <RegisterForm action={() => setSelected("login")} />
+              <UserForm action={() => setSelected("login")} />
 
             </Tab>
 

@@ -1,6 +1,5 @@
-import { User } from "@app/models";
 import { createUser } from "lib/firebase/firestore/users";
-import NextAuth from "next-auth"
+import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 
 const handler = NextAuth({
@@ -12,7 +11,7 @@ const handler = NextAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
       authorization: {
         params: {
-          scope: "openid profile email https://www.googleapis.com/auth/user.addresses.read"
+          scope: "openid profile email"
         }
       },
     })
@@ -41,6 +40,7 @@ const handler = NextAuth({
           image: user.image!,
           profile: token.profile,
           provider: 'google',
+          terms: true
         });
       }
       return token;
@@ -54,4 +54,4 @@ const handler = NextAuth({
   }
 });
 
-export { handler as GET, handler as POST }
+export { handler as GET, handler as POST };

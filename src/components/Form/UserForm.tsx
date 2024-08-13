@@ -1,10 +1,10 @@
 "use client";
 
-import { FormValidation, RegisterFormProps } from "@app/models";
+import { RegisterFormProps, UserFormModel } from "@app/models";
 import { Checkbox, Link, Tooltip } from "@nextui-org/react";
+import { createValidator, useForm } from "@utils/forms";
 import { emailRegex, passwordRegex, testRegex } from "@utils/regex";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
 import { FaCity, FaEnvelopeOpenText, FaMap, FaMapMarkerAlt, FaRegQuestionCircle } from "react-icons/fa";
 import { FiGlobe, FiHome } from "react-icons/fi";
 import { MdAddLocation, MdEmail, MdLock, MdLooksOne, MdPerson } from "react-icons/md";
@@ -12,37 +12,21 @@ import { CForm } from "./CForm";
 import { CInput } from "./CInput";
 import { CSelect } from "./CSelect";
 
-type Form = {
-  name: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-  country: string;
-  zipCode: string;
-  state: string;
-  city: string;
-  neighborhood: string;
-  street: string;
-  number: number;
-  complement: string;
-  terms: boolean;
-}
-
 /**
- * Register Form
+ * User Form
  */
-export function RegisterForm(props: RegisterFormProps) {
+export function UserForm(props: RegisterFormProps) {
   // Translations
   const tPage = useTranslations("LoginAndRegister");
 
   // Init form state
-  const [form, setForm] = useState<Partial<Form>>({});
+  const { form, setForm } = useForm<UserFormModel>();
 
   // Handle sign up
   const handleSignUp = () => console.log(form);
 
-  // User fields
-  const validations: FormValidation[] = [
+  // User fields validations
+  const validations = createValidator<UserFormModel>([
     { key: 'name', required: true },
     { key: 'email', required: true, pattern: emailRegex },
     { key: 'password', required: true, pattern: passwordRegex },
@@ -50,7 +34,7 @@ export function RegisterForm(props: RegisterFormProps) {
     { key: 'country', required: true },
     { key: 'zipCode', required: true },
     { key: 'terms', required: true },
-  ]
+  ]);
 
   // Mock data
   const countries = [
@@ -70,9 +54,7 @@ export function RegisterForm(props: RegisterFormProps) {
 
   return (
     <CForm
-      form={form}
-      setForm={setForm}
-      validations={validations}
+      formdata={{ form, setForm, validations }}
       submit={{ action: handleSignUp, text: 'signUp' }}
       className={`flex flex-col gap-2 pt-3 sm:min-w-0 md:min-w-[50%] lg:min-w-[700px] ${props.className}`} >
 
