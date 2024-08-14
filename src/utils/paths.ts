@@ -8,6 +8,14 @@ export const getUsersPath = (email?: string) => {
 }
 
 /**
+ * Terms path
+ * @returns Terms path
+ */
+export const getTermsPath = () => {
+  return "https://nextui.org/docs/components/link";
+}
+
+/**
  * Get path to DocumenterCountryAPI
  */
 export const getDocumenterCountryAPIPath = () => {

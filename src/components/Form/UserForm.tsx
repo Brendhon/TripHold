@@ -3,7 +3,7 @@
 import { RegisterFormProps, UserFormModel } from "@app/models";
 import { Link, Tooltip } from "@nextui-org/react";
 import { createValidator, useDebounce, useForm } from "@utils/forms";
-import { getCountriesPath, getZipCodePath } from "@utils/paths";
+import { getCountriesPath, getTermsPath, getZipCodePath } from "@utils/paths";
 import { emailRegex, passwordRegex, testRegex } from "@utils/regex";
 import { createUserSignUp } from "lib/firebase/auth/users";
 import { createFirestoreUser, getFirestoreUser } from "lib/firebase/firestore/users";
@@ -265,7 +265,7 @@ export function UserForm(props: RegisterFormProps) {
 
       <CCheckbox name="terms" >
         {tPage('terms.accept')}{" "}
-        <Link isExternal className="cursor-pointer" size="sm" href="https://nextui.org/docs/components/link">
+        <Link isExternal className="cursor-pointer" size="sm" href={getTermsPath()}>
           {tPage('terms.terms')}
         </Link>
       </CCheckbox>
