@@ -86,7 +86,7 @@ export function UserForm(props: RegisterFormProps) {
       const newCountries = allCountries.filter((c) => c.codes.includes(codes.countryCode[0]));
 
       // Set countries
-      setCountries(newCountries);
+      setCountries(newCountries.map((country) => ({ name: country.name, key: country.name })));
       setStates(codes.state.map((state) => ({ name: state, key: state })));
       setCities(codes.city.map((city) => ({ name: city, key: city })));
 
@@ -96,7 +96,7 @@ export function UserForm(props: RegisterFormProps) {
       // Set form fields
       setForm((prevForm: any) => ({
         ...prevForm,
-        country: newCountries.length == 1 ? newCountries[0].key : '',
+        country: newCountries.length == 1 ? newCountries[0].name : '',
         state: codes.state.length == 1 ? codes.state[0] : '',
         city: codes.city.length == 1 ? codes.city[0] : '',
       }));
