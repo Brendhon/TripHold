@@ -1,27 +1,100 @@
 "use client";
 
 import { RegisterFormProps, UserFormModel } from "@app/models";
-import { Checkbox, Link, Tooltip } from "@nextui-org/react";
+import { Link, Tooltip } from "@nextui-org/react";
 import { createValidator, useForm } from "@utils/forms";
 import { emailRegex, passwordRegex, testRegex } from "@utils/regex";
 import { useTranslations } from "next-intl";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { FaCity, FaEnvelopeOpenText, FaMap, FaMapMarkerAlt, FaRegQuestionCircle } from "react-icons/fa";
 import { FiGlobe, FiHome } from "react-icons/fi";
 import { MdAddLocation, MdEmail, MdLock, MdLooksOne, MdPerson } from "react-icons/md";
+import { CAutocomplete } from "./CAutocomplete";
+import { CCheckbox } from "./CCheckbox";
 import { CForm } from "./CForm";
 import { CInput } from "./CInput";
-import { CSelect } from "./CSelect";
-import toast from "react-hot-toast";
+
+interface SelectItem {
+  name: string;
+  key: string;
+  [key: string]: any;
+}
 
 /**
  * User Form
  */
 export function UserForm(props: RegisterFormProps) {
+  // Variables to receive country options, states options and cities options
+  const [countries, setCountries] = useState<SelectItem[]>([]);
+  const [states, setStates] = useState<SelectItem[]>([]);
+  const [cities, setCities] = useState<SelectItem[]>([]);
+
+  // Form state
+  const { form, setForm } = useForm<UserFormModel>();
+
   // Translations
   const tPage = useTranslations("LoginAndRegister");
 
-  // Init form state
-  const { form, setForm } = useForm<UserFormModel>();
+  // Fetch countries, states and cities
+  useEffect(() => {
+    // Get current domain
+    const { origin } = window.location;
+
+    // Fetch states
+    fetch(origin + '/api/countries/states')
+      .then(response => response.json())
+      .then((countries: Country[]) => setCountries(countries));
+  }, []);
+
+
+  // Use effect - Change states when country changes
+  useEffect(() => {
+    // Get current country
+    const country = countries.find((c) => c.key === form.country);
+
+    // Set states
+    setStates(country?.states || []);
+
+    // Reset form fields
+    setForm({ ...form, state: '', city: '', neighborhood: '', street: '', number: '', complement: '' });
+
+    // Reset cities
+    setCities([]);
+  }, [form.country]);
+
+
+  // Use effect - Change cities when state changes
+  const fetchData = async () => {
+    // Get current domain
+    const { origin } = window.location;
+
+    // Get current state
+    const state = states.find((s) => s.key === form.state);
+
+    // Get current country
+    const country = countries.find((c) => c.key === form.country);
+
+    // Reset form fields
+    setForm({ ...form, city: '', neighborhood: '', street: '', number: '', complement: '' });
+
+    // Reset cities
+    setCities([]);
+
+    // Set cities
+    if (state) {
+      try {
+        const response = await fetch(`${origin}/api/countries/cities?state=${state.name}&country=${country?.name}`);
+        const data: CityResponse = await response.json();
+        const cities = data.cities.map((city) => ({ name: city, key: city }));
+        setCities(cities);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+
+  useEffect(() => { fetchData() }, [form.state]);
 
   // User fields validations
   const { validations } = createValidator<UserFormModel>([
@@ -39,22 +112,6 @@ export function UserForm(props: RegisterFormProps) {
     console.log(form);
     toast.success(tPage('signUpSuccess'));
   }
-
-  // Mock data
-  const countries = [
-    { value: 'us', label: 'United States' },
-    { value: 'es', label: 'Spain' },
-    { value: 'fr', label: 'France' },
-    { value: 'it', label: 'Italy' },
-    { value: 'de', label: 'Germany' },
-  ]
-  const states = [
-    { value: 'ny', label: 'New York' },
-    { value: 'ca', label: 'California' },
-    { value: 'tx', label: 'Texas' },
-    { value: 'fl', label: 'Florida' },
-    { value: 'il', label: 'Illinois' },
-  ]
 
   // Render form
   return (
@@ -98,11 +155,6 @@ export function UserForm(props: RegisterFormProps) {
       </div>
 
       <div className="form-row">
-        <CSelect
-          name="country"
-          placeholder="countrySelect"
-          options={countries}
-          startContent={<FiGlobe />} />
         <CInput
           name="zipCode"
           type="text"
@@ -110,6 +162,12 @@ export function UserForm(props: RegisterFormProps) {
           className="small-field"
           startContent={<FaEnvelopeOpenText />}
         />
+        <CAutocomplete
+          name="country"
+          isDisabled={!form.zipCode}
+          placeholder="countrySelect"
+          options={countries}
+          startContent={<FiGlobe />} />
       </div>
 
       <Tooltip content={tPage('address.whyInfo')} placement="right-end">
@@ -120,16 +178,18 @@ export function UserForm(props: RegisterFormProps) {
       </Tooltip>
 
       <div className="form-row">
-        <CSelect
+        <CAutocomplete
           name="state"
+          isDisabled={!form.country}
           placeholder="stateSelect"
-          className="small-field"
+          className="medium-field"
           options={states}
           startContent={<FaMap />} />
-        <CInput
+        <CAutocomplete
           name="city"
-          type="text"
-          placeholder="city"
+          isDisabled={!form.state}
+          placeholder="citySelect"
+          options={cities}
           startContent={<FaCity />} />
       </div>
 
@@ -137,10 +197,12 @@ export function UserForm(props: RegisterFormProps) {
         <CInput
           name="neighborhood"
           type="text"
+          disabled={!form.city}
           placeholder="neighborhood"
           startContent={<FaMapMarkerAlt />} />
         <CInput
           name="street"
+          disabled={!form.neighborhood}
           placeholder="street"
           type="text"
           startContent={<FiHome />} />
@@ -150,6 +212,7 @@ export function UserForm(props: RegisterFormProps) {
         <CInput
           name="number"
           type="number"
+          disabled={!form.street}
           placeholder="number"
           className="small-field"
           startContent={<MdLooksOne />} />
@@ -160,12 +223,12 @@ export function UserForm(props: RegisterFormProps) {
           startContent={<MdAddLocation />} />
       </div>
 
-      <Checkbox size="sm" color="primary" name="terms" >
+      <CCheckbox name="terms" >
         {tPage('terms.accept')}{" "}
         <Link isExternal className="cursor-pointer" size="sm" href="https://nextui.org/docs/components/link">
           {tPage('terms.terms')}
         </Link>
-      </Checkbox>
+      </CCheckbox>
 
       <p className="text-center text-small pt-2">
         {tPage('alreadyHaveAccount')}{" "}

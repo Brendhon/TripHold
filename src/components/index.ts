@@ -1,3 +1,5 @@
+export * from './Form/CAutocomplete';
+export * from './Form/CCheckbox';
 export * from './Form/CForm';
 export * from './Form/CInput';
 export * from './Form/CSelect';

@@ -29,6 +29,7 @@ export function CInput(props: CInputProps) {
       aria-label={t(props?.placeholder)}
       placeholder={t(props?.placeholder)}
       startContent={props?.startContent}
+      onChange={props.handleChange}
       errorMessage={tError(props?.errorMessage || 'invalidField')}
       endContent={
         props?.type == 'password' ?

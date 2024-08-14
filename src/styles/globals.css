@@ -16,6 +16,10 @@ body {
     @apply md:w-[300px];
   }
 
+  .medium-field {
+    @apply md:w-[400px];
+  }
+
   .form-row {
     @apply flex flex-col gap-2 md:flex-row md:gap-4 items-baseline;
   }

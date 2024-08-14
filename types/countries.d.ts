@@ -1,14 +1,29 @@
 // Custom Types
 interface Country {
-  name: string;
-  code: string;
+  name: string; // Country name
+  key: string; // Country code
   flag?: string;
-  states?: State[];
+  states?: State[]; // States
 }
 
 interface State {
+  key: string;
   name: string;
-  code: string;
+}
+
+interface CityResponse {
+  country: string;
+  state: string;
+  cities: string[];
+}
+
+interface ZipCode {
+  countryCode: string;
+  city: string;
+  stateCode: string;
+  postalCode: string;
+  lat: string;
+  lon: string;
 }
 
 // DocumenterCountryAPI Types
@@ -16,7 +31,7 @@ interface State {
 interface DocumenterCountryAPI {
   error: boolean;
   msg: string;
-  data: Data[];
+  data: Data[] | Data;
 }
 
 interface DocumenterCitiesAPI {
@@ -171,4 +186,28 @@ enum StartOfWeek {
 enum Status {
   OfficiallyAssigned = "officially-assigned",
   UserAssigned = "user-assigned",
+}
+
+// ZipCodeAPI Types
+// URL: https://app.zipcodebase.com/api/v1
+interface ZipCodeBaseResponse {
+  query: Query;
+  results: { [key: string]: Result[] };
+}
+
+interface Query {
+  codes: string[];
+  country: null;
+}
+
+interface Result {
+  postal_code: string;
+  country_code: string;
+  latitude: string;
+  longitude: string;
+  city: string;
+  state: string;
+  state_code: string;
+  province: null | string;
+  province_code: null | string;
 }

@@ -24,6 +24,7 @@
     "state": "Digite seu estado",
     "stateSelect": "Selecione um estado",
     "city": "Digite sua cidade",
+    "citySelect": "Selecione uma cidade",
     "neighborhood": "Digite seu bairro",
     "address": "Digite seu endereço",
     "street": "Digite sua rua",

@@ -14,11 +14,11 @@ export async function GET() {
 
     // For each country in the data
     for (const country of data) {
-
       // Transform data into Country objects
       const countryObj: Country = {
+        // Common attributes
         name: country.name.common,
-        code: country.cca3 ?? country.cca2,
+        key: country.cca3 ?? country.cca2,
         flag: country.flags.svg,
       };
 

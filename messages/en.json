@@ -24,6 +24,7 @@
     "state": "Type your state",
     "stateSelect": "Select a state",
     "city": "Type your city",
+    "citySelect": "Select a city",
     "neighborhood": "Type your neighborhood",
     "address": "Type your address",
     "street": "Type your street",

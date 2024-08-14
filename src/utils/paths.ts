@@ -29,3 +29,10 @@ export const getDocumenterCitiesAPIPath = (state: string | null) => {
 export const getRestCountriesAPIPath = () => {
   return "https://restcountries.com/v3.1/all";
 }
+
+/**
+ * Get path to ZipCodeBaseAPI
+ */
+export const getZipCodeBaseAPIPath = (code: string) => {
+  return `https://app.zipcodebase.com/api/v1/search?apikey=${process.env.ZIP_CODE_API_KEY}&codes=${code}`;
+}

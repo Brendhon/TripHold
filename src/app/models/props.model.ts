@@ -1,4 +1,4 @@
-import { InputProps, SelectProps } from "@nextui-org/react";
+import { InputProps, SelectProps, AutocompleteProps, CheckboxProps } from "@nextui-org/react";
 import { ReactNode, HTMLProps } from "react";
 import { FormValidation } from "./form.model";
 
@@ -31,13 +31,26 @@ export interface LoginFormProps {
 
 export interface CSelectProps extends Partial<SelectProps> {
   placeholder: string;
-  options?: { value: any, label: string }[];
+  options?: { key: any, name: string }[];
+  handleChange?: (e: any) => void;
+}
+
+export interface CAutocompleteProps extends Partial<AutocompleteProps> {
+  placeholder: string;
+  options?: { key: any, name: string }[];
+  handleChange?: (e: any) => void;
+}
+
+export interface CCheckboxProps extends Partial<CheckboxProps> {
+  children: ReactNode;
+  handleChange?: (e: any) => void;
 }
 
 export interface CInputProps extends Partial<InputProps> {
   type: ('text' | 'search' | 'url' | 'tel' | 'email' | 'password' | 'number');
   placeholder: string;
   options?: { value: any, label: string }[];
+  handleChange?: (e: any) => void;
 }
 
 export interface FormProps<T> extends HTMLProps<HTMLFormElement> {

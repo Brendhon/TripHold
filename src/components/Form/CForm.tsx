@@ -34,10 +34,12 @@ export function CForm<T>(props: FormProps<T>) {
   }
 
   // Handle input
-  const handleChange = (e: any) => setForm((prevState: any) => ({
-    ...prevState,
-    [e.target.name]: !!e.target.value ? e.target.value : e.target.checked
-  }));
+  const handleChange = (e: any) => setForm((prevState: any) => {
+    return {
+      ...prevState,
+      [e.target.name]: !!e.target.value ? e.target.value : e.target.checked
+    }
+  });
 
   // @ts-ignore - Apply handleChange to children recursively
   const applyOnChangeRecursively = (children: ReactNode): ReactNode => {
@@ -47,7 +49,7 @@ export function CForm<T>(props: FormProps<T>) {
         const { name } = (child as ReactElement).props;
 
         // @ts-ignore - Add handleChange to children with name prop
-        const clonedChild = name ? cloneElement(child, { ...child.props, onChange: handleChange }) : child;
+        const clonedChild = name ? cloneElement(child, { ...child.props, handleChange: handleChange }) : child;
 
         // Check if child has children and apply recursively
         if ((child as ReactElement).props && (child as ReactElement).props.children) {

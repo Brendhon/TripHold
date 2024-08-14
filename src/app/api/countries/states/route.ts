@@ -1,10 +1,21 @@
 import { getDocumenterCountryAPIPath } from '@utils/paths';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET() {
+export async function GET(req: NextRequest) {
   try {
+    // Get search params from the req
+    const searchParams = req.nextUrl.searchParams;
+
+    // Get country and state from the
+    const country = searchParams.get('country');
+
+    // Get the path to the DocumenterCountryAPI
+    const path = getDocumenterCountryAPIPath();
+
     // Fetch data from the DocumenterCountryAPI
-    const resp = await fetch(getDocumenterCountryAPIPath());
+    const resp = country
+      ? await fetch(path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ country }) })
+      : await fetch(path);
 
     // Get data from the resp
     const result: DocumenterCountryAPI = await resp.json();
@@ -15,22 +26,24 @@ export async function GET() {
     // Initialize an array to store Country objects
     const countries: Country[] = [];
 
-    // For each country in the data
-    for (const country of data) {
-
-      // Transform data into Country objects
-      const countryObj: Country = {
+    // Add the Country object to the countries array
+    if (data instanceof Array) data.forEach((country) =>
+      countries.push({
         name: country.name,
-        code: country.iso3,
+        key: country.iso3,
         states: country.states.map((state) => ({
           name: state.name,
-          code: state.state_code,
+          key: state.state_code,
         })),
-      };
-
-      // Add the Country object to the countries array
-      countries.push(countryObj);
-    }
+      }));
+    else countries.push({
+      name: data.name,
+      key: data.iso3,
+      states: data.states.map((state) => ({
+        name: state.name,
+        key: state.state_code,
+      })),
+    });
 
     // Return data from the DocumenterCountryAPI
     return NextResponse.json(countries);
