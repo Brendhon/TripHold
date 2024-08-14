@@ -44,6 +44,19 @@ export function UserForm(props: RegisterFormProps) {
   // Translations
   const tPage = useTranslations("LoginAndRegister");
 
+  // User fields validations
+  const { validations } = createValidator<UserFormModel>([
+    { key: 'name', required: true },
+    { key: 'email', required: true, pattern: emailRegex },
+    { key: 'password', required: true, pattern: passwordRegex },
+    { key: 'confirmPassword', required: true, equal: 'password' },
+    { key: 'country', required: true },
+    { key: 'zipCode', required: true },
+    { key: 'state', required: true },
+    { key: 'city', required: true },
+    { key: 'terms', required: true },
+  ]);
+
   // Fetch countries, states and cities
   useEffect(() => {
     // Handle response
@@ -115,20 +128,6 @@ export function UserForm(props: RegisterFormProps) {
       .then(handleResponse)
       .catch(handleError);
   }, [debouncedZipCode]);
-
-
-  // User fields validations
-  const { validations } = createValidator<UserFormModel>([
-    { key: 'name', required: true },
-    { key: 'email', required: true, pattern: emailRegex },
-    { key: 'password', required: true, pattern: passwordRegex },
-    { key: 'confirmPassword', required: true, equal: 'password' },
-    { key: 'country', required: true },
-    { key: 'zipCode', required: true },
-    { key: 'state', required: true },
-    { key: 'city', required: true },
-    { key: 'terms', required: true },
-  ]);
 
   // Handle sign up
   const handleSignUp = async () => {

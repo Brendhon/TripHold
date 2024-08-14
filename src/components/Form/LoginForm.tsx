@@ -1,28 +1,56 @@
 "use client";
 
+import { LoginFormProps, UserSignInModel } from "@app/models";
+import { Link } from "@nextui-org/react";
+import { createValidator, useForm } from "@utils/forms";
+import { emailRegex, passwordRegex, testRegex } from "@utils/regex";
 import { useTranslations } from "next-intl";
-import { Button, Link } from "@nextui-org/react";
-import { MdEmail, MdLock } from "react-icons/md";;
+import { MdEmail, MdLock } from "react-icons/md";
+import { CForm } from "./CForm";
 import { CInput } from "./CInput";
-import { LoginFormProps } from "@app/models";
 
 /**
  * Custom Input
  */
 export function LoginForm(props: LoginFormProps) {
+  // Form state
+  const { form, setForm } = useForm<UserSignInModel>();
 
   // Handle login
-  const handleLogin = () => console.log("Login");
+  const handleLogin = () => {
+    console.log(form);
+  }
 
   // Translations
   const tPage = useTranslations("LoginAndRegister");
-  const tButton = useTranslations("Button");
+
+  // User fields validations
+  const { validations } = createValidator<UserSignInModel>([
+    { key: 'email', required: true, pattern: emailRegex },
+    { key: 'password', required: true, pattern: passwordRegex },
+  ]);
 
   return (
-    <form className={`flex flex-col gap-2 pt-3 sm:min-w-96 ${props.className}`} >
+    <CForm
+      formdata={{ form, setForm, validations }}
+      submit={{ action: handleLogin, text: 'login' }}
+      className={`flex flex-col gap-2 pt-3 sm:min-w-96 ${props.className}`} >
 
-      <CInput placeholder="email" type="email" startContent={<MdEmail />} />
-      <CInput placeholder="password" type="password" startContent={<MdLock />} />
+      <CInput
+        name="email"
+        type="email"
+        placeholder="email"
+        isInvalid={testRegex(emailRegex, form.email!)}
+        errorMessage="email.pattern"
+        startContent={<MdEmail />} />
+      <CInput
+        name="password"
+        type="password"
+        autoComplete="none"
+        placeholder="password"
+        isInvalid={testRegex(passwordRegex, form.password!)}
+        errorMessage="password.pattern"
+        startContent={<MdLock />} />
 
       <Link className="cursor-pointer text-center justify-end" size="sm">
         {tPage('forgotPassword')}
@@ -35,12 +63,6 @@ export function LoginForm(props: LoginFormProps) {
         </Link>
       </p>
 
-      <div className="flex gap-2 justify-center">
-        <Button onClick={handleLogin} color="primary" type="button">
-          {tButton('login')}
-        </Button>
-      </div>
-
-    </form>
+    </CForm>
   )
 }

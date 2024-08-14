@@ -16,3 +16,8 @@ export interface UserFormModel {
   city: string;
   terms: boolean;
 }
+
+export interface UserSignInModel {
+  email: string;
+  password: string;
+}
