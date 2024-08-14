@@ -50,7 +50,11 @@
       "privacyPolicy": "Política de Privacidade"
     },
     "signUpSuccess": "Cadastro realizado com sucesso",
-    "signUpError": "Erro ao realizar cadastro"
+    "signUpError": "Erro ao realizar cadastro",
+    "userExists": {
+      "email": "Usuário já cadastrado com este e-mail, faça login",
+      "google": "Usuário já cadastrado com o Google, faça login com o Google"
+    }
   },
   "Button": {
     "send": "Enviar",

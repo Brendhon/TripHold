@@ -4,13 +4,16 @@ import { FormProps } from "@app/models";
 import { Button } from "@nextui-org/react";
 import { isFormValid } from "@utils/forms";
 import { useTranslations } from "next-intl";
-import { Children, cloneElement, isValidElement, ReactElement } from "react";
+import { Children, cloneElement, isValidElement, ReactElement, useState } from "react";
 import toast from "react-hot-toast";
 
 /**
  * Custom Form
  */
 export function CForm<T>(props: FormProps<T>) {
+  // Loading
+  const [loading, setLoading] = useState(false);
+
   // Translations
   const t = useTranslations('Button');
   const tError = useTranslations("Error");
@@ -22,15 +25,21 @@ export function CForm<T>(props: FormProps<T>) {
   const handleErrors = (errors: string[] = []) => errors.forEach(error => toast.error(tError(error)));
 
   // Handle submit
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     // Prevent default - avoid page reload
     e.preventDefault();
+
+    // Set loading
+    setLoading(true);
 
     // Check if form is valid
     const { isValid, errors } = isFormValid<T>(validations, form);
 
     // Submit form if valid
-    isValid ? props.submit.action() : handleErrors(errors);
+    isValid ? await props.submit.action() : handleErrors(errors);
+
+    // Set loading
+    setLoading(false);
   }
 
   // Handle input
@@ -75,7 +84,12 @@ export function CForm<T>(props: FormProps<T>) {
 
       {/* Add submit button */}
       <div className="form-row justify-center pt-2">
-        <Button color="primary" type="submit"> {t(props.submit.text)} </Button>
+        <Button
+          isLoading={loading}
+          color="primary"
+          type="submit">
+          {t(props.submit.text)}
+        </Button>
       </div>
 
     </ form>

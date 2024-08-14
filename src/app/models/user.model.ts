@@ -2,8 +2,9 @@ import { Timestamp } from "firebase/firestore";
 import { Profile } from "next-auth";
 
 export interface User {
+  id?: string
   name: string;
-  email: string; // ID
+  email: string;
   image: string;
   provider: ('google' | 'email'); // google | email
   password?: string;

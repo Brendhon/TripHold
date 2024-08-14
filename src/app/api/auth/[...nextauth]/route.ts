@@ -1,6 +1,9 @@
-import { createUser } from "lib/firebase/firestore/users";
+import { createFirestoreUser, getFirestoreUser, updateFirestoreUser } from "lib/firebase/firestore/users";
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import CredentialsProvider from "next-auth/providers/credentials";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "lib/firebase/config";
 
 const handler = NextAuth({
   // Configure one or more authentication providers
@@ -14,35 +17,68 @@ const handler = NextAuth({
           scope: "openid profile email"
         }
       },
-    })
-    // ...add more providers here
+    }),
+    CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" },
+      },
+      async authorize(credentials): Promise<any> {
+        if (!credentials) return null;
+
+        try {
+          const userCredential = await signInWithEmailAndPassword(
+            auth,
+            credentials.email,
+            credentials.password
+          );
+
+          const user = userCredential.user;
+
+          if (user) {
+            return {
+              id: user.uid,
+              email: user.email,
+              name: user.displayName,
+              image: user.photoURL,
+            };
+          }
+        } catch (error) {
+          console.error("Firebase sign-in error", error);
+          return null;
+        }
+      },
+    }),
   ],
   callbacks: {
-    async jwt({ token, account, profile, user }) {
-      if (account?.provider === "google") {
-        token.accessToken = account.access_token;
-        token.idToken = account.id_token;
+    async jwt({ token, account, user }) {
+      switch (account?.provider) {
+        case "credentials":
+          token.accessToken = account.access_token;
+          token.idToken = user.id;
+          break;
+        case "google":
+          token.accessToken = account.access_token;
+          token.idToken = account.id_token;
+          
+          // Get user by email to check if user already exists
+          const userExists = await getFirestoreUser(user.email!);
 
-        // Add additional profile information to the token
-        if (profile) {
-          token.profile = {
-            gender: profile.gender,
-            birthdate: profile.birthdate,
-            location: profile.location,
-            addresses: profile.addresses // Add address if available
-          };
-        }
+          // Create a new user in the database if it doesn't exist
+          if (!userExists)
+            await createFirestoreUser({
+              name: user.name!,
+              email: user.email!,
+              image: user.image!,
+              provider: 'google',
+              terms: true
+            });
+          else await updateFirestoreUser({ image: user.image ?? '', id: userExists.id });
 
-        // Create a new user in the database if it doesn't exist
-        await createUser({
-          name: user.name!,
-          email: user.email!,
-          image: user.image!,
-          profile: token.profile,
-          provider: 'google',
-          terms: true
-        });
+          break;
       }
+
       return token;
     },
     async session({ session, token }) {

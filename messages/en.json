@@ -50,7 +50,11 @@
       "privacyPolicy": "Privacy Policy"
     },
     "signUpSuccess": "Registration successfully completed",
-    "signUpError": "Error registering"
+    "signUpError": "Error registering",
+    "userExists": {
+      "email": "User already registered with this e-mail, log in",
+      "google": "User already registered with Google, log in with Google"
+    }
   },
   "Button": {
     "send": "Send",
@@ -76,7 +80,7 @@
       "required": "Password is required",
       "notMatch": "Passwords do not match",
       "pattern": "Password must have at least 6 characters"
-    },    
+    },
     "confirmPassword": {
       "required": "Password confirmation is required",
       "notMatch": "Passwords do not match"

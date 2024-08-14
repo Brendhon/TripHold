@@ -65,7 +65,7 @@ export interface FormProps<T> extends HTMLProps<HTMLFormElement> {
 
   // Submit function
   submit: {
-    action: () => void;
+    action: () => any | Promise<any>;
     text: string;
   };
 

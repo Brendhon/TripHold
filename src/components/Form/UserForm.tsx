@@ -5,6 +5,8 @@ import { Link, Tooltip } from "@nextui-org/react";
 import { createValidator, useDebounce, useForm } from "@utils/forms";
 import { getCountriesPath, getZipCodePath } from "@utils/paths";
 import { emailRegex, passwordRegex, testRegex } from "@utils/regex";
+import { createUserSignUp } from "lib/firebase/auth/users";
+import { createFirestoreUser, getFirestoreUser } from "lib/firebase/firestore/users";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -129,9 +131,43 @@ export function UserForm(props: RegisterFormProps) {
   ]);
 
   // Handle sign up
-  const handleSignUp = () => {
-    console.log(form);
-    toast.success(tPage('signUpSuccess'));
+  const handleSignUp = async () => {
+    try {
+      // Get user by email to check if user already exists
+      const userExists = await getFirestoreUser(form.email!);
+
+      // Check if user already exists
+      if (userExists) {
+        props.action();
+        return toast.error(tPage(`userExists.${userExists.provider}`));
+      }
+
+      // Register user in Firebase Authentication
+      const user = await createUserSignUp(form.email!, form.password!);
+
+      // Add user to Firestore
+      await createFirestoreUser({
+        id: user.uid,
+        name: form.name!,
+        email: form.email!,
+        image: '',
+        provider: 'email',
+        country: form.country!,
+        zipCode: form.zipCode!,
+        state: form.state!,
+        city: form.city!,
+        terms: form.terms,
+      });
+
+      // Show success message
+      toast.success(tPage('signUpSuccess'));
+
+      // Redirect to home
+      props.action();
+    } catch (error: any) {
+      toast.error(tPage('signUpFailed'));
+      console.error("Error signing up:", error);
+    }
   }
 
   // Render form
