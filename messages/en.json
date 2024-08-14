@@ -62,7 +62,8 @@
     "back": "Back",
     "confirm": "Confirm",
     "register": "Register",
-    "login": "Login"
+    "login": "Login",
+    "signUp": "Sign Up"
   },
   "Error": {
     "invalidField": "Invalid field",
@@ -74,7 +75,7 @@
     "password": {
       "required": "Password is required",
       "notMatch": "Passwords do not match",
-      "minLength": "Password must have at least 6 characters"
+      "pattern": "Password must have at least 6 characters"
     },    
     "confirmPassword": {
       "required": "Password confirmation is required",
@@ -82,11 +83,11 @@
     },
     "email": {
       "required": "E-mail is required",
-      "invalid": "Invalid e-mail"
+      "pattern": "Invalid e-mail"
     },
     "zipCode": {
       "required": "ZIP code is required",
-      "invalid": "Invalid ZIP code"
+      "pattern": "Invalid ZIP code"
     },
     "country": {
       "required": "Country is required"
