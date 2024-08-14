@@ -178,7 +178,7 @@ export function UserForm(props: RegisterFormProps) {
           startContent={<MdLock />} />
       </div>
 
-      <Tooltip content={tPage('address.whyInfo')} placement="bottom-start">
+      <Tooltip content={tPage('address.whyInfo')} placement="top-start">
         <span className="text-sm text-grey-extra-light flex items-center gap-1 w-fit pt-2">
           {tPage('address.why')}
           <FaRegQuestionCircle className="text-green-regular cursor-text" />
@@ -198,7 +198,7 @@ export function UserForm(props: RegisterFormProps) {
           name="country"
           isLoading={!hasLoaded && form.zipCode}
           disabled={!form.zipCode || !hasLoaded}
-          placeholder="countrySelect"
+          placeholder="country"
           selectedKey={form.country}
           allowsCustomValue={true}
           options={countries}
@@ -210,7 +210,7 @@ export function UserForm(props: RegisterFormProps) {
           name="state"
           isLoading={!hasLoaded && form.zipCode}
           disabled={!form.country}
-          placeholder="stateSelect"
+          placeholder="state"
           selectedKey={form.state}
           className="medium-field"
           allowsCustomValue={true}
@@ -222,7 +222,7 @@ export function UserForm(props: RegisterFormProps) {
           disabled={!form.state}
           allowsCustomValue={true}
           selectedKey={form.city}
-          placeholder="citySelect"
+          placeholder="city"
           options={cities}
           startContent={<FaCity />} />
       </div>

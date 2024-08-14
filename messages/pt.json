@@ -19,6 +19,7 @@
     "confirmNewPassword": "Confirme sua nova senha",
     "name": "Digite seu nome",
     "confirmPassword": "Confirme sua senha",
+    "country": "Digite seu país",
     "countrySelect": "Selecione um país",
     "zipCode": "Digite seu CEP",
     "state": "Digite seu estado",

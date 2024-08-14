@@ -19,6 +19,7 @@
     "confirmNewPassword": "Confirm your new password",
     "name": "Type your name",
     "confirmPassword": "Confirm your password",
+    "country": "Type your country",
     "countrySelect": "Select a country",
     "zipCode": "Type your ZIP code",
     "state": "Type your state",
