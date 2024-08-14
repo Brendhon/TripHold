@@ -3,9 +3,6 @@ import withPWA from 'next-pwa';
 
 const withNextIntl = createNextIntlPlugin();
 
-// Allowed domais for api requests
-const allowedDomains = ['https://trip-hold.vercel.app'];
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,      // Enable React strict mode for improved error handling
@@ -18,28 +15,6 @@ const nextConfig = {
         pathname: '**',
       },
     ],
-  },
-  // Block request to api from others domains (CORS)
-  headers: async () => {
-    return [
-      {
-        source: '/api/:path*',
-        headers: [
-          {
-            key: 'Access-Control-Allow-Origin',
-            value: process.env.NODE_ENV == 'production' ? allowedDomains.join(', ') : '*',
-          },
-          {
-            key: 'Access-Control-Allow-Methods',
-            value: 'GET,OPTIONS',
-          },
-          {
-            key: 'Access-Control-Allow-Headers',
-            value: 'X-Requested-With, Content-Type, Accept',
-          },
-        ],
-      },
-    ];
   },
 };
 

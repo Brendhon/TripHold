@@ -9,6 +9,13 @@ export const DEFAULT_LOCALE = "pt";
 
 export const LOCALES = ["pt", "en"];
 
+export const PUBLIC_PAGES = ["/login"];
+
+export const ALLOWED_ORIGINS = [
+  "http://localhost:3000",
+  "https://trip-hold.vercel.app",
+];
+
 export const BUTTON_COLORS = {
   "decline": {
     "bg": "bg-red-regular",

@@ -1,46 +1,50 @@
+import { authMiddlewareOptions, isPublicPage, isValidOrigin } from '@utils/auth';
 import { DEFAULT_LOCALE, LOCALES } from '@utils/common';
 import { withAuth } from 'next-auth/middleware';
 import createMiddleware from 'next-intl/middleware';
-import { NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
-const publicPages = ['/login'];
-const locales = LOCALES;
+/**
+ * Create internationalization middleware 
+ */
+const intlMiddleware = createMiddleware({ locales: LOCALES, defaultLocale: DEFAULT_LOCALE });
 
-const intlMiddleware = createMiddleware({ locales, defaultLocale: DEFAULT_LOCALE });
+/**
+ * Create authentication middleware
+ */
+const authMiddleware = withAuth(intlMiddleware, authMiddlewareOptions);
 
-const authMiddleware = withAuth(
-  // Note that this callback is only invoked if
-  // the `authorized` callback has returned `true`
-  // and not for pages listed in `pages`.
-  function onSuccess(req) {
-    return intlMiddleware(req);
-  },
-  {
-    callbacks: {
-      authorized: ({ token }) => token != null
-    },
-    pages: {
-      signIn: '/login'
-    }
+/**
+ * Middleware to handle requests
+ */
+const middleware = (req: NextRequest) => {
+  // Get pathname from nextUrl
+  const { pathname } = req.nextUrl;
+
+  // Get origin from headers
+  const origin = req.headers.get('origin') || '';
+
+  // Handle requests based on the pathname
+  switch (true) {
+    // Case 1: API request - Allow only requests from allowed origins
+    case pathname.startsWith('/api'):
+      return isValidOrigin(origin) ? NextResponse.next() : new NextResponse('Forbidden', { status: 403 });
+
+    // Case 2: Public page request - Handle with intlMiddleware
+    case isPublicPage(pathname):
+      return intlMiddleware(req);
+
+    // Case 3: Protected page request - Handle with authMiddleware
+    default:
+      return (authMiddleware as any)(req);
   }
-);
-
-export default function middleware(req: NextRequest) {
-  const publicPathnameRegex = RegExp(
-    `^(/(${locales.join('|')}))?(${publicPages
-      .flatMap((p) => (p === '/' ? ['', '/'] : p))
-      .join('|')})/?$`,
-    'i'
-  );
-  const isPublicPage = publicPathnameRegex.test(req.nextUrl.pathname);
-
-  if (isPublicPage) {
-    return intlMiddleware(req);
-  } else {
-    return (authMiddleware as any)(req);
-  }
-}
-
-export const config = {
-  matcher: ['/((?!api|_next|.*\\..*).*)'] // Exclude /api and /_next and files with extension
 };
+
+/**
+ * Configuration for the middleware
+ */
+export const config = {
+  matcher: ['/((?!_next|.*\\..*).*)'] // Exclude /_next and files with extension
+};
+
+export default middleware;
