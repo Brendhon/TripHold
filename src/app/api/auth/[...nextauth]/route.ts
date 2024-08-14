@@ -1,9 +1,8 @@
+import { signInUser } from "lib/firebase/auth/users";
 import { createFirestoreUser, getFirestoreUser, updateFirestoreUser } from "lib/firebase/firestore/users";
 import NextAuth from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "lib/firebase/config";
+import GoogleProvider from "next-auth/providers/google";
 
 const handler = NextAuth({
   // Configure one or more authentication providers
@@ -25,17 +24,14 @@ const handler = NextAuth({
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials): Promise<any> {
-        if (!credentials) return null;
-
         try {
-          const userCredential = await signInWithEmailAndPassword(
-            auth,
-            credentials.email,
-            credentials.password
-          );
+          // Check if credentials exist
+          if (!credentials) return null;
 
-          const user = userCredential.user;
+          // Sign in user with email and password
+          const user = await signInUser(credentials.email, credentials.password);
 
+          // Return user data
           if (user) {
             return {
               id: user.uid,
@@ -44,9 +40,8 @@ const handler = NextAuth({
               image: user.photoURL,
             };
           }
-        } catch (error) {
-          console.error("Firebase sign-in error", error);
-          return null;
+        } catch (error: any) {
+          throw error.code ? new Error(error.code) : new Error("loginError");
         }
       },
     }),
@@ -61,7 +56,7 @@ const handler = NextAuth({
         case "google":
           token.accessToken = account.access_token;
           token.idToken = account.id_token;
-          
+
           // Get user by email to check if user already exists
           const userExists = await getFirestoreUser(user.email!);
 
@@ -91,3 +86,4 @@ const handler = NextAuth({
 });
 
 export { handler as GET, handler as POST };
+

@@ -54,7 +54,9 @@
     "userExists": {
       "email": "User already registered with this e-mail, log in",
       "google": "User already registered with Google, log in with Google"
-    }
+    },
+    "loginSuccess": "Login successfully completed",
+    "loginError": "Error signing in"
   },
   "Button": {
     "send": "Send",
@@ -104,6 +106,29 @@
     },
     "terms": {
       "required": "You must accept the terms"
-    }
+    },
+    "loginError": "Error signing in",
+    "auth/invalid-email": "Invalid email",
+    "auth/user-disabled": "User disabled",
+    "auth/user-not-found": "User not found",
+    "auth/wrong-password": "Incorrect password",
+    "auth/email-already-in-use": "Email already in use",
+    "auth/operation-not-allowed": "Operation not allowed",
+    "auth/weak-password": "Weak password",
+    "auth/invalid-verification-code": "Invalid verification code",
+    "auth/invalid-verification-id": "Invalid verification ID",
+    "auth/account-exists-with-different-credential": "Account already exists with a different credential",
+    "auth/credential-already-in-use": "Credential already in use",
+    "auth/timeout": "Timeout exceeded",
+    "auth/network-request-failed": "Network request failed",
+    "auth/too-many-requests": "Too many requests. Try again later",
+    "auth/popup-closed-by-user": "Popup closed by user",
+    "auth/requires-recent-login": "Requires recent login",
+    "auth/missing-email": "Missing email",
+    "auth/provider-already-linked": "Provider already linked to this account",
+    "auth/unauthorized-domain": "Unauthorized domain",
+    "auth/captcha-check-failed": "CAPTCHA check failed",
+    "auth/web-storage-unsupported": "Web storage unsupported",
+    "auth/invalid-credential": "Incorrect login information"
   }
 }

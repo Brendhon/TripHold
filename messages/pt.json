@@ -54,7 +54,9 @@
     "userExists": {
       "email": "Usuário já cadastrado com este e-mail, faça login",
       "google": "Usuário já cadastrado com o Google, faça login com o Google"
-    }
+    },
+    "loginSuccess": "Login realizado com sucesso",
+    "loginError": "Erro ao realizar login"
   },
   "Button": {
     "send": "Enviar",
@@ -104,6 +106,29 @@
     },
     "terms": {
       "required": "Você deve aceitar os Termos de Serviço"
-    }
+    },
+    "loginError": "Erro ao realizar login",
+    "auth/invalid-email": "Email inválido",
+    "auth/user-disabled": "Usuário desativado",
+    "auth/user-not-found": "Usuário não encontrado",
+    "auth/wrong-password": "Senha incorreta",
+    "auth/email-already-in-use": "O email já está em uso",
+    "auth/operation-not-allowed": "Operação não permitida",
+    "auth/weak-password": "Senha fraca",
+    "auth/invalid-verification-code": "Código de verificação inválido",
+    "auth/invalid-verification-id": "ID de verificação inválido",
+    "auth/account-exists-with-different-credential": "Conta já existe com uma credencial diferente",
+    "auth/credential-already-in-use": "A credencial já está em uso",
+    "auth/timeout": "Tempo de espera excedido",
+    "auth/network-request-failed": "Falha na solicitação de rede",
+    "auth/too-many-requests": "Muitas solicitações. Tente novamente mais tarde",
+    "auth/popup-closed-by-user": "Popup fechado pelo usuário",
+    "auth/requires-recent-login": "Requer login recente",
+    "auth/missing-email": "Email ausente",
+    "auth/provider-already-linked": "Provedor já vinculado a essa conta",
+    "auth/unauthorized-domain": "Domínio não autorizado",
+    "auth/captcha-check-failed": "Falha na verificação do CAPTCHA",
+    "auth/web-storage-unsupported": "Armazenamento da Web não suportado",
+    "auth/invalid-credential": "Informações de login incorretas"
   }
 }

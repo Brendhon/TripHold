@@ -4,7 +4,10 @@ import { LoginFormProps, UserSignInModel } from "@app/models";
 import { Link } from "@nextui-org/react";
 import { createValidator, useForm } from "@utils/forms";
 import { emailRegex, passwordRegex, testRegex } from "@utils/regex";
+import { signIn } from "next-auth/react";
 import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 import { MdEmail, MdLock } from "react-icons/md";
 import { CForm } from "./CForm";
 import { CInput } from "./CInput";
@@ -16,13 +19,35 @@ export function LoginForm(props: LoginFormProps) {
   // Form state
   const { form, setForm } = useForm<UserSignInModel>();
 
-  // Handle login
-  const handleLogin = () => {
-    console.log(form);
-  }
+  // Router hook
+  const router = useRouter();
 
   // Translations
   const tPage = useTranslations("LoginAndRegister");
+  const tError = useTranslations("Error");
+
+  // Handle login
+  const handleLogin = async () => {
+    try {
+      // Sign in user
+      const error = await signIn("credentials", { email: form.email, password: form.password, redirect: false });
+
+      // Check if there is an error
+      if (error?.error) throw error;
+
+      // Show success message
+      toast.success(tPage('loginSuccess'));
+
+      // Redirect to home page
+      router.push("/home");
+    } catch (error: any) {
+      // Log error
+      console.error("Error logging in:", error);
+
+      // Show error message
+      toast.error(tError(error.error ?? 'loginError'));
+    }
+  };
 
   // User fields validations
   const { validations } = createValidator<UserSignInModel>([
