@@ -36,3 +36,39 @@ export const getRestCountriesAPIPath = () => {
 export const getZipCodeBaseAPIPath = (code: string) => {
   return `https://app.zipcodebase.com/api/v1/search?apikey=${process.env.ZIP_CODE_API_KEY}&codes=${code}`;
 }
+
+/**
+ * Get countries path
+ * @returns Countries path
+ */
+export const getCountriesPath = () => {
+  return  `${window.location.origin}/api/countries`;
+}
+
+/**
+ * Get states path
+ * @param {string} country Country Name
+ * @returns States path
+ */
+export const getStatesPath = (country?: string) => {
+  return `${window.location.origin}/api/countries/states${country ? `?country=${country}` : ""}`;	
+}
+
+/**
+ * Get cities path
+ * @param {string} country Country Name
+ * @param {string} state State Name
+ * @returns Cities path
+ */
+export const getCitiesPath = (country: string, state?: string) => {
+  return `${window.location.origin}/api/countries/cities?country=${country}${state ? `&state=${state}` : ""}`;
+}
+
+/**
+ * Get zip code path
+ * @param {string} code Zip Code
+ * @returns Zip Code path
+ */
+export const getZipCodePath = (code: string) => {
+  return `${window.location.origin}/api/countries/zip?code=${code}`;
+}

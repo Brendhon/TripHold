@@ -90,6 +90,12 @@
     "country": {
       "required": "Country is required"
     },
+    "state": {
+      "required": "State is required"
+    },
+    "city": {
+      "required": "City is required"
+    },
     "terms": {
       "required": "You must accept the terms"
     }

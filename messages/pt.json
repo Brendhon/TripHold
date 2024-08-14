@@ -91,6 +91,12 @@
     "country": {
       "required": "País é obrigatório"
     },
+    "state": {
+      "required": "Estado é obrigatório"
+    },
+    "city": {
+      "required": "Cidade é obrigatória"
+    },
     "terms": {
       "required": "Você deve aceitar os Termos de Serviço"
     }

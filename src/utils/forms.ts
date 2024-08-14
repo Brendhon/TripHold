@@ -1,7 +1,7 @@
 "use client";
 
 import { FormValidation } from "@app/models";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { testRegex } from "./regex";
 
 /**
@@ -62,4 +62,26 @@ export const createValidator = <T>(fields: FormValidation<keyof T>[]): { validat
 export const useForm = <T>(initialState?: T): any => {
   const [form, setForm] = useState<Partial<T>>(initialState || {});
   return { form, setForm };
+}
+
+/**
+ * Use debounce to delay the value
+ * @param {string} value - Value to debounce
+ * @param {number} delay - Delay to debounce
+ * @returns {string} - Debounced value
+ */
+export const useDebounce = (value: string, delay: number): string => {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
+
+  return debouncedValue;
 }

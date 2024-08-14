@@ -20,7 +20,7 @@ export function CAutocomplete(props: CAutocompleteProps) {
       {...props}
       variant="faded"
       color="default"
-      allowsCustomValue={false}
+      isDisabled={props.disabled}
       onSelectionChange={handleChange}
       aria-label={t(props?.placeholder)}
       placeholder={t(props?.placeholder)}

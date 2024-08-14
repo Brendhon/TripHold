@@ -18,8 +18,9 @@ export async function GET() {
       const countryObj: Country = {
         // Common attributes
         name: country.name.common,
-        key: country.cca3 ?? country.cca2,
+        key: country.cca2 ?? country.cca3,
         flag: country.flags.svg,
+        codes: [country.cca2, country.cca3, country.cioc ?? "", country.ccn3 ?? ""].filter((c) => c),
       };
 
       // Add the Country object to the countries array

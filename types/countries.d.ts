@@ -4,6 +4,7 @@ interface Country {
   key: string; // Country code
   flag?: string;
   states?: State[]; // States
+  codes: string[]; // Country codes
 }
 
 interface State {
@@ -18,12 +19,10 @@ interface CityResponse {
 }
 
 interface ZipCode {
-  countryCode: string;
-  city: string;
-  stateCode: string;
-  postalCode: string;
-  lat: string;
-  lon: string;
+  countryCode: string[];
+  city: string[];
+  state: string[];
+  postalCode: string[];
 }
 
 // DocumenterCountryAPI Types

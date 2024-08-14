@@ -15,8 +15,6 @@ export async function GET(req: NextRequest) {
     // Get the path to the ZipCodeBaseAPI
     const path = getZipCodeBaseAPIPath(code);
 
-    console.log(path);
-
     // Fetch data from the ZipCodeBaseAPI
     const resp = await fetch(path, {
       method: "GET",
@@ -29,28 +27,22 @@ export async function GET(req: NextRequest) {
     // Get data from the result
     const { results } = result;
 
-    // Initialize an array to store Country objects
-    const zips: ZipCode[] = [];
+    // Filter results with states
+    const resultsWithStates = results[code].filter((zip: any) => zip.state);
 
-    // For each country in the data
-    for (const zip of results[code]) {
+    // Function to get attributes from the ZipCodeBaseAPI in Set to remove duplicates and remove empty strings
+    const getAttributes = (attr: string) => Array.from(new Set(resultsWithStates.map((zip: any) => zip[attr]))).filter((a) => a);
 
-      // Transform data into Country objects
-      const obj: ZipCode = {
-        lat: zip.latitude,
-        lon: zip.longitude,
-        countryCode: zip.country_code,
-        stateCode: zip.state_code,
-        city: zip.city,
-        postalCode: zip.postal_code,
-      };
-
-      // Add the Country object to the countries array
-      zips.push(obj);
+    // Initialize an array to store Zip
+    const zip: ZipCode = {
+      countryCode: getAttributes('country_code'),
+      state: getAttributes('state'),
+      city: getAttributes('city'),
+      postalCode: getAttributes('postal_code'),
     }
 
     // Return data from the ZipCodeBaseAPI
-    return NextResponse.json(zips);
+    return NextResponse.json(zip);
   } catch (error) {
     console.error("Error getting data from ZipCodeBaseAPI: ", error);
     return new NextResponse(JSON.stringify(error), { status: 500 });

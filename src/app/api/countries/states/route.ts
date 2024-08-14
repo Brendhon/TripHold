@@ -31,6 +31,7 @@ export async function GET(req: NextRequest) {
       countries.push({
         name: country.name,
         key: country.iso3,
+        codes: [country.iso3],
         states: country.states.map((state) => ({
           name: state.name,
           key: state.state_code,
@@ -39,6 +40,7 @@ export async function GET(req: NextRequest) {
     else countries.push({
       name: data.name,
       key: data.iso3,
+      codes: [data.iso3],
       states: data.states.map((state) => ({
         name: state.name,
         key: state.state_code,

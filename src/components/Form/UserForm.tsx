@@ -2,14 +2,15 @@
 
 import { RegisterFormProps, UserFormModel } from "@app/models";
 import { Link, Tooltip } from "@nextui-org/react";
-import { createValidator, useForm } from "@utils/forms";
+import { createValidator, useDebounce, useForm } from "@utils/forms";
+import { getCountriesPath, getZipCodePath } from "@utils/paths";
 import { emailRegex, passwordRegex, testRegex } from "@utils/regex";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { FaCity, FaEnvelopeOpenText, FaMap, FaMapMarkerAlt, FaRegQuestionCircle } from "react-icons/fa";
-import { FiGlobe, FiHome } from "react-icons/fi";
-import { MdAddLocation, MdEmail, MdLock, MdLooksOne, MdPerson } from "react-icons/md";
+import { FaCity, FaEnvelopeOpenText, FaMap, FaRegQuestionCircle } from "react-icons/fa";
+import { FiGlobe } from "react-icons/fi";
+import { MdEmail, MdLock, MdPerson } from "react-icons/md";
 import { CAutocomplete } from "./CAutocomplete";
 import { CCheckbox } from "./CCheckbox";
 import { CForm } from "./CForm";
@@ -27,74 +28,92 @@ interface SelectItem {
 export function UserForm(props: RegisterFormProps) {
   // Variables to receive country options, states options and cities options
   const [countries, setCountries] = useState<SelectItem[]>([]);
+  const [allCountries, setAllCountries] = useState<SelectItem[]>([]);
   const [states, setStates] = useState<SelectItem[]>([]);
   const [cities, setCities] = useState<SelectItem[]>([]);
 
   // Form state
   const { form, setForm } = useForm<UserFormModel>();
 
+  // Debounce zip code - Fetch zip code info after 500ms of user stop typing
+  const debouncedZipCode = useDebounce(form.zipCode, 500);
+  const [hasLoaded, setHasLoaded] = useState(false);
+
   // Translations
   const tPage = useTranslations("LoginAndRegister");
 
   // Fetch countries, states and cities
   useEffect(() => {
-    // Get current domain
-    const { origin } = window.location;
+    // Handle response
+    const handleResponse = (data: Country[]) => {
+      setCountries(data);
+      setAllCountries(data);
+    }
+
+    // Handle error
+    const handleError = (error: any) => console.error('Error fetching countries:', error);
 
     // Fetch states
-    fetch(origin + '/api/countries/states')
+    fetch(getCountriesPath())
       .then(response => response.json())
-      .then((countries: Country[]) => setCountries(countries));
+      .then(handleResponse)
+      .catch(handleError);
   }, []);
 
-
-  // Use effect - Change states when country changes
+  // Listening to the change of the zip code field and after user fills it, fetch the zip code info
   useEffect(() => {
-    // Get current country
-    const country = countries.find((c) => c.key === form.country);
-
-    // Set states
-    setStates(country?.states || []);
-
     // Reset form fields
-    setForm({ ...form, state: '', city: '', neighborhood: '', street: '', number: '', complement: '' });
+    const reset = () => setForm((prevForm: any) => ({
+      ...prevForm,
+      country: '',
+      state: '',
+      city: '',
+    }));
 
-    // Reset cities
-    setCities([]);
-  }, [form.country]);
+    // Check if zip code is empty
+    if (!debouncedZipCode) return reset();
 
+    // Set has loaded to false
+    setHasLoaded(false);
 
-  // Use effect - Change cities when state changes
-  const fetchData = async () => {
-    // Get current domain
-    const { origin } = window.location;
+    // Create function to set form fields
+    const handleResponse = (codes: ZipCode) => {
 
-    // Get current state
-    const state = states.find((s) => s.key === form.state);
+      // Check if codes is empty object - Reset form fields
+      if (!Object.keys(codes).length) return reset();
 
-    // Get current country
-    const country = countries.find((c) => c.key === form.country);
+      // Get country and state from the zip code info
+      const newCountries = allCountries.filter((c) => c.codes.includes(codes.countryCode[0]));
 
-    // Reset form fields
-    setForm({ ...form, city: '', neighborhood: '', street: '', number: '', complement: '' });
+      // Set countries
+      setCountries(newCountries);
+      setStates(codes.state.map((state) => ({ name: state, key: state })));
+      setCities(codes.city.map((city) => ({ name: city, key: city })));
 
-    // Reset cities
-    setCities([]);
+      // Set has loaded to true
+      setHasLoaded(true);
 
-    // Set cities
-    if (state) {
-      try {
-        const response = await fetch(`${origin}/api/countries/cities?state=${state.name}&country=${country?.name}`);
-        const data: CityResponse = await response.json();
-        const cities = data.cities.map((city) => ({ name: city, key: city }));
-        setCities(cities);
-      } catch (error) {
-        console.error(error);
-      }
+      // Set form fields
+      setForm((prevForm: any) => ({
+        ...prevForm,
+        country: newCountries.length == 1 ? newCountries[0].key : '',
+        state: codes.state.length == 1 ? codes.state[0] : '',
+        city: codes.city.length == 1 ? codes.city[0] : '',
+      }));
     }
-  };
 
-  useEffect(() => { fetchData() }, [form.state]);
+    // Create function to handle errors
+    const handleError = (error: any) => {
+      console.error('Error fetching zip code info:', error);
+      reset();
+    }
+
+    fetch(getZipCodePath(debouncedZipCode))
+      .then(response => response.json())
+      .then(handleResponse)
+      .catch(handleError);
+  }, [debouncedZipCode]);
+
 
   // User fields validations
   const { validations } = createValidator<UserFormModel>([
@@ -104,6 +123,8 @@ export function UserForm(props: RegisterFormProps) {
     { key: 'confirmPassword', required: true, equal: 'password' },
     { key: 'country', required: true },
     { key: 'zipCode', required: true },
+    { key: 'state', required: true },
+    { key: 'city', required: true },
     { key: 'terms', required: true },
   ]);
 
@@ -125,6 +146,7 @@ export function UserForm(props: RegisterFormProps) {
           autoFocus
           name="name"
           type="text"
+          autoComplete="none"
           placeholder="name"
           startContent={<MdPerson />} />
         <CInput
@@ -141,6 +163,7 @@ export function UserForm(props: RegisterFormProps) {
         <CInput
           name="password"
           type="password"
+          autoComplete="none"
           placeholder="newPassword"
           isInvalid={testRegex(passwordRegex, form.password!)}
           errorMessage="password.pattern"
@@ -148,29 +171,14 @@ export function UserForm(props: RegisterFormProps) {
         <CInput
           name="confirmPassword"
           type="password"
+          autoComplete="none"
           placeholder="confirmNewPassword"
           isInvalid={form.password != form.confirmPassword}
           errorMessage="password.notMatch"
           startContent={<MdLock />} />
       </div>
 
-      <div className="form-row">
-        <CInput
-          name="zipCode"
-          type="text"
-          placeholder="zipCode"
-          className="small-field"
-          startContent={<FaEnvelopeOpenText />}
-        />
-        <CAutocomplete
-          name="country"
-          isDisabled={!form.zipCode}
-          placeholder="countrySelect"
-          options={countries}
-          startContent={<FiGlobe />} />
-      </div>
-
-      <Tooltip content={tPage('address.whyInfo')} placement="right-end">
+      <Tooltip content={tPage('address.whyInfo')} placement="bottom-start">
         <span className="text-sm text-grey-extra-light flex items-center gap-1 w-fit pt-2">
           {tPage('address.why')}
           <FaRegQuestionCircle className="text-green-regular cursor-text" />
@@ -178,49 +186,45 @@ export function UserForm(props: RegisterFormProps) {
       </Tooltip>
 
       <div className="form-row">
+        <CInput
+          name="zipCode"
+          type="text"
+          autoComplete="none"
+          placeholder="zipCode"
+          className="medium-field"
+          startContent={<FaEnvelopeOpenText />}
+        />
+        <CAutocomplete
+          name="country"
+          isLoading={!hasLoaded && form.zipCode}
+          disabled={!form.zipCode || !hasLoaded}
+          placeholder="countrySelect"
+          selectedKey={form.country}
+          allowsCustomValue={true}
+          options={countries}
+          startContent={<FiGlobe />} />
+      </div>
+
+      <div className="form-row">
         <CAutocomplete
           name="state"
-          isDisabled={!form.country}
+          isLoading={!hasLoaded && form.zipCode}
+          disabled={!form.country}
           placeholder="stateSelect"
+          selectedKey={form.state}
           className="medium-field"
+          allowsCustomValue={true}
           options={states}
           startContent={<FaMap />} />
         <CAutocomplete
           name="city"
-          isDisabled={!form.state}
+          isLoading={!hasLoaded && form.zipCode}
+          disabled={!form.state}
+          allowsCustomValue={true}
+          selectedKey={form.city}
           placeholder="citySelect"
           options={cities}
           startContent={<FaCity />} />
-      </div>
-
-      <div className="form-row">
-        <CInput
-          name="neighborhood"
-          type="text"
-          disabled={!form.city}
-          placeholder="neighborhood"
-          startContent={<FaMapMarkerAlt />} />
-        <CInput
-          name="street"
-          disabled={!form.neighborhood}
-          placeholder="street"
-          type="text"
-          startContent={<FiHome />} />
-      </div>
-
-      <div className="form-row">
-        <CInput
-          name="number"
-          type="number"
-          disabled={!form.street}
-          placeholder="number"
-          className="small-field"
-          startContent={<MdLooksOne />} />
-        <CInput
-          name="complement"
-          type="text"
-          placeholder="complement"
-          startContent={<MdAddLocation />} />
       </div>
 
       <CCheckbox name="terms" >
