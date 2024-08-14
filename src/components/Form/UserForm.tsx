@@ -197,7 +197,7 @@ export function UserForm(props: RegisterFormProps) {
         <CAutocomplete
           name="country"
           isLoading={!hasLoaded && form.zipCode}
-          disabled={!form.zipCode || !hasLoaded}
+          disabled={!form.zipCode}
           placeholder="country"
           selectedKey={form.country}
           allowsCustomValue={true}
