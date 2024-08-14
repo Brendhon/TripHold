@@ -13,10 +13,10 @@ import toast from "react-hot-toast";
 import { FaCity, FaEnvelopeOpenText, FaMap, FaRegQuestionCircle } from "react-icons/fa";
 import { FiGlobe } from "react-icons/fi";
 import { MdEmail, MdLock, MdPerson } from "react-icons/md";
-import { CAutocomplete } from "./CAutocomplete";
-import { CCheckbox } from "./CCheckbox";
-import { CForm } from "./CForm";
-import { CInput } from "./CInput";
+import { Autocomplete } from "./Autocomplete";
+import { Checkbox } from "./Checkbox";
+import { Form } from "./Form";
+import { Input } from "./Input";
 
 interface SelectItem {
   name: string;
@@ -171,20 +171,20 @@ export function UserForm(props: RegisterFormProps) {
 
   // Render form
   return (
-    <CForm
+    <Form
       formdata={{ form, setForm, validations }}
       submit={{ action: handleSignUp, text: 'signUp' }}
       className={`flex flex-col gap-2 pt-3 sm:min-w-0 md:min-w-[50%] lg:min-w-[700px] ${props.className}`} >
 
       <div className="form-row">
-        <CInput
+        <Input
           autoFocus
           name="name"
           type="text"
           autoComplete="none"
           placeholder="name"
           startContent={<MdPerson />} />
-        <CInput
+        <Input
           name="email"
           type="email"
           placeholder="email"
@@ -195,7 +195,7 @@ export function UserForm(props: RegisterFormProps) {
       </div>
 
       <div className="form-row">
-        <CInput
+        <Input
           name="password"
           type="password"
           autoComplete="none"
@@ -203,7 +203,7 @@ export function UserForm(props: RegisterFormProps) {
           isInvalid={testRegex(passwordRegex, form.password!)}
           errorMessage="password.pattern"
           startContent={<MdLock />} />
-        <CInput
+        <Input
           name="confirmPassword"
           type="password"
           autoComplete="none"
@@ -221,7 +221,7 @@ export function UserForm(props: RegisterFormProps) {
       </Tooltip>
 
       <div className="form-row">
-        <CInput
+        <Input
           name="zipCode"
           type="text"
           autoComplete="none"
@@ -229,7 +229,7 @@ export function UserForm(props: RegisterFormProps) {
           className="medium-field"
           startContent={<FaEnvelopeOpenText />}
         />
-        <CAutocomplete
+        <Autocomplete
           name="country"
           isLoading={!hasLoaded && form.zipCode}
           disabled={!form.zipCode}
@@ -241,7 +241,7 @@ export function UserForm(props: RegisterFormProps) {
       </div>
 
       <div className="form-row">
-        <CAutocomplete
+        <Autocomplete
           name="state"
           isLoading={!hasLoaded && form.zipCode}
           disabled={!form.country}
@@ -251,7 +251,7 @@ export function UserForm(props: RegisterFormProps) {
           allowsCustomValue={true}
           options={states}
           startContent={<FaMap />} />
-        <CAutocomplete
+        <Autocomplete
           name="city"
           isLoading={!hasLoaded && form.zipCode}
           disabled={!form.state}
@@ -262,12 +262,12 @@ export function UserForm(props: RegisterFormProps) {
           startContent={<FaCity />} />
       </div>
 
-      <CCheckbox name="terms" >
+      <Checkbox name="terms" >
         {tPage('terms.accept')}{" "}
         <Link isExternal className="cursor-pointer" size="sm" href={getTermsPath()}>
           {tPage('terms.terms')}
         </Link>
-      </CCheckbox>
+      </Checkbox>
 
       <p className="text-center text-small pt-2">
         {tPage('alreadyHaveAccount')}{" "}
@@ -276,6 +276,6 @@ export function UserForm(props: RegisterFormProps) {
         </Link>
       </p>
 
-    </ CForm>
+    </ Form>
   )
 }

@@ -1,13 +1,13 @@
 "use client";
 
 import { CAutocompleteProps } from "@app/models";
-import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
+import { Autocomplete as DefaultAutocomplete, AutocompleteItem } from "@nextui-org/react";
 import { useTranslations } from "next-intl";
 
 /**
- * Autocomplete
+ * Custom Autocomplete
  */
-export function CAutocomplete(props: CAutocompleteProps) {
+export function Autocomplete(props: CAutocompleteProps) {
   // Translations
   const t = useTranslations('Placeholder');
   const tError = useTranslations('Error');
@@ -16,7 +16,7 @@ export function CAutocomplete(props: CAutocompleteProps) {
   const handleChange = (e: any) => props.handleChange && props.handleChange({ target: { name: props.name, value: e } });
 
   return (
-    <Autocomplete
+    <DefaultAutocomplete
       {...props}
       variant="faded"
       color="default"
@@ -30,6 +30,6 @@ export function CAutocomplete(props: CAutocompleteProps) {
       {props!.options!.map((option) => (
         <AutocompleteItem key={option.key}>{option.name}</AutocompleteItem>
       ))}
-    </Autocomplete>
+    </DefaultAutocomplete>
   )
 }

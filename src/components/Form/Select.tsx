@@ -1,19 +1,19 @@
 "use client";
 
 import { CSelectProps } from "@app/models";
-import { Select, SelectItem } from "@nextui-org/react";
+import { Select as DefaultSelect, SelectItem } from "@nextui-org/react";
 import { useTranslations } from "next-intl";
 
 /**
- * Custom Input
+ * Custom Select
  */
-export function CSelect(props: CSelectProps) {
+export function Select(props: CSelectProps) {
   // Translations
   const t = useTranslations('Placeholder');
   const tError = useTranslations('Error');
 
   return (
-    <Select
+    <DefaultSelect
       {...props}
       variant="faded"
       color="default"
@@ -26,6 +26,6 @@ export function CSelect(props: CSelectProps) {
       {props!.options!.map((option) => (
         <SelectItem key={option.key}>{option.name}</SelectItem>
       ))}
-    </Select>
+    </DefaultSelect>
   )
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Input } from "@nextui-org/react";
+import { Input as DefaultInput } from "@nextui-org/react";
 import { MdRemoveRedEye } from "react-icons/md";
 import { useState, } from "react";
 import { IoMdEyeOff } from "react-icons/io";
@@ -10,7 +10,7 @@ import { CInputProps } from "@app/models";
 /**
  * Custom Input
  */
-export function CInput(props: CInputProps) {
+export function Input(props: CInputProps) {
   // State to view password
   const [viewPassword, setViewPassword] = useState(false);
 
@@ -21,7 +21,7 @@ export function CInput(props: CInputProps) {
   const tError = useTranslations('Error');
 
   return (
-    <Input
+    <DefaultInput
       {...props}
       variant="faded"
       color="default"

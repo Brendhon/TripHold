@@ -9,8 +9,8 @@ import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { MdEmail, MdLock } from "react-icons/md";
-import { CForm } from "./CForm";
-import { CInput } from "./CInput";
+import { Form } from "./Form";
+import { Input } from "./Input";
 
 /**
  * Custom Input
@@ -56,19 +56,19 @@ export function LoginForm(props: LoginFormProps) {
   ]);
 
   return (
-    <CForm
+    <Form
       formdata={{ form, setForm, validations }}
       submit={{ action: handleLogin, text: 'login' }}
       className={`flex flex-col gap-2 pt-3 sm:min-w-96 ${props.className}`} >
 
-      <CInput
+      <Input
         name="email"
         type="email"
         placeholder="email"
         isInvalid={testRegex(emailRegex, form.email!)}
         errorMessage="email.pattern"
         startContent={<MdEmail />} />
-      <CInput
+      <Input
         name="password"
         type="password"
         placeholder="password"
@@ -87,6 +87,6 @@ export function LoginForm(props: LoginFormProps) {
         </Link>
       </p>
 
-    </CForm>
+    </Form>
   )
 }

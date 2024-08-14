@@ -10,7 +10,7 @@ import toast from "react-hot-toast";
 /**
  * Custom Form
  */
-export function CForm<T>(props: FormProps<T>) {
+export function Form<T>(props: FormProps<T>) {
   // Loading
   const [loading, setLoading] = useState(false);
 
