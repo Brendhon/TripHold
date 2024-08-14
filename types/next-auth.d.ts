@@ -1,4 +1,5 @@
 // types/next-auth.d.ts
+import { User } from "@app/models";
 import NextAuth, { DefaultSession, DefaultUser, Profile as DefaultProfile } from "next-auth";
 
 declare module "next-auth" {
@@ -26,7 +27,7 @@ declare module "next-auth" {
 declare module "next-auth/jwt" {
   interface JWT {
     accessToken?: string;
-    profile?: ExtendedProfile;
+    profile?: User;
   }
 }
 

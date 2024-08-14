@@ -1,3 +1,4 @@
+import { User } from "@app/models";
 import { signInUser } from "lib/firebase/auth/users";
 import { createFirestoreUser, getFirestoreUser, updateFirestoreUser } from "lib/firebase/firestore/users";
 import NextAuth from "next-auth";
@@ -31,13 +32,17 @@ const handler = NextAuth({
           // Sign in user with email and password
           const user = await signInUser(credentials.email, credentials.password);
 
+          // Get user by email to check if user already exists
+          const userExists = await getFirestoreUser(credentials.email);
+
           // Return user data
           if (user) {
             return {
               id: user.uid,
-              email: user.email,
-              name: user.displayName,
-              image: user.photoURL,
+              email: userExists?.email ?? credentials.email,
+              name: userExists?.name,
+              image: userExists?.image ?? '',
+              profile: userExists,
             };
           }
         } catch (error: any) {
@@ -52,6 +57,7 @@ const handler = NextAuth({
         case "credentials":
           token.accessToken = account.access_token;
           token.idToken = user.id;
+          token.profile = user.profile as User;
           break;
         case "google":
           token.accessToken = account.access_token;
@@ -71,6 +77,9 @@ const handler = NextAuth({
             });
           else await updateFirestoreUser({ image: user.image ?? '', id: userExists.id });
 
+          // Add user info on session
+          token.profile = userExists;
+          
           break;
       }
 

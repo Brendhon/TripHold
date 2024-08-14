@@ -67,9 +67,9 @@ export const updateFirestoreUser = async (user: Partial<User>) => {
 /**
  * Get user data
  * @param {string} email User email
- * @returns User data
+ * @returns {User} User data
  */
-export const getFirestoreUser = async (email: string) => {
+export const getFirestoreUser = async (email: string): Promise<User | undefined> => {
   try {
     // Path to user collection
     const path = getUsersPath();
@@ -81,7 +81,7 @@ export const getFirestoreUser = async (email: string) => {
     const users = await getDocs(query(col, where("email", "==", email)));
 
     // Get user data
-    return users.empty ? null : users.docs[0].data() as User;
+    return users.empty ? undefined : users.docs[0].data() as User;
   } catch (error) {
     console.error("Error getting user: ", error);
     logAnalytics("exception", error);

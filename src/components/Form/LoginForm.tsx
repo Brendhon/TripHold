@@ -71,7 +71,6 @@ export function LoginForm(props: LoginFormProps) {
       <CInput
         name="password"
         type="password"
-        autoComplete="none"
         placeholder="password"
         isInvalid={testRegex(passwordRegex, form.password!)}
         errorMessage="password.pattern"
