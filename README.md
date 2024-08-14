@@ -28,6 +28,16 @@ As seguintes tecnologias foram utilizadas na construção do projeto:
 
 ---
 
+##  ☁️ APIs de terceiros
+
+As seguintes APIs foram utilizadas na construção do projeto:
+
+- **[Countries Now](https://countriesnow.space/)**
+- **[ZipCodeBase](https://zipcodebase.com/)**
+- **[Rest Countries](https://restcountries.com/)**
+
+---
+
 ## 👨‍💻 Como executar o projeto
 
 ### 💡 Pré-requisitos
@@ -84,6 +94,13 @@ GOOGLE_CLIENT_SECRET={CLIENT_SECRET}
 ```
 
 Como esse projeto foi construído utilizando o Next.js, é necessário atualizar o redirect_uri no arquivo de configuração do Google OAuth 2.0 para http://localhost:3000/api/auth/callback/google. Para isso, acesse o [Google Cloud Console](https://console.cloud.google.com/), vá em APIs & Services > Credenciais > OAuth 2.0 Client IDs > Selecione o Client ID > Atualize o campo "URIs de redirecionamento autorizados". 
+
+
+Para utilizar a busca por CEP, é necessário criar uma conta no [ZipCodeBase](https://app.zipcodebase.com/) e adicionar a chave de acesso no arquivo .env na raiz do projeto:
+
+```
+ZIP_CODE_API_KEY={API_KEY}
+```
 
 Além disso, o deploy do projeto foi feito utilizando o [Vercel](https://vercel.com/), então é necessário criar um projeto no Vercel e adicionar as variáveis de ambiente no projeto.
 

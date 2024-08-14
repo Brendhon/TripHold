@@ -19,10 +19,7 @@ const authMiddleware = withAuth(intlMiddleware, authMiddlewareOptions);
  */
 const middleware = (req: NextRequest) => {
   // Get pathname from nextUrl
-  const { pathname } = req.nextUrl;
-
-  // Get origin from headers
-  const origin = req.headers.get('origin') || '';
+  const { pathname, origin } = req.nextUrl;
 
   // Handle requests based on the pathname
   switch (true) {
