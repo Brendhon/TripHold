@@ -62,6 +62,7 @@ export function LoginForm(props: LoginFormProps) {
       className={`flex flex-col gap-2 pt-3 sm:min-w-96 ${props.className}`} >
 
       <Input
+        autoFocus
         name="email"
         type="email"
         placeholder="email"
