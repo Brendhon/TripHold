@@ -7,7 +7,7 @@ import { getCountriesPath, getTermsPath, getZipCodePath } from "@utils/paths";
 import { emailRegex, passwordRegex, testRegex } from "@utils/regex";
 import { createUserSignUp } from "lib/firebase/auth/users";
 import { createFirestoreUser, getFirestoreUser } from "lib/firebase/firestore/users";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FaCity, FaEnvelopeOpenText, FaMap, FaRegQuestionCircle } from "react-icons/fa";
@@ -17,6 +17,7 @@ import { Autocomplete } from "./Autocomplete";
 import { Checkbox } from "./Checkbox";
 import { Form } from "./Form";
 import { Input } from "./Input";
+import { getIntlName } from "@utils/common";
 
 /**
  * User Form
@@ -34,6 +35,9 @@ export function UserForm(props: RegisterFormProps) {
   // Debounce zip code - Fetch zip code info after 500ms of user stop typing
   const debouncedZipCode = useDebounce(form.zipCode, 500);
   const [hasLoaded, setHasLoaded] = useState(false);
+
+  // Locale
+  const locale = useLocale();
 
   // Translations
   const tPage = useTranslations("LoginAndRegister");
@@ -95,7 +99,7 @@ export function UserForm(props: RegisterFormProps) {
       const newCountries = allCountries.filter((c) => c.codes.includes(codes.countryCode[0]));
 
       // Set countries
-      setCountries(newCountries.map((country) => ({ name: country.name, key: country.name })));
+      setCountries(newCountries.map((country) => ({ name: getIntlName(country, locale), key: country.name })));
       setStates(codes.state.map((state) => ({ name: state, key: state })));
       setCities(codes.city.map((city) => ({ name: city, key: city })));
 
