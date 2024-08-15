@@ -135,5 +135,12 @@
     "invite": "Let's travel?",
     "inviteInfo": "Click on this card to plan your next trip ✈️",
     "until": "to"
+  },
+  "Step": {
+    "next": "Next",
+    "previous": "Previous",
+    "title": {
+      "whichCountryWillYouVisit": "Which country will you visit?"
+    }
   }
 }

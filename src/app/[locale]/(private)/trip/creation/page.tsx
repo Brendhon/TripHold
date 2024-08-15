@@ -1,35 +1,22 @@
 "use client";
 
-import { StepProgressBar } from "components";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { Trip } from "@app/models";
+import { useForm } from "@utils/forms";
+import { CountrySelection } from "components";
+import StepsStructure from "components/Steps/StepsStructure";
 
 export default function TripCreation() {
-  // State
-  const [currentStep, setCurrentStep] = useState(1);
+  // Form state
+  const { form, setForm } = useForm<Trip>();
 
-  // Router
-  const router = useRouter();
-
-  // Number of steps
-  const numberOfSteps = 3;
-
-  // Handle next step
-  const handleNextStep = () => currentStep !== numberOfSteps && setCurrentStep(currentStep + 1);
-
-  // Handle back step
-  const handleBackStep = () => currentStep === 1 ? router.back() : setCurrentStep(currentStep - 1);
-
+  // Handle creation
+  const handleCreation = () => console.log('Trip created', form);
 
   // Render home page
   return (
-    <>
-      <StepProgressBar currentStep={currentStep} numberOfSteps={numberOfSteps} />
-
-      <div className="flex items-center justify-center gap-2">
-        <button onClick={handleNextStep}>Next</button>
-        <button onClick={handleBackStep}>Back</button>
-      </div>
-    </>
+    <StepsStructure onfinish={handleCreation} form={form} setform={setForm}>
+      <CountrySelection />
+      <CountrySelection />
+    </StepsStructure>
   )
 }

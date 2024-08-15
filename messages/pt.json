@@ -135,5 +135,12 @@
     "invite": "Vamos viajar?",
     "inviteInfo": "Click nesse cartão para planejar sua proxima viagem ✈️",
     "until": "até"
+  },
+  "Step": {
+    "next": "Próximo",
+    "previous": "Anterior",
+    "title": {
+      "whichCountryWillYouVisit": "Qual país você vai visitar?"
+    }
   }
 }

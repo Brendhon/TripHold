@@ -1,6 +1,6 @@
 "use client";
 
-import { RegisterFormProps, UserFormModel } from "@app/models";
+import { FormSelectItem, RegisterFormProps, UserFormModel } from "@app/models";
 import { Link, Tooltip } from "@nextui-org/react";
 import { createValidator, useDebounce, useForm } from "@utils/forms";
 import { getCountriesPath, getTermsPath, getZipCodePath } from "@utils/paths";
@@ -18,21 +18,15 @@ import { Checkbox } from "./Checkbox";
 import { Form } from "./Form";
 import { Input } from "./Input";
 
-interface SelectItem {
-  name: string;
-  key: string;
-  [key: string]: any;
-}
-
 /**
  * User Form
  */
 export function UserForm(props: RegisterFormProps) {
   // Variables to receive country options, states options and cities options
-  const [countries, setCountries] = useState<SelectItem[]>([]);
-  const [allCountries, setAllCountries] = useState<SelectItem[]>([]);
-  const [states, setStates] = useState<SelectItem[]>([]);
-  const [cities, setCities] = useState<SelectItem[]>([]);
+  const [countries, setCountries] = useState<FormSelectItem[]>([]);
+  const [allCountries, setAllCountries] = useState<FormSelectItem[]>([]);
+  const [states, setStates] = useState<FormSelectItem[]>([]);
+  const [cities, setCities] = useState<FormSelectItem[]>([]);
 
   // Form state
   const { form, setForm } = useForm<UserFormModel>();

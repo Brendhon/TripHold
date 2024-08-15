@@ -10,7 +10,7 @@ export const StepProgressBar = (props: StepProgressBarProps) => {
 
   // Render
   return (
-    <div className="flex justify-center items-center gap-2">
+    <nav className="flex justify-center items-center gap-2">
       {Array
         .from({ length: props.numberOfSteps }) // Create an array of the length of the number of steps
         .map((_, index: number) => (
@@ -19,7 +19,7 @@ export const StepProgressBar = (props: StepProgressBarProps) => {
             {/* Circles */}
             <div
               className={
-                `flex items-center justify-center w-7 h-7 rounded-full border-2
+                `flex items-center justify-center w-7 h-7 rounded-full border-2 transition duration-300 delay-150
                ${index + 1 <= props.currentStep ? 'bg-purple-semi-bold border-purple-bold' : 'bg-grey-thin border-blue-light'}`
               }>
             </div>
@@ -36,6 +36,6 @@ export const StepProgressBar = (props: StepProgressBarProps) => {
 
           </Fragment>
         ))}
-    </div>
+    </nav>
   );
 };

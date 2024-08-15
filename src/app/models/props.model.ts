@@ -86,3 +86,26 @@ export interface StepProgressBarProps {
   numberOfSteps: number;
   currentStep: number;
 }
+
+export interface ActionsSectionProps {
+  back: () => void;
+  confirm: () => void;
+}
+
+export interface BaseStepProps {
+  state?: any;
+  setstate?: (state: any) => void;
+}
+
+export interface StepsStructureProps extends HTMLProps<HTMLDivElement> {
+  form: any;
+  setform: any;
+  children: ReactNode;
+  onfinish: () => void;
+}
+
+export interface FormSelectItem {
+  name: string;
+  key: string;
+  [key: string]: any;
+}
