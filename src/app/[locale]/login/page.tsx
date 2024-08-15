@@ -1,9 +1,9 @@
 "use client";
 
-import { Key, useState } from "react";
-import { Tabs, Tab, Card, CardBody, Divider } from "@nextui-org/react";
-import { LoginForm, GoogleBtn, Header, Structure, UserForm, } from "components";
+import { Card, CardBody, Divider, Tab, Tabs } from "@nextui-org/react";
+import { GoogleBtn, LoginForm, Structure, UserForm } from "components";
 import { useTranslations } from "next-intl";
+import { Key, useState } from "react";
 
 type TabsOptions = 'login' | 'sign-up';
 

@@ -1,6 +1,7 @@
 import { InputProps, SelectProps, AutocompleteProps, CheckboxProps } from "@nextui-org/react";
 import { ReactNode, HTMLProps } from "react";
 import { FormValidation } from "./form.model";
+import { Trip } from "./trip.model";
 
 export interface HeaderProps {
   hideProfile?: boolean;
@@ -74,4 +75,8 @@ export interface FormProps<T> extends HTMLProps<HTMLFormElement> {
     action: () => void;
     text: string;
   };
+}
+
+export interface TripCardProps extends HTMLProps<HTMLDivElement> {
+  trip?: Trip;
 }

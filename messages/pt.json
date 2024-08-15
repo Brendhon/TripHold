@@ -130,5 +130,10 @@
     "auth/captcha-check-failed": "Falha na verificação do CAPTCHA",
     "auth/web-storage-unsupported": "Armazenamento da Web não suportado",
     "auth/invalid-credential": "Informações de login incorretas"
+  },
+  "Trip": {
+    "invite": "Vamos viajar?",
+    "inviteInfo": "Click nesse cartão para planejar sua proxima viagem ✈️",
+    "until": "até"
   }
 }

@@ -1,3 +1,4 @@
+export * from './Cards/TripCard';
 export * from './Common/GoogleBtn';
 export * from './Common/LangSelector';
 export * from './Common/ProfileDropdown';

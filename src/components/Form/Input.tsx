@@ -22,10 +22,10 @@ export function Input(props: CInputProps) {
 
   return (
     <DefaultInput
-      {...props}
       variant="faded"
       color="default"
       classNames={{ input: ["placeholder:text-grey-light"] }}
+      {...props}
       aria-label={t(props?.placeholder)}
       placeholder={t(props?.placeholder)}
       startContent={props?.startContent}
