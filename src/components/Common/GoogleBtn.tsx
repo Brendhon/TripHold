@@ -35,7 +35,7 @@ export function GoogleBtn(props?: GoogleBtnProps) {
         width={25}
         height={25}
       />
-      {loading && <Spinner />}
+      {loading && <Spinner size="sm" />}
       <span className='text-blue-regular font-bold text-medium'>{props?.content ?? 'Google'}</span>
     </button>
   )

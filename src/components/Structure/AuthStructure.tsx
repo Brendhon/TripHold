@@ -28,7 +28,7 @@ export function AuthStructure({ children }: PropsWithChildren<any>) {
   return (
     session &&
     <SessionProvider session={session}>
-      <Structure>
+      <Structure headerProps={{ isLogoClickable: true }}>
         {children}
       </Structure>
     </SessionProvider>

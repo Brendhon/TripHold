@@ -7,6 +7,7 @@ export interface HeaderProps {
   hideProfile?: boolean;
   countryFlag?: string;
   className?: string;
+  isLogoClickable?: boolean;
 }
 
 export interface StructureProps {
