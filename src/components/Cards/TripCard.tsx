@@ -47,7 +47,7 @@ export function TripCard(props: TripCardProps) {
   )
 
   return (
-    <div className="flex justify-center text-center">
+    <div {...props} className="flex justify-center text-center"> 
       <div className={`flex flex-col items-center justify-center text-center  
         gap-2 px-4 py-2 rounded-md cursor-pointer border-1 w-64 h-72
         hover:bg-grey-bold  hover:border-purple-semi-bold hover:border-2

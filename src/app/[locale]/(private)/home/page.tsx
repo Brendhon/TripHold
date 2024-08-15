@@ -2,15 +2,17 @@
 
 import { Trip } from "@app/models";
 import { MockTrips } from "@utils/mocks";
-import { AuthStructure, Input, TripCard } from "components";
+import { Input, TripCard } from "components";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  // State for search
-  const [search, setSearch] = useState('')
+  // States
+  const [search, setSearch] = useState('') // Search
+  const [trips, setTrips] = useState<Trip[]>([]) // Trips
 
-  // Trips
-  const [trips, setTrips] = useState<Trip[]>([])
+  // Router
+  const router = useRouter();
 
   // Handle input change
   const handleChange = (e: any) => setSearch(e.target.value)
@@ -26,7 +28,7 @@ export default function Home() {
 
   // Render home page
   return (
-    <AuthStructure>
+    <>
       <div className="flex flex-col items-center justify-center">
         <Input
           variant="bordered"
@@ -41,9 +43,9 @@ export default function Home() {
       <br />
 
       <div className="grid gap-8 p-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
-        {!search && <TripCard />}
+        {!search && <TripCard onClick={() => router.push('/trip/creation')} />}
         {trips!.map((trip) => <TripCard key={trip.id} className="bg-blue-medium" trip={trip} />)}
       </div>
-    </AuthStructure>
+    </>
   )
 }
