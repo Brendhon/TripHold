@@ -7,10 +7,10 @@ import { DateTimeFormatOptions, useLocale } from "next-intl";
  * @param {Date | string} date Date to format
  * @returns {string} Formatted date
  */
-export const formatDate = (date: Date | string): string => {
+export const formatDate = (date: Date | string, locate: string): string => {
   // Get locate date
   const location = () => {
-    switch (useLocale()) {
+    switch (locate) {
       case 'en':
         return 'en-US';
       case 'es':

@@ -2,7 +2,7 @@
 
 import { TripCardProps } from '@app/models';
 import { formatDate } from '@utils/dates';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { FiPlusCircle } from "react-icons/fi";
 
@@ -12,6 +12,9 @@ import { FiPlusCircle } from "react-icons/fi";
 export function TripCard(props: TripCardProps) {
   // Translations
   const t = useTranslations('Trip');
+
+  // Get locate
+  const locate = useLocale();
 
   // Common card
   const commonCard = () => (
@@ -26,7 +29,9 @@ export function TripCard(props: TripCardProps) {
 
       <h3 className="text-lg font-bold mb-3">{props?.trip!.country.name ?? 'Country'}</h3>
 
-      <span className='text-small'>{formatDate(props.trip!.startDate)} {t("until")} {formatDate(props.trip!.endDate)}</span>
+      <span className='text-small'>
+        {formatDate(props.trip!.startDate, locate)} {t("until")} {formatDate(props.trip!.endDate, locate)}
+      </span>
     </>
   )
 
