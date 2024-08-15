@@ -4,15 +4,34 @@ export const MockTrips: Trip[] = [
   {
     id: "sdasdasdasdasd",
     country: {
-      "name": "Sierra Leone",
-      "key": "SL",
-      "flag": "https://flagcdn.com/sl.svg",
+      "name": "Belize",
+      "key": "BZ",
+      "flag": "https://flagcdn.com/bz.svg",
       "codes": [
-        "SL",
-        "SLE",
-        "SLE",
-        "694"
-      ]
+        "BZ",
+        "BLZ",
+        "BIZ",
+        "084"
+      ],
+      "capital": "Belmopan",
+      "carSide": Side.Right,
+      "currencies": [
+        "BZD"
+      ],
+      "languages": [
+        "Belizean Creole",
+        "English",
+        "Spanish"
+      ],
+      "population": 397621,
+      "timezones": [
+        "UTC-06:00"
+      ],
+      "namesIntl": {
+        "en": "Belize",
+        "pt": "Belize",
+        "es": "Belice"
+      }
     },
     endDate: new Date(),
     startDate: new Date(),
@@ -20,52 +39,38 @@ export const MockTrips: Trip[] = [
   {
     id: "dkmflskdmflskdf",
     country: {
-      "name": "Taiwan",
-      "key": "TW",
-      "flag": "https://flagcdn.com/tw.svg",
+      "name": "Grenada",
+      "key": "GD",
+      "flag": "https://flagcdn.com/gd.svg",
       "codes": [
-        "TW",
-        "TWN",
-        "TPE",
-        "158"
-      ]
+        "GD",
+        "GRD",
+        "GRN",
+        "308"
+      ],
+      "capital": "St. George's",
+      "carSide": Side.Left,
+      "currencies": [
+        "XCD"
+      ],
+      "languages": [
+        "English"
+      ],
+      "population": 112519,
+      "timezones": [
+        "UTC-04:00"
+      ],
+      "namesIntl": {
+        "en": "Grenada",
+        "pt": "Granada",
+        "es": "Grenada"
+      }
     },
     endDate: new Date(),
     startDate: new Date(),
   },
   {
     id: "dsfasfsdf",
-    country: {
-      "name": "Wallis and Futuna",
-      "key": "WF",
-      "flag": "https://flagcdn.com/wf.svg",
-      "codes": [
-        "WF",
-        "WLF",
-        "876"
-      ]
-    },
-    endDate: new Date(),
-    startDate: new Date(),
-  },
-  {
-    id: "dsfsgfsf3w",
-    country: {
-      "name": "Barbados",
-      "key": "BB",
-      "flag": "https://flagcdn.com/bb.svg",
-      "codes": [
-        "BB",
-        "BRB",
-        "BAR",
-        "052"
-      ]
-    },
-    endDate: new Date(),
-    startDate: new Date(),
-  },
-  {
-    id: "dsfsgf3224sf3w",
     country: {
       "name": "Brazil",
       "key": "BR",
@@ -75,38 +80,27 @@ export const MockTrips: Trip[] = [
         "BRA",
         "BRA",
         "076"
-      ]
-    },
-    endDate: new Date(),
-    startDate: new Date(),
-  },
-  {
-    id: "dsfsgf32224sf3w",
-    country: {
-      "name": "South Georgia",
-      "key": "GS",
-      "flag": "https://flagcdn.com/gs.svg",
-      "codes": [
-        "GS",
-        "SGS",
-        "239"
-      ]
-    },
-    endDate: new Date(),
-    startDate: new Date(),
-  },
-  {
-    id: "dsfssgf3224sf3w",
-    country: {
-      "name": "Peru",
-      "key": "PE",
-      "flag": "https://flagcdn.com/pe.svg",
-      "codes": [
-        "PE",
-        "PER",
-        "PER",
-        "604"
-      ]
+      ],
+      "capital": "Brasília",
+      "carSide": Side.Right,
+      "currencies": [
+        "BRL"
+      ],
+      "languages": [
+        "Portuguese"
+      ],
+      "population": 212559409,
+      "timezones": [
+        "UTC-05:00",
+        "UTC-04:00",
+        "UTC-03:00",
+        "UTC-02:00"
+      ],
+      "namesIntl": {
+        "en": "Brazil",
+        "pt": "Brasil",
+        "es": "Brasil"
+      }
     },
     endDate: new Date(),
     startDate: new Date(),
