@@ -142,5 +142,12 @@
     "title": {
       "whichCountryWillYouVisit": "Qual país você vai visitar?"
     }
+  },
+  "Country": {
+    "carSide": {
+      "title": "Direção do carro",
+      "left": "Conduzem pelo lado esquerdo",
+      "right": "Conduzem pelo lado direito"
+    }
   }
 }

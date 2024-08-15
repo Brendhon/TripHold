@@ -24,7 +24,7 @@ export async function GET(req: NextRequest) {
     const { data } = result;
 
     // Initialize an array to store Country objects
-    const countries: Country[] = [];
+    const countries: CountrySimple[] = [];
 
     // Add the Country object to the countries array
     if (data instanceof Array) data.forEach((country) =>

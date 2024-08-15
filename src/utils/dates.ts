@@ -1,6 +1,6 @@
 "use client";
 
-import { DateTimeFormatOptions, useLocale } from "next-intl";
+import { DateTimeFormatOptions } from "next-intl";
 
 /**
  * Format date

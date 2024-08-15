@@ -5,17 +5,26 @@ import { getCountriesPath } from '@utils/paths';
 import { Autocomplete } from 'components/Form/Autocomplete';
 import { useEffect, useState } from 'react';
 import { StepTitle } from '../StepTitle';
+import { CountryDetails } from '../CountryDetails';
+import { useLocale } from 'next-intl';
+import { getIntlName } from '@utils/common';
 
 export function CountrySelection(props: BaseStepProps) {
   // State
   const [countries, setCountries] = useState<FormSelectItem[]>([]);
 
+  // Locale
+  const locale = useLocale();
+
+  // Set country handle
+  const getIntlOptions = () => countries.map((country) => ({ ...country, name: getIntlName(country, locale) }));
+
   // Fetch countries
   useEffect(() => {
     fetch(getCountriesPath())
       .then(response => response.json())
-      .then((data) => setCountries(data))
-      .catch((error) => console.error('Error fetching countries:', error));
+      .then(setCountries)
+      .catch(console.error);
   }, []);
 
   // Handle country change
@@ -23,9 +32,10 @@ export function CountrySelection(props: BaseStepProps) {
 
   // Render
   return (
-    <>
+    <div className={props.className}>
       <StepTitle title='whichCountryWillYouVisit' />
-      <Autocomplete options={countries} placeholder='country' handleChange={handleCountryChange} />
-    </>
+      <Autocomplete options={getIntlOptions()} placeholder='search' handleChange={handleCountryChange} />
+      <CountryDetails country={props.state.country} />
+    </div>
   )
 }

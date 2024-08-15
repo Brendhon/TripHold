@@ -1,10 +1,27 @@
 // Custom Types
-interface Country {
+
+interface CountrySimple {
   name: string; // Country name
   key: string; // Country code
   flag?: string;
   states?: State[]; // States
   codes: string[]; // Country codes
+}
+
+interface Country extends CountrySimple {
+  population: number;
+  languages: string[];
+  timezones: string[];
+  currencies: string[];
+  capital: string;
+  carSide: Side;
+  namesIntl: NameIntl;
+}
+
+interface NameIntl {
+  pt: string;
+  en: string;
+  es: string;
 }
 
 interface State {

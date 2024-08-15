@@ -47,3 +47,20 @@ export const getAvatarFromSession = (session?: Session | null) => {
       return "/avatar.svg";
   }
 }
+
+/**
+ * Get intl name
+ * @param {Country} country - Country
+ * @param {string} locale - Locale
+ * @returns {string} Intl name
+ */
+export const getIntlName = (country: any, locale: string): string => {
+  switch (locale) {
+    case "pt":
+      return country.namesIntl.pt;
+    case "es":
+      return country.namesIntl.es;
+    default:
+      return country.namesIntl.en;
+  }
+}

@@ -15,8 +15,7 @@ export default function TripCreation() {
   // Render home page
   return (
     <StepsStructure onfinish={handleCreation} form={form} setform={setForm}>
-      <CountrySelection />
-      <CountrySelection />
+      <CountrySelection className="md:min-w-[500px]" />
     </StepsStructure>
   )
 }

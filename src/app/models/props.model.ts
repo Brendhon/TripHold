@@ -95,6 +95,7 @@ export interface ActionsSectionProps {
 export interface BaseStepProps {
   state?: any;
   setstate?: (state: any) => void;
+  className?: string;
 }
 
 export interface StepsStructureProps extends HTMLProps<HTMLDivElement> {
