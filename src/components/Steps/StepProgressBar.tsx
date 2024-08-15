@@ -20,7 +20,7 @@ export const StepProgressBar = (props: StepProgressBarProps) => {
             <div
               className={
                 `flex items-center justify-center w-7 h-7 rounded-full border-2 transition duration-300 delay-150
-               ${index + 1 <= props.currentStep ? 'bg-purple-semi-bold border-purple-bold' : 'bg-grey-thin border-blue-light'}`
+               ${index + 1 <= props.currentStep ? 'bg-purple-semi-bold border-purple-bold' : 'bg-grey-extra-light border-blue-light'}`
               }>
             </div>
 
