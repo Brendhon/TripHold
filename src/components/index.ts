@@ -1,6 +1,7 @@
 export * from './Cards/TripCard';
 export * from './Common/GoogleBtn';
 export * from './Common/LangSelector';
+export * from './Common/StepProgressBar';
 export * from './Common/ProfileDropdown';
 export * from './Form/Autocomplete';
 export * from './Form/Checkbox';

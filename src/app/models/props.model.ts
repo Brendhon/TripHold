@@ -81,3 +81,8 @@ export interface FormProps<T> extends HTMLProps<HTMLFormElement> {
 export interface TripCardProps extends HTMLProps<HTMLDivElement> {
   trip?: Trip;
 }
+
+export interface StepProgressBarProps {
+  numberOfSteps: number;
+  currentStep: number;
+}
