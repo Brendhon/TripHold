@@ -23,4 +23,61 @@ body {
   .form-row {
     @apply flex flex-col gap-2 md:flex-row md:gap-4 items-baseline;
   }
+
+  .date-picker-calendar {
+    @apply bg-blue-medium text-grey-extra-light border-none;
+  }
+  
+  .date-picker-calendar .react-datepicker__month {
+    @apply bg-blue-light text-grey-extra-light border-none m-0 rounded-b-md;
+  }
+
+  .date-picker-calendar .react-datepicker__day--in-range {
+    @apply bg-blue-light text-grey-extra-light;
+  }
+
+  .date-picker-calendar .react-datepicker__day--in-selecting-range {
+    @apply bg-blue-light text-grey-extra-light;
+  }
+
+  .date-picker-calendar .react-datepicker__day--range-start {
+    @apply bg-blue-light text-grey-extra-light;
+  }
+
+  .date-picker-calendar .react-datepicker__day--range-end {
+    @apply bg-blue-light text-grey-extra-light;
+  }
+
+  .date-picker-calendar .react-datepicker__day--keyboard-selected {
+    @apply bg-blue-light text-grey-extra-light;
+  }
+
+  .date-picker-calendar .react-datepicker__day {
+    @apply hover:bg-grey-extra-light hover:text-blue-medium text-grey-extra-light;
+  }
+
+  .date-picker-calendar .react-datepicker__day--selected {
+    @apply bg-blue-medium text-grey-extra-light;
+  }
+
+  .date-picker-calendar .react-datepicker__header {
+    @apply bg-blue-regular border-none;
+  }
+
+  .date-picker-calendar .react-datepicker__current-month {
+    @apply text-grey-extra-light;
+  }
+
+  .date-picker-calendar .react-datepicker__day-name {
+    @apply text-grey-extra-light;
+  }
+
+  .date-picker-calendar .react-datepicker__day--disabled,
+  .date-picker-calendar .react-datepicker__day--outside-month {
+    @apply text-grey-light;
+  }
+}
+
+.react-datepicker {
+  border: none !important;
 }

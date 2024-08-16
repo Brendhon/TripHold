@@ -30,7 +30,8 @@
     "address": "Type your address",
     "street": "Type your street",
     "number": "Type the number",
-    "complement": "Type the complement (optional)"
+    "complement": "Type the complement (optional)",
+    "date": "Select a date"
   },
   "LoginAndRegister": {
     "login": "Sign In",
@@ -140,7 +141,8 @@
     "next": "Next",
     "previous": "Previous",
     "title": {
-      "whichCountryWillYouVisit": "Which country will you visit?"
+      "whichCountryWillYouVisit": "Which country will you visit?",
+      "whenWillYouTravel": "When will you travel?"
     }
   },
   "Country": {

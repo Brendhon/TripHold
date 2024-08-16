@@ -5,6 +5,13 @@ import { getSession, SessionProvider } from "next-auth/react"
 import { useRouter } from "next/navigation";
 import { PropsWithChildren, useEffect, useState, } from "react";
 import { Structure } from "./Structure";
+import { enUS, es, ptBR } from 'date-fns/locale';
+import { registerLocale } from "react-datepicker";
+
+// Register locales
+registerLocale('es', es)
+registerLocale('en', enUS)
+registerLocale('pt', ptBR)
 
 /**
  * Auth Provider 

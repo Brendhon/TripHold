@@ -1,7 +1,7 @@
 export interface Trip {
   id: string;
   country: Country;
-  startDate: Date;
-  endDate: Date;
+  startDate: Date | undefined;
+  endDate: Date | undefined;
   notes?: string;
 }

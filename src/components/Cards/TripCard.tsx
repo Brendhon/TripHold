@@ -30,7 +30,7 @@ export function TripCard(props: TripCardProps) {
       <h3 className="text-lg font-bold mb-3">{props?.trip!.country.name ?? 'Country'}</h3>
 
       <span className='text-small'>
-        {formatDate(props.trip!.startDate, locate)} {t("until")} {formatDate(props.trip!.endDate, locate)}
+        {formatDate(locate, props.trip!.startDate)} {t("until")} {formatDate(locate, props.trip!.endDate)}
       </span>
     </>
   )

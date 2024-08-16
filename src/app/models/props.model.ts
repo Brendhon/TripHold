@@ -2,6 +2,7 @@ import { InputProps, SelectProps, AutocompleteProps, CheckboxProps } from "@next
 import { ReactNode, HTMLProps } from "react";
 import { FormValidation } from "./form.model";
 import { Trip } from "./trip.model";
+import { DatePickerProps } from "react-datepicker";
 
 export interface HeaderProps {
   hideProfile?: boolean;
@@ -48,6 +49,14 @@ export interface CCheckboxProps extends Partial<CheckboxProps> {
   handleChange?: (e: any) => void;
 }
 
+export interface CDatePickerProps {
+  disabled?: boolean;
+  inputProps?: CInputProps;
+  date?: Date;
+  handleChange?: (e: any) => void;
+  datePickerProps?: DatePickerProps;
+}
+
 export interface CInputProps extends Partial<InputProps> {
   type: ('text' | 'search' | 'url' | 'tel' | 'email' | 'password' | 'number');
   placeholder: string;
@@ -92,9 +101,9 @@ export interface ActionsSectionProps {
   confirm: () => void;
 }
 
-export interface BaseStepProps {
-  state?: any;
-  setstate?: (state: any) => void;
+export interface BaseStepProps<T> {
+  state?: T;
+  setstate?: (state: T) => void;
   className?: string;
 }
 
