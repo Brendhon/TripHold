@@ -1,8 +1,10 @@
 "use client";
 
 import { Trip } from "@app/models";
-import { MockTrips } from "@utils/mocks";
+import { getUserId } from "@utils/session";
 import { Input, TripCard } from "components";
+import { getTrips } from "lib/firebase/firestore/trip";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -14,17 +16,24 @@ export default function Home() {
   // Router
   const router = useRouter();
 
+  // Get user ID
+  const userId = getUserId();
+
   // Handle input change
   const handleChange = (e: any) => setSearch(e.target.value)
 
   // Filter by country name
-  const filterTrips = () => MockTrips.filter(trip => trip.country.name.toLowerCase().includes(search.toLowerCase()))
+  const filterTrips = () => trips.filter(trip => trip.country.name.toLowerCase().includes(search.toLowerCase()))
 
   // Use effect to listening search
   useEffect(() => setTrips(filterTrips()), [search])
 
   // Fetch trips
-  useEffect(() => setTrips(MockTrips), [])
+  useEffect(() => {
+    getTrips(userId)
+      .then(trips => setTrips(trips))
+      .catch(error => console.error(error))
+  }, [])
 
   // Render home page
   return (
