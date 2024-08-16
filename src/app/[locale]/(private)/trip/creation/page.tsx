@@ -2,7 +2,7 @@
 
 import { Trip } from "@app/models";
 import { useForm } from "@utils/forms";
-import { useErrorNotifier, useSuccessNotifier } from "@utils/notifier";
+import { showErrorNotifier, showSuccessNotifier } from "@utils/notifier";
 import { useUserId } from "@utils/session";
 import { CountrySelection, SelectPeriod, TripSummary } from "components";
 import StepsStructure from "components/Steps/StepsStructure";
@@ -27,11 +27,11 @@ export default function TripCreation() {
   const handleCreation = async () => {
     try {
       await createTrip({ ...form, userId });
-      useSuccessNotifier(t, "trip.create");
+      showSuccessNotifier(t, "trip.create");
       router.push('/home');
     } catch (error) {
       console.error(error);
-      useErrorNotifier(t, "trip.create");
+      showErrorNotifier(t, "trip.create");
     }
   };
 
