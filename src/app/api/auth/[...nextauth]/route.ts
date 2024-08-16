@@ -52,20 +52,20 @@ const handler = NextAuth({
     }),
   ],
   callbacks: {
-    async jwt({ token, account, user }) {
+    async jwt({ token, account, user }: { token: any, account: any, user: any }) {
       switch (account?.provider) {
         case "credentials":
           token.accessToken = account.access_token;
           token.idToken = user.id;
-          token.profile = user.profile as User;
+          token.profile = user.profile;
           break;
         case "google":
           token.accessToken = account.access_token;
           token.idToken = account.id_token;
-
+    
           // Get user by email to check if user already exists
           const userExists = await getFirestoreUser(user.email!);
-
+    
           // Create a new user in the database if it doesn't exist
           if (!userExists)
             await createFirestoreUser({
@@ -76,13 +76,13 @@ const handler = NextAuth({
               terms: true
             });
           else await updateFirestoreUser({ image: user.image ?? '', id: userExists.id });
-
+    
           // Add user info on session
           token.profile = userExists;
-          
+    
           break;
       }
-
+    
       return token;
     },
     async session({ session, token }) {

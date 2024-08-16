@@ -8,12 +8,7 @@ declare module "next-auth" {
    */
   interface Session {
     accessToken?: string;
-    profile?: User;
-  }
-
-  interface User extends DefaultUser {
-    accessToken?: string;
-    profile?: ExtendedProfile;
+    profile: User;
   }
 
   interface Profile extends DefaultProfile {
@@ -27,7 +22,7 @@ declare module "next-auth" {
 declare module "next-auth/jwt" {
   interface JWT {
     accessToken?: string;
-    profile?: User;
+    profile: User;
   }
 }
 
