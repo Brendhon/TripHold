@@ -36,7 +36,7 @@ export default function StepsStructure(props: StepsStructureProps) {
     const fields = requiredFields[currentStep - 1];
 
     // Check if has required fields
-    if (!fields) return false;
+    if (!fields?.length) return false;
 
     // Check if all required fields are filled
     return fields.some((field: string) => !props.form[field]);

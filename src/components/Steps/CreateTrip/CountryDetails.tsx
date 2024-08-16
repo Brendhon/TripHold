@@ -51,7 +51,6 @@ export function CountryDetails(props: { country?: Country }) {
         <Info data={props.country.currencies?.join(', ')} icon={<GiTwoCoins size={20} />} />
         <Info data={props.country.capital} icon={<RiMapPin2Fill size={20} />} />
         <Info data={getCarSide(props.country.carSide)} icon={<FaCar size={20} />} />
-
       </div>
     </div>
   )

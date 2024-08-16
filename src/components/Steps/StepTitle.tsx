@@ -7,5 +7,5 @@ export function StepTitle(props: { title: string }) {
   const t = useTranslations('Step');
 
   // Render
-  return <h2 className='text-2xl mb-6 font-semibold'>{t(`title.${props.title}`)}</h2>
+  return <h2 className='flex justify-center text-2xl mb-6 font-semibold'>{t(`title.${props.title}`)}</h2>
 }

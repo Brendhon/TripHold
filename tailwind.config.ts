@@ -48,6 +48,9 @@ const config: Config = {
         "regular": "#2C3E50",
         "medium": "#2E4053",
       },
+      table: {
+        "bg": "#374859",
+      }
     },
   },
   darkMode: "class",

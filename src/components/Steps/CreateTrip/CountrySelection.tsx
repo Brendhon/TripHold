@@ -5,7 +5,7 @@ import { getCountriesPath } from '@utils/paths';
 import { Autocomplete } from 'components/Form/Autocomplete';
 import { useEffect, useState } from 'react';
 import { StepTitle } from '../StepTitle';
-import { CountryDetails } from '../CountryDetails';
+import { CountryDetails } from './CountryDetails';
 import { useLocale } from 'next-intl';
 import { getIntlName } from '@utils/common';
 

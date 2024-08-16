@@ -12,6 +12,7 @@ export * from './Form/LoginForm';
 export * from './Form/Select';
 export * from './Form/UserForm';
 export * from './Steps/CreateTrip/CountrySelection';
+export * from './Steps/CreateTrip/TripSummary';
 export * from './Steps/SelectPeriod/SelectPeriod';
 export * from './Structure/AuthStructure';
 export * from './Structure/Footer';

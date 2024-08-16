@@ -2,7 +2,7 @@
 
 import { Trip } from "@app/models";
 import { useForm } from "@utils/forms";
-import { CountrySelection, SelectPeriod } from "components";
+import { CountrySelection, SelectPeriod, TripSummary } from "components";
 import StepsStructure from "components/Steps/StepsStructure";
 
 export default function TripCreation() {
@@ -17,6 +17,7 @@ export default function TripCreation() {
     <StepsStructure onfinish={handleCreation} form={form} setform={setForm}>
       <CountrySelection requiredFields={['country']} className="md:min-w-[500px]" />
       <SelectPeriod requiredFields={['startDate', 'endDate']} />
+      <TripSummary />
     </StepsStructure>
   )
 }

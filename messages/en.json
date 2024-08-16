@@ -135,14 +135,17 @@
   "Trip": {
     "invite": "Let's travel?",
     "inviteInfo": "Click on this card to plan your next trip ✈️",
-    "until": "to"
+    "until": "to",
+    "countryYouWillVisit": "Country you will visit",
+    "whenYouWillTravel": "When will you travel"
   },
   "Step": {
     "next": "Next",
     "previous": "Previous",
     "title": {
       "whichCountryWillYouVisit": "Which country will you visit?",
-      "whenWillYouTravel": "When will you travel?"
+      "whenWillYouTravel": "When will you travel?",
+      "summary": "Summary"
     }
   },
   "Country": {
@@ -151,5 +154,18 @@
       "left": "Drive on the left side",
       "right": "Drive on the right side"
     }
+  },
+  "Calendar": {
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday",
+    "sunday": "Sunday",
+    "holidays": "Holidays",
+    "today": "Today",
+    "startDate": "Start",
+    "endDate": "End"
   }
 }
