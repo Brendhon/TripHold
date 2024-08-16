@@ -10,7 +10,12 @@ import { MdAccessTimeFilled, MdPeopleAlt } from 'react-icons/md';
 import { RiMapPin2Fill } from 'react-icons/ri';
 
 // Info
-const Info = ({ data, icon }: { data: any, icon: ReactNode }) => <span className='flex gap-2 items-center text-sm'>{icon} {data} </span>;
+const Info = ({ data, icon }: { data: any, icon: ReactNode }) => (
+  <div className='flex gap-2 items-center text-sm'>
+    <span>{icon}</span>
+    <p className='max-w-[400px] text-ellipsis'>{data}</p>
+  </div>
+);
 
 export function CountryDetails(props: { country?: Country }) {
   // Translations
