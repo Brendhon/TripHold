@@ -2,7 +2,7 @@
 
 import { useSession } from "next-auth/react";
 
-export const getUserId = (): string => {
+export const useUserId = (): string => {
   // Session
   const { data } = useSession();
 

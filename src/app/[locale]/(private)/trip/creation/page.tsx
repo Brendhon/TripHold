@@ -2,7 +2,7 @@
 
 import { Trip } from "@app/models";
 import { useForm } from "@utils/forms";
-import { getUserId } from "@utils/session";
+import { useUserId } from "@utils/session";
 import { CountrySelection, SelectPeriod, TripSummary } from "components";
 import StepsStructure from "components/Steps/StepsStructure";
 import { createTrip } from "lib/firebase/firestore/trip";
@@ -21,7 +21,7 @@ export default function TripCreation() {
   const router = useRouter();
 
   // Get user ID
-  const userId = getUserId();
+  const userId = useUserId();
 
   // Handle creation
   const handleCreation = async () => {

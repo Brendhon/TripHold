@@ -1,10 +1,9 @@
 "use client";
 
 import { Trip } from "@app/models";
-import { getUserId } from "@utils/session";
+import { useUserId } from "@utils/session";
 import { Input, TripCard } from "components";
 import { getTrips } from "lib/firebase/firestore/trip";
-import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -17,7 +16,7 @@ export default function Home() {
   const router = useRouter();
 
   // Get user ID
-  const userId = getUserId();
+  const userId = useUserId();
 
   // Handle input change
   const handleChange = (e: any) => setSearch(e.target.value)
