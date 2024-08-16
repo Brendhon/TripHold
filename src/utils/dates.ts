@@ -1,6 +1,23 @@
 "use client";
 
+import { Timestamp } from "firebase/firestore";
 import { DateTimeFormatOptions } from "next-intl";
+
+/**
+ * Get date 
+ * @param {Date | string | Timestamp} date Date to get
+ * @returns {Date} Date object
+ */
+export const getDate = (date?: Date | string | Timestamp): Date | undefined => {
+  // Check if date is valid
+  if (!date) return;
+
+  // Check if date is firestore Timestamp and convert to date
+  if (date instanceof Timestamp) date = date.toDate();
+
+  // Return date
+  return new Date(date);
+}
 
 /**
  * Format date
@@ -8,6 +25,9 @@ import { DateTimeFormatOptions } from "next-intl";
  * @returns {string} Formatted date
  */
 export const formatDate = (locate: string, date?: Date | string): string => {
+  // Get date
+  date = getDate(date);
+  
   // Check if date is valid
   if (!date) return "";
 
