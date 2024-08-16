@@ -31,8 +31,6 @@ export function CountryDetails(props: { country?: Country }) {
   // Get car side description
   const getCarSide = (carSide: Side) => t(`carSide.${carSide}`);
 
-  console.log('CountryDetails', props.country);
-
   // Render
   return (props.country &&
     <div className='flex flex-col md:flex-row gap-6 border-1 my-4 border-blue-light rounded-sm p-4 justify-between items-center'>

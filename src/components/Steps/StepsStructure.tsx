@@ -19,8 +19,28 @@ export default function StepsStructure(props: StepsStructureProps) {
   // Add setform and form to children props
   children = children.map((child, index) => cloneElement(child, { setstate: props.setform, state: props.form, key: index }));
 
+  // Check if has required fields in children
+  const requiredFields = children
+    .map((child) => child.props.requiredFields ? child.props.requiredFields : [])
+    .filter((child) => child);
+
   // Get number of steps
   const steps = children.length;
+
+  // Check if all required fields are filled
+  const isSubmitDisabled = () => {
+    // Check if has required fields
+    if (!requiredFields.length) return false;
+
+    // Get required fields for current step
+    const fields = requiredFields[currentStep - 1];
+
+    // Check if has required fields
+    if (!fields) return false;
+
+    // Check if all required fields are filled
+    return fields.some((field: string) => !props.form[field]);
+  }
 
   // Handle next step
   const handleNextStep = () => currentStep == steps ? props.onfinish() : setCurrentStep(currentStep + 1);
@@ -33,7 +53,7 @@ export default function StepsStructure(props: StepsStructureProps) {
     <main className={`flex flex-col items-center justify-center ${props.className}`}>
       {/* Progress bar */}
       <StepProgressBar currentStep={currentStep} numberOfSteps={steps} />
-    
+
       {/* Break line */}
       <br />
 
@@ -42,7 +62,11 @@ export default function StepsStructure(props: StepsStructureProps) {
         {children.map((child, index) => <div key={index} className={currentStep === index + 1 ? '' : 'hidden'}> {child} </div>)}
 
         {/* Actions */}
-        <ActionsSection back={handleBackStep} confirm={handleNextStep} />
+        <ActionsSection
+          back={handleBackStep}
+          confirm={handleNextStep}
+          isConfirmDisabled={isSubmitDisabled()}
+        />
       </div>
 
     </main>

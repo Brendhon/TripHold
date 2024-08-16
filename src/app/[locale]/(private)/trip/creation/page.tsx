@@ -15,8 +15,8 @@ export default function TripCreation() {
   // Render home page
   return (
     <StepsStructure onfinish={handleCreation} form={form} setform={setForm}>
-      <CountrySelection className="md:min-w-[500px]" />
-      <SelectPeriod />
+      <CountrySelection requiredFields={['country']} className="md:min-w-[500px]" />
+      <SelectPeriod requiredFields={['startDate', 'endDate']} />
     </StepsStructure>
   )
 }

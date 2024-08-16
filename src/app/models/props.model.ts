@@ -99,12 +99,14 @@ export interface StepProgressBarProps {
 export interface ActionsSectionProps {
   back: () => void;
   confirm: () => void;
+  isConfirmDisabled?: boolean;
 }
 
 export interface BaseStepProps<T> {
   state?: T;
   setstate?: (state: T) => void;
   className?: string;
+  requiredFields?: string[];
 }
 
 export interface StepsStructureProps extends HTMLProps<HTMLDivElement> {
