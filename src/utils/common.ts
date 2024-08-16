@@ -55,6 +55,8 @@ export const getAvatarFromSession = (session?: Session | null) => {
  * @returns {string} Intl name
  */
 export const getIntlName = (country: any, locale: string): string => {
+  if (!country) return "";
+  
   switch (locale) {
     case "pt":
       return country.namesIntl.pt;
@@ -64,3 +66,16 @@ export const getIntlName = (country: any, locale: string): string => {
       return country.namesIntl.en;
   }
 }
+
+/**
+ * Normalize string
+ * @param {string} str - String to normalize
+ */
+export const normalizeString = (str: string) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
+/**
+ * search string in other string
+ * @param {string} str - String to search
+ * @param {string} search - String to search
+ */
+export const searchInString = (str: string, search: string) => normalizeString(str).includes(normalizeString(search));

@@ -1,6 +1,7 @@
 "use client";
 
 import { TripCardProps } from '@app/models';
+import { getIntlName } from '@utils/common';
 import { formatDate } from '@utils/dates';
 import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
@@ -28,7 +29,7 @@ export function TripCard(props: TripCardProps) {
         width="0" height="0" style={{ width: "auto", height: "100px" }}
       />
 
-      <h3 className="text-lg font-bold mb-3">{props?.trip!.country.name ?? 'Country'}</h3>
+      <h3 className="text-lg font-bold mb-3">{getIntlName(props.trip?.country, locate)}</h3>
 
       <span className='text-small'>
         {formatDate(locate, props.trip!.startDate)} {t("until")} {formatDate(locate, props.trip!.endDate)}

@@ -1,9 +1,11 @@
 "use client";
 
 import { Trip } from "@app/models";
+import { getIntlName, searchInString } from "@utils/common";
 import { useUserId } from "@utils/session";
 import { Input, TripCard } from "components";
 import { getTrips } from "lib/firebase/firestore/trip";
+import { useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -11,9 +13,13 @@ export default function Home() {
   // States
   const [search, setSearch] = useState('') // Search
   const [trips, setTrips] = useState<Trip[]>([]) // Trips
+  const [allTrips, setAllTrips] = useState<Trip[]>([]) // Trips
 
   // Router
   const router = useRouter();
+
+  // Get locate
+  const locate = useLocale();
 
   // Get user ID
   const userId = useUserId();
@@ -22,7 +28,7 @@ export default function Home() {
   const handleChange = (e: any) => setSearch(e.target.value)
 
   // Filter by country name
-  const filterTrips = () => trips.filter(trip => trip.country.name.toLowerCase().includes(search.toLowerCase()))
+  const filterTrips = () => allTrips.filter(trip => searchInString(getIntlName(trip?.country, locate), search))
 
   // Use effect to listening search
   useEffect(() => setTrips(filterTrips()), [search])
@@ -30,9 +36,12 @@ export default function Home() {
   // Fetch trips
   useEffect(() => {
     getTrips(userId)
-      .then(trips => setTrips(trips))
+      .then(trips => {
+        setTrips(trips)
+        setAllTrips(trips)
+      })
       .catch(error => console.error(error))
-  }, [])
+  }, [userId])
 
   // Render home page
   return (
