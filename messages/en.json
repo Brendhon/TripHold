@@ -167,5 +167,27 @@
     "today": "Today",
     "startDate": "Start",
     "endDate": "End"
+  },
+  "Toast": {
+    "success": {
+      "trip": {
+        "create": "Trip created successfully",
+        "update": "Trip updated successfully",
+        "delete": "Trip deleted successfully"
+      },
+      "user": {
+        "update": "User updated successfully"
+      }
+    },
+    "error": {
+      "trip": {
+        "create": "Error creating trip",
+        "update": "Error updating trip",
+        "delete": "Error deleting trip"
+      },
+      "user": {
+        "update": "Error updating user"
+      }
+    }
   }
 }
