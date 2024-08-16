@@ -99,6 +99,7 @@ export interface StepProgressBarProps {
 export interface ActionsSectionProps {
   back: () => void;
   confirm: () => void;
+  isLoading?: boolean;
   isConfirmDisabled?: boolean;
 }
 
@@ -113,7 +114,7 @@ export interface StepsStructureProps extends HTMLProps<HTMLDivElement> {
   form: any;
   setform: any;
   children: ReactNode;
-  onfinish: () => void;
+  onfinish: () => void | Promise<void>;
 }
 
 export interface FormSelectItem {

@@ -8,6 +8,15 @@ export const getUsersPath = (email?: string) => {
 }
 
 /**
+ * Get trip path
+ * @param {string} id Trip ID
+ * @returns Trip path
+ */
+export const getTripsPath = (id?: string) => {
+  return `/trips/${id || ""}`;
+}
+
+/**
  * Terms path
  * @returns Terms path
  */

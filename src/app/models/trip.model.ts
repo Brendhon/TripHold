@@ -4,4 +4,6 @@ export interface Trip {
   startDate: Date | undefined;
   endDate: Date | undefined;
   notes?: string;
+  createdAt: Date;
+  userId: string;
 }

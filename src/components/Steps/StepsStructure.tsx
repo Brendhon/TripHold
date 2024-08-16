@@ -10,6 +10,9 @@ export default function StepsStructure(props: StepsStructureProps) {
   // State
   const [currentStep, setCurrentStep] = useState(1);
 
+  // Loading
+  const [isLoading, setIsLoading] = useState(false);
+
   // Router
   const router = useRouter();
 
@@ -43,7 +46,18 @@ export default function StepsStructure(props: StepsStructureProps) {
   }
 
   // Handle next step
-  const handleNextStep = () => currentStep == steps ? props.onfinish() : setCurrentStep(currentStep + 1);
+  const handleNextStep = async () => {
+    if (currentStep == steps) {
+      try {
+        setIsLoading(true);
+        await props.onfinish();
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setIsLoading(false);
+      }
+    } else setCurrentStep(currentStep + 1);
+  }
 
   // Handle back step
   const handleBackStep = () => currentStep === 1 ? router.back() : setCurrentStep(currentStep - 1);
@@ -65,6 +79,7 @@ export default function StepsStructure(props: StepsStructureProps) {
         <ActionsSection
           back={handleBackStep}
           confirm={handleNextStep}
+          isLoading={isLoading}
           isConfirmDisabled={isSubmitDisabled()}
         />
       </div>

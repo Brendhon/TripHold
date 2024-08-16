@@ -167,5 +167,27 @@
     "today": "Hoje",
     "startDate": "Início",
     "endDate": "Fim"
+  },
+  "Toast": {
+    "success": {
+      "trip": {
+        "create": "Viagem criada com sucesso",
+        "update": "Viagem atualizada com sucesso",
+        "delete": "Viagem excluída com sucesso"
+      },
+      "user": {
+        "update": "Usuário atualizado com sucesso"
+      }
+    },
+    "error": {
+      "trip": {
+        "create": "Erro ao criar viagem",
+        "update": "Erro ao atualizar viagem",
+        "delete": "Erro ao excluir viagem"
+      },
+      "user": {
+        "update": "Erro ao atualizar usuário"
+      }
+    }
   }
 }

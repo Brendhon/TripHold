@@ -8,7 +8,7 @@ declare module "next-auth" {
    */
   interface Session {
     accessToken?: string;
-    profile?: ExtendedProfile;
+    profile?: User;
   }
 
   interface User extends DefaultUser {

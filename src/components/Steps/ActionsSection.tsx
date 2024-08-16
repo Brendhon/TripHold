@@ -22,6 +22,7 @@ export function ActionsSection(props: ActionsSectionProps) {
 
       <Button
         color="primary"
+        isLoading={props.isLoading}
         isDisabled={props.isConfirmDisabled}
         onClick={props.confirm}
         type="button">

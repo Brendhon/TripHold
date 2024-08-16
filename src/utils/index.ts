@@ -5,3 +5,4 @@ export * from './forms';
 export * from './auth';
 export * from './dates';
 export * from './mocks';
+export * from './session';
