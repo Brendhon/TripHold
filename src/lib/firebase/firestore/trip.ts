@@ -36,8 +36,8 @@ export const getTrips = async (userId: string): Promise<Trip[]> => {
     // Get trips collection
     const col = collection(db, path);
 
-    // Get trips query by user id
-    const users = await getDocs(query(col, where("userId", "==", userId)));
+    // Get trips - when user id is in array of userIds
+    const users = await getDocs(query(col, where("userIds", "array-contains", userId)));
 
     // Get trips data
     return users.empty ? [] : users.docs.map((doc) => doc.data() as Trip);

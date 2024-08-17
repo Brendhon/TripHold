@@ -26,7 +26,7 @@ export default function TripCreation() {
   // Handle creation
   const handleCreation = async () => {
     try {
-      await createTrip({ ...form, userId });
+      await createTrip({ ...form, userIds: [userId] });
       showSuccessNotifier(t, "trip.create");
       router.push('/home');
     } catch (error) {

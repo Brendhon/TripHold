@@ -5,5 +5,5 @@ export interface Trip {
   endDate: Date | undefined;
   notes?: string;
   createdAt: Date;
-  userId: string;
+  userIds: string[];
 }
