@@ -30,7 +30,7 @@ export const StepProgressBar = (props: StepProgressBarProps) => {
                 aria-label={"Step " + index}
                 value={progress(index + 1)}
                 size="sm"
-                className="w-10 md:w-24"
+                className="w-11 md:w-24"
               />
             )}
 

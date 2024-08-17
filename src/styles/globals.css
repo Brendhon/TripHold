@@ -27,9 +27,13 @@ body {
   .date-picker-calendar {
     @apply bg-blue-medium text-grey-extra-light border-none;
   }
+
+  .date-picker-calendar .react-datepicker__header {
+    @apply bg-blue-light border-none rounded-t-md;
+  }
   
   .date-picker-calendar .react-datepicker__month {
-    @apply bg-blue-light text-grey-extra-light border-none m-0 rounded-b-md;
+    @apply bg-blue-medium text-grey-extra-light border-none m-0 rounded-b-md;
   }
 
   .date-picker-calendar .react-datepicker__day--in-range {
@@ -60,10 +64,6 @@ body {
     @apply bg-blue-medium text-grey-extra-light;
   }
 
-  .date-picker-calendar .react-datepicker__header {
-    @apply bg-blue-regular border-none;
-  }
-
   .date-picker-calendar .react-datepicker__current-month {
     @apply text-grey-extra-light;
   }
@@ -74,7 +74,7 @@ body {
 
   .date-picker-calendar .react-datepicker__day--disabled,
   .date-picker-calendar .react-datepicker__day--outside-month {
-    @apply text-grey-light;
+    @apply text-blue-light;
   }
 }
 
