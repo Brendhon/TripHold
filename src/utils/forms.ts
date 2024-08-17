@@ -59,7 +59,7 @@ export const createValidator = <T>(fields: FormValidation<keyof T>[]): { validat
  * @param {T} initialState - Initial state
  * @returns {any} - Form state
  */
-export const useForm = <T>(initialState?: T): any => {
+export const useForm = <T>(initialState?: T): { form: Partial<T>; setForm: any } => {
   const [form, setForm] = useState<Partial<T>>(initialState || {});
   return { form, setForm };
 }

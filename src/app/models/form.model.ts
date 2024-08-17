@@ -8,6 +8,7 @@ export interface FormValidation<T> {
 export interface UserFormModel {
   name: string;
   email: string;
+  currentPassword?: string;
   password: string;
   confirmPassword: string;
   country: string;

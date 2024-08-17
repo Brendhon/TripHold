@@ -69,8 +69,11 @@ export const updateFirestoreUser = async (user: Partial<User>) => {
  * @param {string} email User email
  * @returns {User} User data
  */
-export const getFirestoreUser = async (email: string): Promise<User | undefined> => {
+export const getFirestoreUser = async (email?: string): Promise<User | undefined> => {
   try {
+    // Check if email exists
+    if(!email) return;
+
     // Path to user collection
     const path = getUsersPath();
 

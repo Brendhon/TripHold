@@ -177,9 +177,13 @@
       },
       "user": {
         "update": "Usuário atualizado com sucesso"
+      },
+      "password": {
+        "reset": "Senha redefinida com sucesso"
       }
     },
     "error": {
+      "auth/invalid-credential": "Senha incorreta",
       "trip": {
         "create": "Erro ao criar viagem",
         "update": "Erro ao atualizar viagem",
@@ -187,6 +191,9 @@
       },
       "user": {
         "update": "Erro ao atualizar usuário"
+      },
+      "password": {
+        "reset": "É necessário preencher todos os campos relacionados a senha para redefini-la"
       }
     }
   }

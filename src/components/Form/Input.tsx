@@ -20,7 +20,7 @@ export function Input(props: CInputProps) {
   // Error translations
   const tError = useTranslations('Error');
 
-  return (
+  return (!props.hidden &&
     <DefaultInput
       variant="faded"
       color="default"
@@ -28,6 +28,7 @@ export function Input(props: CInputProps) {
       {...props}
       isDisabled={props.disabled}
       aria-label={t(props?.placeholder)}
+      value={props?.controller}
       placeholder={t(props?.placeholder)}
       startContent={props?.startContent}
       onChange={props.handleChange}

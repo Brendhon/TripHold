@@ -52,7 +52,10 @@ const handler = NextAuth({
     }),
   ],
   callbacks: {
-    async jwt({ token, account, user }: { token: any, account: any, user: any }) {
+    async jwt({ token, account, user, trigger, session }: any) {
+      // Get user by email to check if user already exists
+      const userExists = await getFirestoreUser(user?.email);
+
       switch (account?.provider) {
         case "credentials":
           token.accessToken = account.access_token;
@@ -62,33 +65,52 @@ const handler = NextAuth({
         case "google":
           token.accessToken = account.access_token;
           token.idToken = account.id_token;
-    
-          // Get user by email to check if user already exists
-          const userExists = await getFirestoreUser(user.email!);
-    
-          // Create a new user in the database if it doesn't exist
-          if (!userExists)
-            await createFirestoreUser({
-              name: user.name!,
-              email: user.email!,
-              image: user.image!,
-              provider: 'google',
-              terms: true
-            });
-          else await updateFirestoreUser({ image: user.image ?? '', id: userExists.id });
-    
+
+          // Create a new user object
+          const newUser: User = {
+            name: user.name!,
+            email: user.email!,
+            image: user.image!,
+            provider: 'google',
+            terms: true
+          }
+
+          // Update user if already exists or create a new user
+          userExists
+            ? await updateFirestoreUser({ image: user.image ?? '', id: userExists.id })
+            : await createFirestoreUser(newUser);
+
           // Add user info on session
-          token.profile = userExists;
-    
+          token.profile = userExists ?? newUser;
+
           break;
       }
-    
+
+      if (trigger === "update" && session.profile) {
+        token.profile = session.profile;
+        token.user = {
+          name: session.profile.name,
+          image: session.profile.image,
+          email: session.profile.email
+        }
+      }
+
       return token;
     },
-    async session({ session, token }) {
+    async session({ session, token, trigger }) {
       // Add access token and profile information to the session
       session.accessToken = token.accessToken;
       session.profile = token.profile;
+
+      // Note, that `rest.session` can be any arbitrary object, remember to validate it!
+      if (trigger === "update") {
+        // Get user by email to check if user already exists
+        const user = await getFirestoreUser(session.profile.email);
+        session.profile = user!;
+        session.user!.name = user!.name;
+        session.user!.image = user!.image;
+      }
+
       return session;
     }
   }

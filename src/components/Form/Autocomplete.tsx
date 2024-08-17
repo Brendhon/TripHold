@@ -15,11 +15,12 @@ export function Autocomplete(props: CAutocompleteProps) {
   // Handle change
   const handleChange = (e: any) => props.handleChange && props.handleChange({ target: { name: props.name, value: e } });
 
-  return (
+  return (!props.hidden &&
     <DefaultAutocomplete
       {...props}
       variant="faded"
       color="default"
+      value={props?.controller}
       isDisabled={props.disabled}
       onSelectionChange={handleChange}
       aria-label={t(props?.placeholder)}

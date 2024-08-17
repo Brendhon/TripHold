@@ -177,9 +177,13 @@
       },
       "user": {
         "update": "User updated successfully"
+      },
+      "password": {
+        "reset": "Password reset successfully"
       }
     },
     "error": {
+      "auth/invalid-credential": "Invalid password",
       "trip": {
         "create": "Error creating trip",
         "update": "Error updating trip",
@@ -187,6 +191,9 @@
       },
       "user": {
         "update": "Error updating user"
+      },
+      "password": {
+        "reset": "All password-related fields must be filled in to reset it"
       }
     }
   }

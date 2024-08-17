@@ -32,23 +32,6 @@ export const BUTTON_COLORS = {
 }
 
 /**
- * Get avatar from session
- * @param {string} session - Image source
- * @returns Image source
- */
-export const getAvatarFromSession = (session?: Session | null) => {
-  switch (true) {
-    // Get image from session
-    case !!session?.user?.image:
-      return session.user.image;
-
-    // Default image
-    default:
-      return "/avatar.svg";
-  }
-}
-
-/**
  * Get intl name
  * @param {Country} country - Country
  * @param {string} locale - Locale

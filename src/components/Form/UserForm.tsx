@@ -5,8 +5,8 @@ import { Link, Tooltip } from "@nextui-org/react";
 import { createValidator, useDebounce, useForm } from "@utils/forms";
 import { getCountriesPath, getTermsPath, getZipCodePath } from "@utils/paths";
 import { emailRegex, passwordRegex, testRegex } from "@utils/regex";
-import { createUserSignUp } from "lib/firebase/auth/users";
-import { createFirestoreUser, getFirestoreUser } from "lib/firebase/firestore/users";
+import { createUserSignUp, updateUserPassword } from "lib/firebase/auth/users";
+import { createFirestoreUser, getFirestoreUser, updateFirestoreUser } from "lib/firebase/firestore/users";
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -18,6 +18,7 @@ import { Checkbox } from "./Checkbox";
 import { Form } from "./Form";
 import { Input } from "./Input";
 import { getIntlName } from "@utils/common";
+import { showErrorNotifier, showSuccessNotifier } from "@utils/notifier";
 
 /**
  * User Form
@@ -29,11 +30,14 @@ export function UserForm(props: RegisterFormProps) {
   const [states, setStates] = useState<FormSelectItem[]>([]);
   const [cities, setCities] = useState<FormSelectItem[]>([]);
 
+  // Get user data from props
+  const { user } = props;
+
   // Form state
   const { form, setForm } = useForm<UserFormModel>();
 
   // Debounce zip code - Fetch zip code info after 500ms of user stop typing
-  const debouncedZipCode = useDebounce(form.zipCode, 500);
+  const debouncedZipCode = useDebounce(form.zipCode!, 500);
   const [hasLoaded, setHasLoaded] = useState(false);
 
   // Locale
@@ -41,13 +45,18 @@ export function UserForm(props: RegisterFormProps) {
 
   // Translations
   const tPage = useTranslations("LoginAndRegister");
+  const tToast = useTranslations("Toast");
+
+  // Is user logged in by email or google
+  const isEmail = user ? user.provider == 'email' : true;
 
   // User fields validations
   const { validations } = createValidator<UserFormModel>([
     { key: 'name', required: true },
     { key: 'email', required: true, pattern: emailRegex },
-    { key: 'password', required: true, pattern: passwordRegex },
-    { key: 'confirmPassword', required: true, equal: 'password' },
+    { key: 'currentPassword', required: !!user && isEmail, pattern: passwordRegex },
+    { key: 'password', required: !user, pattern: passwordRegex },
+    { key: 'confirmPassword', required: !user, equal: 'password' },
     { key: 'country', required: true },
     { key: 'zipCode', required: true },
     { key: 'state', required: true },
@@ -61,6 +70,17 @@ export function UserForm(props: RegisterFormProps) {
     const handleResponse = (data: Country[]) => {
       setCountries(data);
       setAllCountries(data);
+      setForm({
+        name: user?.name || '',
+        email: user?.email || '',
+        password: '',
+        confirmPassword: '',
+        country: user ? getIntlName(user.country, locale) : '',
+        zipCode: user?.zipCode || '',
+        state: user?.state || '',
+        city: user?.city || '',
+        terms: !!user,
+      });
     }
 
     // Handle error
@@ -149,11 +169,11 @@ export function UserForm(props: RegisterFormProps) {
         email: form.email!,
         image: '',
         provider: 'email',
-        country: form.country!,
+        country: allCountries.find(c => c.name == form.country) as Country,
         zipCode: form.zipCode!,
         state: form.state!,
         city: form.city!,
-        terms: form.terms,
+        terms: !!form.terms,
       });
 
       // Show success message
@@ -167,11 +187,47 @@ export function UserForm(props: RegisterFormProps) {
     }
   }
 
+  // Handle update
+  const handleUpdate = async () => {
+    try {
+      // Check if password is filled and update user password
+      if (form.password && form.currentPassword)
+        await updateUserPassword(form.currentPassword, form.password);
+      else if (form.password || form.currentPassword) // Show error message if password is not filled
+        return showErrorNotifier(tToast, 'password.reset');
+
+      // Update user in Firestore
+      await updateFirestoreUser({
+        id: user?.id,
+        name: form.name!,
+        country: allCountries.find(c => c.name == form.country) as Country,
+        zipCode: form.zipCode!,
+        state: form.state!,
+        city: form.city!,
+      });
+
+      // Get user in firestore
+      const updatedUser = await getFirestoreUser(form.email!);
+
+      // Show success message
+      showSuccessNotifier(tToast, 'user.update');
+
+      // Redirect to home
+      props.action(updatedUser);
+    } catch (error: any) {
+      showErrorNotifier(tToast, error.code ?? 'user.update');
+      console.error("Error updating user:", error);
+    }
+  }
+
+  // Handle submit
+  const handleSubmit = async () => user ? await handleUpdate() : await handleSignUp();
+
   // Render form
   return (
     <Form
       formdata={{ form, setForm, validations }}
-      submit={{ action: handleSignUp, text: 'signUp' }}
+      submit={{ action: handleSubmit, text: user ? 'save' : 'signUp' }}
       className={`flex flex-col gap-2 pt-3 sm:min-w-0 md:min-w-[50%] lg:min-w-[700px] ${props.className}`} >
 
       <div className="form-row">
@@ -185,6 +241,7 @@ export function UserForm(props: RegisterFormProps) {
         <Input
           name="email"
           type="email"
+          disabled={!!user}
           placeholder="email"
           isInvalid={testRegex(emailRegex, form.email!)}
           errorMessage="email.pattern"
@@ -192,24 +249,35 @@ export function UserForm(props: RegisterFormProps) {
         />
       </div>
 
-      <div className="form-row">
-        <Input
-          name="password"
-          type="password"
-          autoComplete="none"
-          placeholder="newPassword"
-          isInvalid={testRegex(passwordRegex, form.password!)}
-          errorMessage="password.pattern"
-          startContent={<MdLock />} />
-        <Input
-          name="confirmPassword"
-          type="password"
-          autoComplete="none"
-          placeholder="confirmNewPassword"
-          isInvalid={form.password != form.confirmPassword}
-          errorMessage="password.notMatch"
-          startContent={<MdLock />} />
-      </div>
+      {
+        isEmail && <div className="form-row">
+          <Input
+            name="currentPassword"
+            type="password"
+            hidden={!user}
+            autoComplete="none"
+            placeholder="password"
+            isInvalid={testRegex(passwordRegex, form.currentPassword!)}
+            errorMessage="password.pattern"
+            startContent={<MdLock />} />
+          <Input
+            name="password"
+            type="password"
+            autoComplete="none"
+            placeholder="newPassword"
+            isInvalid={testRegex(passwordRegex, form.password!)}
+            errorMessage="password.pattern"
+            startContent={<MdLock />} />
+          <Input
+            name="confirmPassword"
+            type="password"
+            autoComplete="none"
+            placeholder="confirmNewPassword"
+            isInvalid={form.password != form.confirmPassword}
+            errorMessage="password.notMatch"
+            startContent={<MdLock />} />
+        </div>
+      }
 
       <Tooltip content={tPage('address.whyInfo')} placement="top-start">
         <span className="text-sm text-grey-extra-light flex items-center gap-1 w-fit pt-2">
@@ -229,7 +297,7 @@ export function UserForm(props: RegisterFormProps) {
         />
         <Autocomplete
           name="country"
-          isLoading={!hasLoaded && form.zipCode}
+          isLoading={!hasLoaded && !!form.zipCode}
           disabled={!form.zipCode}
           placeholder="country"
           selectedKey={form.country}
@@ -241,7 +309,7 @@ export function UserForm(props: RegisterFormProps) {
       <div className="form-row">
         <Autocomplete
           name="state"
-          isLoading={!hasLoaded && form.zipCode}
+          isLoading={!hasLoaded && !!form.zipCode}
           disabled={!form.country}
           placeholder="state"
           selectedKey={form.state}
@@ -251,7 +319,7 @@ export function UserForm(props: RegisterFormProps) {
           startContent={<FaMap />} />
         <Autocomplete
           name="city"
-          isLoading={!hasLoaded && form.zipCode}
+          isLoading={!hasLoaded && !!form.zipCode}
           disabled={!form.state}
           allowsCustomValue={true}
           selectedKey={form.city}
@@ -260,14 +328,14 @@ export function UserForm(props: RegisterFormProps) {
           startContent={<FaCity />} />
       </div>
 
-      <Checkbox name="terms" >
+      <Checkbox name="terms" hidden={!!user} >
         {tPage('terms.accept')}{" "}
         <Link isExternal className="cursor-pointer" size="sm" href={getTermsPath()}>
           {tPage('terms.terms')}
         </Link>
       </Checkbox>
 
-      <p className="text-center text-small pt-2">
+      <p className="text-center text-small pt-2" hidden={!!user}>
         {tPage('alreadyHaveAccount')}{" "}
         <Link className="cursor-pointer" size="sm" onPress={() => props.action()}>
           {tPage('login')}

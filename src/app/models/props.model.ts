@@ -3,6 +3,7 @@ import { ReactNode, HTMLProps } from "react";
 import { FormValidation } from "./form.model";
 import { Trip } from "./trip.model";
 import { DatePickerProps } from "react-datepicker";
+import { User } from "./user.model";
 
 export interface HeaderProps {
   hideProfile?: boolean;
@@ -23,8 +24,9 @@ export interface GoogleBtnProps {
 }
 
 export interface RegisterFormProps {
-  action: () => void;
+  action: (e?: User) => void;
   className?: string;
+  user?: User;
 }
 
 export interface LoginFormProps {
@@ -42,10 +44,12 @@ export interface CAutocompleteProps extends Partial<AutocompleteProps> {
   placeholder: string;
   options?: { key: any, name: string }[];
   handleChange?: (e: any) => void;
+  controller?: any;
 }
 
 export interface CCheckboxProps extends Partial<CheckboxProps> {
   children: ReactNode;
+  hidden?: boolean;
   handleChange?: (e: any) => void;
 }
 
@@ -62,6 +66,7 @@ export interface CInputProps extends Partial<InputProps> {
   placeholder: string;
   options?: { value: any, label: string }[];
   handleChange?: (e: any) => void;
+  controller?: any;
 }
 
 export interface FormProps<T> extends HTMLProps<HTMLFormElement> {

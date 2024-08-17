@@ -11,7 +11,7 @@ export interface User {
   createdAt?: Timestamp;
   updatedAt?: Timestamp;
   profile?: Profile;
-  country?: string;
+  country?: Country;
   zipCode?: string;
   state?: string;
   city?: string;

@@ -1,25 +1,33 @@
 "use client";
 
-import { signOut, useSession } from 'next-auth/react';
 import {
+  Avatar,
   Dropdown,
-  DropdownTrigger,
+  DropdownItem,
   DropdownMenu,
   DropdownSection,
-  DropdownItem,
-  Avatar
+  DropdownTrigger
 } from "@nextui-org/react";
-import { getAvatarFromSession } from '@utils/common';
+import { useUserAvatar, useUserName } from '@utils/session';
+import { signOut } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
 import { LangSelector } from './LangSelector';
+import { useRouter } from "next/navigation";
 
 export function ProfileDropdown() {
-  // Get session data
-  const { data } = useSession();
-
   // Get translations
   const t = useTranslations('ProfileDropdown');
 
+  // Router
+  const router = useRouter();
+
+  // Get avatar from session
+  const avatar = useUserAvatar();
+
+  // Get user name from session
+  const name = useUserName();
+
+  // Render
   return (
     <Dropdown placement="bottom-end" radius="sm" aria-label='Profile Dropdown' backdrop='opaque'>
 
@@ -28,7 +36,7 @@ export function ProfileDropdown() {
           size='lg'
           as="button"
           className="transition-transform border-purple-semi-bold border-2"
-          src={getAvatarFromSession(data)}
+          src={avatar}
         />
       </DropdownTrigger>
 
@@ -38,11 +46,8 @@ export function ProfileDropdown() {
           <DropdownItem key="profile" textValue="profile" isReadOnly className="h-24 gap-2"
           >
             <div className="flex flex-col justify-center items-center text-center h-24 gap-2 cursor-default">
-              <Avatar
-                size='lg'
-                src={getAvatarFromSession(data)}
-              />
-              <p className="font-semibold text-lg">{data?.user?.name}</p>
+              <Avatar size='lg' src={avatar} />
+              <p className="font-semibold text-lg">{name}</p>
             </div>
           </DropdownItem>
         </DropdownSection>
@@ -58,7 +63,9 @@ export function ProfileDropdown() {
             {t('language')}
           </DropdownItem>
 
-          <DropdownItem key="configurations" textValue="settings" color='primary'>{t('settings')}</DropdownItem>
+          <DropdownItem key="configurations" onClick={() => router.push('/profile')} textValue="settings" color='primary'>
+            {t('settings')}
+          </DropdownItem>
         </DropdownSection>
 
         <DropdownSection aria-label="Preferences">
