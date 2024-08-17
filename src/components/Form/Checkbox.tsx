@@ -8,7 +8,7 @@ import { Checkbox as DefaultCheckbox } from "@nextui-org/react";
  */
 export function Checkbox(props: CCheckboxProps) {
   return (
-    <DefaultCheckbox size="sm" color="primary" {...props} onChange={props.handleChange}>
+    <DefaultCheckbox size="sm" color="primary" isDisabled={props.disabled} {...props} onChange={props.handleChange}>
       {props.children}
     </DefaultCheckbox>
   )

@@ -3,7 +3,7 @@
 import { CDatePickerProps } from "@app/models";
 import { getDateFormat } from "@utils/dates";
 import { useLocale } from "next-intl";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import DefaultDatePicker, { CalendarContainer } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { FaCalendarAlt } from "react-icons/fa";

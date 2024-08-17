@@ -17,6 +17,7 @@ export function Select(props: CSelectProps) {
       {...props}
       variant="faded"
       color="default"
+      isDisabled={props.disabled}
       onChange={props.handleChange}
       aria-label={t(props?.placeholder)}
       placeholder={t(props?.placeholder)}

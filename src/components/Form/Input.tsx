@@ -26,6 +26,7 @@ export function Input(props: CInputProps) {
       color="default"
       classNames={{ input: ["placeholder:text-grey-light"] }}
       {...props}
+      isDisabled={props.disabled}
       aria-label={t(props?.placeholder)}
       placeholder={t(props?.placeholder)}
       startContent={props?.startContent}
