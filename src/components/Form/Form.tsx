@@ -4,6 +4,7 @@ import { FormProps } from "@app/models";
 import { Button } from "@nextui-org/react";
 import { isFormValid } from "@utils/forms";
 import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
 import { Children, cloneElement, isValidElement, ReactElement, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -17,6 +18,9 @@ export function Form<T>(props: FormProps<T>) {
   // Translations
   const t = useTranslations('Button');
   const tError = useTranslations("Error");
+
+  // Router
+  const router = useRouter();
 
   // Get form data
   const { form, setForm, validations } = props.formdata;
@@ -42,13 +46,20 @@ export function Form<T>(props: FormProps<T>) {
     setLoading(false);
   }
 
-  // Handle input
-  const handleChange = (e: any) => setForm((prevState: any) => {
-    return {
-      ...prevState,
-      [e.target.name]: !!e.target.value ? e.target.value : e.target.checked
+  // Handle target value 
+  const handleValue = (e: any) => {
+    switch (e.target.type) {
+      case 'checkbox':
+        return e.target.checked;
+      case 'number':
+        return parseInt(e.target.value);
+      default:
+        return e.target.value;
     }
-  });
+  }
+
+  // Handle input
+  const handleChange = (e: any) => setForm((prevState: any) => ({ ...prevState, [e.target.name]: handleValue(e) }));
 
   // @ts-ignore - Apply handleChange to children recursively
   const applyOnChangeRecursively = (children: ReactNode): ReactNode => {
@@ -75,6 +86,9 @@ export function Form<T>(props: FormProps<T>) {
     });
   };
 
+  // Check if has cancel button
+  const hasCancelButton = props.cancel ? !props.cancel.hidden : false;
+
   // Render form
   return (
     <form onSubmit={handleSubmit} {...props}>
@@ -83,7 +97,14 @@ export function Form<T>(props: FormProps<T>) {
       {applyOnChangeRecursively(props.children)}
 
       {/* Add submit button */}
-      <div className="form-row justify-center pt-2">
+      <div className={`flex pt-2 ${hasCancelButton ? 'justify-between' : 'justify-center'}`}>
+        {hasCancelButton &&
+          <Button
+            color="default"
+            onClick={props.cancel?.action ? props.cancel.action : () => router.back()}>
+            {t(props.cancel?.text)}
+          </Button>
+        }
         <Button
           isLoading={loading}
           color="primary"

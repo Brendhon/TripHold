@@ -7,7 +7,7 @@ import { db, logAnalytics } from "../config";
  * Create a new user
  * @param {Trip} trip User data
  */
-export const createTrip = async (trip: Trip) => {
+export const createTrip = async (trip: Partial<Trip>) => {
   try {
     // Get user path
     const path = getTripsPath();

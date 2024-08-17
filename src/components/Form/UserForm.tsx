@@ -5,8 +5,8 @@ import { Link, Tooltip } from "@nextui-org/react";
 import { createValidator, useDebounce, useForm } from "@utils/forms";
 import { getCountriesPath, getTermsPath, getZipCodePath } from "@utils/paths";
 import { emailRegex, passwordRegex, testRegex } from "@utils/regex";
-import { createUserSignUp, updateUserPassword } from "lib/firebase/auth/users";
-import { createFirestoreUser, getFirestoreUser, updateFirestoreUser } from "lib/firebase/firestore/users";
+import { createUserSignUp, deleteUserAccount, updateUserPassword } from "lib/firebase/auth/users";
+import { createFirestoreUser, deleteFirestoreUser, getFirestoreUser, updateFirestoreUser } from "lib/firebase/firestore/users";
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -19,6 +19,8 @@ import { Form } from "./Form";
 import { Input } from "./Input";
 import { getIntlName } from "@utils/common";
 import { showErrorNotifier, showSuccessNotifier } from "@utils/notifier";
+import { DeleteButton } from "components/Common/DeleteButton";
+import { signOut } from "next-auth/react";
 
 /**
  * User Form
@@ -46,6 +48,7 @@ export function UserForm(props: RegisterFormProps) {
   // Translations
   const tPage = useTranslations("LoginAndRegister");
   const tToast = useTranslations("Toast");
+  const tError = useTranslations("Error");
 
   // Is user logged in by email or google
   const isEmail = user ? user.provider == 'email' : true;
@@ -223,11 +226,35 @@ export function UserForm(props: RegisterFormProps) {
   // Handle submit
   const handleSubmit = async () => user ? await handleUpdate() : await handleSignUp();
 
+  // Handle delete
+  const handleDelete = async (password?: string) => {
+    try {
+      // Check if user exists
+      if (!user?.id) return;
+
+      // Delete user account in Firebase Authentication
+      if (isEmail && password) await deleteUserAccount(password);
+
+      // Delete user in Firestore
+      await deleteFirestoreUser(user.id);
+
+      // Show success message
+      showSuccessNotifier(tToast, 'user.delete');
+
+      // logout
+      signOut({ callbackUrl: "/" });
+    } catch (error: any) {
+      showErrorNotifier(tToast, 'user.delete');
+      console.error("Error deleting user:", error);
+    }
+  }
+
   // Render form
   return (
     <Form
       formdata={{ form, setForm, validations }}
       submit={{ action: handleSubmit, text: user ? 'save' : 'signUp' }}
+      cancel={{ text: 'cancel', hidden: !user }}
       className={`flex flex-col gap-2 pt-3 sm:min-w-0 md:min-w-[50%] lg:min-w-[700px] ${props.className}`} >
 
       <div className="form-row">
@@ -342,6 +369,13 @@ export function UserForm(props: RegisterFormProps) {
         </Link>
       </p>
 
+      {/* Button to delete  */}
+      <DeleteButton
+        hidden={!user}
+        action={handleDelete}
+        text="deleteAccount"
+        modal={{ title: 'deleteAccount', body: 'deleteAccount', requiredPassword: true }}
+      />
     </ Form>
   )
 }

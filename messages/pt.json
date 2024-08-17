@@ -70,7 +70,19 @@
     "confirm": "Confirmar",
     "register": "Registrar",
     "login": "Entrar",
-    "signUp": "Cadastrar"
+    "signUp": "Cadastrar",
+    "deleteAccount": "Excluir conta"
+  },
+  "Modal": {
+    "title": {
+      "deleteAccount": "Excluir conta",
+      "deleteTrip": "Excluir viagem"
+    },
+    "message": {
+      "deleteAccount": "Tem certeza que deseja excluir sua conta? Essa ação é irreversível.",
+      "deleteTrip": "Tem certeza que deseja excluir essa viagem? Essa ação é irreversível."
+    },
+    "password": "Confirme sua senha para continuar"
   },
   "Error": {
     "invalidField": "Campo inválido",
@@ -176,7 +188,8 @@
         "delete": "Viagem excluída com sucesso"
       },
       "user": {
-        "update": "Usuário atualizado com sucesso"
+        "update": "Usuário atualizado com sucesso",
+        "delete": "Usuário excluído com sucesso"
       },
       "password": {
         "reset": "Senha redefinida com sucesso"
@@ -190,7 +203,8 @@
         "delete": "Erro ao excluir viagem"
       },
       "user": {
-        "update": "Erro ao atualizar usuário"
+        "update": "Erro ao atualizar usuário",
+        "delete": "Erro ao excluir usuário"
       },
       "password": {
         "reset": "É necessário preencher todos os campos relacionados a senha para redefini-la"

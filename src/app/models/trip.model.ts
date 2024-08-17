@@ -1,5 +1,5 @@
 export interface Trip {
-  id: string;
+  id?: string;
   country: Country;
   startDate: Date | undefined;
   endDate: Date | undefined;

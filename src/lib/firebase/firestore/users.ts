@@ -1,4 +1,4 @@
-import { doc, setDoc, Timestamp, getDoc, where, getDocs, Query, DocumentData, collection, query } from "firebase/firestore";
+import { doc, setDoc, Timestamp, getDoc, where, getDocs, deleteDoc, collection, query } from "firebase/firestore";
 import { db, logAnalytics } from "../config";
 import { User } from "@app/models";
 import { getUsersPath } from "@utils/paths";
@@ -72,7 +72,7 @@ export const updateFirestoreUser = async (user: Partial<User>) => {
 export const getFirestoreUser = async (email?: string): Promise<User | undefined> => {
   try {
     // Check if email exists
-    if(!email) return;
+    if (!email) return;
 
     // Path to user collection
     const path = getUsersPath();
@@ -87,6 +87,25 @@ export const getFirestoreUser = async (email?: string): Promise<User | undefined
     return users.empty ? undefined : users.docs[0].data() as User;
   } catch (error) {
     console.error("Error getting user: ", error);
+    logAnalytics("exception", error);
+  }
+}
+
+/**
+ * Delete user data
+ */
+export const deleteFirestoreUser = async (id: string) => {
+  try {
+    // Get user path
+    const path = getUsersPath(id);
+
+    // Get user document
+    const userDoc = doc(db, path);
+
+    // Delete user document
+    await deleteDoc(userDoc);
+  } catch (error) {
+    console.error("Error deleting user: ", error);
     logAnalytics("exception", error);
   }
 }

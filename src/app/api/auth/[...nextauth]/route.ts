@@ -77,7 +77,7 @@ const handler = NextAuth({
 
           // Update user if already exists or create a new user
           userExists
-            ? await updateFirestoreUser({ image: user.image ?? '', id: userExists.id })
+            ? await updateFirestoreUser({ image: !!userExists.image ? userExists.image : user.image ?? '', id: userExists.id })
             : await createFirestoreUser(newUser);
 
           // Add user info on session

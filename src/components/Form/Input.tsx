@@ -25,21 +25,22 @@ export function Input(props: CInputProps) {
       variant="faded"
       color="default"
       classNames={{ input: ["placeholder:text-grey-light"] }}
-      {...props}
+      
       isDisabled={props.disabled}
       aria-label={t(props?.placeholder)}
       value={props?.controller}
-      placeholder={t(props?.placeholder)}
       startContent={props?.startContent}
       onChange={props.handleChange}
       errorMessage={tError(props?.errorMessage || 'invalidField')}
       endContent={
         props?.type == 'password' ?
-          viewPassword
-            ? <IoMdEyeOff className="cursor-pointer" onClick={() => setViewPassword(!viewPassword)} />
-            : <MdRemoveRedEye className="cursor-pointer" onClick={() => setViewPassword(!viewPassword)} />
-          : null
+        viewPassword
+        ? <IoMdEyeOff className="cursor-pointer" onClick={() => setViewPassword(!viewPassword)} />
+        : <MdRemoveRedEye className="cursor-pointer" onClick={() => setViewPassword(!viewPassword)} />
+        : null
       }
+      {...props}
+      placeholder={t(props?.placeholder)}
       type={props?.type == 'password' && viewPassword ? 'text' : props?.type}
     />)
 }

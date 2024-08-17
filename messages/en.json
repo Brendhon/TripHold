@@ -1,6 +1,6 @@
 {
   "Footer": {
-    "text": "All Rights Reserved"
+    "text": "All rights reserved."
   },
   "ProfileDropdown": {
     "profile": "Profile",
@@ -9,39 +9,39 @@
     "english": "English",
     "spanish": "Spanish",
     "settings": "Settings",
-    "logout": "Sign Out"
+    "logout": "Logout"
   },
   "Placeholder": {
     "search": "Search...",
-    "email": "Type your e-mail",
-    "password": "Type your password",
-    "newPassword": "Type your new password",
+    "email": "Enter your email",
+    "password": "Enter your password",
+    "newPassword": "Enter your new password",
     "confirmNewPassword": "Confirm your new password",
-    "name": "Type your name",
+    "name": "Enter your name",
     "confirmPassword": "Confirm your password",
-    "country": "Type your country",
+    "country": "Enter your country",
     "countrySelect": "Select a country",
-    "zipCode": "Type your ZIP code",
-    "state": "Type your state",
+    "zipCode": "Enter your ZIP code",
+    "state": "Enter your state",
     "stateSelect": "Select a state",
-    "city": "Type your city",
+    "city": "Enter your city",
     "citySelect": "Select a city",
-    "neighborhood": "Type your neighborhood",
-    "address": "Type your address",
-    "street": "Type your street",
-    "number": "Type the number",
-    "complement": "Type the complement (optional)",
+    "neighborhood": "Enter your neighborhood",
+    "address": "Enter your address",
+    "street": "Enter your street",
+    "number": "Enter the number",
+    "complement": "Enter the complement (optional)",
     "date": "Select a date"
   },
   "LoginAndRegister": {
-    "login": "Sign In",
+    "login": "Login",
     "signUp": "Sign Up",
     "register": "Register",
     "forgotPassword": "Forgot password?",
     "dontHaveAccount": "Don't have an account?",
     "alreadyHaveAccount": "Already have an account?",
     "address": {
-      "why": "Why do we need the address",
+      "why": "Why do we need your address",
       "whyInfo": "The address will be used as the starting point for your trips."
     },
     "terms": {
@@ -50,14 +50,14 @@
       "and": "and",
       "privacyPolicy": "Privacy Policy"
     },
-    "signUpSuccess": "Registration successfully completed",
-    "signUpError": "Error registering",
+    "signUpSuccess": "Sign up successful",
+    "signUpError": "Error while signing up",
     "userExists": {
-      "email": "User already registered with this e-mail, log in",
-      "google": "User already registered with Google, log in with Google"
+      "email": "User already registered with this email, please login",
+      "google": "User already registered with Google, please login with Google"
     },
-    "loginSuccess": "Login successfully completed",
-    "loginError": "Error signing in"
+    "loginSuccess": "Login successful",
+    "loginError": "Error while logging in"
   },
   "Button": {
     "send": "Send",
@@ -69,8 +69,20 @@
     "back": "Back",
     "confirm": "Confirm",
     "register": "Register",
-    "login": "Sign In",
-    "signUp": "Sign Up"
+    "login": "Login",
+    "signUp": "Sign Up",
+    "deleteAccount": "Delete account"
+  },
+  "Modal": {
+    "title": {
+      "deleteAccount": "Delete account",
+      "deleteTrip": "Delete trip"
+    },
+    "message": {
+      "deleteAccount": "Are you sure you want to delete your account? This action is irreversible.",
+      "deleteTrip": "Are you sure you want to delete this trip? This action is irreversible."
+    },
+    "password": "Confirm your password to continue"
   },
   "Error": {
     "invalidField": "Invalid field",
@@ -82,15 +94,15 @@
     "password": {
       "required": "Password is required",
       "notMatch": "Passwords do not match",
-      "pattern": "Password must have at least 6 characters"
+      "pattern": "Password must be at least 6 characters long"
     },
     "confirmPassword": {
       "required": "Password confirmation is required",
       "notMatch": "Passwords do not match"
     },
     "email": {
-      "required": "E-mail is required",
-      "pattern": "Invalid e-mail"
+      "required": "Email is required",
+      "pattern": "Invalid email"
     },
     "zipCode": {
       "required": "ZIP code is required",
@@ -106,36 +118,36 @@
       "required": "City is required"
     },
     "terms": {
-      "required": "You must accept the terms"
+      "required": "You must accept the Terms of Service"
     },
-    "loginError": "Error signing in",
+    "loginError": "Error while logging in",
     "auth/invalid-email": "Invalid email",
     "auth/user-disabled": "User disabled",
     "auth/user-not-found": "User not found",
     "auth/wrong-password": "Incorrect password",
-    "auth/email-already-in-use": "Email already in use",
+    "auth/email-already-in-use": "The email is already in use",
     "auth/operation-not-allowed": "Operation not allowed",
     "auth/weak-password": "Weak password",
     "auth/invalid-verification-code": "Invalid verification code",
     "auth/invalid-verification-id": "Invalid verification ID",
     "auth/account-exists-with-different-credential": "Account already exists with a different credential",
-    "auth/credential-already-in-use": "Credential already in use",
+    "auth/credential-already-in-use": "The credential is already in use",
     "auth/timeout": "Timeout exceeded",
     "auth/network-request-failed": "Network request failed",
-    "auth/too-many-requests": "Too many requests. Try again later",
+    "auth/too-many-requests": "Too many requests. Please try again later",
     "auth/popup-closed-by-user": "Popup closed by user",
     "auth/requires-recent-login": "Requires recent login",
     "auth/missing-email": "Missing email",
     "auth/provider-already-linked": "Provider already linked to this account",
     "auth/unauthorized-domain": "Unauthorized domain",
-    "auth/captcha-check-failed": "CAPTCHA check failed",
+    "auth/captcha-check-failed": "CAPTCHA verification failed",
     "auth/web-storage-unsupported": "Web storage unsupported",
     "auth/invalid-credential": "Incorrect login information"
   },
   "Trip": {
     "invite": "Let's travel?",
     "inviteInfo": "Click on this card to plan your next trip ✈️",
-    "until": "to",
+    "until": "until",
     "countryYouWillVisit": "Country you will visit",
     "whenYouWillTravel": "When will you travel"
   },
@@ -150,7 +162,7 @@
   },
   "Country": {
     "carSide": {
-      "title": "Car Direction",
+      "title": "Car driving side",
       "left": "Drive on the left side",
       "right": "Drive on the right side"
     }
@@ -176,21 +188,23 @@
         "delete": "Trip deleted successfully"
       },
       "user": {
-        "update": "User updated successfully"
+        "update": "User updated successfully",
+        "delete": "User deleted successfully"
       },
       "password": {
         "reset": "Password reset successfully"
       }
     },
     "error": {
-      "auth/invalid-credential": "Invalid password",
+      "auth/invalid-credential": "Incorrect password",
       "trip": {
-        "create": "Error creating trip",
-        "update": "Error updating trip",
-        "delete": "Error deleting trip"
+        "create": "Error while creating trip",
+        "update": "Error while updating trip",
+        "delete": "Error while deleting trip"
       },
       "user": {
-        "update": "Error updating user"
+        "update": "Error while updating user",
+        "delete": "Error while deleting user"
       },
       "password": {
         "reset": "All password-related fields must be filled in to reset it"

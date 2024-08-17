@@ -3,7 +3,8 @@ import {
   EmailAuthProvider,
   reauthenticateWithCredential,
   signInWithEmailAndPassword,
-  updatePassword
+  updatePassword,
+  deleteUser,
 } from "firebase/auth";
 import { auth } from "../config";
 
@@ -56,6 +57,30 @@ export const updateUserPassword = async (currentPassword: string, password: stri
     await updatePassword(auth.currentUser, password);
   } catch (error) {
     console.error("Error updating user password:", error);
+    throw error; // Re-throw the error to handle it in your UI or further logic
+  }
+}
+
+/**
+ * Delete user account
+ * @param {string} password User password
+ * @returns User data after delete
+ */
+export const deleteUserAccount = async (password: string) => {
+  // Check if user is authenticated
+  if (!auth.currentUser) return;
+
+  try {
+    // Create the credential with the current email and password
+    const credential = EmailAuthProvider.credential(auth.currentUser.email!, password);
+
+    // Reauthenticate the user
+    await reauthenticateWithCredential(auth.currentUser, credential);
+
+    // Delete the user
+    await deleteUser(auth.currentUser);
+  } catch (error) {
+    console.error("Error deleting user account:", error);
     throw error; // Re-throw the error to handle it in your UI or further logic
   }
 }

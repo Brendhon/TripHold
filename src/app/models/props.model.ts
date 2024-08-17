@@ -87,7 +87,8 @@ export interface FormProps<T> extends HTMLProps<HTMLFormElement> {
 
   // Cancel function
   cancel?: {
-    action: () => void;
+    hidden?: boolean;
+    action?: () => void;
     text: string;
   };
 }
