@@ -25,7 +25,7 @@ export function Input(props: CInputProps) {
       variant="faded"
       color="default"
       classNames={{ input: ["placeholder:text-grey-light"] }}
-      
+      {...props}
       isDisabled={props.disabled}
       aria-label={t(props?.placeholder)}
       value={props?.controller}
@@ -39,7 +39,6 @@ export function Input(props: CInputProps) {
         : <MdRemoveRedEye className="cursor-pointer" onClick={() => setViewPassword(!viewPassword)} />
         : null
       }
-      {...props}
       placeholder={t(props?.placeholder)}
       type={props?.type == 'password' && viewPassword ? 'text' : props?.type}
     />)
