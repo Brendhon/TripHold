@@ -76,7 +76,8 @@
   "Modal": {
     "title": {
       "deleteAccount": "Excluir conta",
-      "deleteTrip": "Excluir viagem"
+      "deleteTrip": "Excluir viagem",
+      "imageCrop": "Recortar imagem"
     },
     "message": {
       "deleteAccount": "Tem certeza que deseja excluir sua conta? Essa ação é irreversível.",
@@ -196,6 +197,7 @@
       }
     },
     "error": {
+      "storage/unauthorized": "Sem permissão para acessar o armazenamento",
       "auth/invalid-credential": "Senha incorreta",
       "trip": {
         "create": "Erro ao criar viagem",

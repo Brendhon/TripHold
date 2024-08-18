@@ -3,6 +3,7 @@ export * from './Common/GoogleBtn';
 export * from './Common/LangSelector';
 export * from './Common/DeleteButton';
 export * from './Common/ProfileDropdown';
+export * from './Common/AvatarCropper';
 export * from './Steps/StepProgressBar';
 export * from './Form/Autocomplete';
 export * from './Form/Checkbox';

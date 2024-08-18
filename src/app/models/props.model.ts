@@ -24,7 +24,7 @@ export interface GoogleBtnProps {
 }
 
 export interface RegisterFormProps {
-  action: (e?: User) => void;
+  action: (e?: User) => void | Promise<void>;
   className?: string;
   user?: User;
 }

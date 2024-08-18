@@ -27,7 +27,6 @@ export function DeleteButton(props: Props) {
   // Modal states
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
 
-
   // Translations
   const t = useTranslations('Button');
   const tModal = useTranslations('Modal');

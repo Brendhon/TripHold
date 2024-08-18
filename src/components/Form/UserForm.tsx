@@ -48,7 +48,6 @@ export function UserForm(props: RegisterFormProps) {
   // Translations
   const tPage = useTranslations("LoginAndRegister");
   const tToast = useTranslations("Toast");
-  const tError = useTranslations("Error");
 
   // Is user logged in by email or google
   const isEmail = user ? user.provider == 'email' : true;
@@ -158,7 +157,7 @@ export function UserForm(props: RegisterFormProps) {
 
       // Check if user already exists
       if (userExists) {
-        props.action();
+        await props.action();
         return toast.error(tPage(`userExists.${userExists.provider}`));
       }
 
@@ -183,7 +182,7 @@ export function UserForm(props: RegisterFormProps) {
       toast.success(tPage('signUpSuccess'));
 
       // Redirect to home
-      props.action();
+      await props.action();
     } catch (error: any) {
       toast.error(tPage('signUpFailed'));
       console.error("Error signing up:", error);
@@ -216,7 +215,7 @@ export function UserForm(props: RegisterFormProps) {
       showSuccessNotifier(tToast, 'user.update');
 
       // Redirect to home
-      props.action(updatedUser);
+      await props.action(updatedUser);
     } catch (error: any) {
       showErrorNotifier(tToast, error.code ?? 'user.update');
       console.error("Error updating user:", error);

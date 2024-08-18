@@ -76,7 +76,8 @@
   "Modal": {
     "title": {
       "deleteAccount": "Delete account",
-      "deleteTrip": "Delete trip"
+      "deleteTrip": "Delete trip",
+      "imageCrop": "Crop image"
     },
     "message": {
       "deleteAccount": "Are you sure you want to delete your account? This action is irreversible.",
