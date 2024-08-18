@@ -32,14 +32,18 @@ export const uploadUserAvatar = async (blob: Blob, userId: string): Promise<stri
  * @returns {Promise<string>} Empty string
  */
 export const deleteUserAvatar = async (userId: string): Promise<string> => {
-  // Create a reference to the storage service
-  const storageRef = ref(storage, getStorageUsersPath(userId));
+  try {
+    // Create a reference to the storage service
+    const storageRef = ref(storage, getStorageUsersPath(userId));
 
-  // Delete the image
-  await deleteObject(storageRef);
+    // Delete the image
+    await deleteObject(storageRef);
 
-  // Update the user avatar in the firestore
-  await updateFirestoreUser({ id: userId, image: "" });
+    // Update the user avatar in the firestore
+    await updateFirestoreUser({ id: userId, image: "" });
+  } catch (error) {
+    console.error("Error deleting user avatar: ", error);
+  }
 
   // Return empty string
   return '';

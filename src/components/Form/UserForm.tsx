@@ -21,6 +21,7 @@ import { getIntlName } from "@utils/common";
 import { showErrorNotifier, showSuccessNotifier } from "@utils/notifier";
 import { DeleteButton } from "components/Common/DeleteButton";
 import { signOut } from "next-auth/react";
+import { deleteUserAvatar } from "lib/firebase/storage/users";
 
 /**
  * User Form
@@ -233,6 +234,9 @@ export function UserForm(props: RegisterFormProps) {
 
       // Delete user account in Firebase Authentication
       if (isEmail && password) await deleteUserAccount(password);
+
+      // Delete user avatar in Firebase storage
+      await deleteUserAvatar(user.id);
 
       // Delete user in Firestore
       await deleteFirestoreUser(user.id);
