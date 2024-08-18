@@ -46,7 +46,7 @@ export function DatePicker(props: CDatePickerProps) {
         placeholder="date"
         isDisabled={props.disabled}
         type="text"
-        value={props.date?.toLocaleDateString(locale)}
+        controller={props.date?.toLocaleDateString(locale)}
         onClick={handleOpen}
         className={`cursor-pointer ${props.inputProps?.className ?? ''}`}
         startContent={<FaCalendarAlt onClick={handleOpen} className="cursor-pointer" />}

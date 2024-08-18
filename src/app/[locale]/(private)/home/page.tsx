@@ -60,7 +60,7 @@ export default function Home() {
       <br />
 
       <div className="grid gap-8 p-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
-        {!search && <TripCard onClick={() => router.push('/trip/creation')} />}
+        {!search && <TripCard key="new-card" onClick={() => router.push('/trip/creation')} />}
         {trips!.map((trip) => <TripCard key={trip.id} className="bg-blue-medium" trip={trip} />)}
       </div>
     </>
