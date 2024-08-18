@@ -374,7 +374,7 @@ export function UserForm(props: RegisterFormProps) {
         hidden={!user}
         action={handleDelete}
         text="deleteAccount"
-        modal={{ title: 'deleteAccount', body: 'deleteAccount', requiredPassword: true }}
+        modal={{ title: 'deleteAccount', body: 'deleteAccount', requiredPassword: isEmail }}
       />
     </ Form>
   )
