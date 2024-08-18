@@ -4,7 +4,7 @@ import { User } from "@app/models";
 import { Card } from "@nextui-org/react";
 import { useUserId } from "@utils/session";
 import { AvatarCropper, UserForm } from "components";
-import { uploadUserAvatar } from "lib/firebase/storage/users";
+import { deleteUserAvatar, uploadUserAvatar } from "lib/firebase/storage/users";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -28,16 +28,18 @@ export default function Profile() {
     let avatar = e?.image;
 
     // If has data and cropper upload avatar
-    if (cropper) avatar = await uploadUserAvatar(cropper, userId);
+    if (cropper) avatar = cropper.size == 0
+      ? await deleteUserAvatar(userId)
+      : await uploadUserAvatar(cropper, userId);
+
+    // Reload page
+    await update({
+      user: { email: e?.email, name: e?.name, image: avatar },
+      profile: { ...e, image: avatar }
+    });
 
     // Go back
     router.back();
-
-    // Reload page
-    update({
-      user: { email: e?.email, name: e?.name, image: avatar },
-      profile: e
-    });
 
     // Reload page
     router.refresh();

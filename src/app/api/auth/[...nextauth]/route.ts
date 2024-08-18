@@ -54,7 +54,7 @@ const handler = NextAuth({
   callbacks: {
     async jwt({ token, account, user, trigger, session }: any) {
       // Get user by email to check if user already exists
-      const userExists = await getFirestoreUser(user?.email);
+      let localUser = await getFirestoreUser(user?.email);
 
       switch (account?.provider) {
         case "credentials":
@@ -76,13 +76,10 @@ const handler = NextAuth({
           }
 
           // Update user if already exists or create a new user
-          userExists
-            ? await updateFirestoreUser({ image: !!userExists.image ? userExists.image : user.image ?? '', id: userExists.id })
-            : await createFirestoreUser(newUser);
+          localUser = localUser ?? await createFirestoreUser(newUser);
 
           // Add user info on session
-          token.profile = userExists ?? newUser;
-
+          token.profile = localUser;
           break;
       }
 

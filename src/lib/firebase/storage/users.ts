@@ -1,6 +1,6 @@
 import { getStorageUsersPath } from "@utils/paths";
 import { storage } from "../config";
-import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { getDownloadURL, ref, uploadBytes, deleteObject } from 'firebase/storage';
 import { updateFirestoreUser } from "../firestore/users";
 
 /**
@@ -25,3 +25,22 @@ export const uploadUserAvatar = async (blob: Blob, userId: string): Promise<stri
   // Return the download URL
   return url;
 };
+
+/**
+ * Delete user avatar from Firebase storage
+ * @param {string} userId User ID
+ * @returns {Promise<string>} Empty string
+ */
+export const deleteUserAvatar = async (userId: string): Promise<string> => {
+  // Create a reference to the storage service
+  const storageRef = ref(storage, getStorageUsersPath(userId));
+
+  // Delete the image
+  await deleteObject(storageRef);
+
+  // Update the user avatar in the firestore
+  await updateFirestoreUser({ id: userId, image: "" });
+
+  // Return empty string
+  return '';
+}

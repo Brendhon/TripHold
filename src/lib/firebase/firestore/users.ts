@@ -7,8 +7,9 @@ import { randomUUID } from "crypto";
 /**
  * Create a new user
  * @param {User} user User data
+ * @returns {User} Created user data
  */
-export const createFirestoreUser = async (user: User) => {
+export const createFirestoreUser = async (user: User): Promise<User> => {
   try {
     // Generate user ID
     user.id = user.id || randomUUID();
@@ -22,15 +23,22 @@ export const createFirestoreUser = async (user: User) => {
     // Get user data
     const fd = await getDoc(userDoc);
 
-    // Create user document
-    await setDoc(userDoc, {
+    // form user data
+    user = {
       ...user,
       createdAt: fd.exists() ? fd.data()?.createdAt : Timestamp.now(),
       updatedAt: Timestamp.now(),
-    }, { merge: true }); // Merge data if document exists or create a new document
+    }
+
+    // Create user document
+    await setDoc(userDoc, user, { merge: true }); // Merge data if document exists or create a new document
+
+    // Return user data
+    return user;
   } catch (error) {
     console.error("Error creating user: ", error);
     logAnalytics("exception", error);
+    throw error;
   }
 }
 

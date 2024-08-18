@@ -49,7 +49,12 @@ export function AvatarCropper(props: Props) {
     input?.click();
   }
 
-  // Get the cropped image
+  /**
+   * Retrieves a cropped image based on the provided image and crop dimensions.
+   * @param image - The HTMLImageElement representing the image to be cropped.
+   * @param crop - The PixelCrop object containing the crop dimensions.
+   * @returns A Promise that resolves to a Blob representing the cropped image, or null if the canvas context is not available.
+   */
   const getCroppedImg = async (image: HTMLImageElement, crop: PixelCrop) => {
     const canvas = document.createElement('canvas');
     const scaleX = image.naturalWidth / image.width;
@@ -108,7 +113,8 @@ export function AvatarCropper(props: Props) {
 
   // Handle delete
   const handleDelete = () => {
-    console.log('Avatar deleted');
+    setAvatar('/avatar.svg');
+    props.uploadAvatar(new Blob());
   }
 
 
