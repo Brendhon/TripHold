@@ -69,11 +69,10 @@ export function Form<T>(props: FormProps<T>) {
         const { name } = (child as ReactElement).props;
 
         // @ts-ignore - Add handleChange to children with name prop
-        const clonedChild = name ? cloneElement(child, { ...child.props, handleChange: handleChange, controller: form[name] }) : child;
+        const clonedChild: ReactElement = name ? cloneElement(child, { ...child.props, handleChange: handleChange, controller: form[name] }) : child;
 
         // Check if child has children and apply recursively
         if ((child as ReactElement).props && (child as ReactElement).props.children) {
-          // @ts-ignore
           return cloneElement(clonedChild, { children: applyOnChangeRecursively((child as ReactElement).props.children) });
         }
 
