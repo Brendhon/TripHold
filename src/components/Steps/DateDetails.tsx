@@ -1,6 +1,7 @@
 "use client";
 
 import { formatDate } from '@utils/dates';
+import { AnimatedDiv } from 'components/Common';
 import { useLocale, useTranslations } from 'next-intl';
 
 // Props interface
@@ -70,7 +71,7 @@ export function DateDetails(props: Props) {
 
   // Render
   return (
-    <div className='flex flex-col gap-4 my-4'>
+    <AnimatedDiv className='flex flex-col gap-4 my-4'>
       {rows.map((row, rowIndex) => (
         <div key={rowIndex} className='flex gap-0'>
           {row.map((key, index) => {
@@ -96,6 +97,6 @@ export function DateDetails(props: Props) {
           })}
         </div>
       ))}
-    </div>
+    </AnimatedDiv>
   );
 }

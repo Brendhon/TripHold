@@ -3,6 +3,7 @@
 import { TripCardProps } from '@app/models';
 import { getIntlName } from '@utils/common';
 import { formatDate } from '@utils/dates';
+import { AnimatedDiv } from 'components/Common';
 import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { FiPlusCircle } from "react-icons/fi";
@@ -25,8 +26,8 @@ export function TripCard(props: TripCardProps) {
         hidden={!props?.trip!.country.flag}
         src={props?.trip!.country.flag ?? ''}
         alt={props?.trip!.country.name ?? 'Country flag'}
-        className='border-grey-thin border-1 rounded-sm'
-        width="0" height="0" style={{ width: "auto", height: "100px" }}
+        className='border-grey-thin border-1 rounded-sm mb-1'
+        width="0" height="0" style={{ width: "auto", height: "auto", maxWidth: "80%" }}
       />
 
       <h3 className="text-lg font-bold mb-3">{getIntlName(props.trip?.country, locate)}</h3>
@@ -50,12 +51,12 @@ export function TripCard(props: TripCardProps) {
 
   return (
     <div {...props} className="flex justify-center text-center">
-      <div className={`flex flex-col items-center justify-center text-center  
+      <AnimatedDiv className={`flex flex-col items-center justify-center text-center  
         gap-2 px-4 py-2 rounded-md cursor-pointer border-1 w-64 h-72
-        hover:bg-grey-bold  hover:border-purple-semi-bold hover:border-2
+        hover:bg-grey-bold  hover:border-purple-semi-bold transition-all duration-400
         ${props.className}`}>
         {props.trip ? commonCard() : newCard()}
-      </div>
+      </AnimatedDiv>
     </div>
   )
 }

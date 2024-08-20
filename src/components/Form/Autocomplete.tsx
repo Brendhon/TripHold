@@ -27,6 +27,7 @@ export function Autocomplete(props: CAutocompleteProps) {
       placeholder={t(props?.placeholder)}
       errorMessage={tError(props?.errorMessage || 'invalidField')}
       startContent={props?.startContent}
+      isClearable={props?.isClearable}
     >
       {props!.options!.map((option) => (
         <AutocompleteItem key={option.key}>{option.name}</AutocompleteItem>

@@ -1,11 +1,12 @@
 "use client";
 
 import { StepsStructureProps } from "@app/models";
-import { StepProgressBar } from "components";
+import { AnimatedDiv } from "components/Common";
+import { AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { cloneElement, useState } from "react";
 import { ActionsSection } from "./ActionsSection";
-import { AnimatePresence, motion } from "framer-motion"
+import { StepProgressBar } from "./StepProgressBar";
 
 export default function StepsStructure(props: StepsStructureProps) {
   // State
@@ -74,21 +75,11 @@ export default function StepsStructure(props: StepsStructureProps) {
 
       {/* Container for steps */}
       <div className="relative flex flex-col gap-6 bg-blue-regular p-5 rounded-md">
+        {/* Steps */}
         <AnimatePresence mode="wait">
-          {children.map((child, index) => (
-            currentStep === index + 1 && (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
-              >
-                {child}
-              </motion.div>
-            )
-          ))}
+          {children.map((child, index) => currentStep === index + 1 && <AnimatedDiv key={index}> {child} </AnimatedDiv>)}
         </AnimatePresence>
+
         {/* Actions */}
         <ActionsSection
           back={handleBackStep}

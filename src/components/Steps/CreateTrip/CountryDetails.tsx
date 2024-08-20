@@ -1,6 +1,8 @@
 "use client";
 
 import { getIntlName } from '@utils/common';
+import { AnimatedDiv } from 'components/Common';
+import { AnimatePresence } from 'framer-motion';
 import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { ReactNode } from 'react';
@@ -39,8 +41,9 @@ export function CountryDetails(props: { country?: Country }) {
   const countryName = getIntlName(props.country, locale);
 
   // Render
-  return (props.country &&
-    <div className='flex flex-col md:flex-row gap-6 border-1 my-4 border-blue-light rounded-sm p-4 justify-between'>
+  return (
+    props.country &&
+    <AnimatedDiv className='flex flex-col md:flex-row gap-6 border-1 my-4 border-blue-light rounded-sm p-4 justify-between'>
 
       <div className='flex flex-col gap-4 justify-start items-center'>
         <h3 className='text-xl font-semibold'>{countryName}</h3>
@@ -65,6 +68,6 @@ export function CountryDetails(props: { country?: Country }) {
         <Info data={props.country.capital} icon={<RiMapPin2Fill size={20} />} />
         <Info data={getCarSide(props.country.carSide)} icon={<FaCar size={20} />} />
       </div>
-    </div>
-  )
+    </AnimatedDiv>
+  );
 }
