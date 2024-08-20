@@ -19,7 +19,13 @@ interface Props {
 export function AvatarCropper(props: Props) {
   // State
   const [hover, setHover] = useState(false);
-  const [crop, setCrop] = useState<Crop>();
+  const [crop, setCrop] = useState<Crop>({
+    unit: 'px',
+    width: 100,
+    height: 100,
+    x: 0,
+    y: 0,
+  });
   const [image, setImage] = useState<string>();
   const [avatar, setAvatar] = useState<string>(useUserAvatar());
   const [completedCrop, setCompletedCrop] = useState<PixelCrop>();
