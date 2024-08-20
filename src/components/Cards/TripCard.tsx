@@ -53,7 +53,7 @@ export function TripCard(props: TripCardProps) {
     <div {...props} className="flex justify-center text-center">
       <AnimatedDiv className={`flex flex-col items-center justify-center text-center  
         gap-2 px-4 py-2 rounded-md cursor-pointer border-1 w-64 h-72
-        hover:bg-grey-bold  hover:border-purple-semi-bold transition-all duration-400
+        hover:bg-grey-bold  hover:border-purple-semi-bold transition-all duration-300 hover:scale-105
         ${props.className}`}>
         {props.trip ? commonCard() : newCard()}
       </AnimatedDiv>
