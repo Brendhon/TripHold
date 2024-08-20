@@ -1,6 +1,7 @@
 "use client";
 
-import { useTranslations } from 'next-intl';
+import { getIntlName } from '@utils/common';
+import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { ReactNode } from 'react';
 import { FaCar } from 'react-icons/fa';
@@ -21,6 +22,9 @@ export function CountryDetails(props: { country?: Country }) {
   // Translations
   const t = useTranslations('Country');
 
+  // Locale
+  const locale = useLocale();
+
   // Format population
   const formatPopulation = (population: number) => {
     if (population > 1000000) return `${(population / 1000000).toFixed(1)}M`;
@@ -31,18 +35,27 @@ export function CountryDetails(props: { country?: Country }) {
   // Get car side description
   const getCarSide = (carSide: Side) => t(`carSide.${carSide}`);
 
+  // Get country name
+  const countryName = getIntlName(props.country, locale);
+
   // Render
   return (props.country &&
-    <div className='flex flex-col md:flex-row gap-6 border-1 my-4 border-blue-light rounded-sm p-4 justify-between items-center'>
-      <Image
-        alt='Country flag'
-        src={props.country.flag!}
-        className='rounded-md'
-        priority
-        width="0"
-        height="0"
-        style={{ width: "auto", height: "120px" }}
-      />
+    <div className='flex flex-col md:flex-row gap-6 border-1 my-4 border-blue-light rounded-sm p-4 justify-between'>
+
+      <div className='flex flex-col gap-4 justify-start items-center'>
+        <h3 className='text-xl font-semibold'>{countryName}</h3>
+        <div>
+          <Image
+            alt='Country flag'
+            src={props.country.flag!}
+            className='rounded-md'
+            priority
+            width="0"
+            height="0"
+            style={{ width: "auto", height: "120px" }}
+          />
+        </div>
+      </div>
 
       <div className='flex flex-col gap-3'>
         <Info data={formatPopulation(props.country.population)} icon={<MdPeopleAlt size={20} />} />

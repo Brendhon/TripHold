@@ -8,6 +8,7 @@ import DefaultDatePicker, { CalendarContainer } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { FaCalendarAlt } from "react-icons/fa";
 import { Input } from "./Input";
+import { AnimatePresence, motion } from "framer-motion"
 
 const MyContainer = ({ className, children }: { className: string, children: React.ReactNode }) => {
   return (
@@ -52,21 +53,28 @@ export function DatePicker(props: CDatePickerProps) {
         startContent={<FaCalendarAlt onClick={handleOpen} className="cursor-pointer" />}
         {...props.inputProps}
       />
-      {open && <div className="absolute top-12 left-0 z-10">
-        <DefaultDatePicker
-          inline
-          disabled={props.disabled}
-          onChange={(date: any) => handleChange(date)}
-          locale={locale}
-          onClickOutside={() => setOpen(false)}
-          calendarClassName="date-picker-calendar"
-          calendarContainer={MyContainer}
-          selected={props.date}
-          icon={<FaCalendarAlt />}
-          dateFormat={getDateFormat(locale)}
-          {...props.datePickerProps}
-        />
-      </div>}
+      <AnimatePresence mode="wait">
+        {open && <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          className="absolute top-12 left-0 z-10">
+          <DefaultDatePicker
+            inline
+            disabled={props.disabled}
+            onChange={(date: any) => handleChange(date)}
+            locale={locale}
+            onClickOutside={() => setOpen(false)}
+            calendarClassName="date-picker-calendar"
+            calendarContainer={MyContainer}
+            selected={props.date}
+            icon={<FaCalendarAlt />}
+            dateFormat={getDateFormat(locale)}
+            {...props.datePickerProps}
+          />
+        </motion.div>}
+      </AnimatePresence>
     </div>
   )
 }

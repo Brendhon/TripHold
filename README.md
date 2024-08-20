@@ -20,6 +20,7 @@ As seguintes tecnologias foram utilizadas na construção do projeto:
 - **[Firestore](https://firebase.google.com/docs/firestore)**
 - **[NextAuth](https://next-auth.js.org/)**
 - **[NextUI](https://nextui.org/)**
+- **[Framer Motion](https://www.framer.com/motion/)**
 
 > Veja o arquivo  **[package.json](https://github.com/Brendhon/TripHold/blob/main/package.json)**
 

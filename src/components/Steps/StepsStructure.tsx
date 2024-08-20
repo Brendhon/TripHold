@@ -5,6 +5,7 @@ import { StepProgressBar } from "components";
 import { useRouter } from "next/navigation";
 import { cloneElement, useState } from "react";
 import { ActionsSection } from "./ActionsSection";
+import { AnimatePresence, motion } from "framer-motion"
 
 export default function StepsStructure(props: StepsStructureProps) {
   // State
@@ -71,10 +72,23 @@ export default function StepsStructure(props: StepsStructureProps) {
       {/* Break line */}
       <br />
 
-      <div className="flex flex-col gap-6 bg-blue-regular p-5 rounded-md">
-        {/* Children - Show firs child if current step is 1, show second child if current step is 2, and so on */}
-        {children.map((child, index) => <div key={index} className={currentStep === index + 1 ? '' : 'hidden'}> {child} </div>)}
-
+      {/* Container for steps */}
+      <div className="relative flex flex-col gap-6 bg-blue-regular p-5 rounded-md">
+        <AnimatePresence mode="wait">
+          {children.map((child, index) => (
+            currentStep === index + 1 && (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+              >
+                {child}
+              </motion.div>
+            )
+          ))}
+        </AnimatePresence>
         {/* Actions */}
         <ActionsSection
           back={handleBackStep}
@@ -83,7 +97,6 @@ export default function StepsStructure(props: StepsStructureProps) {
           isConfirmDisabled={isSubmitDisabled()}
         />
       </div>
-
     </main>
-  )
+  );
 }
