@@ -212,5 +212,16 @@
         "reset": "É necessário preencher todos os campos relacionados a senha para redefini-la"
       }
     }
+  },
+  "Email": {
+    "reset": {
+      "subject": "Redefinir senha",
+      "message": "Clique no botão abaixo para redefinir sua senha"
+    },
+    "welcome": {
+      "subject": "Bem-vindo ao TripHold",
+      "message": "Bem-vindo ao nosso aplicativo de viagens",
+      "button": "Começar"
+    }
   }
 }

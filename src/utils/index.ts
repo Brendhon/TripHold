@@ -7,3 +7,4 @@ export * from './dates';
 export * from './mocks';
 export * from './session';
 export * from './notifier';
+export * from './email';

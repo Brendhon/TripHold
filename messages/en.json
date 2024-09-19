@@ -211,5 +211,16 @@
         "reset": "All password-related fields must be filled in to reset it"
       }
     }
+  },
+  "Email": {
+    "resetPassword": {
+      "subject": "Reset password",
+      "message": "Click the button below to reset your password"
+    },
+    "welcome": {
+      "subject": "Welcome to TripHold",
+      "message": "Welcome to our travel app",
+      "button": "Get started"
+    }
   }
 }

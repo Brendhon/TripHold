@@ -21,6 +21,7 @@ As seguintes tecnologias foram utilizadas na construção do projeto:
 - **[NextAuth](https://next-auth.js.org/)**
 - **[NextUI](https://nextui.org/)**
 - **[Framer Motion](https://www.framer.com/motion/)**
+- **[React Email](https://www.npmjs.com/package/react-email)**
 
 > Veja o arquivo  **[package.json](https://github.com/Brendhon/TripHold/blob/main/package.json)**
 
@@ -104,6 +105,12 @@ ZIP_CODE_API_KEY={API_KEY}
 ```
 
 Além disso, o deploy do projeto foi feito utilizando o [Vercel](https://vercel.com/), então é necessário criar um projeto no Vercel e adicionar as variáveis de ambiente no projeto.
+
+Para habilitar o envio de e-mails, é necessário criar uma conta no [Resend](https://resend.com/) e adicionar a chave de acesso no arquivo .env na raiz do projeto:
+
+```
+RESEND_API_KEY={API_KEY}
+```
 
 ---
 

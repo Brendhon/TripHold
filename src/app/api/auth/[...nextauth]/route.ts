@@ -1,6 +1,6 @@
 import { User } from "@app/models";
 import { signInUser } from "lib/firebase/auth/users";
-import { createFirestoreUser, getFirestoreUser, updateFirestoreUser } from "lib/firebase/firestore/users";
+import { createFirestoreUser, getFirestoreUser } from "lib/firebase/firestore/users";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
