@@ -235,6 +235,16 @@
       "help": "Se precisar de ajuda, entre em contato com nosso suporte.",
       "signature": "Estamos aqui para ajudar em cada etapa da sua jornada com o TripHold.",
       "team": "— Equipe TripHold"
+    },
+    "invite": {
+      "subject": "Você foi convidado para uma viagem",
+      "message": "convidou você para participar da viagem",
+      "description": "Clique no botão abaixo para aceitar o convite e começar a organizar sua viagem com o TripHold.",
+      "button": "Aceitar Convite",
+      "help": "Se precisar de ajuda, entre em contato com nosso ",
+      "support": "suporte",
+      "signature": "Estamos aqui para ajudar em cada etapa da sua jornada com o TripHold.",
+      "team": "— Equipe TripHold"
     }
   }
 }

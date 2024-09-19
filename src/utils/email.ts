@@ -3,12 +3,13 @@ import { Resend } from "resend";
 import { LOCALES } from "./common";
 import TripHoldEmailConfirmation from "email-templates/confirm-email";
 import { NextResponse } from "next/server";
+import TripHoldInviteEmail from "email-templates/invite-email";
 
 export const EMAIL_FROM_NAME = "TripHold"
 export const EMAIL_FROM_ADDRESS = "delivered@resend.dev"
 export const EMAIL_FROM = `${EMAIL_FROM_NAME} <${EMAIL_FROM_ADDRESS}>`;
 
-type EmailSubject = 'welcome' | 'reset' | 'verify' | 'confirmation'
+type EmailSubject = 'welcome' | 'reset' | 'verify' | 'confirmation' | 'invite';
 
 // Initialize Resend
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -63,6 +64,8 @@ const getEmailReact = (type: EmailSubject, data: any, translations: any) => {
       return TripHoldWelcomeEmail({ ...data, translations });
     case 'confirmation':
       return TripHoldEmailConfirmation({ ...data, translations });
+    case 'invite':
+      return TripHoldInviteEmail({ ...data, translations });
     default:
       return null;
   }

@@ -234,6 +234,16 @@
       "help": "If you need assistance, please contact our support.",
       "signature": "We are here to help at every step of your journey with TripHold.",
       "team": "— TripHold Team"
+    },
+    "invite": {
+      "subject": "You have been invited to a trip",
+      "message": "has invited you to join the trip",
+      "description": "Click the button below to accept the invitation and start organizing your trip with TripHold.",
+      "button": "Accept Invitation",
+      "help": "If you need assistance, please contact our ",
+      "support": "support",
+      "signature": "We are here to help at every step of your journey with TripHold.",
+      "team": "— TripHold Team"
     }
   }
 }
