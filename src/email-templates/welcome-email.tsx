@@ -1,39 +1,70 @@
 import { EmailTemplateProps } from "@app/models";
 import {
   Body,
+  Button,
   Container,
   Head,
   Hr,
   Html,
+  Img,
+  Link,
   Preview,
+  Section,
   Tailwind,
-  Text
+  Text,
 } from "@react-email/components";
 
-interface WelcomeEmailProps extends EmailTemplateProps {
+interface TripHoldWelcomeEmailProps extends EmailTemplateProps {
   username?: string;
   userImage?: string;
   inviteLink?: string;
 }
 
-export const WelcomeEmail = ({ translations, username }: WelcomeEmailProps) => {
-  // Default values
-  const previewText = username || "Brendhon";
+const baseUrl = "https://trip-hold.vercel.app/";
+
+export const TripHoldWelcomeEmail = ({ translations, username }: TripHoldWelcomeEmailProps) => {
+  const previewText = translations["subject"] || "Bem-vindo ao TripHold!";
 
   return (
     <Html>
       <Head />
       <Preview>{previewText}</Preview>
       <Tailwind>
-        <Body className="bg-white my-auto mx-auto font-sans px-2">
-          <Container className="border border-solid border-[#eaeaea] rounded my-[40px] mx-auto p-[20px] max-w-[465px]">
-            <Text className="text-[#666666] text-[12px] leading-[24px] m-0">
-              {translations["subject"]}, {username}
-            </Text>
-            <Hr className="border border-solid border-[#eaeaea] my-[26px] mx-0 w-full m-0" />
-            <Text className="text-[#666666] text-[12px] leading-[24px] m-0">
-              {translations["message"]},
-            </Text>
+        <Body className="bg-[#f6f9fc] font-sans">
+          <Container className="bg-[#2C3E50] m-2 mx-auto p-5 mb-16 rounded-md">
+            <div className="bg-[#2C3E50] rounded-md p-4">
+              <Section className="px-12">
+                <Img
+                  src={`${baseUrl}/logo.svg`}
+                  width="200"
+                  height="50"
+                  alt="TripHold"
+                />
+                <Hr className="border border-solid border-[#e6ebf1] my-5 w-full" />
+                <Text className="text-[#E5E8E8] text-[16px] leading-[24px] text-left">
+                  {translations["message"]}, <strong>{username}</strong>!
+                </Text>
+                <Text className="text-[#E5E8E8] text-[16px] leading-[24px] text-left">
+                  {translations["description"]}
+                </Text>
+                <Button className="bg-[#8E44AD] rounded text-white text-[16px] font-bold text-center block w-full py-2 my-5" href={baseUrl}>
+                  {translations["button"]}
+                </Button>
+                <Hr className="border border-solid border-[#e6ebf1] my-5 w-full" />
+                <Text className="text-[#E5E8E8] text-[16px] leading-[24px] text-left">
+                  {translations["help"]}
+                  <Link className="text-[#8E44AD]" href="https://triphold.com/support">
+                    {translations["support"]}
+                  </Link>
+                </Text>
+                <Text className="text-[#E5E8E8] text-[16px] leading-[24px] text-left">
+                  {translations["signature"]}
+                </Text>
+                <Text className="text-[#E5E8E8] text-[16px] leading-[24px] text-left">
+                  {translations["team"]}
+                </Text>
+              </Section>
+            </div>
           </Container>
         </Body>
       </Tailwind>
@@ -41,4 +72,4 @@ export const WelcomeEmail = ({ translations, username }: WelcomeEmailProps) => {
   );
 };
 
-export default WelcomeEmail;
+export default TripHoldWelcomeEmail;

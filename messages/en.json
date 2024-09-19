@@ -220,7 +220,11 @@
     "welcome": {
       "subject": "Welcome to TripHold",
       "message": "Welcome to our travel app",
-      "button": "Get started"
+      "description": "With TripHold, you can add, edit, and delete your trips and activities easily. Everything is organized in a timeline to make your planning easier.",
+      "help": "If you need assistance, please contact our support.",
+      "signature": "We are here to help at every step of your journey! Have a great trip and enjoy your adventures with TripHold.",
+      "button": "Access your dashboard on TripHold",
+      "team": "— TripHold Team"
     }
   }
 }

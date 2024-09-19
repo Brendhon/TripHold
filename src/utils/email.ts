@@ -1,4 +1,4 @@
-import WelcomeEmail from "email-templates/welcome-email";
+import { TripHoldWelcomeEmail } from "email-templates/welcome-email";
 import { Resend } from "resend";
 
 export const EMAIL_FROM_NAME = "TripHold"
@@ -47,7 +47,7 @@ export const sendEmail = async (type: EmailSubject, to: string[], data: any, loc
 const getEmailReact = (type: EmailSubject, data: any, translations: any) => {
   switch (type) {
     case 'welcome':
-      return WelcomeEmail({ ...data, translations });
+      return TripHoldWelcomeEmail({ ...data, translations });
     default:
       return null;
   }

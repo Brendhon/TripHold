@@ -221,7 +221,11 @@
     "welcome": {
       "subject": "Bem-vindo ao TripHold",
       "message": "Bem-vindo ao nosso aplicativo de viagens",
-      "button": "Começar"
+      "description": "Com o TripHold, você pode adicionar, editar e excluir suas viagens e atividades de forma simples. Tudo é organizado em um cronograma para facilitar seu planejamento.",
+      "help": "Se precisar de ajuda, entre em contato com nosso suporte.",
+      "signature": "Estamos aqui para ajudar em cada etapa da sua jornada! Boa viagem e aproveite suas aventuras com o TripHold.",
+      "button": "Acesse seu painel no TripHold",
+      "team": "— Equipe TripHold"
     }
   }
 }
