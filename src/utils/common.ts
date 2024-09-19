@@ -11,9 +11,11 @@ export const LOCALES = ["pt", "en"];
 
 export const PUBLIC_PAGES = ["/login"];
 
+export const DEFAULT_HOST = "https://trip-hold.vercel.app";
+
 export const ALLOWED_ORIGINS = [
   "http://localhost:3000",
-  "https://trip-hold.vercel.app",
+  DEFAULT_HOST,
 ];
 
 export const BUTTON_COLORS = {

@@ -15,16 +15,19 @@ import {
 } from "@react-email/components";
 import { DEFAULT_HOST } from "@utils/common";
 
-interface TripHoldWelcomeEmailProps extends EmailTemplateProps {
+interface TripHoldEmailConfirmationProps extends EmailTemplateProps {
   username?: string;
-  userImage?: string;
-  inviteLink?: string;
+  confirmationLink: string;
 }
 
 const baseUrl = DEFAULT_HOST;
 
-export const TripHoldWelcomeEmail = ({ translations, username }: TripHoldWelcomeEmailProps) => {
-  const previewText = translations["subject"] || "Bem-vindo ao TripHold!";
+export const TripHoldEmailConfirmation = ({
+  translations,
+  username,
+  confirmationLink,
+}: TripHoldEmailConfirmationProps) => {
+  const previewText = translations["subject"] || "Confirme seu email para o TripHold!";
 
   return (
     <Html>
@@ -46,9 +49,12 @@ export const TripHoldWelcomeEmail = ({ translations, username }: TripHoldWelcome
                   {translations["message"]}, <strong>{username}</strong>!
                 </Text>
                 <Text className="text-[#E5E8E8] text-[16px] leading-[24px] text-left">
-                  {translations["description"]}
+                  {translations["instructions"]}
                 </Text>
-                <Button className="bg-[#8E44AD] rounded text-white text-[16px] font-bold text-center block w-full py-2 my-5" href={baseUrl}>
+                <Button
+                  className="bg-[#8E44AD] rounded text-white text-[16px] font-bold text-center block w-full py-2 my-5"
+                  href={confirmationLink}
+                >
                   {translations["button"]}
                 </Button>
                 <Hr className="border border-solid border-[#e6ebf1] my-5 w-full" />
@@ -73,4 +79,4 @@ export const TripHoldWelcomeEmail = ({ translations, username }: TripHoldWelcome
   );
 };
 
-export default TripHoldWelcomeEmail;
+export default TripHoldEmailConfirmation;

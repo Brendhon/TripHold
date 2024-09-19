@@ -225,6 +225,15 @@
       "signature": "We are here to help at every step of your journey! Have a great trip and enjoy your adventures with TripHold.",
       "button": "Access your dashboard on TripHold",
       "team": "— TripHold Team"
+    },
+    "confirmation": {
+      "subject": "Confirm your email",
+      "message": "Hello",
+      "instructions": "Please click the button below to confirm your email.",
+      "button": "Confirm email",
+      "help": "If you need assistance, please contact our support.",
+      "signature": "We are here to help at every step of your journey with TripHold.",
+      "team": "— TripHold Team"
     }
   }
 }

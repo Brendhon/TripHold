@@ -226,6 +226,15 @@
       "signature": "Estamos aqui para ajudar em cada etapa da sua jornada! Boa viagem e aproveite suas aventuras com o TripHold.",
       "button": "Acesse seu painel no TripHold",
       "team": "— Equipe TripHold"
+    },
+    "confirmation": {
+      "subject": "Confirme seu email",
+      "message": "Olá",
+      "instructions": "Por favor, clique no botão abaixo para confirmar seu email.",
+      "button": "Confirmar email",
+      "help": "Se precisar de ajuda, entre em contato com nosso suporte.",
+      "signature": "Estamos aqui para ajudar em cada etapa da sua jornada com o TripHold.",
+      "team": "— Equipe TripHold"
     }
   }
 }
