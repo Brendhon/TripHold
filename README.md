@@ -106,11 +106,14 @@ ZIP_CODE_API_KEY={API_KEY}
 
 Além disso, o deploy do projeto foi feito utilizando o [Vercel](https://vercel.com/), então é necessário criar um projeto no Vercel e adicionar as variáveis de ambiente no projeto.
 
-Para habilitar o envio de e-mails, é necessário criar uma conta no [Resend](https://resend.com/) e adicionar a chave de acesso no arquivo .env na raiz do projeto:
+Para habilitar o envio de e-mails, é necessário criar uma conta no [Resend](https://resend.com/) e adicionar a chave de acesso no arquivo .env na raiz do projeto, além disso, é necessário adicionar o e-mail de envio no arquivo .env na raiz do projeto:
 
 ```
 RESEND_API_KEY={API_KEY}
+RESEND_FROM_EMAIL={EMAIL}
 ```
+
+Caso não adicione um e-mail de envio, o e-mail padrão será o e-mail de suporte do Resend, ou seja, não será possível enviar emails para os usuários.
 
 ---
 

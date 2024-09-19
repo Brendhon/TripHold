@@ -7,7 +7,7 @@ import TripHoldInviteEmail from "email-templates/invite-email";
 import TripHoldResetPasswordEmail from "email-templates/reset-password";
 
 export const EMAIL_FROM_NAME = "TripHold"
-export const EMAIL_FROM_ADDRESS = "delivered@resend.dev"
+export const EMAIL_FROM_ADDRESS = process.env.RESEND_FROM_EMAIL ?? "delivered@resend.dev"
 export const EMAIL_FROM = `${EMAIL_FROM_NAME} <${EMAIL_FROM_ADDRESS}>`;
 
 type EmailSubject = 'welcome' | 'reset' | 'verify' | 'confirmation' | 'invite';

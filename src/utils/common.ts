@@ -1,5 +1,3 @@
-import { Session } from "next-auth";
-
 export const SOCIAL_MEDIAS = {
   github: "https://github.com/Brendhon",
   linkedin: "https://www.linkedin.com/in/brendhon-moreira/"
@@ -13,10 +11,7 @@ export const PUBLIC_PAGES = ["/login"];
 
 export const DEFAULT_HOST = "https://trip-hold.vercel.app";
 
-export const ALLOWED_ORIGINS = [
-  "http://localhost:3000",
-  DEFAULT_HOST,
-];
+export const ALLOWED_ORIGINS = ["http://localhost:3000", DEFAULT_HOST];
 
 export const BUTTON_COLORS = {
   "decline": {
@@ -41,7 +36,7 @@ export const BUTTON_COLORS = {
  */
 export const getIntlName = (country: any, locale: string): string => {
   if (!country) return "";
-  
+
   switch (locale) {
     case "pt":
       return country.namesIntl.pt;
