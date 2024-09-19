@@ -244,6 +244,15 @@
       "support": "support",
       "signature": "We are here to help at every step of your journey with TripHold.",
       "team": "— TripHold Team"
+    },
+    "reset": {
+      "subject": "Reset password on TripHold",
+      "message": "We have received a request to reset your password on TripHold. Click the button below to reset your password.",
+      "button": "Reset password",
+      "help": "If you did not request a password reset, please contact our ",
+      "support": "support",
+      "signature": "We are here to help at every step of your journey with TripHold.",
+      "team": "— TripHold Team"
     }
   }
 }

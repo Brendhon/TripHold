@@ -214,10 +214,6 @@
     }
   },
   "Email": {
-    "reset": {
-      "subject": "Redefinir senha",
-      "message": "Clique no botão abaixo para redefinir sua senha"
-    },
     "welcome": {
       "subject": "Bem-vindo ao TripHold",
       "message": "Bem-vindo ao nosso aplicativo de viagens",
@@ -242,6 +238,15 @@
       "description": "Clique no botão abaixo para aceitar o convite e começar a organizar sua viagem com o TripHold.",
       "button": "Aceitar Convite",
       "help": "Se precisar de ajuda, entre em contato com nosso ",
+      "support": "suporte",
+      "signature": "Estamos aqui para ajudar em cada etapa da sua jornada com o TripHold.",
+      "team": "— Equipe TripHold"
+    },
+    "reset": {
+      "subject": "Redefinir senha no TripHold",
+      "message": "Recebemos uma solicitação para redefinir sua senha no TripHold. Clique no botão abaixo para redefinir sua senha.",
+      "button": "Redefinir senha",
+      "help": "Se você não solicitou a redefinição de senha, entre em contato com nosso ",
       "support": "suporte",
       "signature": "Estamos aqui para ajudar em cada etapa da sua jornada com o TripHold.",
       "team": "— Equipe TripHold"

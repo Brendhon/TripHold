@@ -4,6 +4,7 @@ import { LOCALES } from "./common";
 import TripHoldEmailConfirmation from "email-templates/confirm-email";
 import { NextResponse } from "next/server";
 import TripHoldInviteEmail from "email-templates/invite-email";
+import TripHoldResetPasswordEmail from "email-templates/reset-password";
 
 export const EMAIL_FROM_NAME = "TripHold"
 export const EMAIL_FROM_ADDRESS = "delivered@resend.dev"
@@ -66,6 +67,8 @@ const getEmailReact = (type: EmailSubject, data: any, translations: any) => {
       return TripHoldEmailConfirmation({ ...data, translations });
     case 'invite':
       return TripHoldInviteEmail({ ...data, translations });
+    case 'reset':
+      return TripHoldResetPasswordEmail({ ...data, translations });
     default:
       return null;
   }
