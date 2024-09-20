@@ -8,7 +8,9 @@ export async function POST(req: NextRequest) {
     // Get origin from the request
     const requestOrigin = req.nextUrl.origin;
 
-    console.log('requestOrigin', requestOrigin);
+    console.log('nextUrl', req.nextUrl);
+
+    console.log('req', req);
 
     console.log('DEFAULT_HOST', DEFAULT_HOST);
 
