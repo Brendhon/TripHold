@@ -57,7 +57,8 @@
       "google": "Usuário já cadastrado com o Google, faça login com o Google"
     },
     "loginSuccess": "Login realizado com sucesso",
-    "loginError": "Erro ao realizar login"
+    "loginError": "Erro ao realizar login",
+    "signUpFailed": "Erro ao realizar cadastro"
   },
   "EmailConfirmed": {
     "title": "Email confirmado",

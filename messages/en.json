@@ -57,7 +57,8 @@
       "google": "User already registered with Google, please login with Google"
     },
     "loginSuccess": "Login successful",
-    "loginError": "Error while logging in"
+    "loginError": "Error while logging in",
+    "signUpFailed": "Error while signing up"
   },
   "EmailConfirmed": {
     "title": "Email confirmed",

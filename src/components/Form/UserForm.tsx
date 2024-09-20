@@ -22,6 +22,7 @@ import { showErrorNotifier, showSuccessNotifier } from "@utils/notifier";
 import { DeleteButton } from "components/Common/DeleteButton";
 import { signOut } from "next-auth/react";
 import { deleteUserAvatar } from "lib/firebase/storage/users";
+import { sendEmailVerification } from "lib/email/user";
 
 /**
  * User Form
@@ -161,6 +162,9 @@ export function UserForm(props: RegisterFormProps) {
         await props.action();
         return toast.error(tPage(`userExists.${userExists.provider}`));
       }
+
+      // Send email verification
+      await sendEmailVerification(form.name!, form.email!, locale);
 
       // Register user in Firebase Authentication
       const user = await createUserSignUp(form.email!, form.password!);
