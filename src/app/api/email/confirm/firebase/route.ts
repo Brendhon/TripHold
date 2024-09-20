@@ -8,6 +8,12 @@ export async function POST(req: NextRequest) {
     // Get origin from the request
     const requestOrigin = req.nextUrl.origin;
 
+    console.log('requestOrigin', requestOrigin);
+
+    console.log('DEFAULT_HOST', DEFAULT_HOST);
+
+    console.log('process.env.NODE_ENV', process.env.NODE_ENV);
+
     // Check if if allowed origin 
     if (process.env.NODE_ENV === 'production' && !DEFAULT_HOST.includes(requestOrigin))
       throw { error: 'Invalid origin', status: 400 };
