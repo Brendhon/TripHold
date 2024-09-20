@@ -5,6 +5,7 @@ import { verifyToken } from "@utils/jwt";
 import { AnimatePresence, motion } from 'framer-motion';
 import { confirmUserEmail } from "lib/firebase/auth/users";
 import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from 'react';
 import { IoCheckmarkCircle, IoCloseCircle } from "react-icons/io5";
 
@@ -16,6 +17,9 @@ export default function EmailConfirmation() {
 
   // Translations
   const tPage = useTranslations("EmailConfirmed");
+
+  // Router
+  const router = useRouter();
 
   // Validate token
   useEffect(() => validateToken(), []);
@@ -56,7 +60,7 @@ export default function EmailConfirmation() {
     if (!id) return;
 
     // Send to firebase function to confirm email
-    confirmUserEmail({id})
+    confirmUserEmail({ id })
       .then(() => setLoading(false))
       .catch((error) => handleError(error));
   }
@@ -95,6 +99,9 @@ export default function EmailConfirmation() {
   // Can show footer
   const canShowFooter = () => !loading && !error;
 
+  // Redirect to login
+  const redirectToLogin = () => router.push("/login");
+
   // Render
   return (
     <Card className="gap-4 max-w-96 p-4">
@@ -129,7 +136,7 @@ export default function EmailConfirmation() {
       </CardBody>
       {canShowFooter() &&
         <CardFooter className="flex gap-3 flex-col">
-          <Button color="primary" href="/login"> {tPage("login")} </Button>
+          <Button color="primary" onClick={redirectToLogin}> {tPage("login")} </Button>
         </CardFooter>
       }
     </Card >
