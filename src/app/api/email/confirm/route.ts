@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Send the email
-    const data = await sendEmail('confirmation', to, { username, confirmationLink }, locate);
+    const data = await sendEmail('confirm', to, { username, confirmationLink }, locate);
 
     // Return the response
     return NextResponse.json({ data });

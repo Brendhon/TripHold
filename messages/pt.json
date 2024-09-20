@@ -223,7 +223,7 @@
       "button": "Acesse seu painel no TripHold",
       "team": "— Equipe TripHold"
     },
-    "confirmation": {
+    "confirm": {
       "subject": "Confirme seu email",
       "message": "Olá",
       "instructions": "Por favor, clique no botão abaixo para confirmar seu email.",

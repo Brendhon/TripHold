@@ -5,12 +5,11 @@ import TripHoldEmailConfirmation from "email-templates/confirm-email";
 import { NextResponse } from "next/server";
 import TripHoldInviteEmail from "email-templates/invite-email";
 import TripHoldResetPasswordEmail from "email-templates/reset-password";
+import { EmailType } from "@app/models";
 
 export const EMAIL_FROM_NAME = "TripHold"
 export const EMAIL_FROM_ADDRESS = process.env.RESEND_FROM_EMAIL ?? "delivered@resend.dev"
 export const EMAIL_FROM = `${EMAIL_FROM_NAME} <${EMAIL_FROM_ADDRESS}>`;
-
-type EmailSubject = 'welcome' | 'reset' | 'verify' | 'confirmation' | 'invite';
 
 // Initialize Resend
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -27,12 +26,12 @@ export const handleEmailError = (error: any) => {
 
 /**
  * Send an email
- * @param {EmailSubject} type The email type
+ * @param {EmailType} type The email type
  * @param {string[]} to The email recipients
  * @param {any} data The email data
  * @param {string} locate The email locale
  */
-export const sendEmail = async (type: EmailSubject, to: string[], data: any, locate: string) => {
+export const sendEmail = async (type: EmailType, to: string[], data: any, locate: string) => {
   // Check if the username and locate are valid
   if (!LOCALES.includes(locate)) {
     throw { error: 'Invalid locale', status: 400 };
@@ -55,15 +54,15 @@ export const sendEmail = async (type: EmailSubject, to: string[], data: any, loc
 
 /**
  * Get the email react component
- * @param {EmailSubject} type The email type
+ * @param {EmailType} type The email type
  * @param {any} data The email data
  * @param {any} translations The email translations
  */
-const getEmailReact = (type: EmailSubject, data: any, translations: any) => {
+const getEmailReact = (type: EmailType, data: any, translations: any) => {
   switch (type) {
     case 'welcome':
       return TripHoldWelcomeEmail({ ...data, translations });
-    case 'confirmation':
+    case 'confirm':
       return TripHoldEmailConfirmation({ ...data, translations });
     case 'invite':
       return TripHoldInviteEmail({ ...data, translations });

@@ -213,10 +213,6 @@
     }
   },
   "Email": {
-    "resetPassword": {
-      "subject": "Reset password",
-      "message": "Click the button below to reset your password"
-    },
     "welcome": {
       "subject": "Welcome to TripHold",
       "message": "Welcome to our travel app",
@@ -226,7 +222,7 @@
       "button": "Access your dashboard on TripHold",
       "team": "— TripHold Team"
     },
-    "confirmation": {
+    "confirm": {
       "subject": "Confirm your email",
       "message": "Hello",
       "instructions": "Please click the button below to confirm your email.",

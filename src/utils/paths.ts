@@ -1,3 +1,5 @@
+import { EmailType } from "@app/models";
+
 /**
  * Get user path
  * @param {string} email User email
@@ -68,7 +70,16 @@ export const getZipCodeBaseAPIPath = (code: string) => {
  * @returns Countries path
  */
 export const getCountriesPath = () => {
-  return  `${window.location.origin}/api/countries`;
+  return `${window.location.origin}/api/countries`;
+}
+
+/**
+ * Get email path
+ * @param {string} endpoint Endpoint
+ * @returns Email path
+ */
+export const getEmailPath = (endpoint: EmailType) => {
+  return `${window.location.origin}/api/email/${endpoint}`;
 }
 
 /**
@@ -77,7 +88,7 @@ export const getCountriesPath = () => {
  * @returns States path
  */
 export const getStatesPath = (country?: string) => {
-  return `${window.location.origin}/api/countries/states${country ? `?country=${country}` : ""}`;	
+  return `${window.location.origin}/api/countries/states${country ? `?country=${country}` : ""}`;
 }
 
 /**
