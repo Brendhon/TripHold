@@ -59,6 +59,15 @@
     "loginSuccess": "Login realizado com sucesso",
     "loginError": "Erro ao realizar login"
   },
+  "EmailConfirmed": {
+    "title": "Email confirmado",
+    "inProgress": "Confirmando email",
+    "error": "Erro ao confirmar email",
+    "message": "Seu email foi confirmado com sucesso, agora você pode criar viagens e convidar amigos para participar.",
+    "inProgressMessage": "Estamos confirmando seu email, por favor aguarde...",
+    "errorMessage": "Erro ao confirmar seu email, tente novamente mais tarde.",
+    "login": "Clique aqui para fazer login"
+  },
   "Button": {
     "send": "Enviar",
     "cancel": "Cancelar",

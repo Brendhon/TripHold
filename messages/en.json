@@ -59,6 +59,15 @@
     "loginSuccess": "Login successful",
     "loginError": "Error while logging in"
   },
+  "EmailConfirmed": {
+    "title": "Email confirmed",
+    "inProgress": "Confirming email",
+    "error": "Error confirming email",
+    "message": "Your email has been successfully confirmed, now you can create trips and invite friends to join.",
+    "inProgressMessage": "We are confirming your email, please wait...",
+    "errorMessage": "Error confirming your email, please try again later.",
+    "login": "Click here to login"
+  },
   "Button": {
     "send": "Send",
     "cancel": "Cancel",
