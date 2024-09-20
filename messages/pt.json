@@ -115,6 +115,9 @@
       "notMatch": "Senhas não conferem",
       "pattern": "Senha deve ter no mínimo 6 caracteres"
     },
+    "currentPassword": {
+      "required": "Senha atual é obrigatória"
+    },
     "confirmPassword": {
       "required": "Confirmação de senha é obrigatória",
       "notMatch": "Senhas não conferem"

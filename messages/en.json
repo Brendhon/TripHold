@@ -115,6 +115,9 @@
       "notMatch": "Passwords do not match",
       "pattern": "Password must be at least 6 characters long"
     },
+    "currentPassword": {
+      "required": "Current password is required"
+    },
     "confirmPassword": {
       "required": "Password confirmation is required",
       "notMatch": "Passwords do not match"

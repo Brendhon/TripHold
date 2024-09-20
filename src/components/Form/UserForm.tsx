@@ -58,9 +58,8 @@ export function UserForm(props: RegisterFormProps) {
   const { validations } = createValidator<UserFormModel>([
     { key: 'name', required: true },
     { key: 'email', required: true, pattern: emailRegex },
-    { key: 'currentPassword', required: !!user && isEmail, pattern: passwordRegex },
-    { key: 'password', required: !user, pattern: passwordRegex },
-    { key: 'confirmPassword', required: !user, equal: 'password' },
+    { key: 'password', required: false, pattern: passwordRegex },
+    { key: 'confirmPassword', required: false, equal: 'password' },
     { key: 'country', required: true },
     { key: 'zipCode', required: true },
     { key: 'state', required: true },
@@ -198,10 +197,7 @@ export function UserForm(props: RegisterFormProps) {
   const handleUpdate = async () => {
     try {
       // Check if password is filled and update user password
-      if (form.password && form.currentPassword)
-        await updateUserPassword(form.currentPassword, form.password);
-      else if (form.password || form.currentPassword) // Show error message if password is not filled
-        return showErrorNotifier(tToast, 'password.reset');
+      if (form.password) await updateUserPassword(form.email!, form.password);
 
       // Update user in Firestore
       await updateFirestoreUser({
@@ -285,15 +281,6 @@ export function UserForm(props: RegisterFormProps) {
 
       {
         isEmail && <div className="form-row">
-          <Input
-            name="currentPassword"
-            type="password"
-            hidden={!user}
-            autoComplete="none"
-            placeholder="password"
-            isInvalid={testRegex(passwordRegex, form.currentPassword!)}
-            errorMessage="password.pattern"
-            startContent={<MdLock />} />
           <Input
             name="password"
             type="password"
