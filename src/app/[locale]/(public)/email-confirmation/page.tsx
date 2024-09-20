@@ -1,31 +1,72 @@
 "use client";
 
 import { Button, Card, CardBody, CardFooter, CardHeader, Divider } from "@nextui-org/react";
+import { verifyToken } from "@utils/jwt";
+import { AnimatePresence, motion } from 'framer-motion';
+import { confirmUserEmail } from "lib/firebase/auth/users";
 import { useTranslations } from "next-intl";
-import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { IoCheckmarkCircle, IoCloseCircle } from "react-icons/io5";
-import jwt from "jsonwebtoken";
 
 export default function EmailConfirmation() {
+  // States
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const [token, setToken] = useState<string | null>(null);
+  const [id, setId] = useState<string | null>(null);
 
   // Translations
   const tPage = useTranslations("EmailConfirmed");
 
-  useEffect(() => {
-    // Get token from URL query
-    const query = new URLSearchParams(window.location.search);
-    setToken(query.get("token"));
+  // Validate token
+  useEffect(() => validateToken(), []);
 
-    console.log(token);
+  // Handle email confirmation
+  useEffect(() => handleEmailConfirmation(), [id]);
 
-    // Simula o tempo de confirmação do email
-    const timer = setTimeout(() => setLoading(false), 3000); // 3 segundos para a animação
-    return () => clearTimeout(timer);
-  }, []);
+  // Validate token
+  const validateToken = () => {
+    try {
+      // Get token from URL query
+      const query = new URL(window.location.href);
+      const token = query.searchParams.get("token");
+
+      // Check if token exists
+      if (!token) throw new Error("Token not found");
+
+      // Decode token
+      const decoded: any = verifyToken(token);
+
+      switch (true) {
+        case !decoded:
+        case decoded.exp < Date.now() / 1000:
+        case !decoded.id:
+          throw new Error(`Invalid token: ${JSON.stringify(decoded)}`);
+        default:
+          setId(decoded.id);
+          break;
+      }
+    } catch (error) {
+      handleError(error);
+    }
+  }
+
+  // Handle email confirmation
+  const handleEmailConfirmation = () => {
+    // Check if email exists
+    if (!id) return;
+
+    // Send to firebase function to confirm email
+    confirmUserEmail({id})
+      .then(() => setLoading(false))
+      .catch((error) => handleError(error));
+  }
+
+  // Handle error
+  const handleError = (error: any) => {
+    console.error(error);
+    setError(true);
+    setLoading(false);
+  }
 
   // Get title
   const getTitle = () => {

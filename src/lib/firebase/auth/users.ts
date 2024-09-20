@@ -1,10 +1,12 @@
+import { User } from "@app/models";
+import axios from "axios";
 import {
   createUserWithEmailAndPassword,
+  deleteUser,
   EmailAuthProvider,
   reauthenticateWithCredential,
   signInWithEmailAndPassword,
   updatePassword,
-  deleteUser,
 } from "firebase/auth";
 import { auth } from "../config";
 
@@ -83,4 +85,23 @@ export const deleteUserAccount = async (password: string) => {
     console.error("Error deleting user account:", error);
     throw error; // Re-throw the error to handle it in your UI or further logic
   }
+}
+
+/**
+ * Confirm user email
+ * @param {User} user User data
+ * @returns User data after email confirmation
+ */
+export const confirmUserEmail = async (user: Partial<User>) => {
+  // Get user id
+  const uid = user.id;
+  
+  // Get path
+  const path = `/api/email/confirm/firebase`;
+
+  // Send request to confirm email
+  const resp = await axios.post(path, { uid });
+
+  // Return response
+  return resp.data;
 }

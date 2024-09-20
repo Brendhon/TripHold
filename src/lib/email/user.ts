@@ -3,13 +3,20 @@ import { getEmailPath } from '@utils/paths';
 import axios from 'axios';
 
 
-export const sendEmailVerification = async (name: string, email: string, locate: string) => {
+/**
+ * Send email verification
+ * @param {string} id User id
+ * @param {string} name User name
+ * @param {string} email User email
+ * @param {string} locate User location
+ */
+export const sendEmailVerification = async (id: string, name: string, email: string, locate: string) => {
   try {
     // Form path
     const path = getEmailPath('confirm');
 
     // Generate token
-    const token = generateToken({ email });
+    const token = generateToken({ id, email, name });
 
     // Form
     const data = {
@@ -18,8 +25,6 @@ export const sendEmailVerification = async (name: string, email: string, locate:
       locate,
       confirmationLink: `${window.location.origin}/${locate}/email-confirmation?token=${token}`
     };
-
-    console.log(data);
 
     // Send email
     const response = await axios.post(path, data);

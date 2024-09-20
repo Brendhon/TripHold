@@ -1,4 +1,4 @@
-import { SignOptions, sign, verify } from 'jsonwebtoken';
+import { JwtPayload, SignOptions, sign, verify } from 'jsonwebtoken';
 
 /**
  * Get secret key for jwt
@@ -28,4 +28,4 @@ export const generateToken = (data: object, expiresIn?: string): string => {
  * Verify jwt token
  * @param {string} token - Token to verify
  */
-export const verifyToken = (token: string) => verify(token, getSecretKey());
+export const verifyToken = (token: string) => verify(token, getSecretKey()) as JwtPayload;

@@ -1,8 +1,8 @@
-import { doc, setDoc, Timestamp, getDoc, where, getDocs, deleteDoc, collection, query } from "firebase/firestore";
-import { db, logAnalytics } from "../config";
 import { User } from "@app/models";
 import { getUsersPath } from "@utils/paths";
 import { randomUUID } from "crypto";
+import { collection, deleteDoc, doc, getDoc, getDocs, query, setDoc, Timestamp, where } from "firebase/firestore";
+import { db, logAnalytics } from "../config";
 
 /**
  * Create a new user

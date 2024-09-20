@@ -97,6 +97,13 @@ GOOGLE_CLIENT_SECRET={CLIENT_SECRET}
 
 Como esse projeto foi construído utilizando o Next.js, é necessário atualizar o redirect_uri no arquivo de configuração do Google OAuth 2.0 para http://localhost:3000/api/auth/callback/google. Para isso, acesse o [Google Cloud Console](https://console.cloud.google.com/), vá em APIs & Services > Credenciais > OAuth 2.0 Client IDs > Selecione o Client ID > Atualize o campo "URIs de redirecionamento autorizados". 
 
+Outras informações que devem ser adicionadas no arquivo .env são as credenciais da conta de serviço do Firebase, para que seja possível enviar e-mails de confirmação de cadastro e redefinição de senha. Para isso, acesse o Firebase Console > Project Settings > Service Accounts > Generate new private key. Após isso, adicione as variáveis de ambiente no arquivo .env na raiz do projeto:
+
+```
+FIREBASE_ADMIN_PROJECT_ID={PROJECT_ID}
+FIREBASE_ADMIN_PRIVATE_KEY={PRIVATE_KEY}
+FIREBASE_ADMIN_CLIENT_EMAIL={CLIENT_EMAIL}
+```
 
 Para utilizar a busca por CEP, é necessário criar uma conta no [ZipCodeBase](https://app.zipcodebase.com/) e adicionar a chave de acesso no arquivo .env na raiz do projeto:
 

@@ -163,11 +163,11 @@ export function UserForm(props: RegisterFormProps) {
         return toast.error(tPage(`userExists.${userExists.provider}`));
       }
 
-      // Send email verification
-      await sendEmailVerification(form.name!, form.email!, locale);
-
       // Register user in Firebase Authentication
       const user = await createUserSignUp(form.email!, form.password!);
+
+      // Send email verification
+      await sendEmailVerification(user.uid, form.name!, form.email!, locale);
 
       // Add user to Firestore
       await createFirestoreUser({

@@ -19,6 +19,7 @@
     "axios": "^1.7.3",
     "crypto": "^1.0.1",
     "firebase": "^10.12.5",
+    "firebase-admin": "^12.5.0",
     "framer-motion": "^11.3.28",
     "jsonwebtoken": "^8.5.1",
     "next": "14.2.5",
@@ -35,10 +36,10 @@
     "resend": "^4.0.0"
   },
   "devDependencies": {
+    "@types/jsonwebtoken": "^8.5.8",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "@types/jsonwebtoken": "^8.5.8",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
     "postcss": "^8",

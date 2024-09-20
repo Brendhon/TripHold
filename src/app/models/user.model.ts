@@ -20,4 +20,5 @@ export interface User {
   number?: number;
   complement?: string;
   terms: boolean;
+  emailVerified?: boolean;
 }
