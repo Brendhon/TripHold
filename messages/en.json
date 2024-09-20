@@ -197,6 +197,7 @@
       }
     },
     "error": {
+      "storage/unauthorized": "No permission to access storage",
       "auth/invalid-credential": "Incorrect password",
       "trip": {
         "create": "Error while creating trip",
