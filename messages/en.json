@@ -58,7 +58,8 @@
     },
     "loginSuccess": "Login successful",
     "loginError": "Error while logging in",
-    "signUpFailed": "Error while signing up"
+    "signUpFailed": "Error while signing up",
+    "forgotPasswordSuccess": "Email sent successfully"
   },
   "EmailConfirmed": {
     "title": "Email confirmed",
@@ -68,6 +69,13 @@
     "inProgressMessage": "We are confirming your email, please wait...",
     "errorMessage": "Error confirming your email, please try again later.",
     "login": "Click here to login"
+  },
+  "ResetPassword": {
+    "title": "Reset password",
+    "success": "Password reset successfully",
+    "error": "Error resetting password",
+    "message": "We have sent an email with instructions to reset your password. Please check your inbox.",
+    "errorMessage": "Error resetting your password, please try again later."
   },
   "Button": {
     "send": "Send",

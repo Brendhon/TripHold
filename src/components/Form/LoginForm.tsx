@@ -5,12 +5,14 @@ import { Link } from "@nextui-org/react";
 import { createValidator, useForm } from "@utils/forms";
 import { emailRegex, passwordRegex, testRegex } from "@utils/regex";
 import { signIn } from "next-auth/react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import { MdEmail, MdLock } from "react-icons/md";
 import { Form } from "./Form";
 import { Input } from "./Input";
+import { sendForgotPasswordEmail } from "lib/email/user";
 
 /**
  * Custom Input
@@ -18,6 +20,7 @@ import { Input } from "./Input";
 export function LoginForm(props: LoginFormProps) {
   // Form state
   const { form, setForm } = useForm<UserSignInModel>();
+  const [hasForgotPassword, setHasForgotPassword] = useState(false);
 
   // Router hook
   const router = useRouter();
@@ -25,6 +28,9 @@ export function LoginForm(props: LoginFormProps) {
   // Translations
   const tPage = useTranslations("LoginAndRegister");
   const tError = useTranslations("Error");
+
+  // Locale
+  const locale = useLocale();
 
   // Handle login
   const handleLogin = async () => {
@@ -55,6 +61,21 @@ export function LoginForm(props: LoginFormProps) {
     { key: 'password', required: true, pattern: passwordRegex },
   ]);
 
+  // Forgot password
+  const forgotPassword = async () => {
+    // Set forgot password flag
+    setHasForgotPassword(true);
+
+    // Check if email is empty
+    if (!form.email) return;
+
+    // Send forgot password email
+    await sendForgotPasswordEmail(form.email, locale);
+
+    // Show success message
+    toast.success(tPage('forgotPasswordSuccess'));
+  }
+
   return (
     <Form
       formdata={{ form, setForm, validations }}
@@ -77,8 +98,9 @@ export function LoginForm(props: LoginFormProps) {
         errorMessage="password.pattern"
         startContent={<MdLock />} />
 
-      <Link className="cursor-pointer text-center justify-end" size="sm">
+      <Link onClick={forgotPassword} className="flex flex-col cursor-pointer text-end justify-end items-end" size="sm">
         {tPage('forgotPassword')}
+        {hasForgotPassword && !form.email && <span className="text-orange-regular text-[12px]">{tError('email.required')}</span>}
       </Link>
 
       <p className="text-center text-small">

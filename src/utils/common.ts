@@ -9,7 +9,8 @@ export const LOCALES = ["pt", "en"];
 
 export const PUBLIC_PAGES = [
   "/login",
-  "/email-confirmation"
+  "/email-confirmation",
+  "/reset-password",
 ];
 
 export const DEFAULT_HOST = "https://trip-hold.vercel.app";

@@ -22,3 +22,8 @@ export interface UserSignInModel {
   email: string;
   password: string;
 }
+
+export interface ResetPasswordModel {	
+  password: string;
+  confirmPassword: string;
+}

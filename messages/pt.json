@@ -58,7 +58,8 @@
     },
     "loginSuccess": "Login realizado com sucesso",
     "loginError": "Erro ao realizar login",
-    "signUpFailed": "Erro ao realizar cadastro"
+    "signUpFailed": "Erro ao realizar cadastro",
+    "forgotPasswordSuccess": "E-mail enviado com sucesso"
   },
   "EmailConfirmed": {
     "title": "Email confirmado",
@@ -68,6 +69,13 @@
     "inProgressMessage": "Estamos confirmando seu email, por favor aguarde...",
     "errorMessage": "Erro ao confirmar seu email, tente novamente mais tarde.",
     "login": "Clique aqui para fazer login"
+  },
+  "ResetPassword": {
+    "title": "Redefinir senha",
+    "success": "Senha redefinida com sucesso",
+    "error": "Erro ao redefinir senha",
+    "message": "Enviamos um email com instruções para redefinir sua senha. Verifique sua caixa de entrada.",
+    "errorMessage": "Erro ao redefinir sua senha, tente novamente mais tarde."
   },
   "Button": {
     "send": "Enviar",
