@@ -6,6 +6,7 @@ import { createValidator, useForm } from "@utils/forms";
 import { verifyToken } from "@utils/jwt";
 import { passwordRegex, testRegex } from "@utils/regex";
 import { Form, Input } from "components";
+import { resetUserPassword } from "lib/firebase/auth/users";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -73,8 +74,11 @@ export default function ResetPassword() {
   // Handle reset password
   const handleResetPassword = async () => {
     try {
-      // Reset password
-      console.log('Reset password', email, form.password);
+      // Reset user password
+      await resetUserPassword(email!, form.password!);
+
+      // Redirect to login
+      redirectToLogin();
     } catch (error) {
       handleError(error);
     }

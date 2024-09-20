@@ -9,6 +9,7 @@ import {
   updatePassword,
 } from "firebase/auth";
 import { auth } from "../config";
+import { getFirestoreUser } from "../firestore/users";
 
 /**
  * Create user sign up
@@ -101,6 +102,32 @@ export const confirmUserEmail = async (user: Partial<User>) => {
 
   // Send request to confirm email
   const resp = await axios.post(path, { uid });
+
+  // Return response
+  return resp.data;
+}
+
+/**
+ * Send forgot password email
+ * @param {string} email User email
+ * @param {string} password User password
+ * @returns Response data
+ */
+export const resetUserPassword = async (email: string, password: string) => {
+  // Get path
+  const path = `/api/email/reset/firebase`;
+  
+  // Check if email and password are provided
+  if(!email || !password) throw new Error("Email and password are required");
+
+  // get user from email
+  const user = await getFirestoreUser(email);
+
+  // Check if user exists
+  if (!user) throw new Error("User not found");
+
+  // Send request to reset password
+  const resp = await axios.post(path, { email, password, uid: user?.id });
 
   // Return response
   return resp.data;
