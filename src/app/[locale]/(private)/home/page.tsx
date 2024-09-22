@@ -2,6 +2,7 @@
 
 import { Trip } from "@app/models";
 import { getIntlName, searchInString } from "@utils/common";
+import { formatDate } from "@utils/dates";
 import { useUserId } from "@utils/session";
 import { Input, TripCard } from "components";
 import { getTrips } from "lib/firebase/firestore/trip";
@@ -27,8 +28,14 @@ export default function Home() {
   // Handle input change
   const handleChange = (e: any) => setSearch(e.target.value)
 
-  // Filter by country name
-  const filterTrips = () => allTrips.filter(trip => searchInString(getIntlName(trip?.country, locate), search))
+  // Filter by country name || alias || date
+  const filterTrips = () => allTrips.filter(trip => {
+    const foundName = searchInString(getIntlName(trip?.country, locate), search); // Search in country name
+    const foundAlias = trip?.alias && searchInString(trip?.alias, search); // Search in alias
+    const foundStartDate = trip?.startDate && formatDate(locate, trip!.startDate).includes(search); // Search in start date
+    const foundEndDate = trip?.endDate && formatDate(locate, trip!.endDate).includes(search); // Search in end date
+    return foundName || foundAlias || foundStartDate || foundEndDate;
+  })
 
   // Use effect to listening search
   useEffect(() => setTrips(filterTrips()), [search])

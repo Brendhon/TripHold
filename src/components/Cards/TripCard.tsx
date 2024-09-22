@@ -30,7 +30,10 @@ export function TripCard(props: TripCardProps) {
         width="0" height="0" style={{ width: "auto", height: "auto", maxWidth: "80%" }}
       />
 
-      <h3 className="text-lg font-bold mb-3">{getIntlName(props.trip?.country, locate)}</h3>
+      <div className='mb-3'>
+        <h3 className="text-lg font-bold">{getIntlName(props.trip?.country, locate)}</h3>
+        {props.trip?.alias && <span className='text-sm'>{props.trip?.alias}</span>}
+      </div>
 
       <span className='text-small'>
         {formatDate(locate, props.trip!.startDate)} {t("until")} {formatDate(locate, props.trip!.endDate)}

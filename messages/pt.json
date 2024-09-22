@@ -31,7 +31,8 @@
     "street": "Digite sua rua",
     "number": "Digite o número",
     "complement": "Digite o complemento (opcional)",
-    "date": "Selecione uma data"
+    "date": "Selecione uma data",
+    "alias": "Digite um apelido (opcional)"
   },
   "LoginAndRegister": {
     "login": "Entrar",
@@ -171,7 +172,8 @@
     "inviteInfo": "Click nesse cartão para planejar sua proxima viagem ✈️",
     "until": "até",
     "countryYouWillVisit": "País que você vai visitar",
-    "whenYouWillTravel": "Quando você vai viajar"
+    "whenYouWillTravel": "Quando você vai viajar",
+    "tripAlias": "Apelido da viagem"
   },
   "Step": {
     "next": "Próximo",
@@ -179,7 +181,8 @@
     "title": {
       "whichCountryWillYouVisit": "Qual país você vai visitar?",
       "whenWillYouTravel": "Quando você vai viajar?",
-      "summary": "Resumo"
+      "summary": "Resumo",
+      "alias": "Dê um apelido para sua viagem"
     }
   },
   "Country": {

@@ -4,7 +4,7 @@ import { Trip } from "@app/models";
 import { useForm } from "@utils/forms";
 import { showErrorNotifier, showSuccessNotifier } from "@utils/notifier";
 import { useUserId } from "@utils/session";
-import { CountrySelection, SelectPeriod, TripSummary } from "components";
+import { CountrySelection, SelectPeriod, TripAlias, TripSummary } from "components";
 import StepsStructure from "components/Steps/StepsStructure";
 import { createTrip } from "lib/firebase/firestore/trip";
 import { useTranslations } from "next-intl";
@@ -40,6 +40,7 @@ export default function TripCreation() {
     <StepsStructure onfinish={handleCreation} form={form} setform={setForm}>
       <CountrySelection requiredFields={['country']} className="md:min-w-[500px]" />
       <SelectPeriod requiredFields={['startDate', 'endDate']} />
+      <TripAlias className="md:min-w-[300px]"/>
       <TripSummary />
     </StepsStructure>
   )

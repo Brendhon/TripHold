@@ -63,3 +63,15 @@ export const normalizeString = (str: string) => str.normalize("NFD").replace(/[\
  * @param {string} search - String to search
  */
 export const searchInString = (str: string, search: string) => normalizeString(str).includes(normalizeString(search));
+
+/**
+ * Search in array of keys
+ * @param {string} search - String to search
+ * @param {string[]} keys - Array of keys
+ * @param {object} obj - Object to search
+ * @returns {boolean} If found
+ */
+export const searchInArray = (search: string, keys: string[], obj: any): boolean => {
+  for (const key of keys) if (searchInString(obj[key], search)) return true;
+  return false;
+}

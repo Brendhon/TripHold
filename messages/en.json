@@ -31,7 +31,8 @@
     "street": "Enter your street",
     "number": "Enter the number",
     "complement": "Enter the complement (optional)",
-    "date": "Select a date"
+    "date": "Select a date",
+    "alias": "Enter an alias (optional)"
   },
   "LoginAndRegister": {
     "login": "Login",
@@ -171,7 +172,8 @@
     "inviteInfo": "Click on this card to plan your next trip ✈️",
     "until": "to",
     "countryYouWillVisit": "Country you will visit",
-    "whenYouWillTravel": "When will you travel"
+    "whenYouWillTravel": "When will you travel",
+    "tripAlias": "Trip alias"
   },
   "Step": {
     "next": "Next",
@@ -179,7 +181,8 @@
     "title": {
       "whichCountryWillYouVisit": "Which country will you visit?",
       "whenWillYouTravel": "When will you travel?",
-      "summary": "Summary"
+      "summary": "Summary",
+      "alias": "Enter an alias for your trip"
     }
   },
   "Country": {
