@@ -2,11 +2,17 @@
 
 import { FormSelectItem, RegisterFormProps, UserFormModel } from "@app/models";
 import { Link, Tooltip } from "@nextui-org/react";
+import { getIntlName } from "@utils/common";
 import { createValidator, useDebounce, useForm } from "@utils/forms";
+import { showErrorNotifier, showSuccessNotifier } from "@utils/notifier";
 import { getCountriesPath, getTermsPath, getZipCodePath } from "@utils/paths";
 import { emailRegex, passwordRegex, testRegex } from "@utils/regex";
+import { DeleteButton } from "components/Common/DeleteButton";
+import { sendEmailVerification } from "lib/email/user";
 import { createUserSignUp, deleteUserAccount, updateUserPassword } from "lib/firebase/auth/users";
 import { createFirestoreUser, deleteFirestoreUser, getFirestoreUser, updateFirestoreUser } from "lib/firebase/firestore/users";
+import { deleteUserAvatar } from "lib/firebase/storage/users";
+import { signOut } from "next-auth/react";
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -17,12 +23,6 @@ import { Autocomplete } from "./Autocomplete";
 import { Checkbox } from "./Checkbox";
 import { Form } from "./Form";
 import { Input } from "./Input";
-import { getIntlName } from "@utils/common";
-import { showErrorNotifier, showSuccessNotifier } from "@utils/notifier";
-import { DeleteButton } from "components/Common/DeleteButton";
-import { signOut } from "next-auth/react";
-import { deleteUserAvatar } from "lib/firebase/storage/users";
-import { sendEmailVerification } from "lib/email/user";
 
 /**
  * User Form

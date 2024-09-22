@@ -8,6 +8,13 @@ import GoogleProvider from "next-auth/providers/google";
 const handler = NextAuth({
   // Configure one or more authentication providers
   secret: process.env.NEXTAUTH_SECRET,
+  session: {
+    strategy: "jwt",
+    maxAge: 7 * 24 * 60 * 60, // 7 days
+  },
+  jwt: {
+    maxAge: 7 * 24 * 60 * 60, // 7 days
+  },
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -53,29 +60,35 @@ const handler = NextAuth({
   ],
   callbacks: {
     async jwt({ token, account, user, trigger, session }: any) {
+      // Init local user
+      let localUser = null;
+
       // Get user by email to check if user already exists
-      let localUser = await getFirestoreUser(user?.email);
+      if (user?.email) {
+        localUser = await getFirestoreUser(user.email);
+      }
 
       switch (account?.provider) {
         case "credentials":
-          token.accessToken = account.access_token;
-          token.idToken = user.id;
-          token.profile = user.profile;
+          token.accessToken = account?.access_token;
+          token.idToken = user?.id;
+          token.profile = user?.profile;
           break;
+
         case "google":
-          token.accessToken = account.access_token;
-          token.idToken = account.id_token;
+          token.accessToken = account?.access_token;
+          token.idToken = account?.id_token;
 
           // Create a new user object
           const newUser: User = {
-            name: user.name!,
-            email: user.email!,
-            image: user.image!,
+            name: user?.name,
+            email: user?.email,
+            image: user?.image,
             provider: 'google',
             terms: true
-          }
+          };
 
-          // Update user if already exists or create a new user
+          // Update or create user in Firestore
           localUser = localUser ?? await createFirestoreUser(newUser);
 
           // Add user info on session
@@ -83,7 +96,7 @@ const handler = NextAuth({
           break;
       }
 
-      if (trigger === "update" && session.profile) {
+      if (trigger === "update" && session?.profile) {
         token.profile = session.profile;
         token.user = {
           name: session.profile.name,
@@ -94,6 +107,7 @@ const handler = NextAuth({
 
       return token;
     },
+
     async session({ session, token, trigger }) {
       // Add access token and profile information to the session
       session.accessToken = token.accessToken;
