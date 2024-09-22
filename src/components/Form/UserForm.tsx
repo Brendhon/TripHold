@@ -58,8 +58,8 @@ export function UserForm(props: RegisterFormProps) {
   const { validations } = createValidator<UserFormModel>([
     { key: 'name', required: true },
     { key: 'email', required: true, pattern: emailRegex },
-    { key: 'password', required: false, pattern: passwordRegex },
-    { key: 'confirmPassword', required: false, equal: 'password' },
+    { key: 'password', required: !user, pattern: passwordRegex },
+    { key: 'confirmPassword', required: !user, equal: 'password' },
     { key: 'country', required: true },
     { key: 'zipCode', required: true },
     { key: 'state', required: true },
