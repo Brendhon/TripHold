@@ -7,6 +7,8 @@ export const DEFAULT_LOCALE = "pt";
 
 export const LOCALES = ["pt", "en"];
 
+export let CURRENT_FLAG = "";
+
 export const PUBLIC_PAGES = [
   "/login",
   "/email-confirmation",

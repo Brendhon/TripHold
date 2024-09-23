@@ -1,6 +1,6 @@
 import { Trip } from "@app/models";
 import { getTripsPath } from "@utils/paths";
-import { addDoc, collection, getDocs, query, Timestamp, where } from "firebase/firestore";
+import { addDoc, collection, getDocs, query, Timestamp, where, getDoc, doc } from "firebase/firestore";
 import { db, logAnalytics } from "../config";
 
 /**
@@ -40,10 +40,37 @@ export const getTrips = async (userId: string): Promise<Trip[]> => {
     const users = await getDocs(query(col, where("userIds", "array-contains", userId)));
 
     // Get trips data
-    return users.empty ? [] : users.docs.map((doc) => doc.data() as Trip);
+    return users.empty ? [] : users.docs.map((doc) => {
+      return { ...doc.data(), id: doc.id } as Trip;
+    });
   } catch (error) {
     console.error("Error getting trips: ", error);
     logAnalytics("exception", error);
     return []; // Add a return statement here to handle the error case
+  }
+}
+
+/**
+ * Get Trip by Id
+ * @param {string} id Trip Id
+ * @returns {Trip | null} Trip
+ */
+export const getTrip = async (id: string): Promise<Trip | null> => {
+  try {
+    // Path to trips collection
+    const path = getTripsPath();
+
+    // Get trip reference
+    const ref = doc(db, path, id);
+
+    // Get trip by id
+    const result = await getDoc(ref);
+
+    // Get trip data
+    return result.exists() ? { ...result.data(), id: result.id } as Trip : null;
+  } catch (error) {
+    console.error("Error getting trip: ", error);
+    logAnalytics("exception", error);
+    return null; // Add a return statement here to handle the error case
   }
 }

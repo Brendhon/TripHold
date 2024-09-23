@@ -50,6 +50,9 @@ export default function Home() {
       .catch(error => console.error(error))
   }, [userId])
 
+  // Go to trip details
+  const goToTrip = (trip: Trip) => router.push(`/trip/${trip.id}`);
+
   // Render home page
   return (
     <>
@@ -68,7 +71,7 @@ export default function Home() {
 
       <div className="grid gap-8 p-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
         {!search && <TripCard key="new-card" onClick={() => router.push('/trip/creation')} />}
-        {trips!.map((trip) => <TripCard key={trip.id} className="bg-blue-medium" trip={trip} />)}
+        {trips!.map((trip) => <TripCard onClick={() => goToTrip(trip)} key={trip.id} className="bg-blue-medium" trip={trip} />)}
       </div>
     </>
   )

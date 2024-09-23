@@ -5,11 +5,15 @@ import { BiSolidRightArrow } from "react-icons/bi";
 import { ProfileDropdown } from "../Common/ProfileDropdown";
 import { HeaderProps } from '@app/models';
 import { useRouter } from 'next/navigation';
+import { useFlag } from 'context/FlagContext';
 
 /**
  * Login button - Google
  */
 export function Header(props?: HeaderProps) {
+  // Flag context
+  const { flagUrl } = useFlag();
+
   // Router 
   const router = useRouter();
 
@@ -22,22 +26,29 @@ export function Header(props?: HeaderProps) {
   // Render
   return (
     <header className="flex justify-between items-center mb-8">
-      <div>
+      <div className="flex items-center">
         <Image
           onClick={handleLogoClick}
-          className={clickableClass}
+          className={`${clickableClass} h-8 md:h-12`}
           src="/logo.svg"
           alt="Logo"
           priority
           width="0"
           height="0"
-          style={{ width: "auto", height: "50px" }}
+          style={{ width: "auto" }}
         />
         {
-          props?.countryFlag &&
-          <div>
+          flagUrl &&
+          <div className="flex items-center ml-2 md:ml-4 gap-2 md:gap-4">
             <BiSolidRightArrow />
-            <Image src={props.countryFlag} alt="Country Flag" width={50} height={50} />
+            <Image
+              src={flagUrl}
+              alt="Country Flag"
+              className='h-8 md:h-12'
+              width="0"
+              height="0"
+              style={{ width: "auto" }}
+            />
           </div>
         }
       </div>
