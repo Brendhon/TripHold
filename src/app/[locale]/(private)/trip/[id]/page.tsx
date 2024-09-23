@@ -25,7 +25,7 @@ export default function TripDetails({ params }: { params: { id: string } }) {
   const locate = useLocale();
 
   // Translations
-  const tPage = useTranslations("LoginAndRegister");
+  const tPage = useTranslations("TripDetails");
 
   // Get trip by ID
   useEffect(() => {
@@ -52,22 +52,18 @@ export default function TripDetails({ params }: { params: { id: string } }) {
   // Render home page
   return (
     <Tabs
-      fullWidth
       size="lg"
-      variant="light"
-      color="default"
+      variant="underlined"
+      color="secondary"
       aria-label="Tabs form"
       selectedKey={selected}
       onSelectionChange={(key: Key) => setSelected(key as TabsOptions)}
     >
-      <Tab key="login" title={tPage('login')} className="p-4">
-
+      <Tab key="schedule" title={tPage('title.schedule')} className="py-4 px-16">
         <span>Schedule</span>
-
       </Tab>
 
-      <Tab key="sign-up" title={tPage('signUp')} className="p-4">
-
+      <Tab key="settings" title={tPage('title.settings')} className="py-4 px-16">
         <span>Settings</span>
       </Tab>
 

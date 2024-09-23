@@ -34,6 +34,13 @@
     "date": "Selecione uma data",
     "alias": "Digite um apelido (opcional)"
   },
+  "TripDetails": {
+    "title": {
+      "schedule": "Cronograma",
+      "activities": "Atividades",
+      "settings": "Configurações"
+    }
+  },
   "LoginAndRegister": {
     "login": "Entrar",
     "signUp": "Cadastrar",
