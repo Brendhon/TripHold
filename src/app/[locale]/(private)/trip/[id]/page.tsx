@@ -59,11 +59,11 @@ export default function TripDetails({ params }: { params: { id: string } }) {
       selectedKey={selected}
       onSelectionChange={(key: Key) => setSelected(key as TabsOptions)}
     >
-      <Tab key="schedule" title={tPage('title.schedule')} className="py-4 px-16">
+      <Tab key="schedule" title={tPage('title.schedule')} className="py-4 px-7 md:px-16">
         <span>Schedule</span>
       </Tab>
 
-      <Tab key="settings" title={tPage('title.settings')} className="py-4 px-16">
+      <Tab key="settings" title={tPage('title.settings')}  className="py-4 px-7 md:px-16">
         <span>Settings</span>
       </Tab>
 
