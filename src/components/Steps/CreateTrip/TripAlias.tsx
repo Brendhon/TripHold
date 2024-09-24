@@ -6,16 +6,13 @@ import { StepTitle } from '../StepTitle';
 
 export function TripAlias(props: BaseStepProps<Trip>) {
   // Handle change
-  const handleChange = (e: any) => {
-    console.log(e.target.value);
-    props.setstate!({ ...props.state!, alias: e.target.value })
-  };
+  const handleChange = (e: any) => props.setstate!({ ...props.state!, alias: e.target.value });
 
   // Render
   return (
     <div className={props.className}>
       <StepTitle title='alias' />
-      <Input handleChange={handleChange} controller={props.state?.alias} type="text" placeholder="alias" />
+      <Input handleChange={handleChange} maxLength={35} controller={props.state?.alias} type="text" placeholder="alias" />
     </div>
   )
 }

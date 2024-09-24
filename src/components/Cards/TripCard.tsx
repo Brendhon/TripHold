@@ -26,8 +26,8 @@ export function TripCard(props: TripCardProps) {
         hidden={!props?.trip!.country.flag}
         src={props?.trip!.country.flag ?? ''}
         alt={props?.trip!.country.name ?? 'Country flag'}
-        className='border-grey-thin border-1 rounded-sm mb-1'
-        width="0" height="0" style={{ width: "auto", height: "auto", maxWidth: "80%" }}
+        className='border-grey-thin border-1 rounded-sm mb-1 max-h-32'
+        width="0" height="0" style={{ width: "auto", height: "auto", maxWidth: "80%", }}
       />
 
       <div className='mb-3'>
