@@ -127,3 +127,7 @@ export interface FormSelectItem {
   key: string;
   [key: string]: any;
 }
+
+export interface TripScheduleProps {
+  trip: Trip | null;
+}

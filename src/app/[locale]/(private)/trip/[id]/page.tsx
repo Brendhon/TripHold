@@ -1,6 +1,7 @@
 "use client";
 
 import { Tab, Tabs } from "@nextui-org/react";
+import { TripSchedule } from "components";
 import { useTrip } from "context/TripContext";
 import { useTranslations } from "next-intl";
 import { Key, useState } from "react";
@@ -27,7 +28,7 @@ export default function TripDetails() {
       onSelectionChange={(key: Key) => setSelected(key as TabsOptions)}
     >
       <Tab key="schedule" title={tPage('title.schedule')} className="py-4 px-7 md:px-16">
-        <span>Schedule {trip?.id}</span>
+        <TripSchedule trip={trip} />
       </Tab>
 
       <Tab key="settings" title={tPage('title.settings')} className="py-4 px-7 md:px-16">
