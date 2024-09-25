@@ -5,14 +5,14 @@ import { BiSolidRightArrow } from "react-icons/bi";
 import { ProfileDropdown } from "../Common/ProfileDropdown";
 import { HeaderProps } from '@app/models';
 import { useRouter } from 'next/navigation';
-import { useFlag } from 'context/FlagContext';
+import { useTrip } from 'context/TripContext';
 
 /**
  * Login button - Google
  */
 export function Header(props?: HeaderProps) {
   // Flag context
-  const { flagUrl } = useFlag();
+  const { trip } = useTrip();
 
   // Router 
   const router = useRouter();
@@ -38,13 +38,14 @@ export function Header(props?: HeaderProps) {
           style={{ width: "auto" }}
         />
         {
-          flagUrl &&
+          trip?.country.flag &&
           <div className="flex items-center ml-2 md:ml-4 gap-2 md:gap-4">
             <BiSolidRightArrow />
             <Image
-              src={flagUrl}
+              onClick={() => router.push(`/trip/${trip?.id}`)}
+              src={trip?.country.flag}
               alt="Country Flag"
-              className='h-8 md:h-12'
+              className='h-8 md:h-12 cursor-pointer hover:opacity-80'
               width="0"
               height="0"
               style={{ width: "auto" }}
