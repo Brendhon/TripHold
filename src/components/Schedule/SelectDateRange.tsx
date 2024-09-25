@@ -48,7 +48,7 @@ export function SelectDateRange(props?: SelectGroupProps) {
   return (
     selectedRange &&
     <div className="flex items-center w-full justify-center">
-      <div className="flex items-center gap-4 mb-6 bg-blue-regular p-3 rounded-lg">
+      <div className="flex items-center gap-4 mb-6 bg-grey-medium p-3 rounded-lg">
         <Button
           isIconOnly
           onClick={() => setSelectedGroup(props?.ranges[selectedRange!.id - 1])}
