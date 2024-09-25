@@ -23,7 +23,10 @@ export function ScheduleDetails(props?: ScheduleDetailsProps) {
   const locale = useLocale();
 
   // Update start and end date on trip change
-  useEffect(() => {
+  useEffect(() => setDaysAndTimes(), [props?.range]);
+
+  // Set days and times
+  const setDaysAndTimes = () => {
     // Get days
     const days = [];
 
@@ -49,7 +52,7 @@ export function ScheduleDetails(props?: ScheduleDetailsProps) {
 
     // Set times
     setTimes(times);
-  }, [props?.range]);
+  }
 
   // Get formatted date
   const getFormattedDate = (date: DateType) => formatDate(locale, date);
@@ -90,7 +93,7 @@ export function ScheduleDetails(props?: ScheduleDetailsProps) {
 
         {/* Days */}
         {days.map((day, index) => (
-          <Content key={index + day.getDay()} className="flex-col">
+          <Content key={index} className="flex-col">
             <Text> {getFormattedDate(day)} </Text>
             <span className="text-lg md:text-2xl text-purple-semi-bold">
               {getDayFormattedName(day)}
@@ -102,12 +105,12 @@ export function ScheduleDetails(props?: ScheduleDetailsProps) {
       {/* Rows */}
       <div className="flex flex-col bg-grey-regular rounded-t-md gap-[1px]">
         {times.map((time, index) => (
-          <Container>
-            <Content key={index + time}>
+          <Container key={index}>
+            <Content key={time}>
               <Text> {time} </Text>
             </Content>
-            {Array.from({ length: 7 }, (_, i) => i).map((day, index) => (
-              <Content key={index + day}>
+            {Array.from({ length: 7 }, (_, i) => i).map((day) => (
+              <Content key={day}>
                 <Text>
                 </Text>
               </Content>

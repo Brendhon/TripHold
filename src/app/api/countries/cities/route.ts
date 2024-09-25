@@ -1,6 +1,8 @@
 import { getDocumenterCitiesAPIPath } from '@utils/paths';
 import { NextResponse, NextRequest } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(req: NextRequest) {
   try {
     // Get search params from the req

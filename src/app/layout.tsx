@@ -7,19 +7,20 @@ export const metadata: Metadata = {
   generator: "Next.js",
   manifest: "/manifest.json",
   keywords: ["nextjs", "next14", "pwa", "next-pwa"],
-  themeColor: [{ media: "(prefers-color-scheme: dark)", color: "#fff" }],
   authors: [
     {
       name: "Brendhon Moreira",
       url: "https://www.linkedin.com/in/brendhon-moreira/",
     },
   ],
-  viewport:
-    "minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover",
   icons: [
     { rel: "apple-touch-icon", url: "ios/128.png" },
     { rel: "icon", url: "ios/128.png" },
   ],
+};
+
+export const viewport = {
+  themeColor: "#303030",
 };
 
 export default function RootLayout({

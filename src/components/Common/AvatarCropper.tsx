@@ -3,6 +3,7 @@
 import { Avatar, Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@nextui-org/react";
 import { useUserAvatar } from '@utils/session';
 import { useTranslations } from 'next-intl';
+import Image from "next/image";
 import { useRef, useState } from 'react';
 import { FaTrashAlt } from 'react-icons/fa';
 import { IoCamera } from 'react-icons/io5';
@@ -163,11 +164,13 @@ export function AvatarCropper(props: Props) {
                     crop={crop}
                     onComplete={(c) => setCompletedCrop(c)}
                     onChange={c => setCrop(c)}>
-                    <img
+                    <Image
                       ref={imageRef}
-                      src={image}
+                      src={image!}
                       alt="Cropped Image"
-                      style={{ maxWidth: '100%' }}
+                      width="0"
+                      height="0"
+                      style={{ maxWidth: '100%', height: 'auto', width: 'auto' }}
                     />
                   </ReactCrop>
                 </div>
