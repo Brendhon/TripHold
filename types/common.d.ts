@@ -1,0 +1,1 @@
+type DateType = Date | string | Timestamp | null;
