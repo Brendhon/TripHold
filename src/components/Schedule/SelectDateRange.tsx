@@ -1,14 +1,14 @@
 "use client";
 
-import { TripDayRanges } from "@app/models";
+import { TripDayRange } from "@app/models";
 import { Button } from "@nextui-org/react";
 import { useLocale } from "next-intl";
 import { useEffect, useState } from "react";
 import { IoMdArrowRoundBack, IoMdArrowRoundForward } from "react-icons/io";
 
 interface SelectGroupProps {
-  ranges: TripDayRanges[];
-  selectGroup: (group: TripDayRanges) => void;
+  ranges: TripDayRange[];
+  selectGroup: (group: TripDayRange) => void;
 }
 
 /**
@@ -16,10 +16,10 @@ interface SelectGroupProps {
  */
 export function SelectDateRange(props?: SelectGroupProps) {
   // State
-  const [selectedRange, _setSelectedRange] = useState<TripDayRanges>();
+  const [selectedRange, _setSelectedRange] = useState<TripDayRange>();
 
   // Set selected group
-  const setSelectedGroup = (group?: TripDayRanges) => {
+  const setSelectedGroup = (group?: TripDayRange) => {
     _setSelectedRange(group);
     if (group) props?.selectGroup(group);
   }

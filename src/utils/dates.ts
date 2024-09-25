@@ -1,6 +1,6 @@
 "use client";
 
-import { TripDayRanges } from "@app/models";
+import { TripDayRange } from "@app/models";
 import { Timestamp } from "firebase/firestore";
 import { DateTimeFormatOptions } from "next-intl";
 
@@ -117,14 +117,14 @@ export const getDaysDifference = (date1: DateType, date2: DateType): number => {
  * Get days ranges
  * @param {DateType} startDate Start date
  * @param {DateType} endDate End date
- * @returns {TripDayRanges[]} Days ranges
+ * @returns {TripDayRange[]} Days ranges
  */
-export const getDaysRanges = (startDate: DateType, endDate: DateType): TripDayRanges[] => {
+export const getDaysRanges = (startDate: DateType, endDate: DateType): TripDayRange[] => {
   // Difference
   const diff = getDaysDifference(startDate, endDate);
 
   // Groups of days
-  let groups: TripDayRanges[] = [];
+  let groups: TripDayRange[] = [];
 
   // Slipt days in groups of 7
   const groupsNumber = Math.ceil(diff / 7);
@@ -149,4 +149,21 @@ export const getDaysRanges = (startDate: DateType, endDate: DateType): TripDayRa
 
   // Return groups
   return groups;
+}
+
+/**
+ * Get time in format (12 or 24 hours)
+ * @param {string} locale Locale
+ * @param {string} time Time to format
+ * @returns {string} Formatted time
+ */
+export const getTimeFormat = (locale: string, time: string): string => {
+  // Check if time is valid
+  if (!time) return "";
+
+  // Get time
+  const [h, m] = time.split(':');
+
+  // Return time
+  return new Date(0, 0, 0, +h, +m).toLocaleTimeString(getLocaleDate(locale), { hour: '2-digit', minute: '2-digit' });
 }

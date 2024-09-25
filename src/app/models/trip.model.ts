@@ -9,7 +9,7 @@ export interface Trip {
   userIds: string[];
 }
 
-export interface TripDayRanges {
+export interface TripDayRange {
   id: number;
   startDate: DateType;
   endDate: DateType;

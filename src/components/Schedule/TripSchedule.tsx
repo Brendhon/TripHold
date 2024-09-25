@@ -1,9 +1,9 @@
 "use client";
 
-import { TripDayRanges, TripScheduleProps } from "@app/models";
-import { formatDate, getDate, getDayName, getDaysRanges } from "@utils/dates";
-import { useLocale } from "next-intl";
+import { TripDayRange, TripScheduleProps } from "@app/models";
+import { getDate, getDaysRanges } from "@utils/dates";
 import { useEffect, useState } from "react";
+import { ScheduleDetails } from "./ScheduleDetails";
 import { SelectDateRange } from "./SelectDateRange";
 
 /**
@@ -15,11 +15,8 @@ export function TripSchedule(props?: TripScheduleProps) {
   const [endDate, _setEndDate] = useState<DateType>(null);
 
   // Ranges
-  const [ranges, setRanges] = useState<TripDayRanges[]>([]);
-  const [selectedRange, setSelectedRange] = useState<TripDayRanges>();
-
-  // Locale
-  const locale = useLocale();
+  const [ranges, setRanges] = useState<TripDayRange[]>([]);
+  const [selectedRange, setSelectedRange] = useState<TripDayRange>();
 
   // Set start and end date
   const setStartDate = (date: DateType) => _setStartDate(getDate(date));
@@ -41,21 +38,11 @@ export function TripSchedule(props?: TripScheduleProps) {
     setSelectedRange(groups[0]);
   }, [startDate, endDate]);
 
-  // Get formatted date
-  const getFormattedDate = (date: DateType) => formatDate(locale, date);
-  const getDayFormattedName = (date: DateType) => getDayName(date, locale);
-
-  // Get selected start and end date
-  const getSelectedStart = () => new Date(selectedRange?.startDate);
-  const getSelectedEnd = () => new Date(selectedRange?.endDate);
-
   // Render
   return (
     <>
-      <SelectDateRange ranges={ranges} selectGroup={setSelectedRange} />
-      <h1>Day Group</h1>
-      <h1>Start {getFormattedDate(getSelectedStart())} ({getDayFormattedName(getSelectedStart())})</h1>
-      <h1>End {getFormattedDate(getSelectedEnd())} ({getDayFormattedName(getSelectedEnd())})</h1>
+      {ranges.length > 1 && <SelectDateRange ranges={ranges} selectGroup={setSelectedRange} />}
+      {selectedRange && <ScheduleDetails range={selectedRange} trip={props?.trip ?? null} />}
     </>
   )
 }
