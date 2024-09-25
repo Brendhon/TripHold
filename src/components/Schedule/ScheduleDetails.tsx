@@ -55,7 +55,7 @@ export function ScheduleDetails(props?: ScheduleDetailsProps) {
   }
 
   // Get formatted date
-  const getFormattedDate = (date: DateType) => formatDate(locale, date);
+  const getFormattedDate = (date: DateType) => formatDate(locale, date)
   const getDayFormattedName = (date: DateType) => getDayName(date, locale);
 
   // Get selected start and end date
@@ -78,7 +78,7 @@ export function ScheduleDetails(props?: ScheduleDetailsProps) {
 
   // Text
   const Text = ({ children, className }: any) => (
-    <span className={`text-sm md:text-lg text-grey-extra-light ${className}`}>
+    <span className={`text-sm md:text-md text-grey-extra-light ${className}`}>
       {children}
     </span>
   )
@@ -95,7 +95,7 @@ export function ScheduleDetails(props?: ScheduleDetailsProps) {
         {days.map((day, index) => (
           <Content key={index} className="flex-col">
             <Text> {getFormattedDate(day)} </Text>
-            <span className="text-lg md:text-2xl text-purple-semi-bold">
+            <span className="text-lg md:text-xl text-purple-semi-bold">
               {getDayFormattedName(day)}
             </span>
           </Content>
