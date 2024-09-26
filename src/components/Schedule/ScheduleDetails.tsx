@@ -79,12 +79,12 @@ export function ScheduleDetails(props?: ScheduleDetailsProps) {
   const getTimeInLocale = (time: TimeType) => locale === 'en' ? time[12] : time[24];
 
   // Content
-  const Content = ({ children, className, day, clickable, small }: any) => (
+  const Content = ({ children, className, day, clickable, small, padding }: any) => (
     <div className={`
       flex 
       items-center
       justify-center
-      p-2 
+      p-${padding ? padding : '2'}
       ${className} 
       ${small ? 'min-w-28' : 'w-full min-w-36 md:min-w-48'}
       ${clickable ? 'cursor-pointer hover:opacity-80' : 'cursor-default'}
@@ -137,7 +137,7 @@ export function ScheduleDetails(props?: ScheduleDetailsProps) {
               <Text> {getTimeInLocale(time)} </Text>
             </Content>
             {Array.from({ length: 7 }, (_, i) => i).map((day) => (
-              <Content key={day} day={days[day]} clickable={isValid(days[day])}>
+              <Content key={day} day={days[day]} clickable={isValid(days[day])} padding="0">
                 <PlusButton time={time[24]} day={days[day]} className={isValid(days[day]) ? 'visible' : 'hidden'} />
               </Content>
             ))}
