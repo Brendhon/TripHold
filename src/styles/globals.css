@@ -7,6 +7,26 @@ body {
   background: theme('colors.grey.semi-bold');;
 }
 
+/* width */
+::-webkit-scrollbar {
+  @apply w-2 h-2;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  @apply bg-grey-medium;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply bg-grey-regular rounded-sm;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-grey-regular;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
