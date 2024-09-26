@@ -11,6 +11,11 @@ interface ScheduleDetailsProps {
   range: TripDayRange;
 }
 
+interface TimeType {
+  24: string;
+  12: string;
+}
+
 /**
  * Trip Schedule
  */
@@ -18,7 +23,7 @@ export function ScheduleDetails(props?: ScheduleDetailsProps) {
   // State
   const [activities, setActivities] = useState<any[]>([]);
   const [days, setDays] = useState<Date[]>([]);
-  const [times, setTimes] = useState<string[]>([]);
+  const [times, setTimes] = useState<TimeType[]>([]);
 
   // Locale
   const locale = useLocale();
@@ -45,7 +50,7 @@ export function ScheduleDetails(props?: ScheduleDetailsProps) {
       const h = Math.floor(i / 60);
       const m = (i % 60);
       const time = `${h}:${m < 10 ? '0' : ''}${m}`
-      times.push(getTimeFormat(locale, time));
+      times.push({ 24: time, 12: getTimeFormat(locale, time) });
     }
 
     // Set days
@@ -69,6 +74,9 @@ export function ScheduleDetails(props?: ScheduleDetailsProps) {
       {children}
     </div>
   )
+
+  // Get time in format (12 or 24 hours)
+  const getTimeInLocale = (time: TimeType) => locale === 'en' ? time[12] : time[24];
 
   // Content
   const Content = ({ children, className, day, clickable, small }: any) => (
@@ -126,11 +134,11 @@ export function ScheduleDetails(props?: ScheduleDetailsProps) {
         {times.map((time, index) => (
           <Container key={index}>
             <Content key={time} small={true}>
-              <Text> {time} </Text>
+              <Text> {getTimeInLocale(time)} </Text>
             </Content>
             {Array.from({ length: 7 }, (_, i) => i).map((day) => (
               <Content key={day} day={days[day]} clickable={isValid(days[day])}>
-                <PlusButton time={time} day={days[day]} className={isValid(days[day]) ? 'visible' : 'hidden'} />
+                <PlusButton time={time[24]} day={days[day]} className={isValid(days[day]) ? 'visible' : 'hidden'} />
               </Content>
             ))}
           </Container>

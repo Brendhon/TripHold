@@ -1,5 +1,6 @@
 "use client";
 
+import { getTimeFormat } from "@utils/dates";
 import { useTrip } from "context/TripContext";
 import { useState } from "react";
 import { BsPlus } from "react-icons/bs";
@@ -22,7 +23,11 @@ export function PlusButton(props: PlusButtonProps) {
 
   // Click handler
   const clickHandler = () => {
-    console.log('Add activity', props.time, props.day);
+    const date = new Date(props.day);
+    const time = getTimeFormat('pt', props.time).split(':');
+    date.setHours(parseInt(time[0]));
+    date.setMinutes(parseInt(time[1]));
+    console.log('Add activity', date);
   }
 
   // Render
