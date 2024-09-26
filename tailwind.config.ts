@@ -26,6 +26,7 @@ const config: Config = {
         "extra-light": "#D5DBDB",
         "light": "#AAB7B8",
         "regular": "#5B5B5B",
+        "extra-regular": "#373737",
         "medium": "#303030",
         "semi-bold": "#1B1B1B",
         "bold": "#060f18ed"

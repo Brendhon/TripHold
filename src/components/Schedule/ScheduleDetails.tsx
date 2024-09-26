@@ -1,7 +1,7 @@
 "use client";
 
 import { Trip, TripDayRange, TripScheduleProps } from "@app/models";
-import { formatDate, getDayName, getTimeFormat } from "@utils/dates";
+import { formatDate, getDate, getDayName, getTimeFormat } from "@utils/dates";
 import { useLocale } from "next-intl";
 import { useEffect, useState } from "react";
 
@@ -70,8 +70,17 @@ export function ScheduleDetails(props?: ScheduleDetailsProps) {
   )
 
   // Content
-  const Content = ({ children, className }: any) => (
-    <div className={`flex bg-grey-medium items-center justify-center p-2 w-full min-w-36 md:min-w-48 ${className}`}>
+  const Content = ({ children, className, day, clickable, small }: any) => (
+    <div className={`
+      flex 
+      items-center
+      justify-center
+      p-2 
+      ${className} 
+      ${small ? 'min-w-28' : 'w-full min-w-36 md:min-w-48'}
+      ${clickable ? 'cursor-pointer hover:opacity-70' : 'cursor-default'}
+      ${isValid(day) ? 'bg-grey-medium ' : 'bg-grey-extra-regular'}
+      `}>
       {children}
     </div>
   )
@@ -83,17 +92,26 @@ export function ScheduleDetails(props?: ScheduleDetailsProps) {
     </span>
   )
 
+  // Check if is clickable
+  const isValid = (day: Date) => {
+    if (!day) return true;
+    const start = getDate(props?.trip?.startDate);
+    const end = getDate(props?.trip?.endDate);
+    if (!start || !end) return false;
+    return day >= start && day <= end
+  }
+
   // Render
   return (
     <div className="flex flex-col bg-grey-regular rounded-md gap-[1px] overflow-x-auto border border-grey-regular">
       {/* Colum */}
       <Container>
         {/* Empty */}
-        <Content className="flex-col" />
+        <Content className="flex-col w-10" small={true} />
 
         {/* Days */}
         {days.map((day, index) => (
-          <Content key={index} className="flex-col">
+          <Content key={index} className="flex-col" day={day}>
             <Text> {getFormattedDate(day)} </Text>
             <span className="text-lg md:text-xl text-purple-semi-bold">
               {getDayFormattedName(day)}
@@ -106,12 +124,13 @@ export function ScheduleDetails(props?: ScheduleDetailsProps) {
       <div className="flex flex-col bg-grey-regular rounded-t-md gap-[1px]">
         {times.map((time, index) => (
           <Container key={index}>
-            <Content key={time}>
+            <Content key={time} small={true}>
               <Text> {time} </Text>
             </Content>
             {Array.from({ length: 7 }, (_, i) => i).map((day) => (
-              <Content key={day}>
-                <Text>
+              <Content key={day} day={days[day]} clickable={isValid(days[day])}>
+                <Text className={isValid(days[day]) ? 'visible' : 'hidden'}>
+                  {days[day].toString()}
                 </Text>
               </Content>
             ))}
