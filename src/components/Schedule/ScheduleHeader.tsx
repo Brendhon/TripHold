@@ -75,7 +75,7 @@ export function ScheduleHeader(props?: SelectGroupProps) {
   return (
     selectedRange &&
     <div className="flex flex-col-reverse md:flex-row md:items-center w-full justify-between mb-6 gap-4">
-      <div className={`flex items-center gap-4 justify-between bg-grey-medium p-3 rounded-lg`}>
+      <div className={`flex items-center gap-4 justify-between bg-grey-medium p-3 rounded-md`}>
 
         {/* Back button */}
         <Button
@@ -84,7 +84,7 @@ export function ScheduleHeader(props?: SelectGroupProps) {
           size="sm"
           onClick={() => setSelectedGroup(props?.ranges[selectedRange!.id - 1])}
           isDisabled={selectedRange?.id === 0}>
-          <IoMdArrowRoundBack size={22} />
+          <IoMdArrowRoundBack size={20} />
         </Button>
 
         {/* Date Title */}
@@ -97,7 +97,7 @@ export function ScheduleHeader(props?: SelectGroupProps) {
           size="sm"
           onClick={() => setSelectedGroup(props?.ranges[selectedRange!.id + 1])}
           isDisabled={selectedRange?.id === props?.ranges.length! - 1}>
-          <IoMdArrowRoundForward size={22} />
+          <IoMdArrowRoundForward size={20} />
         </Button>
       </div>
 
@@ -106,6 +106,7 @@ export function ScheduleHeader(props?: SelectGroupProps) {
         variant="solid"
         size="lg"
         color="primary"
+        className="rounded-md"
         onClick={() => handleAddClick()}>
         {t('add')}
       </Button>
