@@ -39,6 +39,19 @@
       "schedule": "Cronograma",
       "activities": "Atividades",
       "settings": "Configurações"
+    },
+    "schedule": {
+      "add": "Adicionar atividade",
+      "edit": "Editar atividade",
+      "delete": "Excluir atividade",
+      "noActivities": "Nenhuma atividade encontrada",
+      "activity": "Atividade",
+      "date": "Data",
+      "time": "Horário",
+      "description": "Descrição",
+      "location": "Localização",
+      "save": "Salvar",
+      "cancel": "Cancelar"
     }
   },
   "LoginAndRegister": {

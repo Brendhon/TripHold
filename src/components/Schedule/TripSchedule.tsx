@@ -4,7 +4,7 @@ import { TripDayRange, TripScheduleProps } from "@app/models";
 import { getDate, getDaysRanges } from "@utils/dates";
 import { useEffect, useState } from "react";
 import { ScheduleDetails } from "./ScheduleDetails";
-import { SelectDateRange } from "./SelectDateRange";
+import { ScheduleHeader } from "./ScheduleHeader";
 
 /**
  * Trip Schedule
@@ -41,7 +41,7 @@ export function TripSchedule(props?: TripScheduleProps) {
   // Render
   return (
     <>
-      {ranges.length > 1 && <SelectDateRange ranges={ranges} selectGroup={setSelectedRange} />}
+      <ScheduleHeader ranges={ranges} selectGroup={setSelectedRange} />
       {selectedRange && <ScheduleDetails range={selectedRange} trip={props?.trip ?? null} />}
     </>
   )

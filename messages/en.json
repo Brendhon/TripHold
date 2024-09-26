@@ -39,6 +39,19 @@
       "schedule": "Schedule",
       "activities": "Activities",
       "settings": "Settings"
+    },
+    "schedule": {
+      "add": "Add activity",
+      "edit": "Edit activity",
+      "delete": "Delete activity",
+      "noActivities": "No activities found",
+      "activity": "Activity",
+      "date": "Date",
+      "time": "Time",
+      "description": "Description",
+      "location": "Location",
+      "save": "Save",
+      "cancel": "Cancel"
     }
   },
   "LoginAndRegister": {

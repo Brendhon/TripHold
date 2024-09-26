@@ -55,7 +55,7 @@ export function ScheduleDetails(props?: ScheduleDetailsProps) {
   }
 
   // Get formatted date
-  const getFormattedDate = (date: DateType) => formatDate(locale, date)
+  const getFormattedDate = (date: DateType) => formatDate(locale, date, false)
   const getDayFormattedName = (date: DateType) => getDayName(date, locale);
 
   // Get selected start and end date

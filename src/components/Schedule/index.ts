@@ -1,3 +1,3 @@
 export * from './TripSchedule';
-export * from './SelectDateRange';
+export * from './ScheduleHeader';
 export * from './ScheduleDetails';
