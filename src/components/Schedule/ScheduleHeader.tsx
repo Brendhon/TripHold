@@ -65,7 +65,7 @@ export function ScheduleHeader(props?: SelectGroupProps) {
   // Const DateTitle
   const DateTitle = ({ className }: { className?: string }) => {
     return (
-      <span className={`flex items-center text-xl md:text-2xl text-grey-extra-light ${className}`}>
+      <span className={`flex items-center text-xl text-grey-extra-light ${className}`}>
         {getDayTitle()}
       </span>
     )
@@ -73,43 +73,42 @@ export function ScheduleHeader(props?: SelectGroupProps) {
 
   // Render
   return (
-    <>
-      {
-        selectedRange &&
-        <div className="flex flex-col-reverse md:flex-row md:items-center w-full justify-between mb-6 gap-4">
+    selectedRange &&
+    <div className="flex flex-col-reverse md:flex-row md:items-center w-full justify-between mb-6 gap-4">
+      <div className={`flex items-center gap-4 justify-between bg-grey-medium p-3 rounded-lg`}>
 
-          {/* Next and back buttons */}
-          <div className={`flex items-center gap-4 justify-between bg-grey-medium p-3 rounded-lg`}>
-            <Button
-              isIconOnly
-              className={visible}
-              onClick={() => setSelectedGroup(props?.ranges[selectedRange!.id - 1])}
-              isDisabled={selectedRange?.id === 0}>
-              <IoMdArrowRoundBack size={24} />
-            </Button>
-            <DateTitle />
-            <Button
-              isIconOnly
-              className={visible}
-              onClick={() => setSelectedGroup(props?.ranges[selectedRange!.id + 1])}
-              isDisabled={selectedRange?.id === props?.ranges.length! - 1}>
-              <IoMdArrowRoundForward size={24} />
-            </Button>
-          </div>
+        {/* Back button */}
+        <Button
+          isIconOnly
+          className={visible}
+          size="sm"
+          onClick={() => setSelectedGroup(props?.ranges[selectedRange!.id - 1])}
+          isDisabled={selectedRange?.id === 0}>
+          <IoMdArrowRoundBack size={22} />
+        </Button>
 
-          {/* Title - Dates */}
-          {/* <DateTitle className="hidden md:inline-flex" /> */}
+        {/* Date Title */}
+        <DateTitle />
 
-          {/* Add button */}
-          <Button
-            variant="solid"
-            size="lg"
-            color="primary"
-            onClick={() => handleAddClick()}>
-            {t('add')}
-          </Button>
-        </div>
-      }
-    </>
+        {/* Next button */}
+        <Button
+          isIconOnly
+          className={visible}
+          size="sm"
+          onClick={() => setSelectedGroup(props?.ranges[selectedRange!.id + 1])}
+          isDisabled={selectedRange?.id === props?.ranges.length! - 1}>
+          <IoMdArrowRoundForward size={22} />
+        </Button>
+      </div>
+
+      {/* Add button */}
+      <Button
+        variant="solid"
+        size="lg"
+        color="primary"
+        onClick={() => handleAddClick()}>
+        {t('add')}
+      </Button>
+    </div>
   )
 }
