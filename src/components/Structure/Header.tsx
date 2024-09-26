@@ -45,7 +45,7 @@ export function Header(props?: HeaderProps) {
               onClick={() => router.push(`/trip/${trip?.id}`)}
               src={trip?.country.flag}
               alt="Country Flag"
-              className='h-8 md:h-12 cursor-pointer hover:opacity-80'
+              className='h-8 md:h-12 cursor-pointer hover:opacity-80 rounded-sm'
               width="0"
               height="0"
               style={{ width: "auto" }}
