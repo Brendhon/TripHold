@@ -1,9 +1,10 @@
 "use client";
 
-import { Trip, TripDayRange, TripScheduleProps } from "@app/models";
+import { Trip, TripDayRange } from "@app/models";
 import { formatDate, getDate, getDayName, getTimeFormat } from "@utils/dates";
 import { useLocale } from "next-intl";
 import { useEffect, useState } from "react";
+import { PlusButton } from "./PlusButton";
 
 interface ScheduleDetailsProps {
   trip: Trip | null;
@@ -78,7 +79,7 @@ export function ScheduleDetails(props?: ScheduleDetailsProps) {
       p-2 
       ${className} 
       ${small ? 'min-w-28' : 'w-full min-w-36 md:min-w-48'}
-      ${clickable ? 'cursor-pointer hover:opacity-70' : 'cursor-default'}
+      ${clickable ? 'cursor-pointer hover:opacity-80' : 'cursor-default'}
       ${isValid(day) ? 'bg-grey-medium ' : 'bg-grey-extra-regular'}
       `}>
       {children}
@@ -129,9 +130,7 @@ export function ScheduleDetails(props?: ScheduleDetailsProps) {
             </Content>
             {Array.from({ length: 7 }, (_, i) => i).map((day) => (
               <Content key={day} day={days[day]} clickable={isValid(days[day])}>
-                <Text className={isValid(days[day]) ? 'visible' : 'hidden'}>
-                  {days[day].toString()}
-                </Text>
+                <PlusButton time={time} day={days[day]} className={isValid(days[day]) ? 'visible' : 'hidden'} />
               </Content>
             ))}
           </Container>
