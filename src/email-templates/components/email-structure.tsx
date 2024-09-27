@@ -28,7 +28,7 @@ export const TripHoldEmailStructure = ({ translations, children }: any) => {
                 <div className="flex justify-center w-full text-center items-center">
                   <Img
                     className="m-auto"
-                    src={url + '/dark-logo.png'}
+                    src={url + '/dark-logo.svg'}
                     width="200"
                     height="50"
                     alt="Logo"
