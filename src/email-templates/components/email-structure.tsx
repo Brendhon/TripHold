@@ -14,6 +14,7 @@ import EmailText from "./email-text";
 
 export const TripHoldEmailStructure = ({ translations, children }: any) => {
   const previewText = translations["subject"] || "Bem vindo ao TripHold!";
+  const url = "https://trip-hold.vercel.app";
 
   return (
     <Html>
@@ -24,12 +25,15 @@ export const TripHoldEmailStructure = ({ translations, children }: any) => {
           <Container className="bg-white mx-auto mb-16 rounded-md">
             <div className="bg-white rounded-md p-4">
               <Section className="px-12">
-                <Img
-                  src={'https://firebasestorage.googleapis.com/v0/b/triphold.appspot.com/o/email%2Fdark-logo.svg?alt=media&token=2cf80ec5-7197-4b75-98d4-a2d240c2ed76'}
-                  width="200"
-                  height="50"
-                  alt="Logo"
-                />
+                <div className="flex justify-center w-full text-center items-center">
+                  <Img
+                    className="m-auto"
+                    src={url + '/dark-logo.png'}
+                    width="200"
+                    height="50"
+                    alt="Logo"
+                  />
+                </div>
                 {children}
                 <EmailDivider />
                 <EmailText> {translations["help"]} <EmailLink link="https://triphold.com/support"> {translations["support"]} </EmailLink></EmailText>
