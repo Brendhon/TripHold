@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "@styles/globals.css";
 
 export const metadata: Metadata = {
-  title: "TripHold",
-  description: "TripHold - Your trip planner",
+  title: "Trip Hold",
+  description: "Trip Hold - Your trip planner",
   generator: "Next.js",
   manifest: "/manifest.json",
   keywords: ["nextjs", "next14", "pwa", "next-pwa"],
