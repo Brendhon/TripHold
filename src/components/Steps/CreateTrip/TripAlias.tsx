@@ -2,6 +2,7 @@
 
 import { BaseStepProps, Trip } from '@app/models';
 import { Input } from 'components/Form';
+import { StepDesc } from '../StepDesc';
 import { StepTitle } from '../StepTitle';
 
 export function TripAlias(props: BaseStepProps<Trip>) {
@@ -11,8 +12,9 @@ export function TripAlias(props: BaseStepProps<Trip>) {
   // Render
   return (
     <div className={props.className}>
-      <StepTitle title='alias' />
-      <Input handleChange={handleChange} maxLength={35} controller={props.state?.alias} type="text" placeholder="alias" />
+      <StepTitle title='tripIdentifier' />
+      <Input handleChange={handleChange} maxLength={35} controller={props.state?.alias} type="text" placeholder="tripIdentifier" />
+      <StepDesc desc='tripIdentifier' className='max-w-[400px]' />
     </div>
   )
 }

@@ -32,7 +32,8 @@
     "number": "Enter the number",
     "complement": "Enter the complement (optional)",
     "date": "Select a date",
-    "alias": "Enter an alias (optional)"
+    "alias": "Enter an alias (optional)",
+    "tripIdentifier": "Ex.: Foz do Iguaçu, Natal"
   },
   "TripDetails": {
     "title": {
@@ -195,7 +196,8 @@
     "until": "to",
     "countryYouWillVisit": "Country you will visit",
     "whenYouWillTravel": "When will you travel",
-    "tripAlias": "Trip alias"
+    "tripAlias": "Trip alias",
+    "tripIdentifier": "Trip identifier"
   },
   "Step": {
     "next": "Next",
@@ -204,7 +206,16 @@
       "whichCountryWillYouVisit": "Which country will you visit?",
       "whenWillYouTravel": "When will you travel?",
       "summary": "Summary",
-      "alias": "Enter an alias for your trip"
+      "alias": "Enter an alias for your trip",
+      "tripIdentifier": "Trip identifier (optional)"
+    },
+    "desc": {
+      "description": "Description",
+      "whichCountryWillYouVisit": "Choose the country you will visit",
+      "whenWillYouTravel": "Choose the start and end date of your trip",
+      "summary": "Confirm your trip information",
+      "alias": "Give a nickname for your trip",
+      "tripIdentifier": "Give a name to identify this trip, such as the cities or regions you plan to visit. Maximum of 35 characters."
     }
   },
   "Country": {

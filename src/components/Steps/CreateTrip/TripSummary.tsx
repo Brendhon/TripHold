@@ -21,7 +21,7 @@ export function TripSummary(props: BaseStepProps<Trip>) {
       {
         props.state?.alias &&
         <>
-          <StepDetail text='tripAlias' />
+          <StepDetail text='tripIdentifier' />
           <p className='text-lg text-grey-extra-light font-semibold mt-1 mb-4'>{props.state?.alias}</p>
         </>
       }

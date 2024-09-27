@@ -32,7 +32,8 @@
     "number": "Digite o número",
     "complement": "Digite o complemento (opcional)",
     "date": "Selecione uma data",
-    "alias": "Digite um apelido (opcional)"
+    "alias": "Digite um apelido (opcional)",
+    "tripIdentifier": "Ex.: Foz do Iguaçu, Natal"
   },
   "TripDetails": {
     "title": {
@@ -195,7 +196,8 @@
     "until": "até",
     "countryYouWillVisit": "País que você vai visitar",
     "whenYouWillTravel": "Quando você vai viajar",
-    "tripAlias": "Apelido da viagem"
+    "tripAlias": "Apelido da viagem",
+    "tripIdentifier": "Identificador da viagem"
   },
   "Step": {
     "next": "Próximo",
@@ -204,7 +206,16 @@
       "whichCountryWillYouVisit": "Qual país você vai visitar?",
       "whenWillYouTravel": "Quando você vai viajar?",
       "summary": "Resumo",
-      "alias": "Dê um apelido para sua viagem"
+      "alias": "Dê um apelido para sua viagem",
+      "tripIdentifier": "Identificador da viagem (opcional)"
+    },
+    "desc": {
+      "description": "Descrição",
+      "whichCountryWillYouVisit": "Escolha o país que você vai visitar",
+      "whenWillYouTravel": "Escolha a data de início e fim da sua viagem",
+      "summary": "Confirme as informações da sua viagem",
+      "alias": "Dê um apelido para sua viagem",
+      "tripIdentifier": "Dê um nome para identificar essa viagem, como as cidades ou regiões que planeja visitar. Máximo de 35 caracteres."
     }
   },
   "Country": {
