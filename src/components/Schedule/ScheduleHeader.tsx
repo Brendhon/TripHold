@@ -37,11 +37,11 @@ export function ScheduleHeader() {
   );
 
   // Render
-  return (
+  return (trip &&
     <div className="flex flex-col md:flex-row md:items-center w-full justify-between mb-6 gap-4">
       {/* Date Title */}
       <div className="flex flex-col items-center justify-center bg-grey-medium p-3 rounded-md text-grey-extra-light text-xl gap-2">
-        <span>{getDateTitle(trip?.startDate, trip?.endDate, locale)}</span>
+        <span>{getDateTitle(trip.startDate, trip.endDate, locale)}</span>
       </div>
 
       {/* Add button */}
