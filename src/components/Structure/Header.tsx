@@ -59,7 +59,7 @@ export function Header(props?: HeaderProps) {
               />
 
               {/* Trip alias */}
-              <span className="w-32 md:w-36 text-[12px] md:text-[13px] absolute -bottom-7 text-center leading-3">{trip?.alias}</span>
+              <span className="w-32 md:w-36 text-[12px] md:text-[13px] absolute -bottom-7 text-center leading-3 text-grey-light">{trip?.alias}</span>
             </div>
           </div>
         }

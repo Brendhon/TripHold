@@ -15,5 +15,6 @@
     "thursday",
     "tuesday",
     "wednesday"
-  ]
+  ],
+  "svg.preview.background": "editor"
 }
