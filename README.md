@@ -122,6 +122,12 @@ RESEND_FROM_EMAIL={EMAIL}
 
 Caso não adicione um e-mail de envio, o e-mail padrão será o e-mail de suporte do Resend, ou seja, não será possível enviar emails para os usuários.
 
+É necessário criar uma conta de desenvolvedor no [TripAdvisor](https://www.tripadvisor.com/developers) e adicionar a chave de acesso no arquivo .env na raiz do projeto para que seja possível buscar informações sobre as atividades de um determinado local:
+
+```
+TRIP_ADVISOR_API_KEY={API_KEY}
+```
+
 ---
 
 ### ⚽ Rodando o projeto 

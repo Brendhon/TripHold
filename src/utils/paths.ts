@@ -66,6 +66,13 @@ export const getZipCodeBaseAPIPath = (code: string) => {
 }
 
 /**
+ * Get trip advisor path
+ */
+export const getTripAdvisorPath = (category: string, language: string | null, searchQuery: string) => {
+  return `https://api.content.tripadvisor.com/api/v1/location/search?key=${process.env.TRIP_ADVISOR_API_KEY}&category=${category}&language=${language || "pt"}&searchQuery=${searchQuery}`;
+}
+
+/**
  * Get countries path
  * @returns Countries path
  */
