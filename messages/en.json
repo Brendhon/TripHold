@@ -42,6 +42,7 @@
     },
     "schedule": {
       "add": "Add activity",
+      "create": "Create activity",
       "edit": "Edit activity",
       "delete": "Delete activity",
       "noActivities": "No activities found",
@@ -51,7 +52,8 @@
       "description": "Description",
       "location": "Location",
       "save": "Save",
-      "cancel": "Cancel"
+      "cancel": "Cancel",
+      "period": "Period"
     }
   },
   "LoginAndRegister": {

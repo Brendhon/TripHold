@@ -1,115 +1,51 @@
 "use client";
 
-import { TripDayRange } from "@app/models";
 import { Button } from "@nextui-org/react";
+import { getDateTitle } from "@utils/dates";
+import { useTrip } from "context/TripContext";
 import { useLocale, useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
-import { IoMdArrowRoundBack, IoMdArrowRoundForward } from "react-icons/io";
-
-interface SelectGroupProps {
-  ranges: TripDayRange[];
-  selectGroup: (group: TripDayRange) => void;
-}
-
-type NextBackVisibility = 'hidden' | 'visible';
 
 /**
  * Trip Schedule
  */
-export function ScheduleHeader(props?: SelectGroupProps) {
-  // State
-  const [selectedRange, _setSelectedRange] = useState<TripDayRange>();
-  const [visible, setVisible] = useState<NextBackVisibility>('hidden');
+export function ScheduleHeader() {
 
   // Locale
   const locale = useLocale();
 
+  // Trip
+  const { trip } = useTrip();
+
   // Translations
   const t = useTranslations("TripDetails.schedule");
-
-  // Set selected group
-  const setSelectedGroup = (group?: TripDayRange) => {
-    setNextBackVisibility();
-    _setSelectedRange(group);
-    if (group) props?.selectGroup(group);
-  }
-
-  // Set next and back visibility
-  const setNextBackVisibility = () => {
-    const rangeLength = props?.ranges?.length ?? 0;
-    setVisible(rangeLength > 1 ? 'visible' : 'hidden');
-  }
-
-  // Set selected group
-  useEffect(() => setSelectedGroup(props?.ranges[0]), [props?.ranges]);
-
-  // Get day title
-  const getDayTitle = () => {
-    // Get in format like as August 1 - September 1 2021
-    const start = new Date(selectedRange!.startDate);
-
-    // Get in format like as August 1 - September 1 2021
-    const end = new Date(selectedRange!.endDate);
-
-    // Check if are in the same month
-    return start.getMonth() === end.getMonth()
-      ? start.toLocaleDateString(locale, { day: 'numeric' }) + " - " + end.toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' })
-      : start.toLocaleDateString(locale, { day: 'numeric', month: 'long' }) + " - " + end.toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' });
-  }
 
   // Handle add button click
   const handleAddClick = () => {
     console.log('Add button clicked');
   };
 
-  // Const DateTitle
-  const DateTitle = ({ className }: { className?: string }) => {
-    return (
-      <span className={`flex items-center text-xl text-grey-extra-light ${className}`}>
-        {getDayTitle()}
-      </span>
-    )
-  }
+  // AddButton
+  const AddButton = ({ className }: any) => (
+    <Button
+      variant="solid"
+      size="lg"
+      color="primary"
+      className={`rounded-md ${className}`}
+      onClick={() => handleAddClick()}>
+      {t('add')}
+    </Button>
+  );
 
   // Render
   return (
-    selectedRange &&
-    <div className="flex flex-col-reverse md:flex-row md:items-center w-full justify-between mb-6 gap-4">
-      <div className={`flex items-center gap-4 justify-between bg-grey-medium p-3 rounded-md`}>
-
-        {/* Back button */}
-        <Button
-          isIconOnly
-          className={visible}
-          size="sm"
-          onClick={() => setSelectedGroup(props?.ranges[selectedRange!.id - 1])}
-          isDisabled={selectedRange?.id === 0}>
-          <IoMdArrowRoundBack size={20} />
-        </Button>
-
-        {/* Date Title */}
-        <DateTitle />
-
-        {/* Next button */}
-        <Button
-          isIconOnly
-          className={visible}
-          size="sm"
-          onClick={() => setSelectedGroup(props?.ranges[selectedRange!.id + 1])}
-          isDisabled={selectedRange?.id === props?.ranges.length! - 1}>
-          <IoMdArrowRoundForward size={20} />
-        </Button>
+    <div className="flex flex-col md:flex-row md:items-center w-full justify-between mb-6 gap-4">
+      {/* Date Title */}
+      <div className="flex flex-col items-center justify-center bg-grey-medium p-3 rounded-md text-grey-extra-light text-xl gap-2">
+        <span>{getDateTitle(trip?.startDate, trip?.endDate, locale)}</span>
       </div>
 
       {/* Add button */}
-      <Button
-        variant="solid"
-        size="lg"
-        color="primary"
-        className="rounded-md"
-        onClick={() => handleAddClick()}>
-        {t('add')}
-      </Button>
+      <AddButton />
     </div>
   )
 }

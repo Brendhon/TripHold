@@ -5,10 +5,12 @@ import { formatDate, getDate, getDayName, getTimeFormat } from "@utils/dates";
 import { useLocale } from "next-intl";
 import { useEffect, useState } from "react";
 import { PlusButton } from "./PlusButton";
+import { Button, Spinner } from "@nextui-org/react";
+import { IoMdArrowRoundBack, IoMdArrowRoundForward } from "react-icons/io";
 
 interface ScheduleDetailsProps {
   trip: Trip | null;
-  range: TripDayRange;
+  ranges: TripDayRange[];
 }
 
 interface TimeType {
@@ -24,12 +26,17 @@ export function ScheduleDetails(props?: ScheduleDetailsProps) {
   const [activities, setActivities] = useState<any[]>([]);
   const [days, setDays] = useState<Date[]>([]);
   const [times, setTimes] = useState<TimeType[]>([]);
+  const [selectedRange, setSelectedRange] = useState<TripDayRange>();
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   // Locale
   const locale = useLocale();
 
-  // Update start and end date on trip change
-  useEffect(() => setDaysAndTimes(), [props?.range]);
+  // Set selected range when ranges change
+  useEffect(() => setSelectedRange(props?.ranges[0]), [props?.ranges]);
+
+  // Set days and times when selected range changes
+  useEffect(() => setDaysAndTimes(), [selectedRange]);
 
   // Set days and times
   const setDaysAndTimes = () => {
@@ -58,6 +65,9 @@ export function ScheduleDetails(props?: ScheduleDetailsProps) {
 
     // Set times
     setTimes(times);
+
+    // Set loading
+    setIsLoading(days.length === 0 || times.length === 0);
   }
 
   // Get formatted date
@@ -65,8 +75,8 @@ export function ScheduleDetails(props?: ScheduleDetailsProps) {
   const getDayFormattedName = (date: DateType) => getDayName(date, locale);
 
   // Get selected start and end date
-  const getSelectedStart = () => new Date(props?.range.startDate);
-  const getSelectedEnd = () => new Date(props?.range.endDate);
+  const getSelectedStart = () => new Date(selectedRange?.startDate);
+  const getSelectedEnd = () => new Date(selectedRange?.endDate);
 
   // Container
   const Container = ({ children, className }: any) => (
@@ -110,13 +120,43 @@ export function ScheduleDetails(props?: ScheduleDetailsProps) {
     return day >= start && day <= end
   }
 
+  // Loading Spinner
+  const LoadingSpinner = () => (
+    <div className="flex items-center justify-center w-full h-full delay-100 transition">
+      <Spinner size="lg" color="primary" />
+    </div>
+  )
+
   // Render
-  return (
+  return (!isLoading &&
     <div className="flex flex-col bg-grey-regular rounded-md gap-[1px] overflow-x-auto border border-grey-regular">
       {/* Colum */}
       <Container>
         {/* Empty */}
-        <Content className="flex-col w-10" small={true} />
+        <Content className="flex-col w-10" small={true}>
+          {props?.ranges.length! > 1 &&
+            <div className={`flex items-center gap-4 justify-between bg-grey-medium p-3 rounded-md`}>
+
+              {/* Back button */}
+              <Button
+                isIconOnly
+                size="sm"
+                onClick={() => setSelectedRange(props?.ranges[selectedRange!.id - 1])}
+                isDisabled={selectedRange?.id === 0}>
+                <IoMdArrowRoundBack size={20} />
+              </Button>
+
+              {/* Next button */}
+              <Button
+                isIconOnly
+                size="sm"
+                onClick={() => setSelectedRange(props?.ranges[selectedRange!.id + 1])}
+                isDisabled={selectedRange?.id === props?.ranges.length! - 1}>
+                <IoMdArrowRoundForward size={20} />
+              </Button>
+            </div>
+          }
+        </Content>
 
         {/* Days */}
         {days.map((day, index) => (

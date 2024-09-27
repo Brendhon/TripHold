@@ -39,17 +39,28 @@ export function Header(props?: HeaderProps) {
         />
         {
           trip?.country.flag &&
-          <div className="flex items-center ml-2 md:ml-4 gap-2 md:gap-4">
+          <div className="flex items-center ml-2 md:ml-4 gap-6">
+
+            {/* Arrow */}
             <BiSolidRightArrow />
-            <Image
-              onClick={() => router.push(`/trip/${trip?.id}`)}
-              src={trip?.country.flag}
-              alt="Country Flag"
-              className='h-8 md:h-12 cursor-pointer hover:opacity-80 rounded-sm'
-              width="0"
-              height="0"
-              style={{ width: "auto" }}
-            />
+
+            {/* Trip info */}
+            <div className="flex flex-col items-center justify-center relative">
+
+              {/* Country flag */}
+              <Image
+                onClick={() => router.push(`/trip/${trip?.id}`)}
+                src={trip?.country.flag}
+                alt="Country Flag"
+                className='h-8 md:h-10 cursor-pointer hover:opacity-80 rounded-sm'
+                width="0"
+                height="0"
+                style={{ width: "auto" }}
+              />
+
+              {/* Trip alias */}
+              <span className="w-32 md:w-36 text-[12px] md:text-[13px] absolute -bottom-7 text-center leading-3">{trip?.alias}</span>
+            </div>
           </div>
         }
       </div>

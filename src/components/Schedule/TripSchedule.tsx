@@ -41,8 +41,8 @@ export function TripSchedule(props?: TripScheduleProps) {
   // Render
   return (
     <>
-      <ScheduleHeader ranges={ranges} selectGroup={setSelectedRange} />
-      {selectedRange && <ScheduleDetails range={selectedRange} trip={props?.trip ?? null} />}
+      <ScheduleHeader />
+      {selectedRange && <ScheduleDetails  ranges={ranges} trip={props?.trip ?? null} />}
     </>
   )
 }

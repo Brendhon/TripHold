@@ -30,7 +30,7 @@ export const getDate = (date: DateType): Date | null => {
 export const formatDate = (locate: string, date: DateType, full: boolean = true): string => {
   // Get date
   date = getDate(date);
-  
+
   // Check if date is valid
   if (!date) return "";
 
@@ -91,7 +91,7 @@ export const getDayName = (date: DateType, locale: string = 'en'): string => {
   const dayName = getDate(date)?.toLocaleDateString(locale, { weekday: 'long' });
 
   // Check if day name is valid
-  if(!dayName) return "";
+  if (!dayName) return "";
 
   // Return day name
   return dayName.charAt(0).toUpperCase() + dayName.slice(1);
@@ -170,4 +170,27 @@ export const getTimeFormat = (locale: string, time: string): string => {
 
   // Return time
   return new Date(0, 0, 0, +h, +m).toLocaleTimeString(getLocaleDate(locale), { hour: '2-digit', minute: '2-digit' });
+}
+
+/**
+ * Get date title
+ * @param {Date} startDate Start date
+ * @param {Date} endDate End date
+ * @param {string} locale Locale
+ * @returns {string} Date title
+ */
+export const getDateTitle = (startDate: Date, endDate: Date, locale: string): string => {
+  // Get in format like as August 1 - September 1 2021
+  const start = getDate(startDate);
+  
+  // Get in format like as August 1 - September 1 2021
+  const end = getDate(endDate);
+
+  // Check if dates are valid
+  if (!start || !end) return "";
+
+  // Check if are in the same month
+  return start.getMonth() === end.getMonth()
+    ? start.toLocaleDateString(locale, { day: 'numeric' }) + " - " + end.toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' })
+    : start.toLocaleDateString(locale, { day: 'numeric', month: 'long' }) + " - " + end.toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' });
 }
