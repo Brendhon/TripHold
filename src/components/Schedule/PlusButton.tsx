@@ -30,7 +30,13 @@ export function PlusButton(props: PlusButtonProps) {
     date.setMinutes(parseInt(time[1]));
     console.log('Add activity', date);
     
-    fetch(getActivitiesPath('hotels') + `?place=Milan`, { method: 'GET' })
+    fetch(getActivitiesPath('hotels') + `?place=Milan`, { 
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Referer': 'https://trip-hold.vercel.app',
+      },
+     })
       .then(response => response.json())
       .then(data => {
         console.log('Data:', data);

@@ -21,7 +21,7 @@ export async function GET(req: NextRequest) {
     const path = getTripAdvisorPath('hotels', lang, place);
 
     // Options
-    const options = { method: 'GET', headers: { accept: 'application/json' } };
+    const options = { method: 'GET', headers: { accept: 'application/json', Referer: 'https://trip-hold.vercel.app', origin: 'https://trip-hold.vercel.app' } };
 
     // Make request
     const resp = await fetch(path, options).then(res => res.json())
