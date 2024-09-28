@@ -81,6 +81,15 @@ export const getCountriesPath = () => {
 }
 
 /**
+ * Get Activities path
+ * @param {string} category Category
+ * @returns Activities path
+ */
+export const getActivitiesPath = (category: string) => {
+  return `${window.location.origin}/api/activities/${category}`;
+}
+
+/**
  * Get email path
  * @param {string} endpoint Endpoint
  * @returns Email path

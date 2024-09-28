@@ -1,6 +1,7 @@
 "use client";
 
 import { getTimeFormat } from "@utils/dates";
+import { getActivitiesPath } from "@utils/paths";
 import { useTrip } from "context/TripContext";
 import { useState } from "react";
 import { BsPlus } from "react-icons/bs";
@@ -28,6 +29,15 @@ export function PlusButton(props: PlusButtonProps) {
     date.setHours(parseInt(time[0]));
     date.setMinutes(parseInt(time[1]));
     console.log('Add activity', date);
+    
+    fetch(getActivitiesPath('hotels') + `?place=Milan`, { method: 'GET' })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Data:', data);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
   }
 
   // Render
