@@ -27,11 +27,11 @@ export default function TripDetails() {
       selectedKey={selected}
       onSelectionChange={(key: Key) => setSelected(key as TabsOptions)}
     >
-      <Tab key="schedule" title={tPage('title.schedule')} className="py-4 px-7 md:px-16">
+      <Tab key="schedule" title={tPage('title.schedule')} className="py-4">
         <TripSchedule trip={trip} />
       </Tab>
 
-      <Tab key="settings" title={tPage('title.settings')} className="py-4 px-7 md:px-16">
+      <Tab key="settings" title={tPage('title.settings')} className="py-4">
         <span>Settings {trip?.id}</span>
       </Tab>
 

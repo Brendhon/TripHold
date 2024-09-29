@@ -33,9 +33,9 @@ export function ProfileDropdown() {
 
       <DropdownTrigger aria-label='Profile Dropdown'>
         <Avatar
-          size='lg'
+          size='md'
           as="button"
-          className="transition-transform border-purple-semi-bold border-2"
+          className="transition-transform border-purple-semi-bold border-1"
           src={avatar}
         />
       </DropdownTrigger>
