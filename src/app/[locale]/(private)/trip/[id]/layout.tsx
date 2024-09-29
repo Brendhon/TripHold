@@ -1,6 +1,7 @@
 'use client';
 
 import { Trip } from '@app/models';
+import { useUserId } from '@utils/session';
 import { useTrip } from 'context/TripContext';
 import { getTrip } from 'lib/firebase/firestore/trip';
 import { useRouter } from 'next/navigation';
@@ -19,6 +20,9 @@ export default function TripLayout({
   // Router
   const router = useRouter();
 
+  // User id
+  const userId = useUserId();
+
   // Get trip by ID
   useEffect(() => {
     // Get trip by ID
@@ -31,8 +35,16 @@ export default function TripLayout({
 
   // Handle set trip
   const handleSetTrip = (trip: Trip | null) => {
-    if (!trip) router.push("/404");
-    setTrip(trip);
+    switch (true) {
+      // Invalid trip
+      case !trip:
+      case !trip?.userIds.includes(userId):
+        return router.push("/404");
+
+      default:
+        setTrip(trip);
+        break;
+    }
   }
 
   // Handle error

@@ -45,7 +45,7 @@ export default function TripCreation() {
     if (!user?.id) return;
 
     // Check if email is verified
-    if (!user?.emailVerified) setErrors(prev => [...prev, 'email']);
+    if (user.provider == 'email' && !user.emailVerified) setErrors(prev => [...prev, 'email']);
 
     // Check if zip code is filled
     if (!user?.zipCode) setErrors(prev => [...prev, 'zipCode']);
