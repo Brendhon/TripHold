@@ -1,8 +1,6 @@
 "use client";
 
 import { getTimeFormat } from "@utils/dates";
-import { getActivitiesPath } from "@utils/paths";
-import { useTrip } from "context/TripContext";
 import { useState } from "react";
 import { BsPlus } from "react-icons/bs";
 
@@ -19,31 +17,20 @@ export function PlusButton(props: PlusButtonProps) {
   // State
   const [isHovered, setIsHovered] = useState(false);
 
-  // Trip
-  const { trip } = useTrip();
-
   // Click handler
   const clickHandler = () => {
+    // Get date
     const date = new Date(props.day);
+
+    // Get time
     const time = getTimeFormat('pt', props.time).split(':');
+
+    // Set time to date
     date.setHours(parseInt(time[0]));
     date.setMinutes(parseInt(time[1]));
+
+    // Log
     console.log('Add activity', date);
-    
-    fetch(getActivitiesPath('hotels') + `?place=Milan`, { 
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Referer': 'https://trip-hold.vercel.app',
-      },
-     })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Data:', data);
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
   }
 
   // Render

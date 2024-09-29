@@ -77,3 +77,12 @@ export const searchInArray = (search: string, keys: string[], obj: any): boolean
   for (const key of keys) if (searchInString(obj[key], search)) return true;
   return false;
 }
+
+/**
+ * Check if string is type of enum
+ * @param {string} str - String to check
+ * @param {any} enumType - Enum type
+ */
+export const inEnum = (enumType: any, str: string | null) => {
+  return str && Object.values(enumType).includes(str);
+};

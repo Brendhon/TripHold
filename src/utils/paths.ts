@@ -1,4 +1,4 @@
-import { EmailType } from "@app/models";
+import { ActivityCategory, EmailType } from "@app/models";
 
 /**
  * Get user path
@@ -66,10 +66,21 @@ export const getZipCodeBaseAPIPath = (code: string) => {
 }
 
 /**
- * Get trip advisor path
+ * Get location trip advisor path
  */
-export const getTripAdvisorPath = (category: string, language: string | null, searchQuery: string) => {
+export const getLocationActivityPath = (category: string, language: string | null, searchQuery: string) => {
   return `https://api.content.tripadvisor.com/api/v1/location/search?key=${process.env.TRIP_ADVISOR_API_KEY}&category=${category}&language=${language || "pt"}&searchQuery=${searchQuery}`;
+}
+
+/**
+ * Get location trip advisor details path
+ * @param {string} locationID Location ID
+ * @param {string} language Language
+ * @param {string} currency Currency
+ * @returns Location trip advisor details path
+ */
+export const getActivityDetailsPath = (locationID: string, language: string | null, currency: string | null) => {
+  return `https://api.content.tripadvisor.com/api/v1/location/${locationID}/details?key=${process.env.TRIP_ADVISOR_API_KEY}&language=${language || "pt"}&currency=${currency || "USD"}`;
 }
 
 /**
@@ -85,8 +96,8 @@ export const getCountriesPath = () => {
  * @param {string} category Category
  * @returns Activities path
  */
-export const getActivitiesPath = (category: string) => {
-  return `${window.location.origin}/api/activities/${category}`;
+export const getActivitiesPath = (category: ActivityCategory, place: string, lang: string, currency?: string) => {
+  return `${window.location.origin}/api/activities?category=${category}&place=${place}&lang=${lang}${currency ? `&currency=${currency}` : ""}`;
 }
 
 /**
