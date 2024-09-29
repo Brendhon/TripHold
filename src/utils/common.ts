@@ -1,3 +1,5 @@
+import { LatLng } from "@app/models";
+
 export const SOCIAL_MEDIAS = {
   github: "https://github.com/Brendhon",
   linkedin: "https://www.linkedin.com/in/brendhon-moreira/"
@@ -85,4 +87,38 @@ export const searchInArray = (search: string, keys: string[], obj: any): boolean
  */
 export const inEnum = (enumType: any, str: string | null) => {
   return str && Object.values(enumType).includes(str);
+};
+
+/**
+ * Function to calculate the distance between two coordinates (Haversine formula)
+ */
+const calculateDistance = (lat1: number, lon1: number, lat2: number, lon2: number): number => {
+  const toRadians = (degree: number): number => degree * (Math.PI / 180);
+  const R = 6371; // Radius of the Earth in kilometers
+  
+  const dLat = toRadians(lat2 - lat1);
+  const dLon = toRadians(lon2 - lon1);
+  
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2)) *
+    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c; // Returns the distance in km
+};
+
+/**
+ * Function to sort the array based on the distance to a specific coordinate
+ * @param {LatLng[]} arr Array of data with latitude and longitude
+ * @param {number} targetLat Latitude of the target coordinate
+ * @param {number} targetLon Longitude of the target coordinate
+ * @returns {LatLng[]} Sorted array
+ */
+export const sortByDistance = <T>(arr: LatLng[], targetLat: number, targetLon: number): T[] => {
+  return arr.sort((a: LatLng, b: LatLng) => {
+    const distA = calculateDistance(targetLat, targetLon, a.latitude, a.longitude);
+    const distB = calculateDistance(targetLat, targetLon, b.latitude, b.longitude);
+    return distA - distB; // Sorts from smallest to largest
+  }) as T[];
 };

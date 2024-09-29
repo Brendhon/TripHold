@@ -4,3 +4,4 @@ export * from './form.model';
 export * from './trip.model';
 export * from './email.model';
 export * from './activity.model';
+export * from './airport.model';
