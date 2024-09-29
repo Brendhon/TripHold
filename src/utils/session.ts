@@ -60,26 +60,3 @@ export const useUserName = () => {
   // Get user name
   return data!.profile?.name;
 }
-
-/**
- * Update Local data
- */
-export const updateLocalData = async (e: User, router: any) => {
-  // Get user ID
-  const { update } = useSession();
-
-  // Initial data
-  let avatar = e?.image;
-
-  // Reload page
-  await update({
-    user: { email: e?.email, name: e?.name, image: avatar },
-    profile: { ...e, image: avatar }
-  });
-
-  // Go back
-  router.back();
-
-  // Reload page
-  router.refresh();
-}
