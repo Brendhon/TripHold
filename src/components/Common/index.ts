@@ -4,4 +4,3 @@ export * from './DeleteButton';
 export * from './GoogleBtn';
 export * from './LangSelector';
 export * from './ProfileDropdown';
-export * from './IncompleteProfile';

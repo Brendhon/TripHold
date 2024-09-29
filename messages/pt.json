@@ -260,6 +260,11 @@
       },
       "password": {
         "reset": "Senha redefinida com sucesso"
+      },
+      "email": {
+        "confirm": "Email confirmado com sucesso",
+        "resend": "Email reenviado com sucesso",
+        "send": "Email enviado com sucesso"
       }
     },
     "error": {
@@ -276,6 +281,11 @@
       },
       "password": {
         "reset": "É necessário preencher todos os campos relacionados a senha para redefini-la"
+      },
+      "email": {
+        "confirm": "Erro ao confirmar email",
+        "resend": "Erro ao reenviar email",
+        "send": "Erro ao enviar email"
       }
     }
   },

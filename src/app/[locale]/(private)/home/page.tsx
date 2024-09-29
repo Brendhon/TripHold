@@ -1,12 +1,10 @@
 "use client";
 
 import { Trip } from "@app/models";
-import { useDisclosure } from "@nextui-org/react";
 import { getIntlName, searchInString } from "@utils/common";
 import { formatDate } from "@utils/dates";
-import { useUserData, useUserId } from "@utils/session";
+import { useUserData } from "@utils/session";
 import { Input, TripCard } from "components";
-import { IncompleteProfile } from "components/Common/IncompleteProfile";
 import { getTrips } from "lib/firebase/firestore/trip";
 import { useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
@@ -17,7 +15,6 @@ export default function Home() {
   const [search, setSearch] = useState('') // Search
   const [trips, setTrips] = useState<Trip[]>([]) // Trips
   const [allTrips, setAllTrips] = useState<Trip[]>([]) // Trips
-  const [showModal, setShowModal] = useState(false) // Show modal
 
   // Router
   const router = useRouter();
@@ -57,17 +54,7 @@ export default function Home() {
   const goToTrip = (trip: Trip) => router.push(`/trip/${trip.id}`);
 
   // Create new trip
-  const createTrip = () => {
-    getModalErrors().length ? setShowModal(true) : router.push('/trip/creation');
-  }
-
-  // Get modal erros
-  const getModalErrors = () => {
-    const errors: any = [];
-    if (!user.zipCode) errors.push('zipCode');
-    if (user.provider == 'email' && !user.emailVerified) errors.push('email');
-    return errors;
-  }
+  const createTrip = () => router.push('/trip/creation');
 
   // Render home page
   return (
@@ -89,8 +76,6 @@ export default function Home() {
         {!search && <TripCard key="new-card" onClick={createTrip} />}
         {trips!.map((trip) => <TripCard onClick={() => goToTrip(trip)} key={trip.id} className="bg-blue-medium" trip={trip} />)}
       </div>
-
-      <IncompleteProfile errors={getModalErrors()} isOpen={showModal} setShowModal={setShowModal} />
     </>
   )
 }
