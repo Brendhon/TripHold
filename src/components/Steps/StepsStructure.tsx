@@ -22,7 +22,9 @@ export default function StepsStructure(props: StepsStructureProps) {
   let children = Array.isArray(props.children) ? props.children : [props.children];
 
   // Add setform and form to children props
-  children = children.map((child, index) => cloneElement(child, { setstate: props.setform, state: props.form, key: index }));
+  children = children
+    .filter((child) => child)
+    .map((child, index) => cloneElement(child, { setstate: props.setform, state: props.form, key: index }));
 
   // Check if has required fields in children
   const requiredFields = children
@@ -62,21 +64,27 @@ export default function StepsStructure(props: StepsStructureProps) {
   }
 
   // Handle back step
-  const handleBackStep = () => currentStep === 1 ? router.back() : setCurrentStep(currentStep - 1);
+  const handleBackStep = () => currentStep === 1
+    ? !!props.goBack ? props.goBack() : router.back()
+    : setCurrentStep(currentStep - 1);
 
   // Render home page
   return (
     <main className={`flex flex-col items-center justify-center ${props.className}`}>
       {/* Progress bar */}
-      <StepProgressBar currentStep={currentStep} numberOfSteps={steps} />
+      {
+        steps > 1 &&
+        <StepProgressBar currentStep={currentStep} numberOfSteps={steps} />
+      }
 
       {/* Break line */}
-      <br />
+      {!props.hideBreakLine && <br />}
 
       {/* Container for steps */}
       <div className="relative flex flex-col gap-6 bg-blue-regular p-5 rounded-md">
         {/* Steps */}
         <AnimatePresence mode="wait">
+          {props.titles && <h1 className="text-xl font-semibold text-center flex justify-center">{props.titles[currentStep - 1]}</h1>}
           {children.map((child, index) => currentStep === index + 1 && <AnimatedDiv key={index}> {child} </AnimatedDiv>)}
         </AnimatePresence>
 

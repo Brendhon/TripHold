@@ -1,10 +1,12 @@
 "use client";
 
 import { Trip } from "@app/models";
+import { useDisclosure } from "@nextui-org/react";
 import { getIntlName, searchInString } from "@utils/common";
 import { formatDate } from "@utils/dates";
-import { useUserId } from "@utils/session";
+import { useUserData, useUserId } from "@utils/session";
 import { Input, TripCard } from "components";
+import { IncompleteProfile } from "components/Common/IncompleteProfile";
 import { getTrips } from "lib/firebase/firestore/trip";
 import { useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
@@ -15,6 +17,7 @@ export default function Home() {
   const [search, setSearch] = useState('') // Search
   const [trips, setTrips] = useState<Trip[]>([]) // Trips
   const [allTrips, setAllTrips] = useState<Trip[]>([]) // Trips
+  const [showModal, setShowModal] = useState(false) // Show modal
 
   // Router
   const router = useRouter();
@@ -23,7 +26,7 @@ export default function Home() {
   const locate = useLocale();
 
   // Get user ID
-  const userId = useUserId();
+  const user = useUserData();
 
   // Handle input change
   const handleChange = (e: any) => setSearch(e.target.value)
@@ -42,16 +45,29 @@ export default function Home() {
 
   // Fetch trips
   useEffect(() => {
-    getTrips(userId)
+    getTrips(user.id!)
       .then(trips => {
         setTrips(trips)
         setAllTrips(trips)
       })
       .catch(error => console.error(error))
-  }, [userId])
+  }, [user.id])
 
   // Go to trip details
   const goToTrip = (trip: Trip) => router.push(`/trip/${trip.id}`);
+
+  // Create new trip
+  const createTrip = () => {
+    getModalErrors().length ? setShowModal(true) : router.push('/trip/creation');
+  }
+
+  // Get modal erros
+  const getModalErrors = () => {
+    const errors: any = [];
+    if (!user.zipCode) errors.push('zipCode');
+    if (user.provider == 'email' && !user.emailVerified) errors.push('email');
+    return errors;
+  }
 
   // Render home page
   return (
@@ -70,9 +86,11 @@ export default function Home() {
       <br />
 
       <div className="grid gap-8 p-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
-        {!search && <TripCard key="new-card" onClick={() => router.push('/trip/creation')} />}
+        {!search && <TripCard key="new-card" onClick={createTrip} />}
         {trips!.map((trip) => <TripCard onClick={() => goToTrip(trip)} key={trip.id} className="bg-blue-medium" trip={trip} />)}
       </div>
+
+      <IncompleteProfile errors={getModalErrors()} isOpen={showModal} setShowModal={setShowModal} />
     </>
   )
 }

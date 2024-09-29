@@ -116,10 +116,13 @@ export interface BaseStepProps<T> {
 }
 
 export interface StepsStructureProps extends HTMLProps<HTMLDivElement> {
-  form: any;
-  setform: any;
+  form?: any;
+  setform?: any;
   children: ReactNode;
   onfinish: () => void | Promise<void>;
+  goBack?: () => void;
+  titles?: string[];
+  hideBreakLine?: boolean;
 }
 
 export interface FormSelectItem {

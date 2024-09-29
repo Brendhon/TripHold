@@ -113,17 +113,26 @@
     "register": "Registrar",
     "login": "Entrar",
     "signUp": "Cadastrar",
-    "deleteAccount": "Excluir conta"
+    "deleteAccount": "Excluir conta",
+    "goToProfile": "Ir para o perfil",
+    "resendEmail": "Reenviar email"
   },
   "Modal": {
     "title": {
       "deleteAccount": "Excluir conta",
       "deleteTrip": "Excluir viagem",
-      "imageCrop": "Recortar imagem"
+      "imageCrop": "Recortar imagem",
+      "incompleteProfile": "Perfil incompleto",
+      "emailNotVerified": "Email não verificado"
+    },
+    "subtitle": {
+      "completeProfile": "Realize as alterações necessárias para completar seu perfil e criar viagens."
     },
     "message": {
       "deleteAccount": "Tem certeza que deseja excluir sua conta? Essa ação é irreversível.",
-      "deleteTrip": "Tem certeza que deseja excluir essa viagem? Essa ação é irreversível."
+      "deleteTrip": "Tem certeza que deseja excluir essa viagem? Essa ação é irreversível.",
+      "incompleteProfileCep": "É necessário preencher seu perfil com nome, país, estado, cidade e CEP como no exemplo abaixo:",
+      "incompleteProfileEmailValidation": "Para criar uma viagem, é necessário confirmar seu email. Verifique sua caixa de entrada e clique no link de confirmação. Se não recebeu o email, clique no botão abaixo para reenviar. Após isso, você deve realizar o logout e login novamente."
     },
     "password": "Confirme sua senha para continuar"
   },
