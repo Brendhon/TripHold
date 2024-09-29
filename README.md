@@ -37,6 +37,7 @@ As seguintes APIs foram utilizadas na construção do projeto:
 - **[Countries Now](https://countriesnow.space/)**
 - **[ZipCodeBase](https://zipcodebase.com/)**
 - **[Rest Countries](https://restcountries.com/)**
+- **[TripAdvisor](https://www.tripadvisor.com/developers)**
 
 ---
 
