@@ -83,6 +83,8 @@ export function UserForm(props: RegisterFormProps) {
         state: user?.state || '',
         city: user?.city || '',
         terms: !!user,
+        latitude: user?.latitude || 0,
+        longitude: user?.longitude || 0,
       });
     }
 
@@ -135,6 +137,8 @@ export function UserForm(props: RegisterFormProps) {
         country: newCountries.length == 1 ? newCountries[0].name : '',
         state: codes.state.length == 1 ? codes.state[0] : '',
         city: codes.city.length == 1 ? codes.city[0] : '',
+        latitude: codes.latitude[0],
+        longitude: codes.longitude[0],
       }));
     }
 
@@ -180,6 +184,8 @@ export function UserForm(props: RegisterFormProps) {
         state: form.state!,
         city: form.city!,
         terms: !!form.terms,
+        latitude: form.latitude!,
+        longitude: form.longitude!,
       });
 
       // Show success message
@@ -207,6 +213,8 @@ export function UserForm(props: RegisterFormProps) {
         zipCode: form.zipCode!,
         state: form.state!,
         city: form.city!,
+        latitude: form.latitude!,
+        longitude: form.longitude!,
       });
 
       // Get user in firestore

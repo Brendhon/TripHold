@@ -41,6 +41,8 @@ export async function GET(req: NextRequest) {
       state: getAttributes('state'),
       city: getAttributes('city'),
       postalCode: getAttributes('postal_code'),
+      latitude: getAttributes('latitude').map((lat) => parseFloat(lat)),
+      longitude: getAttributes('longitude').map((lng) => parseFloat(lng)),
     }
 
     // Return data from the ZipCodeBaseAPI

@@ -40,6 +40,8 @@ interface ZipCode {
   city: string[];
   state: string[];
   postalCode: string[];
+  latitude: number[];
+  longitude: number[];
 }
 
 // DocumenterCountryAPI Types

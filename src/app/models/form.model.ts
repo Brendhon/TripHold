@@ -16,6 +16,8 @@ export interface UserFormModel {
   state: string;
   city: string;
   terms: boolean;
+  latitude: number;
+  longitude: number;
 }
 
 export interface UserSignInModel {

@@ -21,4 +21,6 @@ export interface User {
   complement?: string;
   terms: boolean;
   emailVerified?: boolean;
+  latitude?: number;
+  longitude?: number;
 }
