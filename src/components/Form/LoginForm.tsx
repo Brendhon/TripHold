@@ -4,15 +4,15 @@ import { LoginFormProps, UserSignInModel } from "@app/models";
 import { Link } from "@nextui-org/react";
 import { createValidator, useForm } from "@utils/forms";
 import { emailRegex, passwordRegex, testRegex } from "@utils/regex";
+import { sendForgotPasswordEmail } from "lib/email/user";
 import { signIn } from "next-auth/react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { MdEmail, MdLock } from "react-icons/md";
 import { Form } from "./Form";
 import { Input } from "./Input";
-import { sendForgotPasswordEmail } from "lib/email/user";
 
 /**
  * Custom Input
@@ -21,6 +21,7 @@ export function LoginForm(props: LoginFormProps) {
   // Form state
   const { form, setForm } = useForm<UserSignInModel>();
   const [hasForgotPassword, setHasForgotPassword] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   // Router hook
   const router = useRouter();
@@ -31,6 +32,9 @@ export function LoginForm(props: LoginFormProps) {
 
   // Locale
   const locale = useLocale();
+
+  // Set loading to false on component mount
+  useEffect(() => setLoading(false), []);
 
   // Handle login
   const handleLogin = async () => {
@@ -84,6 +88,7 @@ export function LoginForm(props: LoginFormProps) {
 
       <Input
         autoFocus
+        disabled={loading}
         name="email"
         type="email"
         placeholder="email"
@@ -92,6 +97,7 @@ export function LoginForm(props: LoginFormProps) {
         startContent={<MdEmail />} />
       <Input
         name="password"
+        disabled={loading}
         type="password"
         placeholder="password"
         isInvalid={testRegex(passwordRegex, form.password!)}
