@@ -66,9 +66,14 @@ export function ProfileDropdown() {
           <DropdownItem key="configurations" onClick={() => router.push('/profile')} textValue="settings" color='primary'>
             {t('settings')}
           </DropdownItem>
+
+          <DropdownItem key="terms" onClick={() => router.push('/terms')} textValue="terms" color='primary'>
+            {t('terms')}
+          </DropdownItem>
         </DropdownSection>
 
         <DropdownSection aria-label="Preferences">
+
           <DropdownItem textValue='logout' onClick={() => signOut({ callbackUrl: "/" })} key="logout" color="warning">
             {t('logout')}
           </DropdownItem>
