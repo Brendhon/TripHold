@@ -1,7 +1,7 @@
 "use client";
 
 import { TripCardProps } from '@app/models';
-import { getIntlName } from '@utils/common';
+import { getIntlName } from '@utils/intl';
 import { formatDate } from '@utils/dates';
 import { AnimatedDiv } from 'components/Common';
 import { useLocale, useTranslations } from 'next-intl';

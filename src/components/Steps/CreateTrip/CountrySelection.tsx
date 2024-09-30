@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { StepTitle } from '../StepTitle';
 import { CountryDetails } from './CountryDetails';
 import { useLocale } from 'next-intl';
-import { getIntlName } from '@utils/common';
+import { getIntlName } from '@utils/intl';
 
 export function CountrySelection(props: BaseStepProps<Trip>) {
   // State

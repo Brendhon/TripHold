@@ -1,6 +1,6 @@
 import { TripHoldWelcomeEmail } from "email-templates/welcome-email";
 import { Resend } from "resend";
-import { LOCALES } from "./common";
+import { LOCALES } from "./intl";
 import TripHoldEmailConfirmation from "email-templates/confirm-email";
 import { NextResponse } from "next/server";
 import TripHoldInviteEmail from "email-templates/invite-email";
@@ -19,7 +19,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
  * @param {any} error The error object
  */
 export const handleEmailError = (error: any) => {
-  console.log(error);
+  console.error(error);
   const status = error.status || 500;
   return NextResponse.json({ ...error }, { status });
 }

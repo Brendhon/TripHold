@@ -2,7 +2,6 @@
 
 import { FormSelectItem, RegisterFormProps, UserFormModel } from "@app/models";
 import { Link, Tooltip } from "@nextui-org/react";
-import { getIntlName } from "@utils/common";
 import { createValidator, useDebounce, useForm } from "@utils/forms";
 import { showErrorNotifier, showSuccessNotifier } from "@utils/notifier";
 import { getCountriesPath, getTermsPath, getZipCodePath } from "@utils/paths";
@@ -23,6 +22,8 @@ import { Autocomplete } from "./Autocomplete";
 import { Checkbox } from "./Checkbox";
 import { Form } from "./Form";
 import { Input } from "./Input";
+import { getIntlName } from "@utils/intl";
+import { useRouter } from "next/navigation";
 
 /**
  * User Form
@@ -46,6 +47,9 @@ export function UserForm(props: RegisterFormProps) {
 
   // Locale
   const locale = useLocale();
+
+  // Router
+  const router = useRouter();
 
   // Translations
   const tPage = useTranslations("LoginAndRegister");
@@ -359,7 +363,7 @@ export function UserForm(props: RegisterFormProps) {
 
       <Checkbox name="terms" hidden={!!user} >
         {tPage('terms.accept')}{" "}
-        <Link isExternal className="cursor-pointer" size="sm" href={getTermsPath()}>
+        <Link isExternal className="cursor-pointer" size="sm" onClick={() => router.push('/terms')}>
           {tPage('terms.terms')}
         </Link>
       </Checkbox>

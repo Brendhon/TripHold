@@ -1,8 +1,7 @@
 "use client";
 
-import { getIntlName } from '@utils/common';
+import { getIntlName } from '@utils/intl';
 import { AnimatedDiv } from 'components/Common';
-import { AnimatePresence } from 'framer-motion';
 import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { ReactNode } from 'react';

@@ -1,5 +1,5 @@
 import { TripHoldWelcomeEmailProps } from "@app/models";
-import { DEFAULT_HOST } from "@utils/common";
+import { DEFAULT_HOST } from "@utils/web-config";
 import { EmailButton, EmailText, TripHoldEmailStructure } from "./components";
 
 const baseUrl = DEFAULT_HOST;

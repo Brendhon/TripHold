@@ -1,5 +1,5 @@
 import { authMiddlewareOptions, isPublicPage, isValidOrigin } from '@utils/auth';
-import { DEFAULT_LOCALE, LOCALES } from '@utils/common';
+import { DEFAULT_LOCALE, LOCALES } from '@utils/intl';
 import { withAuth } from 'next-auth/middleware';
 import createMiddleware from 'next-intl/middleware';
 import { NextRequest, NextResponse } from 'next/server';

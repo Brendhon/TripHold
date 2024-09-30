@@ -1,7 +1,7 @@
 "use client";
 
 import { Trip } from "@app/models";
-import { getIntlName, searchInString } from "@utils/common";
+import { getIntlName } from "@utils/intl";
 import { formatDate } from "@utils/dates";
 import { useUserData } from "@utils/session";
 import { Input, TripCard } from "components";
@@ -9,6 +9,7 @@ import { getTrips } from "lib/firebase/firestore/trip";
 import { useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { searchInString } from "@utils/common";
 
 export default function Home() {
   // States

@@ -1,4 +1,5 @@
-import { ALLOWED_ORIGINS, LOCALES, PUBLIC_PAGES } from "./common";
+import { ALLOWED_ORIGINS,  PUBLIC_PAGES } from "./web-config";
+import { LOCALES } from "./intl";
 
 /**
  * Create authentication middleware options

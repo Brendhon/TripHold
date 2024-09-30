@@ -9,3 +9,5 @@ export * from './session';
 export * from './notifier';
 export * from './email';
 export * from './jwt';
+export * from './intl';
+export * from './web-config';

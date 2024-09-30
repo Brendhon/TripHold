@@ -5,21 +5,7 @@ export const SOCIAL_MEDIAS = {
   linkedin: "https://www.linkedin.com/in/brendhon-moreira/"
 }
 
-export const DEFAULT_LOCALE = "pt";
-
-export const LOCALES = ["pt", "en"];
-
 export let CURRENT_FLAG = "";
-
-export const PUBLIC_PAGES = [
-  "/login",
-  "/email-confirmation",
-  "/reset-password",
-];
-
-export const DEFAULT_HOST = "https://trip-hold.vercel.app";
-
-export const ALLOWED_ORIGINS = ["http://localhost:3000", DEFAULT_HOST];
 
 export const BUTTON_COLORS = {
   "decline": {
@@ -33,25 +19,6 @@ export const BUTTON_COLORS = {
   "button": {
     "bg": "bg-grey-thin",
     "text": "text-blue-regular"
-  }
-}
-
-/**
- * Get intl name
- * @param {Country} country - Country
- * @param {string} locale - Locale
- * @returns {string} Intl name
- */
-export const getIntlName = (country: any, locale: string): string => {
-  if (!country) return "";
-
-  switch (locale) {
-    case "pt":
-      return country.namesIntl.pt;
-    case "es":
-      return country.namesIntl.es;
-    default:
-      return country.namesIntl.en;
   }
 }
 
