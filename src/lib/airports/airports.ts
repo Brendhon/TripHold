@@ -6,8 +6,9 @@ import axios from 'axios';
  * Get airports from 'airports.json' file
  * @returns {Promise<Airport[]>} Airports
  */
-export const getAirportsByCoordinates = async (latitude: number, longitude: number, limit = 10): Promise<Airport[]> => {
+export const getAirportsByCoordinates = async (latitude?: number, longitude?: number, limit = 10): Promise<Airport[]> => {
   try {
+
     // Get airports in public folder
     const response = await axios.get('../../airports.json');
 
@@ -15,9 +16,22 @@ export const getAirportsByCoordinates = async (latitude: number, longitude: numb
     if (!response.data) throw { message: 'Invalid response' };
 
     // Get airports
-    return sortByDistance<Airport>(response.data, latitude, longitude).slice(0, limit);
+    const fetchAirports = (lat: number, long: number) => sortByDistance<Airport>(response.data, lat, long).slice(0, limit)
+
+    // Request user location
+    if (!latitude || !longitude) {
+      // Request location
+      return new Promise<Airport[]>((resolve, reject) => {
+        navigator
+          .geolocation
+          .getCurrentPosition(
+            ({ coords }) => resolve(fetchAirports(coords.latitude, coords.longitude)),
+            (error) => reject(error)
+          );
+      });
+    } else return fetchAirports(latitude, longitude);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     throw error;
   }
 };

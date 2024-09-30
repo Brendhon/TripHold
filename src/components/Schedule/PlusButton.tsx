@@ -1,7 +1,12 @@
 "use client";
 
 import { getTimeFormat } from "@utils/dates";
-import { getAirportByName, getAirportsByCoordinates, getAirportsByMunicipality } from "lib/airports/airports";
+import { useUserData } from "@utils/session";
+import {
+  getAirportByName,
+  getAirportsByCoordinates,
+  getAirportsByMunicipality
+} from "lib/airports/airports";
 import { useState } from "react";
 import { BsPlus } from "react-icons/bs";
 
@@ -18,17 +23,19 @@ export function PlusButton(props: PlusButtonProps) {
   // State
   const [isHovered, setIsHovered] = useState(false);
 
+  // Get user data
+  const user = useUserData();
+
   // Get airports
   const getAirportsList = async () => {
     // My coordinates
-    const latitude = -22.273770;
-    const longitude = -46.164990;
+    const latitude = user.latitude;
+    const longitude = user.longitude;
 
     // Get airports
     getAirportsByCoordinates(latitude, longitude)
       .then((airports) => console.log(airports))
       .catch((error) => console.log(error));
-
   }
 
   // Search airport by name
