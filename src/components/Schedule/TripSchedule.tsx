@@ -66,8 +66,14 @@ export function TripSchedule(props?: TripScheduleProps) {
 
   // Handle activity creation
   const handleSubmit = (type: ActivityType, subType?: ActivityTransportType) => {
-    if(!selectedDate) return;
-    router.push(`/activity/${type}?date=${selectedDate.toString()}${subType ? `&type=${subType}` : ''}`);
+    // Check if selected date exists
+    if (!selectedDate || !props?.trip) return;
+
+    // Form path
+    const path = `${props?.trip.id}/activity/${type}?date=${selectedDate.toISOString()}${subType ? `&type=${subType}` : ''}`;
+
+    // Redirect to path
+    router.push(path);
   }
 
   // Render
