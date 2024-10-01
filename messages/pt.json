@@ -34,7 +34,9 @@
     "complement": "Digite o complemento (opcional)",
     "date": "Selecione uma data",
     "alias": "Digite um apelido (opcional)",
-    "tripIdentifier": "Ex.: Foz do Iguaçu, Natal"
+    "tripIdentifier": "Ex.: Foz do Iguaçu, Natal",
+    "selectActivityType": "Selecione o tipo de atividade",
+    "selectTransportType": "Selecione o tipo de transporte"
   },
   "TripDetails": {
     "title": {
@@ -124,7 +126,8 @@
       "deleteTrip": "Excluir viagem",
       "imageCrop": "Recortar imagem",
       "incompleteProfile": "Perfil incompleto",
-      "emailNotVerified": "Email não verificado"
+      "emailNotVerified": "Email não verificado",
+      "whichWillBeTheActivity": "Qual será a atividade?"
     },
     "subtitle": {
       "completeProfile": "Realize as alterações necessárias para completar seu perfil e criar viagens."
@@ -134,6 +137,30 @@
       "deleteTrip": "Tem certeza que deseja excluir essa viagem? Essa ação é irreversível.",
       "incompleteProfileCep": "É necessário preencher seu perfil com nome, país, estado, cidade e CEP como no exemplo abaixo:",
       "incompleteProfileEmailValidation": "Para criar uma viagem, é necessário confirmar seu email. Verifique sua caixa de entrada e clique no link de confirmação. Se não recebeu o email, clique no botão abaixo para reenviar. Após isso, você deve realizar o logout e login novamente."
+    },
+    "activityType": {
+      "transport": "Transporte",
+      "accommodation": "Hospedagem",
+      "food": "Alimentação",
+      "activity": "Atividade",
+      "others": "Outros"
+    },
+    "activityDesc": {
+      "transport": "Abrange a viagem de avião, viagem de trem, viagem de ônibus, aluguel de carro, translado entre aeroporto e hotel, uso de transporte público local (metrô, ônibus, táxi).",
+      "accommodation": "Envolve o check-in e check-out no hotel ou pousada, bem como a troca de hospedagem durante a viagem.",
+      "food": "Engloba refeições como café da manhã, almoço, jantar, lanches e cafés, visitas a restaurantes locais, e experiências gastronômicas como aulas de culinária e degustações.",
+      "activity": "Inclui passeios turísticos (city tour, tours guiados), visitas a museus e galerias de arte, visitas a pontos turísticos (monumentos, praças, parques), atividades ao ar livre (trilhas, praias, parques nacionais), esportes e atividades recreativas (esqui, mergulho, ciclismo), e compras em mercados locais e lojas de souvenires.",
+      "others": "Atividades que não se encaixam nas outras categorias."
+    },
+    "transportType": {
+      "flight": "Avião",
+      "train": "Trem",
+      "bus": "Ônibus",
+      "car": "Carro",
+      "boat": "Barco",
+      "others": "Outros",
+      "transfer": "Translado",
+      "none": "Nenhum"
     },
     "password": "Confirme sua senha para continuar"
   },

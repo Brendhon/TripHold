@@ -11,6 +11,7 @@ import { IoMdArrowRoundBack, IoMdArrowRoundForward } from "react-icons/io";
 interface ScheduleDetailsProps {
   trip: Trip | null;
   ranges: TripDayRange[];
+  createActivity: (day: Date, time: string) => void;
 }
 
 interface TimeType {
@@ -178,7 +179,12 @@ export function ScheduleDetails(props?: ScheduleDetailsProps) {
             </Content>
             {Array.from({ length: 7 }, (_, i) => i).map((day) => (
               <Content key={day} day={days[day]} clickable={isValid(days[day])} padding="0">
-                <PlusButton time={time[24]} day={days[day]} className={isValid(days[day]) ? 'visible' : 'hidden'} />
+                <PlusButton
+                  createActivity={() => props?.createActivity(days[day], time[24])}
+                  time={time[24]}
+                  day={days[day]}
+                  className={isValid(days[day]) ? 'visible' : 'hidden'}
+                />
               </Content>
             ))}
           </Container>

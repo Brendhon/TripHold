@@ -37,6 +37,7 @@ export interface CSelectProps extends Partial<SelectProps> {
   placeholder: string;
   options?: { key: any, name: string }[];
   handleChange?: (e: any) => void;
+  controller?: any;
 }
 
 export interface CAutocompleteProps extends Partial<AutocompleteProps> {

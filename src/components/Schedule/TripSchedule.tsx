@@ -1,10 +1,12 @@
 "use client";
 
-import { TripDayRange, TripScheduleProps } from "@app/models";
-import { getDate, getDaysRanges } from "@utils/dates";
+import { ActivityTransportType, ActivityType, TripDayRange, TripScheduleProps } from "@app/models";
+import { getDate, getDaysRanges, getTimeFormat } from "@utils/dates";
 import { useEffect, useState } from "react";
 import { ScheduleDetails } from "./ScheduleDetails";
 import { ScheduleHeader } from "./ScheduleHeader";
+import { SelectActivityType } from "components/Activity";
+import { useRouter } from "next/navigation";
 
 /**
  * Trip Schedule
@@ -13,6 +15,8 @@ export function TripSchedule(props?: TripScheduleProps) {
   // State
   const [startDate, _setStartDate] = useState<DateType>(null);
   const [endDate, _setEndDate] = useState<DateType>(null);
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [selectedDate, setSelectedDate] = useState<Date>();
 
   // Ranges
   const [ranges, setRanges] = useState<TripDayRange[]>([]);
@@ -21,6 +25,9 @@ export function TripSchedule(props?: TripScheduleProps) {
   // Set start and end date
   const setStartDate = (date: DateType) => _setStartDate(getDate(date));
   const setEndDate = (date: DateType) => _setEndDate(getDate(date));
+
+  // Router
+  const router = useRouter();
 
   // Update start and end date on trip change
   useEffect(() => {
@@ -38,11 +45,37 @@ export function TripSchedule(props?: TripScheduleProps) {
     setSelectedRange(groups[0]);
   }, [startDate, endDate]);
 
+  // Click handler
+  const createHandler = (day: Date, time: string) => {
+    // Get date
+    const date = new Date(day);
+
+    // Get time
+    const times = getTimeFormat('pt', time).split(':');
+
+    // Set time to date
+    date.setHours(parseInt(times[0]));
+    date.setMinutes(parseInt(times[1]));
+
+    // Set selected date
+    setSelectedDate(date);
+
+    // Show modal
+    setShowModal(true);
+  }
+
+  // Handle activity creation
+  const handleSubmit = (type: ActivityType, subType?: ActivityTransportType) => {
+    if(!selectedDate) return;
+    router.push(`/activity/${type}?date=${selectedDate.toString()}${subType ? `&type=${subType}` : ''}`);
+  }
+
   // Render
-  return (
+  return (selectedRange &&
     <>
-      <ScheduleHeader />
-      {selectedRange && <ScheduleDetails  ranges={ranges} trip={props?.trip ?? null} />}
+      <ScheduleHeader clickHandler={() => createHandler(selectedRange.startDate, "00:00")} />
+      <ScheduleDetails createActivity={createHandler} ranges={ranges} trip={props?.trip ?? null} />
+      <SelectActivityType onSubmit={handleSubmit} isOpen={showModal} onClose={() => setShowModal(false)} />
     </>
   )
 }

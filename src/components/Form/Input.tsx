@@ -22,7 +22,7 @@ export function Input(props: CInputProps) {
 
   return (!props.hidden &&
     <DefaultInput
-      variant="faded"
+      variant="bordered"
       color="default"
       classNames={{ input: ["placeholder:text-grey-light"] }}
       {...props}

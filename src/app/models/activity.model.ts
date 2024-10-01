@@ -1,3 +1,21 @@
+export enum ActivityType {
+  Activity = "activity",
+  Transport = "transport",
+  Accommodation = "accommodation",
+  Food = "food",
+  Others = "others",
+}
+
+export enum ActivityTransportType {
+  Flight = "flight",
+  Train = "train",
+  Bus = "bus",
+  Car = "car",
+  Boat = "boat",
+  Others = "others",
+  Transfer = "transfer"
+}
+
 export enum ActivityCategory {
   Hotels = "hotels",
   Restaurants = "restaurants",

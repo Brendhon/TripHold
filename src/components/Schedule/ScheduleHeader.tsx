@@ -8,7 +8,7 @@ import { useLocale, useTranslations } from "next-intl";
 /**
  * Trip Schedule
  */
-export function ScheduleHeader() {
+export function ScheduleHeader({ clickHandler }: { clickHandler: () => void }) {
 
   // Locale
   const locale = useLocale();
@@ -19,11 +19,6 @@ export function ScheduleHeader() {
   // Translations
   const t = useTranslations("TripDetails.schedule");
 
-  // Handle add button click
-  const handleAddClick = () => {
-    console.log('Add button clicked');
-  };
-
   // AddButton
   const AddButton = ({ className }: any) => (
     <Button
@@ -31,7 +26,7 @@ export function ScheduleHeader() {
       size="lg"
       color="primary"
       className={`rounded-md ${className}`}
-      onClick={() => handleAddClick()}>
+      onClick={clickHandler}>
       {t('add')}
     </Button>
   );

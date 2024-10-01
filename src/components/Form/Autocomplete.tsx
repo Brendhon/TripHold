@@ -18,7 +18,7 @@ export function Autocomplete(props: CAutocompleteProps) {
   return (!props.hidden &&
     <DefaultAutocomplete
       {...props}
-      variant="faded"
+      variant="bordered"
       color="default"
       value={props?.controller}
       isDisabled={props.disabled}

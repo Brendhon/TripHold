@@ -15,9 +15,10 @@ export function Select(props: CSelectProps) {
   return (
     <DefaultSelect
       {...props}
-      variant="faded"
+      variant="bordered"
       color="default"
       isDisabled={props.disabled}
+      value={props.controller}
       onChange={props.handleChange}
       aria-label={t(props?.placeholder)}
       placeholder={t(props?.placeholder)}

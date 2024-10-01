@@ -44,6 +44,7 @@ export function DatePicker(props: CDatePickerProps) {
     <div className="relative">
       <Input
         readOnly
+        variant="bordered"
         placeholder="date"
         isDisabled={props.disabled}
         type="text"
