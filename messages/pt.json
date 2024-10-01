@@ -142,14 +142,14 @@
       "transport": "Transporte",
       "accommodation": "Hospedagem",
       "food": "Alimentação",
-      "activity": "Atividade",
+      "tour": "Tour",
       "others": "Outros"
     },
     "activityDesc": {
       "transport": "Abrange a viagem de avião, viagem de trem, viagem de ônibus, aluguel de carro, translado entre aeroporto e hotel, uso de transporte público local (metrô, ônibus, táxi).",
       "accommodation": "Envolve o check-in e check-out no hotel ou pousada, bem como a troca de hospedagem durante a viagem.",
       "food": "Engloba refeições como café da manhã, almoço, jantar, lanches e cafés, visitas a restaurantes locais, e experiências gastronômicas como aulas de culinária e degustações.",
-      "activity": "Inclui passeios turísticos (city tour, tours guiados), visitas a museus e galerias de arte, visitas a pontos turísticos (monumentos, praças, parques), atividades ao ar livre (trilhas, praias, parques nacionais), esportes e atividades recreativas (esqui, mergulho, ciclismo), e compras em mercados locais e lojas de souvenires.",
+      "tour": "Inclui passeios turísticos (city tour, tours guiados), visitas a museus e galerias de arte, visitas a pontos turísticos (monumentos, praças, parques), atividades ao ar livre (trilhas, praias, parques nacionais), esportes e atividades recreativas (esqui, mergulho, ciclismo), e compras em mercados locais e lojas de souvenires.",
       "others": "Atividades que não se encaixam nas outras categorias."
     },
     "transportType": {

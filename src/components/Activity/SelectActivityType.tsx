@@ -64,7 +64,7 @@ export function SelectActivityType(props: Props) {
                 {tButton('cancel')}
               </Button>
               <Button
-                isDisabled={type === 'transport' && !subType}
+                isDisabled={!type || (type === 'transport' && !subType)}
                 color="primary"
                 onPress={() => props.onSubmit(type!, subType)}>
                 {tButton('confirm')}

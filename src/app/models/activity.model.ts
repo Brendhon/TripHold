@@ -1,5 +1,5 @@
 export enum ActivityType {
-  Activity = "activity",
+  Tour = "tour",
   Transport = "transport",
   Accommodation = "accommodation",
   Food = "food",

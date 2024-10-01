@@ -142,14 +142,14 @@
       "transport": "Transport",
       "accommodation": "Accommodation",
       "food": "Food",
-      "activity": "Activity",
+      "tour": "Tour",
       "others": "Others"
     },
     "activityDesc": {
       "transport": "Includes air travel, train travel, bus travel, car rental, airport to hotel transfer, use of local public transport (subway, bus, taxi).",
       "accommodation": "Involves check-in and check-out at the hotel or inn, as well as changing accommodation during the trip.",
       "food": "Includes meals such as breakfast, lunch, dinner, snacks and coffees, visits to local restaurants, and gastronomic experiences such as cooking classes and tastings.",
-      "activity": "Includes sightseeing tours (city tour, guided tours), visits to museums and art galleries, visits to tourist spots (monuments, squares, parks), outdoor activities (hiking, beaches, national parks), sports and recreational activities (skiing, diving, cycling), and shopping at local markets and souvenir shops.",
+      "tour": "Includes sightseeing tours (city tour, guided tours), visits to museums and art galleries, visits to tourist spots (monuments, squares, parks), outdoor activities (hiking, beaches, national parks), sports and recreational activities (skiing, diving, cycling), and shopping at local markets and souvenir shops.",
       "others": "Activities that do not fit into other categories."
     },
     "transportType": {
