@@ -1,4 +1,4 @@
-import { Activity, ActivityCategory } from "@app/models";
+import { TripAdvisorActivity, ActivityCategory } from "@app/models";
 import { getActivitiesPath } from "@utils/paths";
 
 /**
@@ -24,9 +24,9 @@ const request = async (path: string, options: any): Promise<any> => {
  * Get hotels details
  * @param {string} place Place
  * @param {string} locate Locate
- * @returns {Promise<Activity[]>} Hotels details
+ * @returns {Promise<TripAdvisorActivity[]>} Hotels details
  */
-export const getHotelsDetails = async (place: string, locate: string): Promise<Activity[]> => {
+export const getHotelsDetails = async (place: string, locate: string): Promise<TripAdvisorActivity[]> => {
   try {
     return request(getActivitiesPath(ActivityCategory.Hotels, place, locate), options);
   } catch (error) {
@@ -40,7 +40,7 @@ export const getHotelsDetails = async (place: string, locate: string): Promise<A
  * @param {string} place Place
  * @param {string} locate Locate
  */
-export const getRestaurantsDetails = async (place: string, locate: string): Promise<Activity[]> => {
+export const getRestaurantsDetails = async (place: string, locate: string): Promise<TripAdvisorActivity[]> => {
   try {
     return request(getActivitiesPath(ActivityCategory.Restaurants, place, locate), options);
   } catch (error) {
@@ -54,7 +54,7 @@ export const getRestaurantsDetails = async (place: string, locate: string): Prom
  * @param {string} place Place
  * @param {string} locate Locate
  */
-export const getAttractionsDetails = async (place: string, locate: string): Promise<Activity[]> => {
+export const getAttractionsDetails = async (place: string, locate: string): Promise<TripAdvisorActivity[]> => {
   try {
     return request(getActivitiesPath(ActivityCategory.Attractions, place, locate), options);
   } catch (error) {
@@ -68,7 +68,7 @@ export const getAttractionsDetails = async (place: string, locate: string): Prom
  * @param {string} place Place
  * @param {string} locate Locate
  */
-export const getGeosDetails = async (place: string, locate: string): Promise<Activity[]> => {
+export const getGeosDetails = async (place: string, locate: string): Promise<TripAdvisorActivity[]> => {
   try {
     return request(getActivitiesPath(ActivityCategory.Geos, place, locate), options);
   } catch (error) {

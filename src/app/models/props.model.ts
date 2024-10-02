@@ -135,3 +135,9 @@ export interface FormSelectItem {
 export interface TripScheduleProps {
   trip: Trip | null;
 }
+
+export interface ActivityProps {
+  trip: Trip;
+  date: Date;
+  pin?: Pin;
+}

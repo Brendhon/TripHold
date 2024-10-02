@@ -13,5 +13,9 @@ service cloud.firestore {
     match /trips/{tripId} {
       allow read, write: if true;
     }
+
+    match /trips/{tripId}/activities/{activityId} {
+      allow read, write: if true;
+    }
   }
 }

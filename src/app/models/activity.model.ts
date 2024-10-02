@@ -29,7 +29,38 @@ export enum ActivityLang {
   Spanish = "es",
 }
 
+interface ActivityContact {
+  email?: string;
+  phone?: string;
+  website?: string;
+}
+
+interface ActivityAddress {
+  street?: string;
+  city?: string;
+  country?: string;
+  state?: string;
+  postalCode?: string;
+}
+
 export interface Activity {
+  id?: string;
+  name: string;
+  type: ActivityType;
+  pin: Pin;
+  address: ActivityAddress;
+  contact: ActivityContact;
+  subType?: ActivityTransportType;
+  description?: string;
+  startDate?: Date;
+  endDate?: Date;
+  price?: string;
+  ratingImage?: string;
+  features?: string[];
+  hours?: Hours;
+}
+
+export interface TripAdvisorActivity {
   location_id: string;
   name: string;
   description?: string;

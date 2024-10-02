@@ -28,6 +28,16 @@ export const getTripsPath = (id?: string) => {
 }
 
 /**
+ * Get activity path
+ * @param {string} id Trip ID
+ * @param {string} activityID Activity ID
+ * @returns Activity path
+ */
+export const getFireActivitiesPath = (id: string, activityID?: string) => {
+  return `/trips/${id}/activities/${activityID || ""}`;
+}
+
+/**
  * Terms path
  * @returns Terms path
  */
@@ -68,7 +78,7 @@ export const getZipCodeBaseAPIPath = (code: string) => {
 /**
  * Get location trip advisor path
  */
-export const getLocationActivityPath = (category: string, language: string | null, searchQuery: string) => {
+export const getTripAdvisorLocationActivityPath = (category: string, language: string | null, searchQuery: string) => {
   return `https://api.content.tripadvisor.com/api/v1/location/search?key=${process.env.TRIP_ADVISOR_API_KEY}&category=${category}&language=${language || "pt"}&searchQuery=${searchQuery}`;
 }
 
@@ -79,7 +89,7 @@ export const getLocationActivityPath = (category: string, language: string | nul
  * @param {string} currency Currency
  * @returns Location trip advisor details path
  */
-export const getActivityDetailsPath = (locationID: string, language: string | null, currency: string | null) => {
+export const getTripAdvisorActivityDetailsPath = (locationID: string, language: string | null, currency: string | null) => {
   return `https://api.content.tripadvisor.com/api/v1/location/${locationID}/details?key=${process.env.TRIP_ADVISOR_API_KEY}&language=${language || "pt"}&currency=${currency || "USD"}`;
 }
 

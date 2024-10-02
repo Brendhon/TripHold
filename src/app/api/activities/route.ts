@@ -1,6 +1,6 @@
 import { ActivityCategory, ActivityLang } from '@app/models';
 import { inEnum } from '@utils/common';
-import { getActivityDetailsPath, getLocationActivityPath } from '@utils/paths';
+import { getTripAdvisorActivityDetailsPath, getTripAdvisorLocationActivityPath } from '@utils/paths';
 import { NextRequest, NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic';
@@ -36,7 +36,7 @@ export async function GET(req: NextRequest) {
     let result: any = [];
 
     // Get the path to the TripAdvisorAPI
-    let path = getLocationActivityPath(category!, lang, place);
+    let path = getTripAdvisorLocationActivityPath(category!, lang, place);
 
     // Options
     const options = {
@@ -54,7 +54,7 @@ export async function GET(req: NextRequest) {
     if (!resp?.data) throw { status: resp?.error?.code ?? 500, message: resp?.error?.message ?? 'Unexpected Error', error: resp };
 
     // Get details for each location
-    for (const item of resp.data) result.push(fetch(getActivityDetailsPath(item.location_id, lang, currency), options).then(res => res.json()))
+    for (const item of resp.data) result.push(fetch(getTripAdvisorActivityDetailsPath(item.location_id, lang, currency), options).then(res => res.json()))
 
     // Wait for all requests
     result = await Promise.allSettled(result);
