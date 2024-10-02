@@ -1,5 +1,5 @@
 import { Airport } from '@app/models';
-import { searchInString, sortByDistance } from '@utils/common';
+import { searchInArray, searchInString, sortByDistance } from '@utils/common';
 import axios from 'axios';
 
 /**
@@ -89,4 +89,25 @@ export const getAirportsByMunicipality = async (municipality: string): Promise<A
 
   // Filter airports
   return airports.filter((airport: Airport) => searchInString(airport.municipality, municipality)).filter((airport: Airport) => airport.iata_code)
+}
+
+/**
+ * Get airport by municipality
+ * @param {string} term - Municipality | IATA code | ISO country | Name
+ */
+export const getAirportsByAdvancedSearch = async (term: string): Promise<Airport[]> => {
+  // Get airports in public folder
+  const response = await axios.get('/airports.json');
+
+  // Check if response is valid
+  if (!response.data || !term) throw { message: 'Invalid data' };
+
+  // Get airports
+  const airports = response.data;
+
+  // Check if latitude and longitude exists
+  const keys: (keyof Airport)[] = ['name', 'municipality', 'iso_country', 'iata_code'];
+
+  // Filter airports
+  return airports.filter((airport: Airport) => searchInArray(term, keys, airport))
 }

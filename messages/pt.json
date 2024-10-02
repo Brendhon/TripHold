@@ -362,5 +362,7 @@
   },
   "noDataFound": "Nenhum dado encontrado",
   "advancedSearch": "Pesquisa avançada",
-  "clearFilters": "Limpar filtros"
+  "clearFilters": "Limpar filtros",
+  "notFoundWhatYouAreLookingFor": "Não encontrou o que está procurando?",
+  "tryToUseAdvancedSearch": "Tente usar a pesquisa avançada"
 }

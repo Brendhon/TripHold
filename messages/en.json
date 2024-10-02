@@ -362,5 +362,7 @@
   },
   "noDataFound": "No data found",
   "advancedSearch": "Advanced search",
-  "clearFilters": "Clear filters"
+  "clearFilters": "Clear filters",
+  "notFoundWhatYouAreLookingFor": "Didn't find what you are looking for?",
+  "tryToUseAdvancedSearch": "Try using the advanced search"
 }
