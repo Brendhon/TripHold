@@ -6,7 +6,7 @@ import axios from 'axios';
  * Get airports from 'airports.json' file
  * @returns {Promise<Airport[]>} Airports
  */
-export const getAirportsByCoordinates = async (latitude?: number, longitude?: number, limit = 20): Promise<Airport[]> => {
+export const getAirportsByCoordinates = async (latitude?: number, longitude?: number, limit = 10): Promise<Airport[]> => {
   try {
     // Get airports in public folder
     const response = await axios.get('/airports.json');

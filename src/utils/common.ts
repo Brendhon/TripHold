@@ -42,8 +42,8 @@ export const searchInString = (str: string, search: string) => normalizeString(s
  * @param {object} obj - Object to search
  * @returns {boolean} If found
  */
-export const searchInArray = (search: string, keys: string[], obj: any): boolean => {
-  for (const key of keys) if (searchInString(obj[key], search)) return true;
+export const searchInArray = <T>(search: string, keys: Array<keyof T>, obj: T): boolean => {
+  for (const key of keys) if (searchInString(String(obj[key]), search)) return true;
   return false;
 }
 

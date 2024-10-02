@@ -36,7 +36,9 @@
     "alias": "Enter a nickname (optional)",
     "tripIdentifier": "E.g.: Foz do Iguaçu, Natal",
     "selectActivityType": "Select the type of activity",
-    "selectTransportType": "Select the type of transport"
+    "selectTransportType": "Select the type of transport",
+    "selectDeparturePlace": "Select the departure place",
+    "selectArrivalPlace": "Select the arrival place"
   },
   "TripDetails": {
     "title": {

@@ -36,7 +36,9 @@
     "alias": "Digite um apelido (opcional)",
     "tripIdentifier": "Ex.: Foz do Iguaçu, Natal",
     "selectActivityType": "Selecione o tipo de atividade",
-    "selectTransportType": "Selecione o tipo de transporte"
+    "selectTransportType": "Selecione o tipo de transporte",
+    "selectDeparturePlace": "Selecione o local de partida",
+    "selectArrivalPlace": "Selecione o local de chegada"
   },
   "TripDetails": {
     "title": {
@@ -358,5 +360,6 @@
       "team": "— Equipe TripHold"
     }
   },
-  "noDataFound": "Nenhum dado encontrado"
+  "noDataFound": "Nenhum dado encontrado",
+  "advancedSearch": "Pesquisa avançada"
 }
