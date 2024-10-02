@@ -12,7 +12,10 @@ export function ActivityDesc(props: BaseStepProps<any>) {
   return (
     <div className={props.className}>
       <StepTitle title='anythingElseToSayAboutActivity' />
-      <Textarea handleChange={handleChange} maxLength={35} controller={props.state?.description} placeholder="optionalDescription" />
+      <Textarea
+        handleChange={handleChange}
+        controller={props.state?.description}
+        placeholder="optionalDescription" />
     </div>
   )
 }

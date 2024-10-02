@@ -18,10 +18,8 @@ export function Textarea(props: CTextareaProps) {
     <DefaultTextarea
       variant="bordered"
       color="default"
-      classNames={{ input: ["placeholder:text-grey-light"] }}
       {...props}
       isDisabled={props.disabled}
-      aria-label={t(props?.placeholder)}
       value={props?.controller}
       startContent={props?.startContent}
       onChange={props.handleChange}
