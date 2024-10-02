@@ -6,3 +6,4 @@ export * from './Input';
 export * from './LoginForm';
 export * from './Select';
 export * from './UserForm';
+export * from './Textarea';

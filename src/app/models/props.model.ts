@@ -1,4 +1,4 @@
-import { InputProps, SelectProps, AutocompleteProps, CheckboxProps } from "@nextui-org/react";
+import { InputProps, SelectProps, AutocompleteProps, CheckboxProps, TextAreaProps } from "@nextui-org/react";
 import { ReactNode, HTMLProps } from "react";
 import { FormValidation } from "./form.model";
 import { Trip } from "./trip.model";
@@ -71,6 +71,13 @@ export interface CInputProps extends Partial<InputProps> {
   options?: { value: any, label: string }[];
   handleChange?: (e: any) => void;
   controller?: any;
+}
+
+export interface CTextareaProps extends Partial<TextAreaProps> {
+  rows?: number;
+  handleChange?: (e: any) => void;
+  controller?: any;
+  placeholder: string;
 }
 
 export interface FormProps<T> extends HTMLProps<HTMLFormElement> {

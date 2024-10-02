@@ -7,6 +7,7 @@ import { useActivityCreationData } from 'context/ActivityCreationDataContext';
 import { useEffect } from 'react';
 import { SelectPlane } from './SelectPlane';
 import { SelectPeriod } from 'components/Steps/SelectPeriod/SelectPeriod';
+import { ActivityDesc } from '../../ActivityDesc';
 
 export function FlightSteps() {
   // Form state
@@ -36,6 +37,7 @@ export function FlightSteps() {
         startDatePlaceholder='selectDepartureDate'
         endDatePlaceholder='selectArrivalDate'
       />
+      <ActivityDesc />
     </StepsStructure>
   );
 }
