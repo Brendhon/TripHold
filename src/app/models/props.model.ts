@@ -4,6 +4,7 @@ import { FormValidation } from "./form.model";
 import { Trip } from "./trip.model";
 import { DatePickerProps } from "react-datepicker";
 import { User } from "./user.model";
+import { ActivityTransportType } from "./activity.model";
 
 export interface HeaderProps {
   hideProfile?: boolean;
@@ -134,10 +135,4 @@ export interface FormSelectItem {
 
 export interface TripScheduleProps {
   trip: Trip | null;
-}
-
-export interface ActivityProps {
-  trip: Trip;
-  date: Date;
-  pin?: Pin;
 }

@@ -225,7 +225,8 @@
     "auth/unauthorized-domain": "Domínio não autorizado",
     "auth/captcha-check-failed": "Falha na verificação do CAPTCHA",
     "auth/web-storage-unsupported": "Armazenamento da Web não suportado",
-    "auth/invalid-credential": "Informações de login incorretas"
+    "auth/invalid-credential": "Informações de login incorretas",
+    "invalidActivity": "Atividade inválida"
   },
   "Trip": {
     "invite": "Vamos viajar?",
