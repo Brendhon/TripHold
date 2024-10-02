@@ -8,6 +8,7 @@ import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import { BiSolidPlaneAlt } from 'react-icons/bi';
 import { FaSearch } from 'react-icons/fa';
+import { LuSearchX } from "react-icons/lu";
 
 interface SelectPlaneProps {
   type: ('arrival' | 'departure');
@@ -22,6 +23,10 @@ export function PlaneInput(props: SelectPlaneProps) {
   // State
   const [options, setOptions] = useState<Airport[]>([]);
   const [search, setSearch] = useState<string>('');
+  const [hasAdvancedSearch, setHasAdvancedSearch] = useState<boolean>(false);
+
+  // Translations
+  const t = useTranslations();
 
   // Fetch airports
   useEffect(() => {
@@ -36,9 +41,6 @@ export function PlaneInput(props: SelectPlaneProps) {
     // Set options
     setOptions(filtered);
   }, [props.options, search]);
-
-  // Translations
-  const t = useTranslations();
 
   // Plane Content
   const PlaneContent = ({ airport, props, onClick }: { airport: Airport, props: SelectPlaneProps, onClick?: any }) => (
@@ -82,9 +84,11 @@ export function PlaneInput(props: SelectPlaneProps) {
             : <p className='text-center text-grey-light min-w-[400px]'>{t('noDataFound')}</p>
         }
 
-        <span className='flex justify-center my-3 gap-2 text-center text-grey-light hover:text-blue-light cursor-pointer border-1 border-blue-light rounded-md p-2'>
-          <FaSearch className='mt-1' size={16} />
-          {t('advancedSearch')}
+        <span
+          onClick={() => setHasAdvancedSearch(!hasAdvancedSearch)}
+          className='flex justify-center my-3 gap-2 text-center text-grey-light hover:text-blue-light cursor-pointer border-1 border-blue-light rounded-md p-2'>
+          {hasAdvancedSearch ? <LuSearchX className='mt-1' size={16} /> : <FaSearch className='mt-1' size={16} />}
+          {hasAdvancedSearch ? t('clearFilters') : t('advancedSearch')}
         </span>
       </div>
 

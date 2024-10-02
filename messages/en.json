@@ -360,5 +360,7 @@
       "team": "— TripHold Team"
     }
   },
-  "noDataFound": "No data found"
+  "noDataFound": "No data found",
+  "advancedSearch": "Advanced search",
+  "clearFilters": "Clear filters"
 }

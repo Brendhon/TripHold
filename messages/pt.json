@@ -361,5 +361,6 @@
     }
   },
   "noDataFound": "Nenhum dado encontrado",
-  "advancedSearch": "Pesquisa avançada"
+  "advancedSearch": "Pesquisa avançada",
+  "clearFilters": "Limpar filtros"
 }
