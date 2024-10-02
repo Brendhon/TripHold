@@ -40,7 +40,9 @@
     "selectDeparturePlace": "Select the departure place",
     "selectArrivalPlace": "Select the arrival place",
     "selectDepartureDate": "Select the departure date",
-    "selectArrivalDate": "Select the arrival date"
+    "selectArrivalDate": "Select the arrival date",
+    "selectTime": "Select the time",
+    "time": "Time"
   },
   "TripDetails": {
     "title": {

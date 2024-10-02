@@ -62,6 +62,7 @@ export interface CDatePickerProps {
   datePickerProps?: DatePickerProps;
   showTime?: boolean;
   placeholder?: string;
+  timePlaceholder?: string;
 }
 
 export interface CInputProps extends Partial<InputProps> {

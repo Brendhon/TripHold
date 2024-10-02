@@ -40,7 +40,9 @@
     "selectDeparturePlace": "Selecione o local de partida",
     "selectArrivalPlace": "Selecione o local de chegada",
     "selectDepartureDate": "Selecione a data de partida",
-    "selectArrivalDate": "Selecione a data de chegada"
+    "selectArrivalDate": "Selecione a data de chegada",
+    "selectTime": "Selecione um horário",
+    "time": "Horário"
   },
   "TripDetails": {
     "title": {

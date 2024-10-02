@@ -2,7 +2,7 @@
 
 import { CDatePickerProps } from "@app/models";
 import { getDateFormat, getDateTimeFormat } from "@utils/dates";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 import DefaultDatePicker, { CalendarContainer } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -29,6 +29,9 @@ export function DatePicker(props: CDatePickerProps) {
 
   // State open
   const [open, setOpen] = useState(false);
+
+  // Translations
+  const t = useTranslations('Placeholder');
 
   // Handle on change
   const handleChange = (newDate: Date) => {
@@ -103,7 +106,8 @@ export function DatePicker(props: CDatePickerProps) {
               showTimeSelectOnly
               timeIntervals={15}
               locale={locale}
-              timeCaption="teste"
+              placeholderText={t('selectTime')}
+              timeCaption={t('time')}
               dateFormat={getDateTimeFormat(locale)}
               selected={props.date}
               onChange={(date: any) => handleChange(date)}
