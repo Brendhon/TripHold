@@ -1,11 +1,11 @@
 "use client";
 
-import { BaseStepProps, Trip } from '@app/models';
+import { SelectPeriodProps } from '@app/models';
 import { DatePicker } from 'components/Form/DatePicker';
-import { StepTitle } from '../StepTitle';
 import { useTranslations } from 'next-intl';
+import { StepTitle } from '../StepTitle';
 
-export function SelectPeriod(props: BaseStepProps<Trip>) {
+export function SelectPeriod(props: SelectPeriodProps) {
   // Translations
   const t = useTranslations('Trip');
 
@@ -18,11 +18,13 @@ export function SelectPeriod(props: BaseStepProps<Trip>) {
   // Render
   return (
     <div className={props.className}>
-      <StepTitle title='whenWillYouTravel' />
+      <StepTitle title={props.title ?? 'whenWillYouTravel'} />
 
       <div className='flex flex-col gap-1 md:flex-row justify-center md:gap-4 items-center'>
         <DatePicker
+          showTime={props.showTime}
           date={props.state?.startDate}
+          placeholder={props.startDatePlaceholder}
           handleChange={handleStartDate}
           datePickerProps={{
             minDate: new Date(),
@@ -33,7 +35,9 @@ export function SelectPeriod(props: BaseStepProps<Trip>) {
         <span>{t('until')}</span>
 
         <DatePicker
+          showTime={props.showTime}
           date={props.state?.endDate}
+          placeholder={props.endDatePlaceholder}
           handleChange={handleEndDate}
           disabled={!props.state?.startDate}
           datePickerProps={{

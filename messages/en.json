@@ -38,7 +38,9 @@
     "selectActivityType": "Select the type of activity",
     "selectTransportType": "Select the type of transport",
     "selectDeparturePlace": "Select the departure place",
-    "selectArrivalPlace": "Select the arrival place"
+    "selectArrivalPlace": "Select the arrival place",
+    "selectDepartureDate": "Select the departure date",
+    "selectArrivalDate": "Select the arrival date"
   },
   "TripDetails": {
     "title": {
@@ -248,7 +250,8 @@
       "summary": "Summary",
       "alias": "Give a nickname to your trip",
       "tripIdentifier": "Trip identifier (optional)",
-      "defineYourRoute": "Define your route"
+      "defineYourRoute": "Define your route",
+      "activityTimeChoose": "Enter the date and time of the activity"
     },
     "desc": {
       "description": "Description",

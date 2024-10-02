@@ -60,6 +60,8 @@ export interface CDatePickerProps {
   date?: Date;
   handleChange?: (e: any) => void;
   datePickerProps?: DatePickerProps;
+  showTime?: boolean;
+  placeholder?: string;
 }
 
 export interface CInputProps extends Partial<InputProps> {
@@ -115,6 +117,13 @@ export interface BaseStepProps<T> {
   setstate?: (state: T) => void;
   className?: string;
   requiredFields?: Array<keyof T>;
+}
+
+export interface SelectPeriodProps extends BaseStepProps<Trip> {
+  showTime?: boolean;
+  startDatePlaceholder?: string;
+  endDatePlaceholder?: string;
+  title?: string;
 }
 
 export interface StepsStructureProps extends HTMLProps<HTMLDivElement> {

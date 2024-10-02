@@ -38,7 +38,9 @@
     "selectActivityType": "Selecione o tipo de atividade",
     "selectTransportType": "Selecione o tipo de transporte",
     "selectDeparturePlace": "Selecione o local de partida",
-    "selectArrivalPlace": "Selecione o local de chegada"
+    "selectArrivalPlace": "Selecione o local de chegada",
+    "selectDepartureDate": "Selecione a data de partida",
+    "selectArrivalDate": "Selecione a data de chegada"
   },
   "TripDetails": {
     "title": {
@@ -248,7 +250,8 @@
       "summary": "Resumo",
       "alias": "Dê um apelido para sua viagem",
       "tripIdentifier": "Identificador da viagem (opcional)",
-      "defineYourRoute": "Defina sua rota"
+      "defineYourRoute": "Defina sua rota",
+      "activityTimeChoose": "Escolha a data e horário da atividade"
     },
     "desc": {
       "description": "Descrição",

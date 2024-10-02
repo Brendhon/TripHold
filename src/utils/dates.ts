@@ -72,11 +72,28 @@ export const getLocaleDate = (locale: string): string => {
 export const getDateFormat = (locale: string, time: boolean = false): string => {
   switch (locale) {
     case "pt":
-      return "dd/MM/yyyy" + (time ? " HH:mm" : "");
+      return "dd/MM/yyyy" + time ? getDateTimeFormat(locale) : "";
     case "es":
-      return "dd/MM/yyyy" + (time ? " HH:mm" : "");
+      return "dd/MM/yyyy" + time ? getDateTimeFormat(locale) : "";
     default:
-      return "M/d/yyyy" + (time ? " h:mm a" : "");
+      return "M/d/yyyy" + time ? getDateTimeFormat(locale) : "";
+  }
+}
+
+/**
+ * Get time format for locale
+ * @param {string} locale - Locale
+ * @returns {string} Time format
+ * @returns {string} Time format
+ */
+export const getDateTimeFormat = (locale: string): string => {
+  switch (locale) {
+    case "pt":
+      return "HH:mm";
+    case "es":
+      return "HH:mm";
+    default:
+      return "h:mm a";
   }
 }
 

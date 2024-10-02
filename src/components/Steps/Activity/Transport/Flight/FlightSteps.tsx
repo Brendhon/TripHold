@@ -6,6 +6,7 @@ import StepsStructure from 'components/Steps/StepsStructure';
 import { useActivityCreationData } from 'context/ActivityCreationDataContext';
 import { useEffect } from 'react';
 import { SelectPlane } from './SelectPlane';
+import { SelectPeriod } from 'components/Steps/SelectPeriod/SelectPeriod';
 
 export function FlightSteps() {
   // Form state
@@ -20,13 +21,21 @@ export function FlightSteps() {
   };
 
   useEffect(() => {
-    console.log('SelectTransfer', data);
+    // Set start date
+    form.startDate = data?.date;
   }, [data]);
 
   // Render
   return (
     <StepsStructure onfinish={handleCreation} form={form} setform={setForm}>
       <SelectPlane requiredFields={['departure', 'arrival']} />
+      <SelectPeriod
+        showTime
+        title='activityTimeChoose'
+        requiredFields={['startDate', 'endDate']}
+        startDatePlaceholder='selectDepartureDate'
+        endDatePlaceholder='selectArrivalDate'
+      />
     </StepsStructure>
   );
 }
