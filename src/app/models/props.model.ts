@@ -114,7 +114,7 @@ export interface BaseStepProps<T> {
   state?: T;
   setstate?: (state: T) => void;
   className?: string;
-  requiredFields?: string[];
+  requiredFields?: Array<keyof T>;
 }
 
 export interface StepsStructureProps extends HTMLProps<HTMLDivElement> {

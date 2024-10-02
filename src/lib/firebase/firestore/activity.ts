@@ -24,7 +24,7 @@ export const getPinFromLastActivity = async (trip: Trip, currentStartDate: Date)
     const docs = await getDocs(query(col));
 
     // Check if activities are empty
-    if (docs.empty) throw { message: "No activities found" };
+    if (docs.empty) return;
 
     // Get activities
     const activities = docs.docs.map(doc => { return { id: doc.id, ...doc.data() } as Activity });

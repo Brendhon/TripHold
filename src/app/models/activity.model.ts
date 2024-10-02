@@ -1,3 +1,5 @@
+import { Airport } from "./airport.model";
+
 export enum ActivityType {
   Tour = "tour",
   Transport = "transport",
@@ -29,35 +31,23 @@ export enum ActivityLang {
   Spanish = "es",
 }
 
-interface ActivityContact {
-  email?: string;
-  phone?: string;
-  website?: string;
-}
-
-interface ActivityAddress {
-  street?: string;
-  city?: string;
-  country?: string;
-  state?: string;
-  postalCode?: string;
-}
-
 export interface Activity {
   id?: string;
-  name: string;
   type: ActivityType;
-  pin: Pin;
-  address: ActivityAddress;
-  contact: ActivityContact;
+  pin?: Pin;
   subType?: ActivityTransportType;
-  description?: string;
   startDate?: Date;
   endDate?: Date;
-  price?: string;
-  ratingImage?: string;
-  features?: string[];
-  hours?: Hours;
+  description?: string;
+}
+
+export type FlightActivityType = keyof FlightActivity;
+
+export interface FlightActivity extends Activity {
+  type: ActivityType.Transport;
+  subType: ActivityTransportType.Flight;
+  departure: Airport; // Departure airport
+  arrival: Airport; // Arrival airport
 }
 
 export interface TripAdvisorActivity {

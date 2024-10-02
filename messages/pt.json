@@ -245,7 +245,8 @@
       "whenWillYouTravel": "Quando você vai viajar?",
       "summary": "Resumo",
       "alias": "Dê um apelido para sua viagem",
-      "tripIdentifier": "Identificador da viagem (opcional)"
+      "tripIdentifier": "Identificador da viagem (opcional)",
+      "defineYourRoute": "Defina sua rota"
     },
     "desc": {
       "description": "Descrição",
@@ -356,5 +357,6 @@
       "signature": "Estamos aqui para ajudar em cada etapa da sua jornada com o TripHold.",
       "team": "— Equipe TripHold"
     }
-  }
+  },
+  "noDataFound": "Nenhum dado encontrado"
 }

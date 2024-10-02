@@ -245,7 +245,8 @@
       "whenWillYouTravel": "When will you travel?",
       "summary": "Summary",
       "alias": "Give a nickname to your trip",
-      "tripIdentifier": "Trip identifier (optional)"
+      "tripIdentifier": "Trip identifier (optional)",
+      "defineYourRoute": "Define your route"
     },
     "desc": {
       "description": "Description",
@@ -356,5 +357,6 @@
       "signature": "We are here to help at every step of your journey with TripHold.",
       "team": "— TripHold Team"
     }
-  }
+  },
+  "noDataFound": "No data found"
 }

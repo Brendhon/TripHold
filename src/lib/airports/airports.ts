@@ -6,17 +6,18 @@ import axios from 'axios';
  * Get airports from 'airports.json' file
  * @returns {Promise<Airport[]>} Airports
  */
-export const getAirportsByCoordinates = async (latitude?: number, longitude?: number, limit = 10): Promise<Airport[]> => {
+export const getAirportsByCoordinates = async (latitude?: number, longitude?: number, limit = 20): Promise<Airport[]> => {
   try {
-
     // Get airports in public folder
-    const response = await axios.get('../../airports.json');
+    const response = await axios.get('/airports.json');
 
     // Check if response is valid
     if (!response.data) throw { message: 'Invalid response' };
 
     // Get airports
-    const fetchAirports = (lat: number, long: number) => sortByDistance<Airport>(response.data, lat, long).slice(0, limit)
+    const fetchAirports = (lat: number, long: number) => sortByDistance<Airport>(response.data, lat, long)
+      .filter((airport: Airport) => airport.iata_code)
+      .slice(0, limit)
 
     // Request user location
     if (!latitude || !longitude) {
@@ -42,7 +43,7 @@ export const getAirportsByCoordinates = async (latitude?: number, longitude?: nu
  */
 export const getAirportByName = async (search: string): Promise<Airport[]> => {
   // Get airports in public folder
-  const response = await axios.get('../../airports.json');
+  const response = await axios.get('/airports.json');
 
   // Check if response is valid
   if (!response.data) throw { message: 'Invalid response' };
@@ -51,16 +52,16 @@ export const getAirportByName = async (search: string): Promise<Airport[]> => {
   const airports = response.data;
 
   // Filter airports
-  return airports.filter((airport: Airport) => searchInString(airport.name, search));
+  return airports.filter((airport: Airport) => searchInString(airport.name, search)).filter((airport: Airport) => airport.iata_code)
 }
 
 /**
  * Get airport by iso_country
  * @param {string} iso_country - ISO country
  */
-export const getAirportsByCountry = async (iso_country: string): Promise<Airport[]> => {
+export const getAirportsByCountry = async (iso_country: string[]): Promise<Airport[]> => {
   // Get airports in public folder
-  const response = await axios.get('../../airports.json');
+  const response = await axios.get('/airports.json');
 
   // Check if response is valid
   if (!response.data) throw { message: 'Invalid response' };
@@ -69,7 +70,7 @@ export const getAirportsByCountry = async (iso_country: string): Promise<Airport
   const airports = response.data;
 
   // Filter airports
-  return airports.filter((airport: Airport) => airport.iso_country === iso_country);
+  return airports.filter((airport: Airport) => iso_country.includes(airport.iso_country)).filter((airport: Airport) => airport.iata_code)
 }
 
 /**
@@ -78,7 +79,7 @@ export const getAirportsByCountry = async (iso_country: string): Promise<Airport
  */
 export const getAirportsByMunicipality = async (municipality: string): Promise<Airport[]> => {
   // Get airports in public folder
-  const response = await axios.get('../../airports.json');
+  const response = await axios.get('/airports.json');
 
   // Check if response is valid
   if (!response.data) throw { message: 'Invalid response' };
@@ -87,5 +88,5 @@ export const getAirportsByMunicipality = async (municipality: string): Promise<A
   const airports = response.data;
 
   // Filter airports
-  return airports.filter((airport: Airport) => searchInString(airport.municipality, municipality));
+  return airports.filter((airport: Airport) => searchInString(airport.municipality, municipality)).filter((airport: Airport) => airport.iata_code)
 }
