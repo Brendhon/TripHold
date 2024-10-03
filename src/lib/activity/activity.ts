@@ -84,7 +84,7 @@ export const getGeosDetails = async (place: string, locate: string): Promise<Tri
  * @param {string} currency Currency
  * @returns {Promise<TripAdvisorActivity>} Activity detail
  */
-export const getActivityDetail = async (locationId: string, lang: string, currency: string): Promise<TripAdvisorActivity> => {
+export const getActivityDetail = async (locationId: string, lang: string, currency?: string): Promise<TripAdvisorActivity> => {
   try {
     return request(getActivityDetailsPath(locationId, lang, currency), options);
   } catch (error) {

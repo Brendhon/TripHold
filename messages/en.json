@@ -125,7 +125,8 @@
     "signUp": "Sign Up",
     "deleteAccount": "Delete account",
     "goToProfile": "Go to profile",
-    "resendEmail": "Resend email"
+    "resendEmail": "Resend email",
+    "select": "Select"
   },
   "Modal": {
     "title": {
@@ -134,7 +135,8 @@
       "imageCrop": "Crop image",
       "incompleteProfile": "Incomplete profile",
       "emailNotVerified": "Email not verified",
-      "whichWillBeTheActivity": "What will be the activity?"
+      "whichWillBeTheActivity": "What will be the activity?",
+      "detailsOfTheActivity": "Details of the activity"
     },
     "subtitle": {
       "completeProfile": "Make the necessary changes to complete your profile and create trips."
@@ -397,5 +399,6 @@
   "advancedSearch": "Advanced search",
   "clearFilters": "Clear filters",
   "notFoundWhatYouAreLookingFor": "Didn't find what you're looking for?",
-  "tryToUseAdvancedSearch": "Try using advanced search"
+  "tryToUseAdvancedSearch": "Try using advanced search",
+  "seeMoreInfo": "See more information"
 }

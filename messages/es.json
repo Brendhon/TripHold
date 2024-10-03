@@ -125,7 +125,8 @@
     "signUp": "Registrarse",
     "deleteAccount": "Eliminar cuenta",
     "goToProfile": "Ir al perfil",
-    "resendEmail": "Reenviar correo"
+    "resendEmail": "Reenviar correo",
+    "select": "Seleccionar"
   },
   "Modal": {
     "title": {
@@ -134,7 +135,8 @@
       "imageCrop": "Recortar imagen",
       "incompleteProfile": "Perfil incompleto",
       "emailNotVerified": "Correo no verificado",
-      "whichWillBeTheActivity": "¿Cuál será la actividad?"
+      "whichWillBeTheActivity": "¿Cuál será la actividad?",
+      "detailsOfTheActivity": "Detalles de la actividad"
     },
     "subtitle": {
       "completeProfile": "Realice los cambios necesarios para completar su perfil y crear viajes."
@@ -397,5 +399,6 @@
   "advancedSearch": "Búsqueda avanzada",
   "clearFilters": "Limpiar filtros",
   "notFoundWhatYouAreLookingFor": "¿No encontró lo que está buscando?",
-  "tryToUseAdvancedSearch": "Intente usar la búsqueda avanzada"
+  "tryToUseAdvancedSearch": "Intente usar la búsqueda avanzada",
+  "seeMoreInfo": "Ver más información"
 }

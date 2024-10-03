@@ -49,9 +49,11 @@ export function SelectTransfer(props: BaseStepProps<TransferActivity>) {
     // Check if latitude and longitude exists
     if (!latitude || !longitude || !lastActivity) return;
 
+    // Check if last activity is flight
     if (isFlightActivity(lastActivity)) {
       setDepartureType('airport');
       setArrivalType('hotel');
+      setSelectedDeparture(lastActivity.arrival);
     } else {
       setDepartureType('hotel');
       setArrivalType('airport');

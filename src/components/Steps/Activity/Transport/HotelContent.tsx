@@ -1,7 +1,13 @@
 "use client";
 
 import { TripAdvisorActivitySearch } from '@app/models';
+import { Button } from '@nextui-org/react';
+import { useTranslations } from 'next-intl';
+import { useState } from 'react';
 import { MdHotel } from 'react-icons/md';
+import { ActivityDetails } from '../ActivityDetails';
+import { IoMdInformationCircleOutline } from 'react-icons/io';
+import { FaInfoCircle } from 'react-icons/fa';
 
 interface PlaneContentProps {
   hotel: TripAdvisorActivitySearch;
@@ -12,6 +18,11 @@ interface PlaneContentProps {
 }
 
 export function HotelContent({ hotel, props, onClick, onlyView, hideIcon }: PlaneContentProps) {
+  // State
+  const [showModal, setShowModal] = useState<boolean>(false);
+
+  // Translations
+  const t = useTranslations();
 
   // Render
   return (
@@ -38,6 +49,22 @@ export function HotelContent({ hotel, props, onClick, onlyView, hideIcon }: Plan
           {hotel.address_obj?.address_string}
         </p>
       </div>
+      {
+        <div className='flex justify-center text-center'>
+          <Button
+            size='md'
+            variant='light'
+            className='hover:border-1 border-grey-light rounded-full'
+            isIconOnly
+            onClick={() => setShowModal(true)}
+            color='default'>
+            <FaInfoCircle size={20} />
+          </Button>
+        </div>
+      }
+
+
+      <ActivityDetails id={hotel.location_id} isOpen={showModal} onClose={() => setShowModal(false)} onSubmit={onClick} />
     </div>
   );
 }
