@@ -41,8 +41,9 @@
     "selectArrivalPlace": "Select the arrival place",
     "selectDepartureDate": "Select the departure date",
     "selectArrivalDate": "Select the arrival date",
-    "selectTime": "Select the time",
-    "time": "Time"
+    "selectTime": "Select a time",
+    "time": "Time",
+    "optionalDescription": "Description (optional)"
   },
   "TripDetails": {
     "title": {
@@ -75,7 +76,7 @@
     "alreadyHaveAccount": "Already have an account?",
     "address": {
       "why": "Why we need the address",
-      "whyInfo": "The address will be used as the starting point for your trips."
+      "whyInfo": "The address will be used as the starting point of your trips."
     },
     "terms": {
       "accept": "By clicking Sign Up, you agree to our",
@@ -152,10 +153,10 @@
       "others": "Others"
     },
     "activityDesc": {
-      "transport": "Includes air travel, train travel, bus travel, car rental, airport to hotel transfer, use of local public transport (subway, bus, taxi).",
+      "transport": "Covers air travel, train travel, bus travel, car rental, airport to hotel transfer, use of local public transport (subway, bus, taxi).",
       "accommodation": "Involves check-in and check-out at the hotel or inn, as well as changing accommodation during the trip.",
       "food": "Includes meals such as breakfast, lunch, dinner, snacks and coffees, visits to local restaurants, and gastronomic experiences such as cooking classes and tastings.",
-      "tour": "Includes sightseeing tours (city tour, guided tours), visits to museums and art galleries, visits to tourist spots (monuments, squares, parks), outdoor activities (hiking, beaches, national parks), sports and recreational activities (skiing, diving, cycling), and shopping at local markets and souvenir shops.",
+      "tour": "Includes sightseeing tours (city tour, guided tours), visits to museums and art galleries, visits to tourist attractions (monuments, squares, parks), outdoor activities (hiking, beaches, national parks), sports and recreational activities (skiing, diving, cycling), and shopping at local markets and souvenir shops.",
       "others": "Activities that do not fit into other categories."
     },
     "transportType": {
@@ -223,7 +224,7 @@
     "auth/credential-already-in-use": "Credential already in use",
     "auth/timeout": "Timeout exceeded",
     "auth/network-request-failed": "Network request failed",
-    "auth/too-many-requests": "Too many requests. Please try again later",
+    "auth/too-many-requests": "Too many requests. Try again later",
     "auth/popup-closed-by-user": "Popup closed by user",
     "auth/requires-recent-login": "Requires recent login",
     "auth/missing-email": "Missing email",
@@ -237,11 +238,22 @@
   "Trip": {
     "invite": "Shall we travel?",
     "inviteInfo": "Click on this card to plan your next trip ✈️",
-    "until": "to",
+    "to": "to",
     "countryYouWillVisit": "Country you will visit",
     "whenYouWillTravel": "When you will travel",
     "tripAlias": "Trip nickname",
     "tripIdentifier": "Trip identifier"
+  },
+  "Activity": {
+    "activityPeriod": "Activity period",
+    "chosenActivity": "Chosen activity",
+    "activityType": "Activity type",
+    "activityDescription": "Activity description",
+    "flight": {
+      "route": "Travel route",
+      "departure": "Departure",
+      "arrival": "Arrival"
+    }
   },
   "Step": {
     "next": "Next",
@@ -252,8 +264,9 @@
       "summary": "Summary",
       "alias": "Give a nickname to your trip",
       "tripIdentifier": "Trip identifier (optional)",
+      "anythingElseToSayAboutActivity": "Anything else to say about this activity?",
       "defineYourRoute": "Define your route",
-      "activityTimeChoose": "Enter the date and time of the activity"
+      "activityTimeChoose": "Choose the date and time of the activity"
     },
     "desc": {
       "description": "Description",
@@ -266,7 +279,7 @@
   },
   "Country": {
     "carSide": {
-      "title": "Car direction",
+      "title": "Car side",
       "left": "Drive on the left side",
       "right": "Drive on the right side"
     }
@@ -302,6 +315,11 @@
         "confirm": "Email confirmed successfully",
         "resend": "Email resent successfully",
         "send": "Email sent successfully"
+      },
+      "activity": {
+        "create": "Activity created successfully",
+        "update": "Activity updated successfully",
+        "delete": "Activity deleted successfully"
       }
     },
     "error": {
@@ -323,6 +341,11 @@
         "confirm": "Error confirming email",
         "resend": "Error resending email",
         "send": "Error sending email"
+      },
+      "activity": {
+        "create": "Error creating activity",
+        "update": "Error updating activity",
+        "delete": "Error deleting activity"
       }
     }
   },
@@ -333,7 +356,7 @@
       "description": "With TripHold, you can add, edit, and delete your trips and activities easily. Everything is organized in a schedule to facilitate your planning.",
       "help": "If you need help, contact our support.",
       "signature": "We are here to help at every step of your journey! Have a good trip and enjoy your adventures with TripHold.",
-      "button": "Access your TripHold dashboard",
+      "button": "Access your panel on TripHold",
       "team": "— TripHold Team"
     },
     "confirm": {
@@ -368,6 +391,6 @@
   "noDataFound": "No data found",
   "advancedSearch": "Advanced search",
   "clearFilters": "Clear filters",
-  "notFoundWhatYouAreLookingFor": "Didn't find what you are looking for?",
-  "tryToUseAdvancedSearch": "Try using the advanced search"
+  "notFoundWhatYouAreLookingFor": "Didn't find what you're looking for?",
+  "tryToUseAdvancedSearch": "Try using advanced search"
 }

@@ -36,9 +36,10 @@ export interface Activity {
   type: ActivityType;
   pin?: Pin;
   subType?: ActivityTransportType;
-  startDate?: Date;
-  endDate?: Date;
+  startDate?: DateType;
+  endDate?: DateType;
   description?: string;
+  tripId: string;
 }
 
 export type FlightActivityType = keyof FlightActivity;

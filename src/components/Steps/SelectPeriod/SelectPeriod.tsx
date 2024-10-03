@@ -32,7 +32,7 @@ export function SelectPeriod(props: SelectPeriodProps) {
           }}
         />
 
-        <span>{t('until')}</span>
+        <span>{t('to')}</span>
 
         <DatePicker
           showTime={props.showTime}

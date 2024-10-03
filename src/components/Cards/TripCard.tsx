@@ -36,7 +36,7 @@ export function TripCard(props: TripCardProps) {
       </div>
 
       <span className='text-small'>
-        {formatDate(locate, props.trip!.startDate)} {t("until")} {formatDate(locate, props.trip!.endDate)}
+        {formatDate(locate, props.trip!.startDate)} {t("to")} {formatDate(locate, props.trip!.endDate)}
       </span>
     </>
   )

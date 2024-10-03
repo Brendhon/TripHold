@@ -238,7 +238,7 @@
   "Trip": {
     "invite": "Vamos viajar?",
     "inviteInfo": "Click nesse cartão para planejar sua proxima viagem ✈️",
-    "until": "até",
+    "to": "até",
     "countryYouWillVisit": "País que você vai visitar",
     "whenYouWillTravel": "Quando você vai viajar",
     "tripAlias": "Apelido da viagem",
@@ -315,6 +315,11 @@
         "confirm": "Email confirmado com sucesso",
         "resend": "Email reenviado com sucesso",
         "send": "Email enviado com sucesso"
+      },
+      "activity": {
+        "create": "Atividade criada com sucesso",
+        "update": "Atividade atualizada com sucesso",
+        "delete": "Atividade excluída com sucesso"
       }
     },
     "error": {
@@ -336,6 +341,11 @@
         "confirm": "Erro ao confirmar email",
         "resend": "Erro ao reenviar email",
         "send": "Erro ao enviar email"
+      },
+      "activity": {
+        "create": "Erro ao criar atividade",
+        "update": "Erro ao atualizar atividade",
+        "delete": "Erro ao excluir atividade"
       }
     }
   },

@@ -1,6 +1,6 @@
 import { Activity, Trip } from "@app/models";
 import { getFireActivitiesPath } from "@utils/paths";
-import { collection, getDocs, query } from "firebase/firestore";
+import { addDoc, collection, getDocs, query } from "firebase/firestore";
 import { db } from "../config";
 
 /**
@@ -45,3 +45,19 @@ export const getPinFromLastActivity = async (trip: Trip, currentStartDate: Date)
     return;
   }
 }
+
+/**
+ * Create a new flight activity
+ * @param {Activity} activity Activity
+ */
+export const createActivity = async (activity: Activity) => {
+  // Get path
+  const path = getFireActivitiesPath(activity.tripId);
+
+  // Create activity
+  const doc = await addDoc(collection(db, path), activity);  
+
+  // Return activity ID
+  return doc.id;
+}
+  
