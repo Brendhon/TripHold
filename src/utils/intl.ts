@@ -1,6 +1,6 @@
 export const DEFAULT_LOCALE = "pt";
 
-export const LOCALES = ["pt", "en"];
+export const LOCALES = ["pt", "en", "es"];
 
 
 /**

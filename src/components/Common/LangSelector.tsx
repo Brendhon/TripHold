@@ -34,7 +34,7 @@ export function LangSelector() {
     >
       <option value="pt">{t('portuguese')}</option>
       <option value="en">{t('english')}</option>
-      {/* <option value="es">{t('spanish')}</option> */}
+      <option value="es">{t('spanish')}</option>
     </select>
   )
 }

@@ -1,0 +1,396 @@
+{
+  "Footer": {
+    "text": "Todos los derechos reservados."
+  },
+  "ProfileDropdown": {
+    "profile": "Perfil",
+    "language": "Idioma",
+    "portuguese": "Portugués",
+    "english": "Inglés",
+    "spanish": "Español",
+    "settings": "Configuraciones",
+    "terms": "Términos de Servicio",
+    "logout": "Salir"
+  },
+  "Placeholder": {
+    "search": "Buscar...",
+    "email": "Ingrese su correo electrónico",
+    "password": "Ingrese su contraseña",
+    "newPassword": "Ingrese su nueva contraseña",
+    "confirmNewPassword": "Confirme su nueva contraseña",
+    "name": "Ingrese su nombre",
+    "confirmPassword": "Confirme su contraseña",
+    "country": "Ingrese su país",
+    "countrySelect": "Seleccione un país",
+    "zipCode": "Ingrese su código postal",
+    "state": "Ingrese su estado",
+    "stateSelect": "Seleccione un estado",
+    "city": "Ingrese su ciudad",
+    "citySelect": "Seleccione una ciudad",
+    "neighborhood": "Ingrese su barrio",
+    "address": "Ingrese su dirección",
+    "street": "Ingrese su calle",
+    "number": "Ingrese el número",
+    "complement": "Ingrese el complemento (opcional)",
+    "date": "Seleccione una fecha",
+    "alias": "Ingrese un alias (opcional)",
+    "tripIdentifier": "Ej.: Foz do Iguaçu, Natal",
+    "selectActivityType": "Seleccione el tipo de actividad",
+    "selectTransportType": "Seleccione el tipo de transporte",
+    "selectDeparturePlace": "Seleccione el lugar de salida",
+    "selectArrivalPlace": "Seleccione el lugar de llegada",
+    "selectDepartureDate": "Seleccione la fecha de salida",
+    "selectArrivalDate": "Seleccione la fecha de llegada",
+    "selectTime": "Seleccione una hora",
+    "time": "Hora",
+    "optionalDescription": "Descripción (opcional)"
+  },
+  "TripDetails": {
+    "title": {
+      "schedule": "Cronograma",
+      "activities": "Actividades",
+      "settings": "Configuraciones"
+    },
+    "schedule": {
+      "add": "Agregar actividad",
+      "create": "Crear actividad",
+      "edit": "Editar actividad",
+      "delete": "Eliminar actividad",
+      "noActivities": "No se encontraron actividades",
+      "activity": "Actividad",
+      "date": "Fecha",
+      "time": "Hora",
+      "description": "Descripción",
+      "location": "Ubicación",
+      "save": "Guardar",
+      "cancel": "Cancelar",
+      "period": "Período"
+    }
+  },
+  "LoginAndRegister": {
+    "login": "Iniciar sesión",
+    "signUp": "Registrarse",
+    "register": "Registrar",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "dontHaveAccount": "¿No tienes una cuenta?",
+    "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+    "address": {
+      "why": "Por qué necesitamos la dirección",
+      "whyInfo": "La dirección se utilizará como punto de origen de sus viajes."
+    },
+    "terms": {
+      "accept": "Al hacer clic en Registrarse, aceptas nuestros",
+      "terms": "Términos de Servicio",
+      "and": "y",
+      "privacyPolicy": "Política de Privacidad"
+    },
+    "signUpSuccess": "Registro exitoso",
+    "signUpError": "Error al registrarse",
+    "userExists": {
+      "email": "Usuario ya registrado con este correo electrónico, inicie sesión",
+      "google": "Usuario ya registrado con Google, inicie sesión con Google"
+    },
+    "loginSuccess": "Inicio de sesión exitoso",
+    "loginError": "Error al iniciar sesión",
+    "signUpFailed": "Error al registrarse",
+    "forgotPasswordSuccess": "Correo enviado con éxito"
+  },
+  "EmailConfirmed": {
+    "title": "Correo confirmado",
+    "inProgress": "Confirmando correo",
+    "error": "Error al confirmar correo",
+    "message": "Su correo ha sido confirmado con éxito, ahora puede crear viajes e invitar a amigos a participar.",
+    "inProgressMessage": "Estamos confirmando su correo, por favor espere...",
+    "errorMessage": "Error al confirmar su correo, intente nuevamente más tarde.",
+    "login": "Haga clic aquí para iniciar sesión"
+  },
+  "ResetPassword": {
+    "title": "Restablecer contraseña",
+    "success": "Contraseña restablecida con éxito",
+    "error": "Error al restablecer la contraseña",
+    "message": "Hemos enviado un correo con instrucciones para restablecer su contraseña. Verifique su bandeja de entrada.",
+    "errorMessage": "Error al restablecer su contraseña, intente nuevamente más tarde."
+  },
+  "Button": {
+    "send": "Enviar",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "create": "Crear",
+    "back": "Volver",
+    "confirm": "Confirmar",
+    "register": "Registrar",
+    "login": "Iniciar sesión",
+    "signUp": "Registrarse",
+    "deleteAccount": "Eliminar cuenta",
+    "goToProfile": "Ir al perfil",
+    "resendEmail": "Reenviar correo"
+  },
+  "Modal": {
+    "title": {
+      "deleteAccount": "Eliminar cuenta",
+      "deleteTrip": "Eliminar viaje",
+      "imageCrop": "Recortar imagen",
+      "incompleteProfile": "Perfil incompleto",
+      "emailNotVerified": "Correo no verificado",
+      "whichWillBeTheActivity": "¿Cuál será la actividad?"
+    },
+    "subtitle": {
+      "completeProfile": "Realice los cambios necesarios para completar su perfil y crear viajes."
+    },
+    "message": {
+      "deleteAccount": "¿Está seguro de que desea eliminar su cuenta? Esta acción es irreversible.",
+      "deleteTrip": "¿Está seguro de que desea eliminar este viaje? Esta acción es irreversible.",
+      "incompleteProfileCep": "Es necesario completar su perfil con nombre, país, estado, ciudad y código postal como en el ejemplo a continuación:",
+      "incompleteProfileEmailValidation": "Para crear un viaje, es necesario confirmar su correo. Verifique su bandeja de entrada y haga clic en el enlace de confirmación. Si no recibió el correo, haga clic en el botón a continuación para reenviar. Después de eso, debe cerrar sesión e iniciar sesión nuevamente."
+    },
+    "activityType": {
+      "transport": "Transporte",
+      "accommodation": "Alojamiento",
+      "food": "Alimentación",
+      "tour": "Tour",
+      "others": "Otros"
+    },
+    "activityDesc": {
+      "transport": "Incluye viaje en avión, viaje en tren, viaje en autobús, alquiler de coche, traslado entre aeropuerto y hotel, uso de transporte público local (metro, autobús, taxi).",
+      "accommodation": "Incluye el check-in y check-out en el hotel o posada, así como el cambio de alojamiento durante el viaje.",
+      "food": "Incluye comidas como desayuno, almuerzo, cena, refrigerios y cafés, visitas a restaurantes locales y experiencias gastronómicas como clases de cocina y degustaciones.",
+      "tour": "Incluye paseos turísticos (city tour, tours guiados), visitas a museos y galerías de arte, visitas a puntos turísticos (monumentos, plazas, parques), actividades al aire libre (senderismo, playas, parques nacionales), deportes y actividades recreativas (esquí, buceo, ciclismo), y compras en mercados locales y tiendas de souvenirs.",
+      "others": "Actividades que no se ajustan a las otras categorías."
+    },
+    "transportType": {
+      "flight": "Avión",
+      "train": "Tren",
+      "bus": "Autobús",
+      "car": "Coche",
+      "boat": "Barco",
+      "others": "Otros",
+      "transfer": "Traslado",
+      "none": "Ninguno"
+    },
+    "password": "Confirme su contraseña para continuar"
+  },
+  "Error": {
+    "invalidField": "Campo inválido",
+    "required": "Campo obligatorio",
+    "name": {
+      "required": "El nombre es obligatorio",
+      "invalid": "Nombre inválido"
+    },
+    "password": {
+      "required": "La contraseña es obligatoria",
+      "notMatch": "Las contraseñas no coinciden",
+      "pattern": "La contraseña debe tener al menos 6 caracteres"
+    },
+    "currentPassword": {
+      "required": "La contraseña actual es obligatoria"
+    },
+    "confirmPassword": {
+      "required": "La confirmación de la contraseña es obligatoria",
+      "notMatch": "Las contraseñas no coinciden"
+    },
+    "email": {
+      "required": "El correo electrónico es obligatorio",
+      "pattern": "Correo electrónico inválido"
+    },
+    "zipCode": {
+      "required": "El código postal es obligatorio",
+      "pattern": "Código postal inválido"
+    },
+    "country": {
+      "required": "El país es obligatorio"
+    },
+    "state": {
+      "required": "El estado es obligatorio"
+    },
+    "city": {
+      "required": "La ciudad es obligatoria"
+    },
+    "terms": {
+      "required": "Debe aceptar los Términos de Servicio"
+    },
+    "loginError": "Error al iniciar sesión",
+    "auth/invalid-email": "Correo electrónico inválido",
+    "auth/user-disabled": "Usuario desactivado",
+    "auth/user-not-found": "Usuario no encontrado",
+    "auth/wrong-password": "Contraseña incorrecta",
+    "auth/email-already-in-use": "El correo electrónico ya está en uso",
+    "auth/operation-not-allowed": "Operación no permitida",
+    "auth/weak-password": "Contraseña débil",
+    "auth/invalid-verification-code": "Código de verificación inválido",
+    "auth/invalid-verification-id": "ID de verificación inválido",
+    "auth/account-exists-with-different-credential": "La cuenta ya existe con una credencial diferente",
+    "auth/credential-already-in-use": "La credencial ya está en uso",
+    "auth/timeout": "Tiempo de espera excedido",
+    "auth/network-request-failed": "Error en la solicitud de red",
+    "auth/too-many-requests": "Demasiadas solicitudes. Intente nuevamente más tarde",
+    "auth/popup-closed-by-user": "Popup cerrado por el usuario",
+    "auth/requires-recent-login": "Requiere inicio de sesión reciente",
+    "auth/missing-email": "Correo electrónico ausente",
+    "auth/provider-already-linked": "Proveedor ya vinculado a esta cuenta",
+    "auth/unauthorized-domain": "Dominio no autorizado",
+    "auth/captcha-check-failed": "Error en la verificación del CAPTCHA",
+    "auth/web-storage-unsupported": "Almacenamiento web no soportado",
+    "auth/invalid-credential": "Credenciales de inicio de sesión incorrectas",
+    "invalidActivity": "Actividad inválida"
+  },
+  "Trip": {
+    "invite": "¿Vamos a viajar?",
+    "inviteInfo": "Haga clic en esta tarjeta para planificar su próximo viaje ✈️",
+    "to": "hasta",
+    "countryYouWillVisit": "País que va a visitar",
+    "whenYouWillTravel": "Cuándo va a viajar",
+    "tripAlias": "Alias del viaje",
+    "tripIdentifier": "Identificador del viaje"
+  },
+  "Activity": {
+    "activityPeriod": "Período de la actividad",
+    "chosenActivity": "Actividad elegida",
+    "activityType": "Tipo de actividad",
+    "activityDescription": "Descripción de la actividad",
+    "flight": {
+      "route": "Ruta del viaje",
+      "departure": "Salida",
+      "arrival": "Llegada"
+    }
+  },
+  "Step": {
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "title": {
+      "whichCountryWillYouVisit": "¿Qué país va a visitar?",
+      "whenWillYouTravel": "¿Cuándo va a viajar?",
+      "summary": "Resumen",
+      "alias": "Dé un alias a su viaje",
+      "tripIdentifier": "Identificador del viaje (opcional)",
+      "anythingElseToSayAboutActivity": "¿Algo más que decir sobre esta actividad?",
+      "defineYourRoute": "Defina su ruta",
+      "activityTimeChoose": "Elija la fecha y hora de la actividad"
+    },
+    "desc": {
+      "description": "Descripción",
+      "whichCountryWillYouVisit": "Elija el país que va a visitar",
+      "whenWillYouTravel": "Elija la fecha de inicio y fin de su viaje",
+      "summary": "Confirme la información de su viaje",
+      "alias": "Dé un alias a su viaje",
+      "tripIdentifier": "Dé un nombre para identificar este viaje, como las ciudades o regiones que planea visitar. Máximo de 35 caracteres."
+    }
+  },
+  "Country": {
+    "carSide": {
+      "title": "Lado de conducción",
+      "left": "Conducen por el lado izquierdo",
+      "right": "Conducen por el lado derecho"
+    }
+  },
+  "Calendar": {
+    "monday": "Lunes",
+    "tuesday": "Martes",
+    "wednesday": "Miércoles",
+    "thursday": "Jueves",
+    "friday": "Viernes",
+    "saturday": "Sábado",
+    "sunday": "Domingo",
+    "holidays": "Feriados",
+    "today": "Hoy",
+    "startDate": "Inicio",
+    "endDate": "Fin"
+  },
+  "Toast": {
+    "success": {
+      "trip": {
+        "create": "Viaje creado con éxito",
+        "update": "Viaje actualizado con éxito",
+        "delete": "Viaje eliminado con éxito"
+      },
+      "user": {
+        "update": "Usuario actualizado con éxito",
+        "delete": "Usuario eliminado con éxito"
+      },
+      "password": {
+        "reset": "Contraseña restablecida con éxito"
+      },
+      "email": {
+        "confirm": "Correo confirmado con éxito",
+        "resend": "Correo reenviado con éxito",
+        "send": "Correo enviado con éxito"
+      },
+      "activity": {
+        "create": "Actividad creada con éxito",
+        "update": "Actividad actualizada con éxito",
+        "delete": "Actividad eliminada con éxito"
+      }
+    },
+    "error": {
+      "storage/unauthorized": "Sin permiso para acceder al almacenamiento",
+      "auth/invalid-credential": "Contraseña incorrecta",
+      "trip": {
+        "create": "Error al crear viaje",
+        "update": "Error al actualizar viaje",
+        "delete": "Error al eliminar viaje"
+      },
+      "user": {
+        "update": "Error al actualizar usuario",
+        "delete": "Error al eliminar usuario"
+      },
+      "password": {
+        "reset": "Es necesario completar todos los campos relacionados con la contraseña para restablecerla"
+      },
+      "email": {
+        "confirm": "Error al confirmar correo",
+        "resend": "Error al reenviar correo",
+        "send": "Error al enviar correo"
+      },
+      "activity": {
+        "create": "Error al crear actividad",
+        "update": "Error al actualizar actividad",
+        "delete": "Error al eliminar actividad"
+      }
+    }
+  },
+  "Email": {
+    "welcome": {
+      "subject": "Bienvenido a TripHold",
+      "message": "Bienvenido a nuestra aplicación de viajes",
+      "description": "Con TripHold, puede agregar, editar y eliminar sus viajes y actividades de manera simple. Todo está organizado en un cronograma para facilitar su planificación.",
+      "help": "Si necesita ayuda, póngase en contacto con nuestro soporte.",
+      "signature": "Estamos aquí para ayudar en cada etapa de su viaje. ¡Buen viaje y disfrute de sus aventuras con TripHold!",
+      "button": "Acceda a su panel en TripHold",
+      "team": "— Equipo TripHold"
+    },
+    "confirm": {
+      "subject": "Confirme su correo",
+      "message": "Hola",
+      "instructions": "Por favor, haga clic en el botón a continuación para confirmar su correo.",
+      "button": "Confirmar correo",
+      "help": "Si necesita ayuda, póngase en contacto con nuestro soporte.",
+      "signature": "Estamos aquí para ayudar en cada etapa de su viaje con TripHold.",
+      "team": "— Equipo TripHold"
+    },
+    "invite": {
+      "subject": "Ha sido invitado a un viaje",
+      "message": "lo invitó a participar en el viaje",
+      "description": "Haga clic en el botón a continuación para aceptar la invitación y comenzar a organizar su viaje con TripHold.",
+      "button": "Aceptar Invitación",
+      "help": "Si necesita ayuda, póngase en contacto con nuestro ",
+      "support": "soporte",
+      "signature": "Estamos aquí para ayudar en cada etapa de su viaje con TripHold.",
+      "team": "— Equipo TripHold"
+    },
+    "reset": {
+      "subject": "Restablecer contraseña en TripHold",
+      "message": "Hemos recibido una solicitud para restablecer su contraseña en TripHold. Haga clic en el botón a continuación para restablecer su contraseña.",
+      "button": "Restablecer contraseña",
+      "help": "Si no solicitó el restablecimiento de la contraseña, póngase en contacto con nuestro ",
+      "support": "soporte",
+      "signature": "Estamos aquí para ayudar en cada etapa de su viaje con TripHold.",
+      "team": "— Equipo TripHold"
+    }
+  },
+  "noDataFound": "No se encontraron datos",
+  "advancedSearch": "Búsqueda avanzada",
+  "clearFilters": "Limpiar filtros",
+  "notFoundWhatYouAreLookingFor": "¿No encontró lo que está buscando?",
+  "tryToUseAdvancedSearch": "Intente usar la búsqueda avanzada"
+}
