@@ -5,7 +5,7 @@ import { StepTitle } from 'components/Steps/StepTitle';
 import { useActivityCreationData } from 'context/ActivityCreationDataContext';
 import { getAirportsByCoordinates, getAirportsByCountry } from 'lib/airports/airports';
 import { useEffect, useState } from 'react';
-import { PlaneInput } from './PlaneInput';
+import { PlaneInput } from '../PlaneInput';
 
 interface SelectPlaneProps {
   type: ('arrival' | 'departure');

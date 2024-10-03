@@ -1,10 +1,11 @@
-import { Trip } from '@app/models';
+import { Activity, Trip } from '@app/models';
 import { createContext, ReactNode, useContext, useState } from 'react';
 
 interface ActivityCreationData {
   trip: Trip;
   date: Date;
   pin?: Pin;
+  lastActivity?: Activity;
 }
 
 interface ActivityCreationDataContextType {

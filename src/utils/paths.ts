@@ -117,8 +117,8 @@ export const getCountriesPath = () => {
  * @param {string} category Category
  * @returns Activities path
  */
-export const getSearchActivitiesPath = (category: ActivityCategory, place: string, lang: string) => {
-  return `${window.location.origin}/api/activities/search?category=${category}&place=${place}&lang=${lang}`;
+export const getSearchActivitiesPath = (category: ActivityCategory, place: string, lang: string, pin?: Pin) => {
+  return `${window.location.origin}/api/activities/search?category=${category}&place=${place}&lang=${lang}${pin ? `&latitude=${pin.latitude}&longitude=${pin.longitude}` : ""}`;
 }
 
 /**

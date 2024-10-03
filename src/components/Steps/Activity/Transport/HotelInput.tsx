@@ -1,35 +1,38 @@
 "use client";
 
-import { Airport } from '@app/models';
+import { TripAdvisorActivitySearch } from '@app/models';
 import { Button, Divider } from '@nextui-org/react';
 import { searchInArray } from '@utils/common';
 import { Input } from 'components/Form';
-import { getAirportsByAdvancedSearch } from 'lib/airports/airports';
-import { useTranslations } from 'next-intl';
+import { getHotels } from 'lib/activity/activity';
+import { useLocale, useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
-import { PlaneContent } from '../PlaneContent';
+import { HotelContent } from './HotelContent';
 
 interface SelectPlaneProps {
   type: ('arrival' | 'departure');
   className: string;
   placeholder: string;
   onChange: any;
-  current?: Airport;
-  options: Airport[];
+  current?: TripAdvisorActivitySearch;
+  options: TripAdvisorActivitySearch[];
 }
 
-export function PlaneInput(props: SelectPlaneProps) {
+export function HotelInput(props: SelectPlaneProps) {
   // State
-  const [options, setOptions] = useState<Airport[]>([]);
+  const [options, setOptions] = useState<TripAdvisorActivitySearch[]>([]);
   const [search, setSearch] = useState<string>('');
   const [isSearching, setIsSearching] = useState<boolean>(false);
-  const [advancedOptions, setAdvancedOptions] = useState<Airport[]>([]);
+  const [advancedOptions, setAdvancedOptions] = useState<TripAdvisorActivitySearch[]>([]);
 
   // Translations
   const t = useTranslations();
 
-  // Fetch airports
+  // Locale
+  const locale = useLocale();
+
+  // Fetch Hotels
   useEffect(() => {
     const options = advancedOptions.length > 0
       ? [...advancedOptions]
@@ -39,10 +42,10 @@ export function PlaneInput(props: SelectPlaneProps) {
     if (!search) return setOptions(options);
 
     // Check if latitude and longitude exists
-    const keys: (keyof Airport)[] = ['name', 'municipality', 'iso_country', 'iata_code'];
+    const keys: (keyof TripAdvisorActivitySearch)[] = ['name', 'address'];
 
     // Set filtering
-    setOptions(options.filter((airport: Airport) => searchInArray(search, keys, airport)));
+    setOptions(options.filter((data: TripAdvisorActivitySearch) => searchInArray(search, keys, data)));
   }, [props.options, search]);
 
 
@@ -52,10 +55,10 @@ export function PlaneInput(props: SelectPlaneProps) {
     setIsSearching(true);
 
     // Get airports by advanced search
-    getAirportsByAdvancedSearch(search)
-      .then((airports: Airport[]) => {
-        setAdvancedOptions(airports)
-        setOptions(airports)
+    getHotels(search, locale)
+      .then((hotels: TripAdvisorActivitySearch[]) => {
+        setAdvancedOptions(hotels)
+        setOptions(hotels)
       })
       .catch(console.error)
       .finally(() => setIsSearching(false));
@@ -91,7 +94,7 @@ export function PlaneInput(props: SelectPlaneProps) {
       <div className='flex flex-col max-h-60 gap-2 overflow-y-auto rounded-md m-2'>
         {
           options.length > 0
-            ? options.map((airport: Airport) => <PlaneContent onClick={() => props.onChange(airport)} key={airport.id} airport={airport} props={props} />)
+            ? options.map((data: TripAdvisorActivitySearch) => <HotelContent onClick={() => props.onChange(data)} key={data.location_id} hotel={data} props={props} />)
             : <NotFound />
         }
       </div>
@@ -100,7 +103,7 @@ export function PlaneInput(props: SelectPlaneProps) {
         <>
           <Divider className='mt-2' />
           <div className='flex items-center justify-center p-4'>
-            <PlaneContent airport={props.current} props={props} />
+            <HotelContent hotel={props.current} props={props} />
           </div>
         </>
       }

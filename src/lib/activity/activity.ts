@@ -1,4 +1,4 @@
-import { TripAdvisorActivity, ActivityCategory } from "@app/models";
+import { TripAdvisorActivity, ActivityCategory, TripAdvisorActivitySearch } from "@app/models";
 import { getActivityDetailsPath, getActivityPhotosPath, getSearchActivitiesPath } from "@utils/paths";
 
 /**
@@ -26,9 +26,9 @@ const request = async (path: string, options: any): Promise<any> => {
  * @param {string} locate Locate
  * @returns {Promise<TripAdvisorActivity[]>} Hotels details
  */
-export const getHotelsDetails = async (place: string, locate: string): Promise<TripAdvisorActivity[]> => {
+export const getHotels = async (place: string, locate: string, pin?: Pin): Promise<TripAdvisorActivitySearch[]> => {
   try {
-    return request(getSearchActivitiesPath(ActivityCategory.Hotels, place, locate), options);
+    return request(getSearchActivitiesPath(ActivityCategory.Hotels, place, locate, pin), options);
   } catch (error) {
     console.log(error);
     throw error;
@@ -40,7 +40,7 @@ export const getHotelsDetails = async (place: string, locate: string): Promise<T
  * @param {string} place Place
  * @param {string} locate Locate
  */
-export const getRestaurantsDetails = async (place: string, locate: string): Promise<TripAdvisorActivity[]> => {
+export const getRestaurantsDetails = async (place: string, locate: string): Promise<TripAdvisorActivitySearch[]> => {
   try {
     return request(getSearchActivitiesPath(ActivityCategory.Restaurants, place, locate), options);
   } catch (error) {
@@ -54,7 +54,7 @@ export const getRestaurantsDetails = async (place: string, locate: string): Prom
  * @param {string} place Place
  * @param {string} locate Locate
  */
-export const getAttractionsDetails = async (place: string, locate: string): Promise<TripAdvisorActivity[]> => {
+export const getAttractionsDetails = async (place: string, locate: string): Promise<TripAdvisorActivitySearch[]> => {
   try {
     return request(getSearchActivitiesPath(ActivityCategory.Attractions, place, locate), options);
   } catch (error) {
@@ -68,7 +68,7 @@ export const getAttractionsDetails = async (place: string, locate: string): Prom
  * @param {string} place Place
  * @param {string} locate Locate
  */
-export const getGeosDetails = async (place: string, locate: string): Promise<TripAdvisorActivity[]> => {
+export const getGeosDetails = async (place: string, locate: string): Promise<TripAdvisorActivitySearch[]> => {
   try {
     return request(getSearchActivitiesPath(ActivityCategory.Geos, place, locate), options);
   } catch (error) {

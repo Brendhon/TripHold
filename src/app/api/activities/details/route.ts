@@ -40,13 +40,19 @@ export async function GET(req: NextRequest) {
     };
 
     // Make request
-    const resp = await fetch(path, options).then(res => res.json())
+    let resp = await fetch(path, options).then(res => res.json()) as TripAdvisorActivitySearch;
 
     // Check if resp has error
-    if (!resp) throw { status: resp?.error?.code ?? 500, message: resp?.error?.message ?? 'Unexpected Error', error: resp };
+    if (!resp) throw { status: 500, error: resp };
+
+    // Extract address_string from the response
+    resp = {
+      ...resp,
+      address: resp.address_obj.address_string,
+    }
 
     // Check if resp has error
-    return NextResponse.json(resp as TripAdvisorActivitySearch, { status: 200 });
+    return NextResponse.json(resp, { status: 200 });
   } catch (error) {
     console.error("Error getting data from TripAdvisorAPI: ", error);
     return NextResponse.json(error, { status: 500 });

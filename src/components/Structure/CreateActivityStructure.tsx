@@ -4,7 +4,7 @@ import { Spinner } from "@nextui-org/react";
 import { useUserData } from "@utils/session";
 import { useActivityCreationData } from "context/ActivityCreationDataContext";
 import { useTrip } from "context/TripContext";
-import { getPinFromLastActivity } from "lib/firebase/firestore/activity";
+import { getLastActivity } from "lib/firebase/firestore/activity";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
@@ -42,10 +42,11 @@ export function CreateActivityStructure({ children }: { children: React.ReactNod
     }
 
     // Get pin
-    getPinFromLastActivity(trip!, date)
-      .then(pin => {
+    getLastActivity(trip!, date)
+      .then(lastActivity => {
+        let pin = lastActivity?.pin;
         pin = pin ? pin : { latitude: user.latitude!, longitude: user.longitude! }; // Set default pin
-        setData({ date, pin, trip }); // Set data
+        setData({ date, pin, trip, lastActivity }); // Set data
         setHasError(false); // Reset error
         setIsLoaded(true); // Set loaded
       })

@@ -7,9 +7,9 @@ import { db } from "../config";
  * Get pin from last activity before current start date
  * @param {Trip} trip Trip data
  * @param {Date} currentStartDate Current start date
- * @returns {Pin} Pin data
+ * @returns {Activity} Pin data
  */
-export const getPinFromLastActivity = async (trip: Trip, currentStartDate: Date): Promise<Pin | undefined> => {
+export const getLastActivity = async (trip: Trip, currentStartDate: Date): Promise<Activity | undefined> => {
   try {
     // Check if trip is set
     if (!trip.id) throw { message: "Trip ID is required" };
@@ -39,7 +39,7 @@ export const getPinFromLastActivity = async (trip: Trip, currentStartDate: Date)
     const lastActivity = filteredActivities[0];
 
     // Get user data
-    return lastActivity?.pin;
+    return lastActivity;
   } catch (error) {
     console.error("Error on fetching pin from last activity: ", error);
     return;
@@ -60,4 +60,3 @@ export const createActivity = async (activity: Activity) => {
   // Return activity ID
   return doc.id;
 }
-  

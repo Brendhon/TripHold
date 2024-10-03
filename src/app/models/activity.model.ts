@@ -54,8 +54,8 @@ export interface FlightActivity extends Activity {
 export interface TransferActivity extends Activity {
   type: ActivityType.Transport;
   subType: ActivityTransportType.Transfer;
-  departure: Airport | Hotel; // Departure airport
-  arrival: Hotel | Airport; // Arrival airport
+  departure: Airport | TripAdvisorActivitySearch; // Departure airport
+  arrival: TripAdvisorActivitySearch | Airport; // Arrival airport
 }
 
 export interface Hotel {
@@ -64,6 +64,7 @@ export interface Hotel {
   name: string;
   description: string;
   address_obj: AddressObj;
+  address: string;
   contact: Contact;
   rating: string;
   ratingUrl: string;
@@ -92,6 +93,7 @@ export interface TripAdvisorActivitySearch {
   distance: string;
   bearing: Bearing;
   address_obj: AddressObj;
+  address: string;
 }
 
 export enum Bearing {

@@ -1,11 +1,12 @@
 "use client";
 
-import { Airport, BaseStepProps, Hotel, TransferActivity } from '@app/models';
+import { BaseStepProps, TransferActivity } from '@app/models';
+import { isAirport } from '@utils/common';
 import { DateDetails } from 'components/Steps/DateDetails';
 import { StepTitle } from 'components/Steps/StepTitle';
 import { useTranslations } from 'next-intl';
-import { PlaneContent } from '../PlaneContent';
 import { HotelContent } from '../HotelContent';
+import { PlaneContent } from '../PlaneContent';
 
 export function TransferSummary(props: BaseStepProps<TransferActivity>) {
   // Translations
@@ -14,16 +15,13 @@ export function TransferSummary(props: BaseStepProps<TransferActivity>) {
   // Step Detail
   const StepDetail = (props: { text: string }) => <span className='text-lg font-semibold text-grey-extra-light'>{t(props.text)}</span>;
 
-  // Check if Hotel or Airport
-  const isFlight = (data: Hotel | Airport): data is Airport => (data as Airport).iso_country !== undefined;
-
   // Plane Content Summary
   const ContentSummary = ({ className, type }: { className?: string, type: 'departure' | 'arrival' }) => {
     return (
       <div className={`flex flex-col border-1 border-grey-light md:rounded-md w-80 ${className}`}>
         <span className='flex text-grey-extra-light text-md font-semibold justify-center p-2 items-center rounded-t-md bg-blue-light w-full' >{t(`transfer.${type}`)}</span>
         {
-          isFlight(props.state?.[type]!)
+          isAirport(props.state?.[type]!)
             ? <PlaneContent hideIcon onlyView airport={props.state?.[type]!} />
             : <HotelContent hideIcon onlyView hotel={props.state?.[type]!} />
         }

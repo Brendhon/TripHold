@@ -1,10 +1,10 @@
 "use client";
 
-import { Hotel } from '@app/models';
+import { TripAdvisorActivitySearch } from '@app/models';
 import { MdHotel } from 'react-icons/md';
 
 interface PlaneContentProps {
-  hotel: Partial<Hotel>;
+  hotel: TripAdvisorActivitySearch;
   props?: any;
   onClick?: any;
   onlyView?: boolean;
@@ -19,7 +19,7 @@ export function HotelContent({ hotel, props, onClick, onlyView, hideIcon }: Plan
       key={hotel.location_id}
       onClick={onClick}
       className={
-        `flex items-center py-2 px-4 gap-2 rounded-md ${props?.current?.id === hotel.location_id ? "bg-blue-light" : ""} ${onlyView ? "cursor-default" : "hover:bg-blue-light cursor-pointer"}`
+        `flex items-center py-2 px-4 gap-2 rounded-md ${props?.current?.location_id === hotel.location_id ? "bg-blue-light" : ""} ${onlyView ? "cursor-default" : "hover:bg-blue-light cursor-pointer"}`
       }>
 
       {/* Icon */}
@@ -31,9 +31,11 @@ export function HotelContent({ hotel, props, onClick, onlyView, hideIcon }: Plan
 
       {/* Content */}
       <div className="flex-grow">
-        <p className="font-semibold">{hotel.address_obj?.address_string}</p>
-        <p className="text-sm text-grey-light">
+        <p className="font-semibold">
           {hotel.name}
+        </p>
+        <p className="text-sm text-grey-light">
+          {hotel.address_obj?.address_string}
         </p>
       </div>
     </div>

@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { ActivityDesc } from '../../ActivityDesc';
 import { TransferSummary } from './TransferSummary';
+import { SelectTransfer } from './SelectTransfer';
 
 export function TransferSteps() {
   // Form state
@@ -28,26 +29,9 @@ export function TransferSteps() {
 
   // Handle creation
   const handleCreation = async () => {
-    // Create activity
-    const activity: TransferActivity = {
-      tripId: data?.trip.id!,
-      arrival: form.arrival!,
-      departure: form.departure!,
-      startDate: form.startDate!,
-      endDate: form.endDate!,
-      description: form.description ?? '',
-      type: ActivityType.Transport,
-      subType: ActivityTransportType.Transfer,
-      pin: {
-        latitude: form.arrival?.latitude!,
-        longitude: form.arrival?.longitude!,
-      },
-    };
 
-    // Create flight activity
-    createActivity(activity)
-      .then(handleSuccess)
-      .catch(handleError);
+    console.log('form', form);
+    
   };
 
   // Handle success
@@ -73,6 +57,7 @@ export function TransferSteps() {
   // Render
   return (
     <StepsStructure onfinish={handleCreation} form={form} setform={setForm}>
+      <SelectTransfer />
       <SelectPeriod
         showTime
         title='activityTimeChoose'
