@@ -1,6 +1,6 @@
 import { ActivityCategory, ActivityLang } from '@app/models';
 import { inEnum } from '@utils/common';
-import { getTripAdvisorActivityDetailsPath, getTripAdvisorLocationActivityPath } from '@utils/paths';
+import { getTripAdvisorLocationActivityPath } from '@utils/paths';
 import { NextRequest, NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic';
@@ -19,8 +19,11 @@ export async function GET(req: NextRequest) {
     // Get country and state from the
     const lang = searchParams.get('lang');
 
-    // Currency
-    const currency = searchParams.get('currency') ?? 'USD';
+    // Get latitude and longitude
+    const latitude = searchParams.get('latitude');
+
+    // Get longitude
+    const longitude = searchParams.get('longitude');
 
     // Validate search params
     switch (true) {
@@ -32,11 +35,11 @@ export async function GET(req: NextRequest) {
         throw { status: 400, message: 'Place is required' };
     }
 
-    // Init result
-    let result: any = [];
-
     // Get the path to the TripAdvisorAPI
     let path = getTripAdvisorLocationActivityPath(category!, lang, place);
+
+    // Add latitude and longitude to the path
+    if (latitude && longitude) path += `&latLong=${latitude},${longitude}`;
 
     // Options
     const options = {
@@ -53,16 +56,10 @@ export async function GET(req: NextRequest) {
     // Check if resp has error
     if (!resp?.data) throw { status: resp?.error?.code ?? 500, message: resp?.error?.message ?? 'Unexpected Error', error: resp };
 
-    // Get details for each location
-    for (const item of resp.data) result.push(fetch(getTripAdvisorActivityDetailsPath(item.location_id, lang, currency), options).then(res => res.json()))
-
-    // Wait for all requests
-    result = await Promise.allSettled(result);
-
     // Check if resp has error
-    return NextResponse.json(result.map((r: any) => r.value), { status: 200 });
+    return NextResponse.json(resp.data, { status: 200 });
   } catch (error) {
-    console.error("Error getting data from TripAdvisorAPI - Hotels: ", error);
+    console.error("Error getting data from TripAdvisorAPI - Search: ", error);
     return NextResponse.json(error, { status: 500 });
   }
 }

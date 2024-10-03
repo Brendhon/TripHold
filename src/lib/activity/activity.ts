@@ -1,5 +1,5 @@
 import { TripAdvisorActivity, ActivityCategory } from "@app/models";
-import { getActivitiesPath } from "@utils/paths";
+import { getActivityDetailsPath, getActivityPhotosPath, getSearchActivitiesPath } from "@utils/paths";
 
 /**
  * Form fetch options
@@ -28,7 +28,7 @@ const request = async (path: string, options: any): Promise<any> => {
  */
 export const getHotelsDetails = async (place: string, locate: string): Promise<TripAdvisorActivity[]> => {
   try {
-    return request(getActivitiesPath(ActivityCategory.Hotels, place, locate), options);
+    return request(getSearchActivitiesPath(ActivityCategory.Hotels, place, locate), options);
   } catch (error) {
     console.log(error);
     throw error;
@@ -42,7 +42,7 @@ export const getHotelsDetails = async (place: string, locate: string): Promise<T
  */
 export const getRestaurantsDetails = async (place: string, locate: string): Promise<TripAdvisorActivity[]> => {
   try {
-    return request(getActivitiesPath(ActivityCategory.Restaurants, place, locate), options);
+    return request(getSearchActivitiesPath(ActivityCategory.Restaurants, place, locate), options);
   } catch (error) {
     console.log(error);
     throw error;
@@ -56,7 +56,7 @@ export const getRestaurantsDetails = async (place: string, locate: string): Prom
  */
 export const getAttractionsDetails = async (place: string, locate: string): Promise<TripAdvisorActivity[]> => {
   try {
-    return request(getActivitiesPath(ActivityCategory.Attractions, place, locate), options);
+    return request(getSearchActivitiesPath(ActivityCategory.Attractions, place, locate), options);
   } catch (error) {
     console.log(error);
     throw error;
@@ -70,7 +70,38 @@ export const getAttractionsDetails = async (place: string, locate: string): Prom
  */
 export const getGeosDetails = async (place: string, locate: string): Promise<TripAdvisorActivity[]> => {
   try {
-    return request(getActivitiesPath(ActivityCategory.Geos, place, locate), options);
+    return request(getSearchActivitiesPath(ActivityCategory.Geos, place, locate), options);
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+/**
+ * Get activity detail
+ * @param {string} locationId Location ID
+ * @param {string} lang Language
+ * @param {string} currency Currency
+ * @returns {Promise<TripAdvisorActivity>} Activity detail
+ */
+export const getActivityDetail = async (locationId: string, lang: string, currency: string): Promise<TripAdvisorActivity> => {
+  try {
+    return request(getActivityDetailsPath(locationId, lang, currency), options);
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+/**
+ * Get activity photos
+ * @param {string} locationId Location ID
+ * @param {string} lang Language
+ * @returns {Promise<TripAdvisorActivity>} Activity photos
+ */
+export const getActivityPhotos = async (locationId: string, lang: string): Promise<TripAdvisorActivity> => {
+  try {
+    return request(getActivityPhotosPath(locationId, lang), options);
   } catch (error) {
     console.log(error);
     throw error;

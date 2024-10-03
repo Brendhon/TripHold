@@ -94,6 +94,17 @@ export const getTripAdvisorActivityDetailsPath = (locationID: string, language: 
 }
 
 /**
+ * Get location trip advisor photos path
+ * @param {string} locationID Location ID
+ * @param {string} language Language
+ * @param {number} limit Limit
+ * @returns Location trip advisor photos path
+ */
+export const getTripAdvisorActivityPhotosPath = (locationID: string, language: string | null, limit: number = 5) => {
+  return `https://api.content.tripadvisor.com/api/v1/location/${locationID}/photos?key=${process.env.TRIP_ADVISOR_API_KEY}&language=${language || "pt"}&limit=${limit}`;
+}
+
+/**
  * Get countries path
  * @returns Countries path
  */
@@ -106,8 +117,29 @@ export const getCountriesPath = () => {
  * @param {string} category Category
  * @returns Activities path
  */
-export const getActivitiesPath = (category: ActivityCategory, place: string, lang: string, currency?: string) => {
-  return `${window.location.origin}/api/activities?category=${category}&place=${place}&lang=${lang}${currency ? `&currency=${currency}` : ""}`;
+export const getSearchActivitiesPath = (category: ActivityCategory, place: string, lang: string) => {
+  return `${window.location.origin}/api/activities/search?category=${category}&place=${place}&lang=${lang}`;
+}
+
+/**
+ * Get Activity details path
+ * @param {string} locationId Location ID
+ * @param {string} lang Language
+ * @param {string} currency Currency
+ * @returns Activity details path
+ */
+export const getActivityDetailsPath = (locationId: string, lang: string, currency?: string) => {
+  return `${window.location.origin}/api/activities/details?locationId=${locationId}&lang=${lang}${currency ? `&currency=${currency}` : ""}`;
+}
+
+/**
+ * Get Activity photos path
+ * @param {string} locationId Location ID
+ * @param {string} lang Language
+ * @returns Activity photos path
+ */
+export const getActivityPhotosPath = (locationId: string, lang: string) => {
+  return `${window.location.origin}/api/activities/photos?locationId=${locationId}&lang=${lang}`;
 }
 
 /**

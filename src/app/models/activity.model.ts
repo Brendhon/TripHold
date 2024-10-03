@@ -51,6 +51,57 @@ export interface FlightActivity extends Activity {
   arrival: Airport; // Arrival airport
 }
 
+export interface TripAdvisorActivityPhotos {
+  id: number;
+  is_blessed: boolean;
+  caption: string;
+  published_date: Date;
+  images: Images;
+  album: string;
+  source: Source;
+  user?: User;
+}
+
+export interface TripAdvisorActivitySearch {
+  location_id: string;
+  name: string;
+  distance: string;
+  bearing: Bearing;
+  address_obj: AddressObj;
+}
+
+export enum Country {
+  Brazil = "Brazil",
+}
+
+export enum State {
+  StateOfMinasGerais = "State of Minas Gerais",
+  StateOfSaoPaulo = "State of Sao Paulo",
+}
+
+export enum Bearing {
+  Northwest = "northwest",
+  South = "south",
+  Southwest = "southwest",
+}
+
+
+interface Large {
+  height: number;
+  width: number;
+  url: string;
+}
+
+interface Source {
+  name: string;
+  localized_name: string;
+}
+
+interface User {
+  username: string;
+}
+
+
 export interface TripAdvisorActivity {
   location_id: string;
   name: string;
@@ -131,9 +182,15 @@ enum CategoryEnum {
 }
 
 interface Images {
-  tiny: string;
-  small: string;
-  large: string;
+  tiny: Image;
+  small: Image;
+  large: Image;
+}
+
+interface Image {
+  height: number;
+  width: number;
+  url: string;
 }
 
 interface CuisineElement {
