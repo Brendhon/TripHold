@@ -253,6 +253,11 @@
       "route": "Percurso da viagem",
       "departure": "Partida",
       "arrival": "Chegada"
+    },
+    "transfer": {
+      "route": "Percurso do translado",
+      "departure": "Local de partida",
+      "arrival": "Local de chegada"
     }
   },
   "Step": {

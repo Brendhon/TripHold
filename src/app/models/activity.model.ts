@@ -51,6 +51,31 @@ export interface FlightActivity extends Activity {
   arrival: Airport; // Arrival airport
 }
 
+export interface TransferActivity extends Activity {
+  type: ActivityType.Transport;
+  subType: ActivityTransportType.Transfer;
+  departure: Airport | Hotel; // Departure airport
+  arrival: Hotel | Airport; // Arrival airport
+}
+
+export interface Hotel {
+  id: string;
+  location_id: string;
+  name: string;
+  description: string;
+  address_obj: AddressObj;
+  contact: Contact;
+  rating: string;
+  ratingUrl: string;
+  numberOfReviews: string;
+  photo: string;
+  allPhotosLink: string;
+  latitude: number;
+  longitude: number;
+  image: string;
+  amenities: string[];
+}
+
 export interface TripAdvisorActivityPhotos {
   id: number;
   is_blessed: boolean;
@@ -59,7 +84,6 @@ export interface TripAdvisorActivityPhotos {
   images: Images;
   album: string;
   source: Source;
-  user?: User;
 }
 
 export interface TripAdvisorActivitySearch {
@@ -70,26 +94,10 @@ export interface TripAdvisorActivitySearch {
   address_obj: AddressObj;
 }
 
-export enum Country {
-  Brazil = "Brazil",
-}
-
-export enum State {
-  StateOfMinasGerais = "State of Minas Gerais",
-  StateOfSaoPaulo = "State of Sao Paulo",
-}
-
 export enum Bearing {
   Northwest = "northwest",
   South = "south",
   Southwest = "southwest",
-}
-
-
-interface Large {
-  height: number;
-  width: number;
-  url: string;
 }
 
 interface Source {
@@ -97,10 +105,11 @@ interface Source {
   localized_name: string;
 }
 
-interface User {
-  username: string;
+interface Contact {
+  phone?: string;
+  email?: string;
+  website?: string;
 }
-
 
 export interface TripAdvisorActivity {
   location_id: string;

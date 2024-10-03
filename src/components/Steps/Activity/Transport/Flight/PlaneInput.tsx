@@ -8,7 +8,7 @@ import { getAirportsByAdvancedSearch } from 'lib/airports/airports';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
-import { PlaneContent } from './PlaneContent';
+import { PlaneContent } from '../PlaneContent';
 
 interface SelectPlaneProps {
   type: ('arrival' | 'departure');

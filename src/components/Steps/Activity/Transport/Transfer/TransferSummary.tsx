@@ -1,24 +1,32 @@
 "use client";
 
-import { BaseStepProps, FlightActivity } from '@app/models';
+import { Airport, BaseStepProps, Hotel, TransferActivity } from '@app/models';
 import { DateDetails } from 'components/Steps/DateDetails';
 import { StepTitle } from 'components/Steps/StepTitle';
 import { useTranslations } from 'next-intl';
 import { PlaneContent } from '../PlaneContent';
+import { HotelContent } from '../HotelContent';
 
-export function FlightSummary(props: BaseStepProps<FlightActivity>) {
+export function TransferSummary(props: BaseStepProps<TransferActivity>) {
   // Translations
   const t = useTranslations('Activity');
 
   // Step Detail
   const StepDetail = (props: { text: string }) => <span className='text-lg font-semibold text-grey-extra-light'>{t(props.text)}</span>;
 
+  // Check if Hotel or Airport
+  const isFlight = (data: Hotel | Airport): data is Airport => (data as Airport).iso_country !== undefined;
+
   // Plane Content Summary
-  const PlaneContentSummary = ({ className, type }: { className?: string, type: 'departure' | 'arrival' }) => {
+  const ContentSummary = ({ className, type }: { className?: string, type: 'departure' | 'arrival' }) => {
     return (
       <div className={`flex flex-col border-1 border-grey-light md:rounded-md w-80 ${className}`}>
-        <span className='flex text-grey-extra-light text-md font-semibold justify-center p-2 items-center rounded-t-md bg-blue-light w-full' >{t(`flight.${type}`)}</span>
-        <PlaneContent hideIcon onlyView airport={props.state?.[type]!} />
+        <span className='flex text-grey-extra-light text-md font-semibold justify-center p-2 items-center rounded-t-md bg-blue-light w-full' >{t(`transfer.${type}`)}</span>
+        {
+          isFlight(props.state?.[type]!)
+            ? <PlaneContent hideIcon onlyView airport={props.state?.[type]!} />
+            : <HotelContent hideIcon onlyView hotel={props.state?.[type]!} />
+        }
       </div>
     );
   }
@@ -36,11 +44,11 @@ export function FlightSummary(props: BaseStepProps<FlightActivity>) {
         </>
       }
 
-      <StepDetail text='flight.route' />
+      <StepDetail text='transfer.route' />
 
       <div className='flex flex-col my-4 md:flex-row gap-2 md:gap-0'>
-        <PlaneContentSummary type="departure" className="md:border-r-0 md:rounded-r-none" />
-        <PlaneContentSummary type="arrival" className="md:rounded-l-none" />
+        <ContentSummary type="departure" className="md:border-r-0 md:rounded-r-none" />
+        <ContentSummary type="arrival" className="md:rounded-l-none" />
       </div>
 
       <StepDetail text='activityPeriod' />
