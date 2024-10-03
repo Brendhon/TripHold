@@ -2,12 +2,10 @@
 
 import { TripAdvisorActivitySearch } from '@app/models';
 import { Button } from '@nextui-org/react';
-import { useTranslations } from 'next-intl';
 import { useState } from 'react';
-import { MdHotel } from 'react-icons/md';
-import { ActivityDetails } from '../ActivityDetails';
-import { IoMdInformationCircleOutline } from 'react-icons/io';
 import { FaInfoCircle } from 'react-icons/fa';
+import { MdHotel } from 'react-icons/md';
+import { ActivityModalDetails } from '../ActivityModalDetails';
 
 interface PlaneContentProps {
   hotel: TripAdvisorActivitySearch;
@@ -21,8 +19,11 @@ export function HotelContent({ hotel, props, onClick, onlyView, hideIcon }: Plan
   // State
   const [showModal, setShowModal] = useState<boolean>(false);
 
-  // Translations
-  const t = useTranslations();
+  // Handle on submit
+  const onSubmit = () => {
+    setShowModal(false);
+    onClick();
+  }
 
   // Render
   return (
@@ -54,7 +55,7 @@ export function HotelContent({ hotel, props, onClick, onlyView, hideIcon }: Plan
           <Button
             size='md'
             variant='light'
-            className='hover:border-1 border-grey-light rounded-full'
+            className='hover:border-2 border-grey-light rounded-full'
             isIconOnly
             onClick={() => setShowModal(true)}
             color='default'>
@@ -63,8 +64,7 @@ export function HotelContent({ hotel, props, onClick, onlyView, hideIcon }: Plan
         </div>
       }
 
-
-      <ActivityDetails id={hotel.location_id} isOpen={showModal} onClose={() => setShowModal(false)} onSubmit={onClick} />
+      <ActivityModalDetails onlyView id={hotel.location_id} isOpen={showModal} onClose={() => setShowModal(false)} onSubmit={onSubmit} />
     </div>
   );
 }

@@ -400,5 +400,8 @@
   "clearFilters": "Clear filters",
   "notFoundWhatYouAreLookingFor": "Didn't find what you're looking for?",
   "tryToUseAdvancedSearch": "Try using advanced search",
-  "seeMoreInfo": "See more information"
+  "seeMoreInfo": "See more information",
+  "features": "Features",
+  "visitWebsite": "Visit website",
+  "contactInfo": "Contact information"
 }

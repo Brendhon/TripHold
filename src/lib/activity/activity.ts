@@ -1,4 +1,4 @@
-import { TripAdvisorActivity, ActivityCategory, TripAdvisorActivitySearch } from "@app/models";
+import { TripAdvisorActivity, ActivityCategory, TripAdvisorActivitySearch, TripAdvisorActivityPhotos, ActivityPhotos } from "@app/models";
 import { getActivityDetailsPath, getActivityPhotosPath, getSearchActivitiesPath } from "@utils/paths";
 
 /**
@@ -99,7 +99,7 @@ export const getActivityDetail = async (locationId: string, lang: string, curren
  * @param {string} lang Language
  * @returns {Promise<TripAdvisorActivity>} Activity photos
  */
-export const getActivityPhotos = async (locationId: string, lang: string): Promise<TripAdvisorActivity> => {
+export const getActivityPhotos = async (locationId: string, lang: string): Promise<ActivityPhotos[]> => {
   try {
     return request(getActivityPhotosPath(locationId, lang), options);
   } catch (error) {

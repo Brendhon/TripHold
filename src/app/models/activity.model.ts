@@ -87,6 +87,15 @@ export interface TripAdvisorActivityPhotos {
   source: Source;
 }
 
+export interface ActivityPhotos {
+  id: number;
+  url: string;
+  width: number;
+  height: number;
+  caption: string;
+  date: string;
+}
+
 export interface TripAdvisorActivitySearch {
   location_id: string;
   name: string;

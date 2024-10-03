@@ -14,11 +14,16 @@ const nextConfig = {
         hostname: 'lh3.googleusercontent.com',
         pathname: '**',
       },
+      {
+        protocol: 'https',
+        hostname: 'media-cdn.tripadvisor.com',
+        pathname: '**',
+      },
     ],
   },
 };
 
-// PWA configuration
+/** @type {withPWA.PWAConfig} */
 const withPWAConfig = {
   dest: "public",         // destination directory for the PWA files
   disable: process.env.NODE_ENV !== "production",        // disable PWA in development
@@ -26,4 +31,5 @@ const withPWAConfig = {
   skipWaiting: true,      // skip waiting for service worker activation
 };
 
+// Export the Next.js configuration object
 export default withPWA(withPWAConfig)(withNextIntl(nextConfig));

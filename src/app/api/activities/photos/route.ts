@@ -1,4 +1,4 @@
-import { ActivityLang, TripAdvisorActivityPhotos } from '@app/models';
+import { ActivityLang, ActivityPhotos, TripAdvisorActivityPhotos } from '@app/models';
 import { inEnum } from '@utils/common';
 import { getTripAdvisorActivityPhotosPath } from '@utils/paths';
 import { NextRequest, NextResponse } from 'next/server';
@@ -43,10 +43,12 @@ export async function GET(req: NextRequest) {
     if (!resp.data) throw { status: resp?.error?.code ?? 500, message: resp?.error?.message ?? 'Unexpected Error', error: resp };
 
     // Format the response to return
-    const photos = resp.data.map((photo: TripAdvisorActivityPhotos) => {
+    const photos: ActivityPhotos[] = resp.data.map((photo: TripAdvisorActivityPhotos) => {
       return {
         id: photo.id,
         url: photo.images.large.url,
+        width: photo.images.large.width,
+        height: photo.images.large.height,
         caption: photo.caption,
         date: photo.published_date
       }
