@@ -10,6 +10,7 @@ interface Props {
     [key: string]: Date;
   };
   numberPerRow: number;
+  showTime?: boolean;
 }
 
 // Function to split array into rows based on numberPerRow
@@ -47,11 +48,11 @@ export function DateDetails(props: Props) {
   ) => {
     return [
       "flex flex-col gap-1 border border-grey-light justify-center items-center w-full",
-      isFirst && isFirstRow ? "rounded-tl-md" : "",
-      isLast && isFirstRow ? "rounded-tr-md" : "",
-      isFirst && isLastRow ? "rounded-bl-md" : "",
-      isLast && isLastRow ? "rounded-br-md" : "",
-      !isLast ? "border-r-0" : "",
+      isFirst && isFirstRow ? "md:rounded-tl-md" : "",
+      isLast && isFirstRow ? "md:rounded-tr-md" : "",
+      isFirst && isLastRow ? "md:rounded-bl-md" : "",
+      isLast && isLastRow ? "md:rounded-br-md" : "",
+      !isLast ? "md:border-r-0" : "",
     ].join(" ");
   };
 
@@ -62,7 +63,7 @@ export function DateDetails(props: Props) {
     isFirstRow: boolean
   ) => {
     return [
-      "bg-table-bg flex justify-center w-full h-full border-b border-grey-light",
+      "bg-blue-light flex justify-center w-full h-full text-grey-extra-light text-md font-semibold",
       isFirst && isFirstRow ? "rounded-tl-md" : "",
       isLast && isFirstRow ? "rounded-tr-md" : "",
       !isLast ? "border-r-0" : "",
@@ -73,7 +74,7 @@ export function DateDetails(props: Props) {
   return (
     <AnimatedDiv className='flex flex-col gap-4 my-4'>
       {rows.map((row, rowIndex) => (
-        <div key={rowIndex} className='flex gap-0'>
+        <div key={rowIndex} className='flex gap-2 md:gap-0 flex-col md:flex-row'>
           {row.map((key, index) => {
             const isFirstRow = rowIndex === 0;
             const isLastRow = rowIndex === rows.length - 1;
@@ -90,7 +91,7 @@ export function DateDetails(props: Props) {
                 </div>
 
                 <div className='flex gap-1 px-4 py-2'>
-                  {formatDate(locale, props.dates[key])}
+                  {formatDate(locale, props.dates[key], true, props.showTime)}
                 </div>
               </div>
             );

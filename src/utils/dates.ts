@@ -25,9 +25,10 @@ export const getDate = (date: DateType): Date | null => {
  * @param {string} locate Locale
  * @param {Date | string} date Date to format
  * @param {boolean} full Full date (with year)
+ * @param {boolean} showTime Show time
  * @returns {string} Formatted date
  */
-export const formatDate = (locate: string, date: DateType, full: boolean = true): string => {
+export const formatDate = (locate: string, date: DateType, full: boolean = true, showTime: boolean = false): string => {
   // Get date
   date = getDate(date);
 
@@ -42,6 +43,12 @@ export const formatDate = (locate: string, date: DateType, full: boolean = true)
 
   // Add year
   if (full) options.year = "numeric";
+
+  // Add time
+  if (showTime) {
+    options.hour = "numeric";
+    options.minute = "numeric";
+  }
 
   // Format date
   return new Date(date).toLocaleDateString(getLocaleDate(locate), options);

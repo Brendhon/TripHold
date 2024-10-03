@@ -244,6 +244,17 @@
     "tripAlias": "Apelido da viagem",
     "tripIdentifier": "Identificador da viagem"
   },
+  "Activity": {
+    "activityPeriod": "Período da atividade",
+    "chosenActivity": "Atividade escolhida",
+    "activityType": "Tipo de atividade",
+    "activityDescription": "Descrição da atividade",
+    "flight": {
+      "route": "Percurso da viagem",
+      "departure": "Partida",
+      "arrival": "Chegada"
+    }
+  },
   "Step": {
     "next": "Próximo",
     "previous": "Anterior",

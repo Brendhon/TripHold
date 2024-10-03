@@ -47,12 +47,12 @@ export function SelectPlane(props: BaseStepProps<FlightActivity>) {
 
     // Get airports by coordinates
     getAirportsByCoordinates(latitude, longitude)
-      .then(setArrivalAirports)
+      .then(setDepartureAirports)
       .catch(console.error);
 
     // Get airports by country
     getAirportsByCountry(data?.trip.country.codes ?? [])
-      .then(setDepartureAirports)
+      .then(setArrivalAirports)
       .catch(console.error);
   }, [latitude, longitude]);
 
@@ -64,21 +64,21 @@ export function SelectPlane(props: BaseStepProps<FlightActivity>) {
 
       <div className='flex flex-col gap-4 2lg:flex-row'>
         <PlaneInput
-          type='arrival'
-          options={arrivalAirports}
-          current={props.state?.arrival}
-          className='2lg:border-r-1 2lg:pr-4 border-r-grey-light'
-          placeholder='selectArrivalPlace'
-          onChange={setSelectedArrival}
-        />
-
-        <PlaneInput
           type='departure'
           options={departureAirports}
           current={props.state?.departure}
-          className='2lg:border-0 border-t-1 pt-4 2lg:p-0 border-l-grey-light'
+          className='2lg:border-r-1 2lg:pr-4 border-r-grey-light'
           placeholder='selectDeparturePlace'
           onChange={setSelectedDeparture}
+        />
+
+        <PlaneInput
+          type='arrival'
+          options={arrivalAirports}
+          current={props.state?.arrival}
+          className='2lg:border-0 border-t-1 pt-4 2lg:p-0 border-l-grey-light'
+          placeholder='selectArrivalPlace'
+          onChange={setSelectedArrival}
         />
       </div>
     </>

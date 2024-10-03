@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import { SelectPlane } from './SelectPlane';
 import { SelectPeriod } from 'components/Steps/SelectPeriod/SelectPeriod';
 import { ActivityDesc } from '../../ActivityDesc';
+import { FlightSummary } from './FlightSummary';
 
 export function FlightSteps() {
   // Form state
@@ -38,6 +39,7 @@ export function FlightSteps() {
         endDatePlaceholder='selectArrivalDate'
       />
       <ActivityDesc />
+      <FlightSummary />
     </StepsStructure>
   );
 }

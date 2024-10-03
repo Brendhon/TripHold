@@ -35,7 +35,6 @@ export function DatePicker(props: CDatePickerProps) {
 
   // Handle on change
   const handleChange = (newDate: Date) => {
-    console.log(newDate)
     props.handleChange && props.handleChange(newDate)
     if (!props.showTime) setOpen(false);
   }

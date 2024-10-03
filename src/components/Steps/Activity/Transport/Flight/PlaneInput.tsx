@@ -7,8 +7,8 @@ import { Input } from 'components/Form';
 import { getAirportsByAdvancedSearch } from 'lib/airports/airports';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
-import { BiSolidPlaneAlt } from 'react-icons/bi';
 import { FaSearch } from 'react-icons/fa';
+import { PlaneContent } from './PlaneContent';
 
 interface SelectPlaneProps {
   type: ('arrival' | 'departure');
@@ -60,31 +60,6 @@ export function PlaneInput(props: SelectPlaneProps) {
       .catch(console.error)
       .finally(() => setIsSearching(false));
   }
-
-  // Plane Content
-  const PlaneContent = ({ airport, props, onClick }: { airport: Airport, props: SelectPlaneProps, onClick?: any }) => (
-    <div
-      key={airport.id + props.type}
-      onClick={onClick}
-      className={
-        `flex items-center py-2 px-4 gap-2 hover:bg-blue-light cursor-pointer rounded-md ${props.current?.id === airport.id ? "bg-blue-light" : ""}`
-      }>
-
-      {/* Icon */}
-      <div className='flex items-center justify-center w-8'>
-        <BiSolidPlaneAlt className="text-xl text-grey-extra-light mr-3" />
-      </div>
-
-      {/* Content */}
-      <div className="flex-grow">
-        <p className="font-semibold">{airport.municipality}, {airport.iso_country}</p>
-        <p className="text-sm text-grey-light">
-          {airport.name}
-          {airport.iata_code ? ` (${airport.iata_code})` : ""} {/* Renderiza o código somente se ele existir */}
-        </p>
-      </div>
-    </div>
-  );
 
   // Not found
   const NotFound = () => (
