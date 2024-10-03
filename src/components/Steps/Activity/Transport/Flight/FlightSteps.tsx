@@ -46,7 +46,7 @@ export function FlightSteps() {
     };
 
     // Create flight activity
-    createActivity(activity)
+    return createActivity(activity)
       .then(handleSuccess)
       .catch(handleError);
   };

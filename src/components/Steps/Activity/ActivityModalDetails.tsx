@@ -79,25 +79,19 @@ export function ActivityModalDetails(props: Props) {
 
             </ModalBody>
 
-            {
-              props.onlyView ? (
-                <ModalFooter>
-                  <Button color="default" onPress={onClose}>
-                    {tButton('back')}
-                  </Button>
-                </ModalFooter>
-              ) :
-              <ModalFooter>
-                <Button color="default" onPress={onClose}>
-                  {tButton('cancel')}
-                </Button>
+            <ModalFooter>
+              <Button color="default" onPress={onClose}>
+                {tButton('back')}
+              </Button>
+              {
+                !props.onlyView &&
                 <Button
                   color="primary"
                   onPress={() => props.onSubmit()}>
                   {tButton('select')}
                 </Button>
-              </ModalFooter>
-            }
+              }
+            </ModalFooter>
           </>
         )}
       </ModalContent>

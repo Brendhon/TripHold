@@ -40,6 +40,7 @@ export interface Activity {
   endDate?: DateType;
   description?: string;
   tripId: string;
+  createdAt?: Date;
 }
 
 export type FlightActivityType = keyof FlightActivity;

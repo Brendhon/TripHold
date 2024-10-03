@@ -64,7 +64,7 @@ export function HotelContent({ hotel, props, onClick, onlyView, hideIcon }: Plan
         </div>
       }
 
-      <ActivityModalDetails onlyView id={hotel.location_id} isOpen={showModal} onClose={() => setShowModal(false)} onSubmit={onSubmit} />
+      <ActivityModalDetails onlyView={onlyView} id={hotel.location_id} isOpen={showModal} onClose={() => setShowModal(false)} onSubmit={onSubmit} />
     </div>
   );
 }

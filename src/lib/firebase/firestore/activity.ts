@@ -55,7 +55,10 @@ export const createActivity = async (activity: Activity) => {
   const path = getFireActivitiesPath(activity.tripId);
 
   // Create activity
-  const doc = await addDoc(collection(db, path), activity);  
+  const doc = await addDoc(collection(db, path), {
+    ...activity,
+    createdAt: new Date()
+  });  
 
   // Return activity ID
   return doc.id;
