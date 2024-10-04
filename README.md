@@ -129,6 +129,26 @@ Caso não adicione um e-mail de envio, o e-mail padrão será o e-mail de suport
 TRIP_ADVISOR_API_KEY={API_KEY}
 ```
 
+## Proxy
+
+Por questões de segurança, algumas APIs de terceiros utilizadas no projeto exigem que domínios autorizados sejam configurados. Para contornar essa limitação e permitir o uso dessas APIs durante o desenvolvimento local, é necessário configurar um proxy reverso. Uma solução popular para isso é o uso do [ngrok](https://ngrok.com/). 
+
+Após instalar o ngrok, adicione no arquivo .env na raiz do projeto o domínio gerado pelo ngrok:
+
+```
+NGROK_CUSTOM_DOMAIN={DOMAIN}
+```
+
+Por padrão, o ngrok expõe a aplicação local na porta 3000, mas é possível alterar essa porta. Para isso, adicione a variável de ambiente no arquivo .env na raiz do projeto:
+
+```
+NGROK_PORT={PORT}
+```
+
+Obs: 
+- Caso tenha dúvidas sobre como configurar o ngrok, acesse a [documentação](https://ngrok.com/docs).
+- É possível que antivírus ou firewall bloqueiem o acesso do ngrok à internet. Caso isso ocorra, é necessário liberar o acesso do ngrok à internet.
+
 ---
 
 ### ⚽ Rodando o projeto 
@@ -142,7 +162,7 @@ Execute a aplicação em modo de desenvolvimento
 npm run dev
 ```
 
-O servidor iniciará na porta:3000 - acesse http://localhost:3000
+O servidor iniciará no domino configurado no arquivo .env.
 
 ---
 
