@@ -59,6 +59,13 @@ export interface TransferActivity extends Activity {
   arrival: TripAdvisorActivitySearch | Airport; // Arrival airport
 }
 
+export interface OthersTransportActivity extends Activity {
+  type: ActivityType.Transport;
+  subType: ActivityTransportType.Others | ActivityTransportType.Bus | ActivityTransportType.Car | ActivityTransportType.Boat | ActivityTransportType.Train;
+  departure: AddressObj; // Departure address
+  arrival: AddressObj; // Arrival address
+}
+
 export interface Hotel {
   id: string;
   location_id: string;

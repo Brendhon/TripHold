@@ -22,6 +22,8 @@ As seguintes tecnologias foram utilizadas na construção do projeto:
 - **[NextUI](https://nextui.org/)**
 - **[Framer Motion](https://www.framer.com/motion/)**
 - **[React Email](https://www.npmjs.com/package/react-email)**
+- **[Ngrok](https://ngrok.com/)**
+- **[Resend](https://resend.com/)**
 
 > Veja o arquivo  **[package.json](https://github.com/Brendhon/TripHold/blob/main/package.json)**
 
