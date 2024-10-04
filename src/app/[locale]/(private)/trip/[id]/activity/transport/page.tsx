@@ -3,6 +3,7 @@
 import { ActivityTransportType } from "@app/models";
 import { FlightSteps, TransferSteps } from "components/Steps/Activity";
 import { OthersSteps } from "components/Steps/Activity/Transport/Others/OthersSteps";
+import { useActivityCreationData } from "context/ActivityCreationDataContext";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -12,7 +13,10 @@ export default function TransportCreation({ searchParams }: { searchParams: any 
 
   // Router
   const router = useRouter();
-  
+
+  // Update data to set activity transport type
+  const { data, setData } = useActivityCreationData();
+
   // Set type
   useEffect(() => {
     // Check if type is set
@@ -23,6 +27,9 @@ export default function TransportCreation({ searchParams }: { searchParams: any 
 
     // Set type
     setType(type);
+
+    // Set data
+    setData({ ...data!, transportType: type });
   }, [searchParams]);
 
   // Create switch case to render the correct component

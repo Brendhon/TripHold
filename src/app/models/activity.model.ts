@@ -61,7 +61,7 @@ export interface TransferActivity extends Activity {
 
 export interface OthersTransportActivity extends Activity {
   type: ActivityType.Transport;
-  subType: ActivityTransportType.Others | ActivityTransportType.Bus | ActivityTransportType.Car | ActivityTransportType.Boat | ActivityTransportType.Train;
+  subType: ActivityTransportType;
   departure: AddressObj; // Departure address
   arrival: AddressObj; // Arrival address
 }
@@ -175,6 +175,8 @@ interface AddressObj {
   postalcode?: string;
   address_string: string;
   street2?: string;
+  latitude?: number;
+  longitude?: number;
 }
 
 
