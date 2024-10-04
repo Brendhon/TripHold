@@ -7,9 +7,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { BiSolidLeftArrow, BiSolidRightArrow } from "react-icons/bi";
-import { LuMapPin } from "react-icons/lu";
-import { CgWebsite } from "react-icons/cg";
 import { FaInternetExplorer, FaPhoneAlt } from "react-icons/fa";
+import { LuMapPin } from "react-icons/lu";
 import { MdEmail } from "react-icons/md";
 
 
@@ -138,14 +137,18 @@ export function ActivityDetails(props: Props) {
         <div className="flex items-center justify-between gap-2">
 
           {activity?.email && (
-            <Link href={`mailto:${activity.email}`} className="text-blue-500">
+            <Link
+              href={`mailto:${activity.email}`}
+              className="flex items-center cursor-pointer gap-2 hover:opacity-70 ">
               <MdEmail className="text-purple-semi-bold" />
               {activity.email}
             </Link>
           )}
 
           {activity?.phone && (
-            <Link href={`tel:${activity?.phone}`} className="text-blue-500">
+            <Link
+              href={`tel:${activity?.phone}`}
+              className="flex items-center cursor-pointer gap-2 hover:opacity-70 ">
               <FaPhoneAlt className="text-purple-semi-bold" />
               {activity.phone}
             </Link>
@@ -154,7 +157,7 @@ export function ActivityDetails(props: Props) {
       </div>
 
       {/* Amenities */}
-      {activity?.amenities && (
+      {!!activity?.amenities?.length && (
         <div className="mt-4">
           <h3 className="font-semibold">{t('features')}</h3>
           <p className="text-grey-extra-light text-sm mt-2 text-justify">
