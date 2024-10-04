@@ -12,7 +12,7 @@ export default function Login() {
   const [selected, setSelected] = useState<TabsOptions>("login");
 
   // Translations
-  const tPage = useTranslations("LoginAndRegister");
+  const tPage = useTranslations("Form");
 
   // Google Sign In
   const GSignIn = () => <div className="flex flex-col justify-center items-center gap-4"> <GoogleBtn /> </div>

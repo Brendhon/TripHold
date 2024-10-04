@@ -67,7 +67,7 @@
       "period": "Período"
     }
   },
-  "LoginAndRegister": {
+  "Form": {
     "login": "Entrar",
     "signUp": "Cadastrar",
     "register": "Registrar",
@@ -93,7 +93,9 @@
     "loginSuccess": "Login realizado com sucesso",
     "loginError": "Erro ao realizar login",
     "signUpFailed": "Erro ao realizar cadastro",
-    "forgotPasswordSuccess": "E-mail enviado com sucesso"
+    "forgotPasswordSuccess": "E-mail enviado com sucesso",
+    "departure": "Partida",
+    "arrival": "Chegada"
   },
   "EmailConfirmed": {
     "title": "Email confirmado",

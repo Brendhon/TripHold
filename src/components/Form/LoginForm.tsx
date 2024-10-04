@@ -27,7 +27,7 @@ export function LoginForm(props: LoginFormProps) {
   const router = useRouter();
 
   // Translations
-  const tPage = useTranslations("LoginAndRegister");
+  const tPage = useTranslations("Form");
   const tError = useTranslations("Error");
 
   // Locale

@@ -37,7 +37,7 @@ export function ActivityAddress(props: Props) {
   const locale = useLocale();
 
   // Translations
-  const tPage = useTranslations("LoginAndRegister");
+  const t = useTranslations("Form");
 
   // Fetch countries, states and cities
   useEffect(() => {
@@ -152,9 +152,13 @@ export function ActivityAddress(props: Props) {
       formdata={{ form, setForm, validations: [] }}
       className={`flex flex-col gap-2 pt-3 sm:min-w-0 md:min-w-[50%] lg:min-w-[700px] ${props.className}`} >
 
-      <Tooltip content={tPage('address.whyInfo')} placement="top-start">
+      {
+        props.title && <h2 className="text-lg font-semibold text-grey-dark">{t(props.title)}</h2>
+      }
+
+      <Tooltip content={t('address.whyInfo')} placement="top-start">
         <span className="text-sm text-grey-extra-light flex items-center gap-1 w-fit pt-2">
-          {tPage('address.why')}
+          {t('address.why')}
           <FaRegQuestionCircle className="text-green-regular cursor-text" />
         </span>
       </Tooltip>

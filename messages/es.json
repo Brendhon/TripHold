@@ -67,7 +67,7 @@
       "period": "Período"
     }
   },
-  "LoginAndRegister": {
+  "Form": {
     "login": "Iniciar sesión",
     "signUp": "Registrarse",
     "register": "Registrar",
@@ -93,7 +93,9 @@
     "loginSuccess": "Inicio de sesión exitoso",
     "loginError": "Error al iniciar sesión",
     "signUpFailed": "Error al registrarse",
-    "forgotPasswordSuccess": "Correo enviado con éxito"
+    "forgotPasswordSuccess": "Correo enviado con éxito",
+    "departure": "Salida",
+    "arrival": "Llegada"
   },
   "EmailConfirmed": {
     "title": "Correo confirmado",

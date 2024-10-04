@@ -52,7 +52,7 @@ export function UserForm(props: RegisterFormProps) {
   const router = useRouter();
 
   // Translations
-  const tPage = useTranslations("LoginAndRegister");
+  const tPage = useTranslations("Form");
   const tToast = useTranslations("Toast");
 
   // Is user logged in by email or google
