@@ -20,16 +20,16 @@
     "confirmNewPassword": "Confirme su nueva contraseña",
     "name": "Ingrese su nombre",
     "confirmPassword": "Confirme su contraseña",
-    "country": "Ingrese su país",
-    "countrySelect": "Seleccione un país",
-    "zipCode": "Ingrese su código postal",
-    "state": "Ingrese su estado",
-    "stateSelect": "Seleccione un estado",
-    "city": "Ingrese su ciudad",
-    "citySelect": "Seleccione una ciudad",
-    "neighborhood": "Ingrese su barrio",
-    "address": "Ingrese su dirección",
-    "street": "Ingrese su calle",
+    "country": "Ingrese el país",
+    "countrySelect": "Seleccione el país",
+    "zipCode": "Ingrese el código postal",
+    "state": "Ingrese el estado",
+    "stateSelect": "Seleccione el estado",
+    "city": "Ingrese la ciudad",
+    "citySelect": "Seleccione la ciudad",
+    "neighborhood": "Ingrese el barrio",
+    "address": "Ingrese la dirección",
+    "street": "Ingrese la calle",
     "number": "Ingrese el número",
     "complement": "Ingrese el complemento (opcional)",
     "date": "Seleccione una fecha",
@@ -260,6 +260,11 @@
       "route": "Ruta de transferencia",
       "departure": "Ubicación de salida",
       "arrival": "Ubicación de llegada"
+    },
+    "others": {
+      "route": "Lugar de la actividad",
+      "departure": "Lugar de partida",
+      "arrival": "Lugar de llegada"
     }
   },
   "Step": {

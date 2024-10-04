@@ -40,7 +40,7 @@ export function Form<T>(props: FormProps<T>) {
     const { isValid, errors } = isFormValid<T>(validations, form);
 
     // Submit form if valid
-    isValid ? await props.submit.action() : handleErrors(errors);
+    isValid ? await props.submit?.action() : handleErrors(errors);
 
     // Set loading
     setLoading(false);
@@ -104,12 +104,16 @@ export function Form<T>(props: FormProps<T>) {
             {t(props.cancel?.text)}
           </Button>
         }
-        <Button
-          isLoading={loading}
-          color="primary"
-          type="submit">
-          {t(props.submit.text)}
-        </Button>
+
+        {/* Submit button */}
+        {props.submit &&
+          <Button
+            isLoading={loading}
+            color="primary"
+            type="submit">
+            {t(props.submit.text)}
+          </Button>
+        }
       </div>
 
     </ form>

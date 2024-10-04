@@ -20,16 +20,16 @@
     "confirmNewPassword": "Confirm your new password",
     "name": "Enter your name",
     "confirmPassword": "Confirm your password",
-    "country": "Enter your country",
-    "countrySelect": "Select a country",
-    "zipCode": "Enter your ZIP code",
-    "state": "Enter your state",
-    "stateSelect": "Select a state",
-    "city": "Enter your city",
-    "citySelect": "Select a city",
-    "neighborhood": "Enter your neighborhood",
-    "address": "Enter your address",
-    "street": "Enter your street",
+    "country": "Enter the country",
+    "countrySelect": "Select the country",
+    "zipCode": "Enter the ZIP code",
+    "state": "Enter the state",
+    "stateSelect": "Select the state",
+    "city": "Enter the city",
+    "citySelect": "Select the city",
+    "neighborhood": "Enter the neighborhood",
+    "address": "Enter the address",
+    "street": "Enter the street",
     "number": "Enter the number",
     "complement": "Enter the complement (optional)",
     "date": "Select a date",
@@ -260,6 +260,11 @@
       "route": "Transfer route",
       "departure": "Departure",
       "arrival": "Arrival"
+    },
+    "others": {
+      "route": "Activity location",
+      "departure": "Departure location",
+      "arrival": "Arrival location"
     }
   },
   "Step": {

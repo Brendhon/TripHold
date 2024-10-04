@@ -1,17 +1,17 @@
 "use client";
 
+import { ActivityTransportType, ActivityType, OthersTransportActivity } from '@app/models';
+import { useForm } from '@utils/forms';
+import { showErrorNotifier, showSuccessNotifier } from '@utils/notifier';
+import { SelectPeriod } from 'components/Steps/SelectPeriod/SelectPeriod';
 import StepsStructure from 'components/Steps/StepsStructure';
 import { useActivityCreationData } from 'context/ActivityCreationDataContext';
-import { useEffect } from 'react';
-import { SelectOthers } from './SelectOthers';
-import { OthersSummary } from './OthersSummary';
-import { ActivityDesc } from '../../ActivityDesc';
-import { SelectPeriod } from 'components/Steps/SelectPeriod/SelectPeriod';
-import { showErrorNotifier, showSuccessNotifier } from '@utils/notifier';
-import { ActivityTransportType, ActivityType, OthersTransportActivity } from '@app/models';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
-import { useForm } from '@utils/forms';
+import { useEffect } from 'react';
+import { ActivityDesc } from '../../ActivityDesc';
+import { OthersSummary } from './OthersSummary';
+import { SelectAddress } from '../../SelectAddress';
 import { createActivity } from 'lib/firebase/firestore/activity';
 
 export function OthersSteps() {
@@ -45,12 +45,10 @@ export function OthersSteps() {
       },
     };
 
-    console.log(activity);
-
-    // // Create flight activity
-    // return createActivity(activity)
-    //   .then(handleSuccess)
-    //   .catch(handleError);
+    // Create flight activity
+    return createActivity(activity)
+      .then(handleSuccess)
+      .catch(handleError);
   };
 
   // Handle success
@@ -68,7 +66,6 @@ export function OthersSteps() {
   // Set start date
   const initStartDate = () => {
     form.startDate = data?.date ?? new Date();
-    console.log(data);
   }
 
   // Set start date
@@ -77,7 +74,7 @@ export function OthersSteps() {
   // Render
   return (
     <StepsStructure onfinish={handleCreation} form={form} setform={setForm}>
-      <SelectOthers />
+      <SelectAddress requiredFields={['departure', 'arrival']} />
       <SelectPeriod
         showTime
         title='activityTimeChoose'

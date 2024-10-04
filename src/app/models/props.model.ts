@@ -91,7 +91,7 @@ export interface FormProps<T> extends HTMLProps<HTMLFormElement> {
   children: ReactNode;
 
   // Submit function
-  submit: {
+  submit?: {
     action: () => any | Promise<any>;
     text: string;
   };

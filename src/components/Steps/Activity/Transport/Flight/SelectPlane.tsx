@@ -7,15 +7,6 @@ import { getAirportsByCoordinates, getAirportsByCountry } from 'lib/airports/air
 import { useEffect, useState } from 'react';
 import { PlaneInput } from '../PlaneInput';
 
-interface SelectPlaneProps {
-  type: ('arrival' | 'departure');
-  className: string;
-  placeholder: string;
-  onChange: any;
-  current?: Airport;
-  options: Airport[];
-}
-
 export function SelectPlane(props: BaseStepProps<FlightActivity>) {
   // State
   const [arrivalAirports, setArrivalAirports] = useState<Airport[]>([]);

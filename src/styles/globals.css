@@ -33,7 +33,7 @@ body {
   }
 
   .small-field {
-    @apply md:w-[300px];
+    @apply md:w-[200px];
   }
 
   .medium-field {

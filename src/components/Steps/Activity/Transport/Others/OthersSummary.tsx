@@ -10,14 +10,14 @@ export function OthersSummary(props: BaseStepProps<OthersTransportActivity>) {
   const ContentSummary = ({ className, type }: { className?: string, type: 'departure' | 'arrival' }) => {
     return (
       <TransportContentSummary type={type} transport='others' className={className}>
-        {props.state?.[type].address_string}
+        {props.state?.[type]?.address_string}
       </TransportContentSummary>
     );
   }
 
   // Render
   return (
-    <SummaryStructure className={`${props.className}`}>
+    <SummaryStructure className={`${props.className}`} state={props.state}>
       <StepDetail text='transfer.route' />
       <div className='flex flex-col my-4 md:flex-row gap-2 md:gap-0'>
         <ContentSummary type="departure" className="md:border-r-0 md:rounded-r-none" />

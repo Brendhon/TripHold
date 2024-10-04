@@ -62,8 +62,8 @@ export interface TransferActivity extends Activity {
 export interface OthersTransportActivity extends Activity {
   type: ActivityType.Transport;
   subType: ActivityTransportType;
-  departure: AddressObj; // Departure address
-  arrival: AddressObj; // Arrival address
+  departure?: Partial<AddressObj>; // Departure address
+  arrival?: Partial<AddressObj>; // Arrival address
 }
 
 export interface Hotel {
@@ -168,7 +168,7 @@ export interface TripAdvisorActivity {
   groups?: Group[];
 }
 
-interface AddressObj {
+export interface AddressObj {
   street1?: string;
   city?: string;
   country: string;
@@ -177,6 +177,9 @@ interface AddressObj {
   street2?: string;
   latitude?: number;
   longitude?: number;
+  state?: string;
+  complement?: string;
+  number?: string;
 }
 
 

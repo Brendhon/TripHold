@@ -30,7 +30,7 @@ export async function GET(req: NextRequest) {
     const { results } = result;
 
     // Filter results with states
-    const resultsWithStates = results[code].filter((zip: any) => zip.state);
+    const resultsWithStates = results[code]?.filter((zip: any) => zip.state) ?? [];
 
     // Function to get attributes from the ZipCodeBaseAPI in Set to remove duplicates and remove empty strings
     const getAttributes = (attr: string) => Array.from(new Set(resultsWithStates.map((zip: any) => zip[attr]))).filter((a) => a);

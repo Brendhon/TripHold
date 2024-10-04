@@ -20,16 +20,16 @@
     "confirmNewPassword": "Confirme sua nova senha",
     "name": "Digite seu nome",
     "confirmPassword": "Confirme sua senha",
-    "country": "Digite seu país",
-    "countrySelect": "Selecione um país",
-    "zipCode": "Digite seu CEP",
-    "state": "Digite seu estado",
-    "stateSelect": "Selecione um estado",
-    "city": "Digite sua cidade",
-    "citySelect": "Selecione uma cidade",
-    "neighborhood": "Digite seu bairro",
-    "address": "Digite seu endereço",
-    "street": "Digite sua rua",
+    "country": "Digite o país",
+    "countrySelect": "Selecione o país",
+    "zipCode": "Digite o CEP",
+    "state": "Digite o estado",
+    "stateSelect": "Selecione o estado",
+    "city": "Digite a cidade",
+    "citySelect": "Selecione a cidade",
+    "neighborhood": "Digite o bairro",
+    "address": "Digite o endereço",
+    "street": "Digite a rua",
     "number": "Digite o número",
     "complement": "Digite o complemento (opcional)",
     "date": "Selecione uma data",
@@ -258,6 +258,11 @@
     },
     "transfer": {
       "route": "Percurso do translado",
+      "departure": "Local de partida",
+      "arrival": "Local de chegada"
+    },
+    "others": {
+      "route": "Local da atividade",
       "departure": "Local de partida",
       "arrival": "Local de chegada"
     }
