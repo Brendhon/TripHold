@@ -30,5 +30,5 @@ require('dotenv').config(); // Load variables from .env
     ? await ngrok.connect({ addr: port, hostname: domain })
     : await ngrok.connect(port);
 
-  console.log(`Ngrok URL: ${url}`);
+  console.info(`Ngrok URL: ${url}`);
 })();

@@ -29,6 +29,18 @@ const withPWAConfig = {
   disable: process.env.NODE_ENV !== "production",        // disable PWA in development
   register: true,         // register the PWA service worker
   skipWaiting: true,      // skip waiting for service worker activation
+  runtimeCaching: [
+    {
+      urlPattern: /\/api\/activities\/.*$/, // Match any request that starts with /api/activities/
+      handler: 'CacheFirst',
+      options: {
+        cacheName: 'api-cache',
+        expiration: {
+          maxAgeSeconds: 30 * 24 * 60 * 60, // 1 month in seconds
+        },
+      },
+    },
+  ],
 };
 
 // Export the Next.js configuration object
