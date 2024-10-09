@@ -63,3 +63,33 @@ export const createActivity = async (activity: Activity) => {
   // Return activity ID
   return doc.id;
 }
+
+/**
+ * Get activities from trip
+ * @param {string} tripId Trip ID
+ * @returns {Activity[]} Activities
+ */
+export const getActivities = async (tripId: string): Promise<Activity[]> => {
+  try {
+    // Get path
+    const path = getFireActivitiesPath(tripId);
+
+    // Get collection
+    const col = collection(db, path);
+
+    // Get docs
+    const docs = await getDocs(query(col));
+
+    // Check if activities are empty
+    if (docs.empty) return [];
+
+    // Get activities
+    const activities = docs.docs.map(doc => { return { id: doc.id, ...doc.data() } as Activity });
+
+    // Return activities
+    return activities;
+  } catch (error) {
+    console.error("Error on fetching activities: ", error);
+    return [];
+  }
+}

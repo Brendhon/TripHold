@@ -59,7 +59,29 @@ const config: Config = {
       },
       table: {
         "bg": "#374859",
-      }
+      },
+      activity: {
+        preparative: "#1E8449",   // Preparativo
+        transport: "#1B4F72",     // Transporte
+        accommodation: "#AAB7B8", // Hospedagem
+        food: "#1E5631",          // Alimentação
+        tour: "#2E4053",          // Passeio
+        cultural: "#4A235A",      // Evento Cultural
+        wellness: "#E5E8E8",      // Relaxamento e Bem-estar
+        social: "#566573",        // Socialização
+        others: "#2C3E50",        // Diversos
+      },
+      activityText: {
+        preparative: "#1E8449",   // Preparativo
+        transport: "#1B4F72",     // Transporte
+        accommodation: "#AAB7B8", // Hospedagem
+        food: "#1E5631",          // Alimentação
+        tour: "#2E4053",          // Passeio
+        cultural: "#4A235A",      // Evento Cultural
+        wellness: "#E5E8E8",      // Relaxamento e Bem-estar
+        social: "#566573",        // Socialização
+        others: "#2C3E50",        // Diversos
+      },
     },
   },
   darkMode: "class",

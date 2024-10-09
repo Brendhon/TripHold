@@ -31,7 +31,7 @@ export function PlaneContent({ airport, props, onClick, onlyView, hideIcon }: Pl
 
       {/* Content */}
       <div className="flex-grow">
-        <p className="font-semibold">{airport.municipality}, {airport.iso_country}</p>
+        <p className="font-semibold">{airport.municipality ? `${airport.municipality}, ` : ""}{airport.iso_country}</p>
         <p className="text-sm text-grey-light">
           {airport.name}
           {airport.iata_code ? ` (${airport.iata_code})` : ""} {/* Renderiza o código somente se ele existir */}
